@@ -1,18 +1,43 @@
 from app.models import db, User, environment, SCHEMA
 
-
+names = ['Karen','Phil','Diego','Elon','Rupert','Clifford','Jenna',
+         'Rebacca','Justine','Lily','Fiona','Alan','Charlie','Alex',
+         'Steve','Hilda','Xena','Jerry','Beth']
+last = ['Smith','Smithson','Levi','Snape','Dumbledore','Lee',
+        'McGregor','Kim','Putin','Thisseldorf','Strickland','Jones']
+cities = ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix",
+           "Philadelphia", "San Antonio", "San Diego", "Dallas",
+            "San Jose", "Detroit", "Jacksonville", "Indianapolis",
+            "San Francisco", "Columbus", "Austin", "Memphis",
+            "Fort Worth", "Baltimore"]
+states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+           'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+            'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+            'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+            'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    for i in range(10):
+        demoUser = User(
+        username = f'User#{i}',
+        email =f'user{i}@aa.io',
+        first_name =f'{names[i]}',
+        last_name =f'{last[i]}',
+        street_address = f'12{i} street, unit #{i}',
+        city =f'{cities[i]}',
+        state =f'{states[i]}',
+        postal_code = f'9047{i}',
+        country = 'USA',
+        trusted_seller = False,
+        gender_style = "Male",
+        shirt_size = "small",
+        pant_size = "medium",
+        shoe_size = "large",
+        password ='123'
+        )
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+        db.session.add(demoUser)
+
     db.session.commit()
 
 
@@ -27,5 +52,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM users")
-        
+
     db.session.commit()

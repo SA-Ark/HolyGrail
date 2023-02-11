@@ -1,5 +1,6 @@
 import ItemCreateForm from './ItemCreateForm'
-import ItemFilterForm from './ItemFilterForm'
+// import ItemFilterForm from './ItemFilterForm'
+import ItemEditForm from './ItemEditForm'
 
-
-export {ItemCreateForm}
+const Forms = { ItemCreateForm, ItemEditForm }
+export default Forms;

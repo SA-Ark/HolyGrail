@@ -5,6 +5,9 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import MainListingsPage from "./components/ItemsDisplayComponents/MainListingsPage";
+import { ItemCreateForm, ItemEditForm } from './components/Forms'
+
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +27,18 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <ProtectedRoute path='/items' exact={true} >
+            <MainListingsPage />
+          </ProtectedRoute>
+          <Route path='/items' exact={true} >
+            <MainListingsPage />
+          </Route>
+          <ProtectedRoute path='/items/create' exact={true}>
+            <ItemCreateForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/edit/:itemId' exact={true}>
+            <ItemEditForm />
+          </ProtectedRoute>
         </Switch>
       )}
     </>

@@ -7,6 +7,8 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import MainListingsPage from "./components/ItemsDisplayComponents/MainListingsPage";
 import { ItemCreateForm, ItemEditForm } from './components/Forms'
+import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
+import { DeleteButton } from './components/Buttons'
 
 
 function App() {
@@ -39,6 +41,15 @@ function App() {
           <ProtectedRoute path='/items/edit/:itemId' exact={true}>
             <ItemEditForm />
           </ProtectedRoute>
+          <Route path='/items/:itemId' exact={true} >
+            <SingleItemPage />
+          </Route>
+          <ProtectedRoute path='/items/delete/:itemId' exact={true}>
+            <DeleteButton />
+          </ProtectedRoute>
+          <Route path='/' exact={true} >
+            <h1>Splash Page</h1>
+          </Route>
         </Switch>
       )}
     </>

@@ -7,8 +7,8 @@ class Like(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key= True, nullable=False )
-    item_id = db.Column(db.Integer, db.ForeignKey("items.id"), primary_key= True, nullable=False )
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key= True, nullable=False )
+    item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), primary_key= True, nullable=False )
     user = db.relationship("User", back_populates="likes")
     item = db.relationship("Item", back_populates="likes")
 

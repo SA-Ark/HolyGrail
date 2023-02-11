@@ -9,7 +9,7 @@ class ItemImage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    item_id = db.Column(db.Integer, db.ForeignKey("items.id") )
+    item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")) )
     preview = db.Column(db.Boolean)
     url = db.Column(db.String, nullable=False)
     image_num = db.Column(db.Integer, nullable = False, default = 0)

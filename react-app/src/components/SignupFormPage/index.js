@@ -116,7 +116,7 @@ const SignupFormPage = () => {
     setConfirmPassword(e.target.value);
   };
 
-  if (user) {
+  if (sessionUser) {
     return <Redirect to='/' />;
   }
 

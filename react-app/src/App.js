@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import MainListingsPage from "./components/ItemsDisplayComponents/MainListingsPage";
-import { ItemCreateForm, ItemEditForm } from './components/Forms'
+import ItemCreateForm from './components/Forms/ItemCreateForm'
+import ItemEditForm from "./components/Forms/ItemEditForm";
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
-import { DeleteButton } from './components/Buttons'
+import DeleteButton from './components/Buttons/DeleteButton'
 
 
 function App() {

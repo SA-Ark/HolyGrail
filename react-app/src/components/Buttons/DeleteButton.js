@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkDeleteItem, thunkLoadSingleItem } from '../../store/items';
 
-
 export default function DeleteButton() {
     const dispatch = useDispatch()
     const history = useHistory()

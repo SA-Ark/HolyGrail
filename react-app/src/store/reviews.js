@@ -12,6 +12,13 @@ export const actionLoadReviews = (reviews) => {
     }
 }
 
+// export const actionCreateReview = (review) => {
+//     return {
+//         type: CREATE_REVIEW,
+//         payload: review
+//     }
+// }
+
 
 // THUNKS
 export const thunkLoadReviews = (reviewId) => async (dispatch) => {
@@ -25,6 +32,31 @@ export const thunkLoadReviews = (reviewId) => async (dispatch) => {
         dispatch(actionLoadReviews(reviewId))
     }
 }
+
+// export const thunkCreateReview = (reviewAttributes) => async (dispatch) => {
+//     cost [reviewBody, stars] = reviewAttributes
+    
+//     const res = await fetch('', {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             review_body: reviewBody,
+//             stars
+//         })
+//     })
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(actionCreateReview(data))
+//         return data
+//     } else if (res.status < 500) {
+//         const data = await res.json();
+//         if (data.errors) {
+//             return data;
+//         }
+//     }
+// }
 
 
 //! reducer

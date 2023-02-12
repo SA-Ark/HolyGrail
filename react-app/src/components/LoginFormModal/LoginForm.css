@@ -1,0 +1,85 @@
+
+.login-modal-container {
+    height: 530px;
+    width: 420px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.modal-title {
+    font-size: 34px;
+    padding-top: 30px;
+    margin-left: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    /* margin-top: 27px; */
+    /* font-size: 22px; */
+}
+
+.login-desc {
+    margin-left: 25px;
+    margin-right: 100px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin-top: 27px;
+    line-height: 20px;
+    color: #454545;
+    font-size: 15px;
+}
+
+.login-form {
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.login-label-text {
+    margin-bottom: 5px;
+}
+
+.login-input {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 20px;
+    padding-bottom: 15px;
+    /* border: none; */
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 8px;
+}
+
+.border {
+    border: 1px solid #c7c7c7;
+}
+
+
+.login-button {
+    background-color: black;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    height: 48px;
+    margin-top: 25px;
+    touch-action: manipulation;
+}
+
+.login-button:hover {
+    background-color: rgb(26, 26, 26);
+}
+

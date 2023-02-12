@@ -31,24 +31,24 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <ProtectedRoute path='/items' exact={true} >
+            <MainListingsPage />
+          </ProtectedRoute>
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
-          <Route path='/items' exact={true} >
-            <MainListingsPage />
-          </Route>
-          <Route path='/items/create' exact={true}>
+          <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
-          </Route>
-          <Route path='/items/edit/:itemId' exact={true}>
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/edit/:itemId' exact={true}>
             <ItemEditForm />
-          </Route>
+          </ProtectedRoute>
           <Route path='/items/:itemId' exact={true} >
             <SingleItemPage />
           </Route>
-          <Route path='/items/delete/:itemId' exact={true}>
+          <ProtectedRoute path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
-          </Route>
+          </ProtectedRoute>
           <Route path='/' exact={true} >
             <h1>Splash Page</h1>
           </Route>

@@ -17,39 +17,48 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
+      <div className="login-modal-container">
+        <h1 className="modal-title">Log in</h1>
+        <div className="login-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
+        <div className="login-form-container">
+          <form className="login-form" onSubmit={handleSubmit}>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <div className="login-label-container">
+              <label className="login-label">
+                <span className="login-label-text">Email</span>
+                <input
+                  className="login-input"
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
+              <label className="login-label">
+              <span className="login-label-text">Password</span>
+                <input
+                  className="login-input"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <button className="login-button" type="submit">LOG IN</button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

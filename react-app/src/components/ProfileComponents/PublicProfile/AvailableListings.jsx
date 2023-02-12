@@ -13,12 +13,11 @@ const AvailableListings = ({ items }) => {
     const [size, setSize] = useState(["XS", "S", "M", "L", "XL"])
     const [price, setPrice] = useState(["Min", "Max"]);
     const [condition, setCondition] = useState(["Worn", "Used", "Gently Used", "New/Never Worn"]);
+    const [itemsList, setItemsList] = useState(items)
+
 
     const userItems = getUserItems(deNormalize(items), userId)
 
-
-    console.log(userItems, "USERITEMS" )
-    console.log(items, "ITEMSSS")
     return (
         <div className="listings-tab-container">
             <h1>Hello From listings tab</h1>
@@ -164,8 +163,8 @@ const AvailableListings = ({ items }) => {
             </div>
             <div className="listings-container">
                 {
-                    items?.length
-                    ? items.map(item => {
+                    userItems?.length
+                    ? userItems.map(item => {
                         return <ItemCard item={item} key={item.id}/>
                     })
                     : null

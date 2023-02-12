@@ -54,25 +54,19 @@ export const getUserItems = (items, userId) => {
     if (items){
 
         items.forEach((item) => {
-            console.log(item.seller_id, "seller_id", userId, "userId")
             if (Number(item.seller_id) === Number(userId)) {
                 userItems.push(item);
             }
         })
     }
-
-    console.log(userItems, "helper useritems")
     return userItems
 }
 
 export const getUserReviews = (reviews, userId) => {
     let userReviews = [];
-    console.log(reviews, "reviews")
     for (let review in reviews) {
         if (review.seller_id === userId )
-
         userReviews.push(review)
     }
-    console.log(userReviews, "userReviews" )
     return userReviews
 }

@@ -36,9 +36,8 @@ function App() {
             <h1>Component Tester</h1>
             <h2>_____________________________________</h2>
             {/* <UserDashboard/> */}
-            <h2>_____________________________________</h2>
-            {/* <ReviewForm/> */}
-            <h2>_____________________________________</h2>
+            {/* <h2>_____________________________________</h2> */}
+            {/* <h2>_____________________________________</h2> */}
           </Route>
           <Route path="/login" >
             <LoginFormPage />
@@ -69,15 +68,15 @@ function App() {
           <ProtectedRoute path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
           </ProtectedRoute>
-          <Route path='/reviews/:userId'>
-
+          {/* <Route path='/reviews/:userId'>
+          </Route> */}
+          <Route path='/reviews/create/:userId'>
+            <ReviewForm />
+          </Route>
+          {/* <Route path='/reviews/edit/:userId'>
           </Route>
           <Route path='/reviews/create/:userId'>
-          </Route>
-          <Route path='/reviews/edit/:userId'>
-          </Route>
-          <Route path='/reviews/create/:userId'>
-          </Route>
+          </Route> */}
           <Route path='/' exact={true} >
             <h1>Splash Page</h1>
           </Route>

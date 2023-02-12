@@ -3,6 +3,7 @@ import * as utils from '../../../store/utils';
 const ReviewCard = ({ review }) => {
 
     // const [day, month, year] = utils.dateToParts(review.created_at);
+    console.log(review, "<-----review")
 
     return (
         <div className="review-card-container">

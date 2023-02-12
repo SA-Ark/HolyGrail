@@ -25,16 +25,21 @@ function Navigation({ isLoaded }) {
 			</div>
 
 			<div className="search-container">
-				<input type="text" placeholder="Search" className="search-input" />
-				<button className="search-button">Search</button>
+				<div className="input-group">
+					<input type="text" placeholder="Search" className="search-input" />
+					<button className="search-button">Search</button>
+				</div>
 			</div>
+
+
 			<div className='right-side-container'>
 
-				<button className=''>Sell</button>
-				<NavLink exact to="/items">Shop</NavLink>
+				<button className='sell-button'>SELL</button>
+				<NavLink className="shop-link" exact to="/items">SHOP</NavLink>
+				<button className='favorites-button'>♥</button>
 				{isLoaded && (
 					<div>
-						<ProfileButton user={sessionUser} />
+						<ProfileButton user={sessionUser}  className="profile-button"/>
 					</div>
 				)}
 			</div>

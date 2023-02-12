@@ -9,7 +9,7 @@ const FeedbackTab = ({ reviews }) => {
 
     const dispatch = useDispatch()
     const {userId} = useParams()
-    console.log(user_id)
+    // console.log(user_id)
 
     useEffect(()=> {
 

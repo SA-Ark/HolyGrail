@@ -6,9 +6,9 @@ from app.forms import FilterForm, CreateItemForm
 item_routes = Blueprint('items', __name__)
 
 
-@item_routes.route('/current/<int:id>')
+@item_routes.route('/current')
 @login_required
-def logged_in_items(id=None):
+def logged_in_items():
     """
     Query for all items and returns them in a list of item dictionaries.
     Has the preview image and all images for the item.
@@ -17,14 +17,11 @@ def logged_in_items(id=None):
     """
     items = Item.query.all()
     items_normalized = [item.to_dict() for item in items]
-    curr_user = None
-    if id:
-        curr_user = User.query.get(id)
 
-    if curr_user:
+    if current_user:
         for nitem in items_normalized:
 
-            like = Like.query.get((curr_user.id, nitem["id"]))
+            like = Like.query.get((current_user.id, nitem["id"]))
             if like:
                 nitem["liked"] = True
 
@@ -41,8 +38,9 @@ def item(item_id):
     Has the preview image and all images for the item.
     """
     item = Item.query.get(item_id)
-
-    return item.to_dict(), 200
+    if item:
+        return item.to_dict(), 200
+    return  { 'errors': "Item does not exist."}, 401
 
 @item_routes.route('/')
 def items():
@@ -56,9 +54,9 @@ def items():
     return {"items": items_normalized}, 200
 
 
-@item_routes.route('/<int:id>/<int:user_id>')
+@item_routes.route('/<int:item_id>')
 @login_required
-def logged_in_item(id, user_id):
+def logged_in_item(item_id):
     """
     Query for a single item and returns it as a dictionary.
     Has the preview image and all images for the item.
@@ -67,17 +65,16 @@ def logged_in_item(id, user_id):
     """
     item = Item.query.get(id)
     item_normalized = item.to_dict()
-    if id:
-        curr_user = User.query.get(user_id)
+    if item and current_user:
 
-    if curr_user:
-        like = Like.query.get((curr_user.id, item_normalized["id"]))
+        like = Like.query.get((current_user.id, item_normalized["id"]))
         if like:
             item_normalized["liked"] = True
         else:
             item_normalized["liked"] = False
 
-    return (item_normalized, 200)
+        return (item_normalized, 200)
+    return  { 'errors': "Item does not exist."}, 401
 
 @item_routes.route('/create')
 @login_required
@@ -85,13 +82,17 @@ def get_item():
     """
     Get new item form for logged in user
     """
-    form = CreateItemForm()
-    return form, 200
+    if current_user:
+        form = CreateItemForm()
+        return form, 200
+    return  { 'errors': "You cannot create items if you aren't logged in."}, 401
 
 
-@item_routes.route('/create/<int:user_id>', methods=["POST"])
+
+
+@item_routes.route('/create', methods=["POST"])
 @login_required
-def create_item(user_id):
+def create_item():
     """
     Create new item for logged in user
     """
@@ -111,7 +112,7 @@ def create_item(user_id):
             category_tags = form.data["category_tags"],
             price = form.data["price"],
             shipping_cost = form.data["shipping_cost"],
-            user_id = user_id
+            user_id = current_user.id
         )
         db.session.add(new_item)
         db.session.commit()
@@ -163,33 +164,32 @@ def create_item(user_id):
 
         return new_item.to_dict(), 200
     else:
-        return form.errors, 400
+        return form.errors, 401
 
-@item_routes.route('/edit/<int:item_id>/<int:user_id>')
+@item_routes.route('/edit/<int:item_id>')
 @login_required
-def get_edit_item(user_id, item_id):
+def get_edit_item(item_id):
     """
     Get edit item form for logged in user
     """
-    user = User.query.get(user_id)
-    userItems = Item.query.filter(Item.user_id == user.id and Item.id == item_id).all()
+    userItems = Item.query.filter(Item.seller_id == current_user.id and Item.id == item_id).all()
     userItem = [item for item in userItems if item.id == item_id]
-    if len(userItem) > 0: 
+    if len(userItem) > 0:
         form = CreateItemForm()
         return form, 200
-    return  { 'message': "You don't own this item."}
+    return  { 'errors': "You don't own this item so you can't edit it."}
 
-@item_routes.route('/edit/<int:item_id>/<int:user_id>', methods=["PUT"])
+@item_routes.route('/edit/<int:item_id>', methods=["PUT"])
 @login_required
-def edit_item(item_id, user_id):
+def edit_item(item_id):
     """
     Update item for logged in user through edit form
     """
-    user = User.query.get(user_id)
-    userItems = Item.query.filter(Item.user_id == user.id and Item.id == item_id).all()
+
+    userItems = Item.query.filter(Item.seller_id == current_user.id and Item.id == item_id).all()
     userItem = [item for item in userItems if item.id == item_id]
-    if userItem: 
-    
+    if userItem:
+
         form = CreateItemForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -271,9 +271,9 @@ def edit_item(item_id, user_id):
 
             return edited_item.to_dict(), 200
         else:
-            return form.errors, 400
+            return form.errors, 401
     else:
-        return  { 'message': "You don't own this item."}
+        return  { 'errors': "You don't own this item."}
 
 
 @item_routes.route("/delete/<int:item_id>", methods=["GET", "DELETE"])
@@ -282,14 +282,14 @@ def delete_item(item_id):
     """
     Delete item if user owns it
     """
-    print("DELETE WORKING!!!!!")
-    item = Item.query.get(item_id)
-    print("ITEM", item)
-    ans = item.to_dict()
-    db.session.delete(item)
-    db.session.commit()
-    return ans, 200
 
+    item = Item.query.get(item_id)
+    if item.seller_id ==current_user.id:
+        ans = item.to_dict()
+        db.session.delete(item)
+        db.session.commit()
+        return ans, 200
+    return  { 'errors': "You don't own this item."}
 
 # @item_routes.route('/')
 # def filtered_items():

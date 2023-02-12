@@ -9,7 +9,7 @@ class Item(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable = False )
+    seller_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False )
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=False)
     size = db.Column(db.String(10), nullable=False)
@@ -22,13 +22,13 @@ class Item(db.Model):
     sold = db.Column(db.Boolean, default=False)
     user = db.relationship("User", back_populates="items")
     item_images = db.relationship("ItemImage", back_populates="item", cascade="all, delete-orphan")
-    likes = db.relationship("Like", back_populates="item")
+    likes = db.relationship("Like", back_populates="item", cascade="all, delete-orphan")
     reviews = db.relationship("Review", back_populates="item", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
+            'seller_id': self.seller_id,
             'name': self.name,
             'description': self.description,
             'size': self.size,

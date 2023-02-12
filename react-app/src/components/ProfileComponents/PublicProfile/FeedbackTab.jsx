@@ -8,12 +8,12 @@ const FeedbackTab = ({ reviews }) => {
 
 
     const dispatch = useDispatch()
-    const {userId} = useParams
-    console.log(userId)
+    const {userId} = useParams()
+    console.log(user_id)
 
     useEffect(()=> {
 
-        dispatch(thunkLoadReviews(userId))
+        // dispatch(thunkLoadReviews(userId))
 
     },[reviews])
 

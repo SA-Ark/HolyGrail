@@ -64,9 +64,9 @@ const PublicProfile = () => {
                 general compnent to render even with server errors  */}
 
                 {
-                    reviews?.length ?
+                    // reviews?.length ?
                     <FeedbackTab reviews={profileReviews} />
-                    : null
+                    // : null
                 }
                 <AvailableListings items={availableListings} />
 

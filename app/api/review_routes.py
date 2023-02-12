@@ -5,47 +5,48 @@ from app.forms import CreateReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
-# @review_routes.route('/<int:item_id>')
-# def get_review_for_item(review_id):
-#     """
-#     Returns the review queried by the review id
-#     plus all of the misc info associated with it.
-#     """
-#     review = Review.query.get(review_id)
-#     if review:
-#         item = item.query.get(review.item_id).to_dict()
-#         normalized_rev = review.to_dict()
-#         normalized_rev["seller_id"] = item.seller_id
-#         normalized_rev["preview_url"] = item.preview_url
-#         normalized_rev["item_name"] = item.name
-#         normalized_rev["item_description"] = item.description
-#         return {"review": normalized_rev}
-#     return {"errors": "This review does not exist"}
+@review_routes.route('/<int:review_id>')
+def get_review_for_item(review_id):
+    """
+    Returns the review queried by the review id
+    plus all of the misc info associated with it.
+    """
 
-# @review_routes.route('/current')
-# @login_required
-# def curr_user_reviews():
-#     """
-#     Query for all reviews that current user has posted
-#     and returns them in a list of item dictionaries.
-#     """
-#     print("***HEYYY**")
-#     reviews = Review.query.filter(Review.buyer_id == current_user.id).all()
-#     reviews_normalized = []
-#     if not reviews:
-#         return  "You have not posted any reviews", 200
-#     for review in reviews:
-#         item = Item.query.get(review.item_id).to_dict()
-#         normalized_rev = review.to_dict()
-#         normalized_rev["seller_id"] = item.seller_id
-#         normalized_rev["preview_url"] = item.preview_url
-#         normalized_rev["item_name"] = item.name
-#         normalized_rev["item_description"] = item.description
-#         reviews_normalized.append(normalized_rev)
-#     return {"reviews": reviews_normalized}
+    review = Review.query.get(review_id)
+    if review:
+        item = Item.query.get(review.item_id).to_dict()
+        normalized_rev = review.to_dict()
+        normalized_rev["seller_id"] = item["seller_id"]
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
+        return {"review": normalized_rev}
+    return {"errors": "This review does not exist"}
+
+@review_routes.route('/current')
+@login_required
+def curr_user_reviews():
+    """
+    Query for all reviews that current user has posted
+    and returns them in a list of item dictionaries.
+    """
+    print("***HEYYY**")
+    reviews = Review.query.filter(Review.buyer_id == current_user.id).all()
+    reviews_normalized = []
+    if not reviews:
+        return  "You have not posted any reviews", 200
+    for review in reviews:
+        item = Item.query.get(review.item_id).to_dict()
+        normalized_rev = review.to_dict()
+        normalized_rev["seller_id"] = item["seller_id"]
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
+        reviews_normalized.append(normalized_rev)
+    return {"reviews": reviews_normalized}
 
 
-@review_routes.route('/<int:user_id>')
+@review_routes.route('/current/<int:user_id>')
 @login_required
 def reviews_of_users(user_id):
     """
@@ -69,10 +70,10 @@ def reviews_of_users(user_id):
         item = Item.query.get(review.item_id).to_dict()
 
         normalized_rev = review.to_dict()
-        normalized_rev["seller_id"] = item.seller_id
-        normalized_rev["preview_url"] = item.preview_url
-        normalized_rev["item_name"] = item.name
-        normalized_rev["item_description"] = item.description
+        normalized_rev["seller_id"] = item["seller_id"]
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
         reviews_normalized.append(normalized_rev)
 
     # rating = star_sum / len(reviews)
@@ -114,10 +115,10 @@ def post_review(item_id):
             db.session.commit()
 
             normalized_rev = new_review.to_dict()
-            normalized_rev["seller_id"] = item.seller_id
-            normalized_rev["preview_url"] = item.preview_url
-            normalized_rev["item_name"] = item.name
-            normalized_rev["item_description"] = item.description
+            normalized_rev["seller_id"] = item["seller_id"]
+            normalized_rev["preview_url"] = item["preview_url"]
+            normalized_rev["item_name"] = item["name"]
+            normalized_rev["item_description"] = item["description"]
 
             return new_review.to_dict(), 200
         else:
@@ -144,10 +145,10 @@ def edit_review(review_id):
             db.session.commit()
             item = Item.query.get(review.item_id).to_dict()
             normalized_rev = review.to_dict()
-            normalized_rev["seller_id"] = item.seller_id
-            normalized_rev["preview_url"] = item.preview_url
-            normalized_rev["item_name"] = item.name
-            normalized_rev["item_description"] = item.description
+            normalized_rev["seller_id"] = item["seller_id"]
+            normalized_rev["preview_url"] = item["preview_url"]
+            normalized_rev["item_name"] = item["name"]
+            normalized_rev["item_description"] = item["description"]
             return review.to_dict(), 200
         else:
             return form.errors, 401
@@ -167,9 +168,9 @@ def delete_review(review_id):
         item = Item.query.get(review.item_id).to_dict()
         normalized_rev = deleted_review.to_dict()
         normalized_rev["seller_id"] = item.seller_id
-        normalized_rev["preview_url"] = item.preview_url
-        normalized_rev["item_name"] = item.name
-        normalized_rev["item_description"] = item.description
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
 
         return deleted_review.to_dict(), 200
     return  {'errors': "You can only delete reviews that you posted."}, 401

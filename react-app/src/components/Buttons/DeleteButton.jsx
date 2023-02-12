@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkDeleteItem, thunkLoadSingleItem } from '../../store/items';
 
-export default function DeleteButton() {
+const DeleteButton = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -32,3 +32,5 @@ export default function DeleteButton() {
         </>
     )
 };
+
+export default DeleteButton

@@ -1,2 +1,3 @@
 FLASK_APP=app
 FLASK_ENV=development
+FASK_DEBUG=TRUE

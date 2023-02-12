@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkCreateItem } from '../../store/items';
 
-export default function CreateItemForm() {
+const  CreateItemForm = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [genderStyle, setGenderStyle] = useState('');
@@ -98,8 +98,8 @@ export default function CreateItemForm() {
       console.log(res, 'res')
       const data = await res.json()
       if (data && data.errors) setErrors(data.errors)
-    } 
-    
+    }
+
       // //   .then(() => {
       // //     // history.push(`/items/${itemId}`)
       // // })
@@ -111,7 +111,7 @@ export default function CreateItemForm() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="general-form">
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
@@ -248,3 +248,5 @@ export default function CreateItemForm() {
     </form>
   );
 };
+
+export default CreateItemForm

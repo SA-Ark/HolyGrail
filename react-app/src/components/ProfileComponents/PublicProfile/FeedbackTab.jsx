@@ -19,7 +19,7 @@ const FeedbackTab = ({ reviews }) => {
                 </span>
             </div>
             {
-                reviews.length
+                reviews?.length
                     ? reviews.map(review => {
                         return <ReviewCard review={review} />
                     })

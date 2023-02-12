@@ -6,7 +6,8 @@ const AvailableListings = ({ items }) => {
     return (
         <div className="listings-tab-container">
             <div className="filters">
-                <input type="checkbox" name="a_filter_checkbox" />
+                <label htmlFor="Checkbox"><input type="checkbox" name="a_filter_checkbox" /></label>
+
                 <input type="checkbox" name="a_filter_checkbox" />
                 <input type="checkbox" name="a_filter_checkbox" />
                 <input type="checkbox" name="a_filter_checkbox" />
@@ -14,7 +15,7 @@ const AvailableListings = ({ items }) => {
             </div>
             <div className="listings-container">
                 {
-                    items.length
+                    items?.length
                     ? items.map(item => {
                         <ItemCard item={item} />
                     })

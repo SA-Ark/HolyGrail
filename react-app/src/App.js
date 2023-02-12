@@ -8,12 +8,12 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import MainListingsPage from "./components/ItemsDisplayComponents/MainListingsPage";
 import Forms from './components/Forms'
-// import ItemCreateForm from './components/Forms/ItemCreateForm'
-// import ItemEditForm from "./components/Forms/ItemEditForm";
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
-import DeleteButton from './components/Buttons/DeleteButton'
+import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import UserDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
+import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
+const { DeleteButton } = Buttons
 const { ItemCreateForm, ItemEditForm } = Forms
 
 
@@ -33,7 +33,7 @@ function App() {
             <LoginFormPage />
           </Route>
           <Route path="/component-test">
-            <UserDashboard/>
+            <AvailableListings/>
             <h1>_____________________________________</h1>
 
           </Route>

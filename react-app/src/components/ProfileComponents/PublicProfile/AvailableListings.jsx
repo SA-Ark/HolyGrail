@@ -6,6 +6,7 @@ const AvailableListings = ({ items }) => {
     return (
         <div className="listings-tab-container">
             <div className="filters">
+                <label>A checkbox</label>
                 <input type="checkbox" name="a_filter_checkbox" />
                 <input type="checkbox" name="a_filter_checkbox" />
                 <input type="checkbox" name="a_filter_checkbox" />

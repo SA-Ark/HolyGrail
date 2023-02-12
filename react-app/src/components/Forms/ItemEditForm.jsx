@@ -113,7 +113,7 @@ const ItemEditForm = () => {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="general-form">
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
+import { thunkCreateReview } from '../../store/reviews';
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
@@ -13,30 +14,54 @@ const ReviewForm = () => {
     const user_id = user?.id;
 
 
-        const onSubmit = async (e) => {
+    const onSubmit = async (e) => {
         const formErrors = [];
         if (!review) formErrors.push('Gender is required!');
         if (!stars) formErrors.push('Size is required!');
-        // if (!color) formErrors.push('Color is required!');
 
         e.preventDefault();
         setErrors([formErrors])
 
-
-        //! NEED TO ADD VALIDATION ERRORS
-
-        //! needs validation for when price is 0
-
-        // const res = await dispatch(thunkCreateItem(itemsAttributes))
-        // if (res.ok) {
-        //     console.log(res, 'res')
-        //     const data = await res.json()
-        //     if (data && data.errors) setErrors(data.errors)
-        // }
-
+        const res = {ok: false}
+        //await dispatch(thunkCreateReview(review))
+        if (res.ok) {
+            console.log(res, 'res')
+            const data = await res.json()
+            if (data && data.errors) setErrors(data.errors)
+        }
     }
 
-    return "hello from reviewform"
+    return (
+        <form className="general-form" onSubmit={onSubmit}>
+            <h2>Leave A Review For Your Transaction</h2>
+            <div>
+                {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                ))}
+            </div>
+            <div>
+                <label>Leave a Review</label>
+                <textarea
+                    type='text'
+                    name='review'
+                    onChange={(e) => setReview(e.target.value)}
+                    value={review}
+                // required
+                ></textarea>
+            </div>
+            <div>
+                <label>Size</label>
+                <input
+                    type='number'
+                    name='stars'
+                    onChange={(e) => setStars(e.target.value)}
+                    value={stars}
+                ></input>
+            </div>
+
+            <button type='submit'>List Item</button>
+        </form>
+    )
 
 }
 

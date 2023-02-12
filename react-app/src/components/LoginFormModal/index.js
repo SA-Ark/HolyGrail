@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import OpenModalButton from "../OpenModalButton";
-import SignupFormModal from "../SignupFormModal";
-import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -26,39 +23,39 @@ function LoginFormModal() {
 
   const demoUser = (e) => {
     e.preventDefault()
-    const email = "user0@aa.io"
+    const email = "user1@aa.io"
     const password = '123'
-    dispatch(sessionActions.login({ email, password }))
+    dispatch(login({ email, password }))
     closeModal()
   }
 
   return (
     <>
-      <div className="login-modal-container">
+      <div className="login-signup-modal-container">
         <h1 className="modal-title">Log in</h1>
-        <div className="login-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
-        <div className="login-form-container">
-          <form className="login-form" onSubmit={handleSubmit}>
+        <div className="login-signup-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
+        <div className="login-signup-form-container">
+          <form className="login-signup-form" onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => (
                 <li key={idx}>{error}</li>
               ))}
             </ul>
-            <div className="login-label-container">
-              <label className="login-label">
-                <span className="login-label-text">Email</span>
+            <div className="login-signup-label-container">
+              <label className="login-signup-label">
+                <span className="login-signup-label-text">Email</span>
                 <input
-                  className="login-input"
-                  type="text"
+                  className="login-signup-input"
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </label>
-              <label className="login-label">
-                <span className="login-label-text">Password</span>
+              <label className="login-signup-label">
+                <span className="login-signup-label-text">Password</span>
                 <input
-                  className="login-input"
+                  className="login-signup-input"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -66,7 +63,7 @@ function LoginFormModal() {
                 />
               </label>
             </div>
-            <button className="login-button" type="submit">LOG IN</button>
+            <button className="login-signup-button" type="submit">LOG IN</button>
             <div className="alternate-logins">
               or
             </div>
@@ -76,11 +73,6 @@ function LoginFormModal() {
               type='submit'
             >Demo user
             </button>
-            {/* <div className="signup-redirect"> */}
-            {/* <OpenModalButton
-
-              modalComponent={<SignupFormModal />}
-            /> */}
           </form>
         </div>
       </div>

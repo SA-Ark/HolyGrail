@@ -34,8 +34,7 @@ function App() {
         <Switch>
           <Route path="/component-test/:userId">
             <h1>Component Tester</h1>
-            <h2>_____________________________________</h2>
-            {/* <UserDashboard/> */}
+            {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
           </Route>
@@ -54,6 +53,12 @@ function App() {
 
           <Route path='/users/profile/:userId'>
             <PublicProfile />
+          </Route>
+
+          {/* !@#$ misc need to add conditional logic somewhere to only render if
+          the dashboard belongs to current user  */}
+          <Route path="dashboard/:userId">
+            <UserDashboard/>
           </Route>
 
           <ProtectedRoute path='/items/create' exact={true}>

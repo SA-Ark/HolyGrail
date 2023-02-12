@@ -70,7 +70,7 @@ function App() {
           </ProtectedRoute>
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-          <Route path='/reviews/create/:userId'>
+          <Route path='/reviews/create/:itemId'>
             <ReviewForm />
           </Route>
           {/* <Route path='/reviews/edit/:userId'>

@@ -6,6 +6,7 @@ import { thunkCreateReview } from '../../store/reviews';
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
+    const { itemId } = useParams()
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
@@ -15,14 +16,14 @@ const ReviewForm = () => {
 
     const onSubmit = async (e) => {
         const formErrors = [];
-        if (!review) formErrors.push('Gender is required!');
-        if (!stars) formErrors.push('Size is required!');
-
+        if (!review) formErrors.push('A meaningful comment for your review is required!');
+        if (!stars) formErrors.push('A star rating is required!');
         e.preventDefault();
         setErrors([formErrors])
 
         const res = {ok: false}
-        //await dispatch(thunkCreateReview(review))
+
+        dispatch(thunkCreateReview(review, itemId))
         if (res.ok) {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
@@ -48,7 +49,7 @@ const ReviewForm = () => {
                 ></textarea>
             </div>
             <div>
-                <label>Size</label>
+                <label>Stars</label>
                 <input
                     type='number'
                     name='stars'
@@ -57,10 +58,9 @@ const ReviewForm = () => {
                 ></input>
             </div>
 
-            <button type='submit'>List Item</button>
+            <button type='submit'>Submit Review</button>
         </form>
     )
-
 }
 
 

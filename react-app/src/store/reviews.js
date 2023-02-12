@@ -29,13 +29,14 @@ export const thunkLoadReviews = (reviewId) => async (dispatch) => {
         }
     })
     if (res.ok) {
-        dispatch(actionLoadReviews(reviewId))
+        const reviews = await res.json()
+        dispatch(actionLoadReviews(reviews))
     }
 }
 
 // export const thunkCreateReview = (reviewAttributes) => async (dispatch) => {
 //     cost [reviewBody, stars] = reviewAttributes
-    
+
 //     const res = await fetch('', {
 //         method: 'POST',
 //         headers: {

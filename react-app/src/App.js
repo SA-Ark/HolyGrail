@@ -11,6 +11,7 @@ import ItemCreateForm from './components/Forms/ItemCreateForm'
 import ItemEditForm from "./components/Forms/ItemEditForm";
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import DeleteButton from './components/Buttons/DeleteButton'
+import PublicProfile from './components/ProfileComponents/PublicProfile'
 
 
 function App() {
@@ -27,6 +28,11 @@ function App() {
         <Switch>
           <Route path="/login" >
             <LoginFormPage />
+          </Route>
+          <Route path="/component-test">
+            <PublicProfile/>
+            <h1>_____________________________________</h1>
+
           </Route>
           <Route path="/signup">
             <SignupFormPage />

@@ -4,24 +4,21 @@ import { thunkLoadReviews } from '../../../store/reviews';
 import FeedbackTab from './FeedbackTab';
 import AvailableListings from './AvailableListings';
 import { thunkLoadItems } from '../../../store/items';
-import * as utils from '../../../store/utils';
+import {deNormalize, getUserItems, getUserReviews} from '../../../store/utils';
 
 import "./PublicProfile.css"
 
 const PublicProfile = () => {
     const dispatch = useDispatch();
-    const reviews = utils.deNormalize(useSelector(state => state?.reviews?.allReviews));
+    const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = useSelector(state => state?.session?.user?.id);
-    const items = utils.deNormalize(useSelector(state => state?.items?.allItems));
-    let userItems = [];
-    for (let item in items) {
-        if (item.user_id === userId) {
-            userItems.push(item);
-        }
-    }
+    const items = useSelector(state => state?.items?.allItems);
+
+    const profileReviews = reviews?.length ? getUserReviews(deNormalize(reviews)) : 0
+    const availableListings = items?.lenth  ? getUserItems(deNormalize(items), userId) : 0
 
     useEffect(() => {
-        dispatch(thunkLoadReviews(userId))
+        if (userId) dispatch(thunkLoadReviews(userId))
         dispatch(thunkLoadItems())
     }, [dispatch, userId])
 
@@ -45,8 +42,19 @@ const PublicProfile = () => {
             </div>
             <div className="profile-tabs-container">
                 {/* Put feedback tab here */}
-                <FeedbackTab reviews={reviews} />
-                <AvailableListings items={userItems} />
+                {
+                    profileReviews?.length
+                        ? <FeedbackTab reviews={reviews} />
+                        : null
+                }
+                {
+
+                    availableListings?.length
+                        ? <AvailableListings items={availableListings} />
+                        : null
+                }
+
+
             </div>
         </>
     )

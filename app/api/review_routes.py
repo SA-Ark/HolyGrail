@@ -91,7 +91,7 @@ def reviews_of_users(user_id):
             } , 200
 
 
-
+# !@#$ this route eventually should take "transaction_id" rather than an item_id
 @review_routes.route('/create/<int:item_id>', methods=['GET', 'POST'])
 @login_required
 def post_review(item_id):

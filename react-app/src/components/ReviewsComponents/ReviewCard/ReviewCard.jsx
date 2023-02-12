@@ -2,14 +2,16 @@ import * as utils from '../../../store/utils';
 
 const ReviewCard = ({ review }) => {
 
-    const [day, month, year] = utils.dateToParts(review.created_at);
+    // const [day, month, year] = utils.dateToParts(review.created_at);
+    console.log(review, "<-----review")
 
     return (
         <div className="review-card-container">
             "Hello from a review card"
             <div className="review-body">
                 <span className="date">
-                    {month + " "}{day + ", "}{year}
+                    {/* {month + " "}{day + ", "}{year} */}
+                    DATE DATA
                 </span>
                 <span className="stars">
                     {review.stars}

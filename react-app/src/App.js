@@ -32,18 +32,15 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/component-test/:userId">
+            <h1>Component Tester</h1>
+            <h2>_____________________________________</h2>
+            {/* <UserDashboard/> */}
+            {/* <h2>_____________________________________</h2> */}
+            {/* <h2>_____________________________________</h2> */}
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
-          </Route>
-          <Route path="/component-test">
-            <h1>Component Tester</h1>
-            <PublicProfile/>
-            <h2>_____________________________________</h2>
-            <UserDashboard/>
-            <h2>_____________________________________</h2>
-            <ReviewForm/>
-            <h2>_____________________________________</h2>
-
           </Route>
           <Route path="/signup">
             <SignupFormPage />
@@ -54,6 +51,11 @@ function App() {
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
+
+          <Route path='/users/profile/:userId'>
+            <PublicProfile />
+          </Route>
+
           <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
           </ProtectedRoute>
@@ -66,15 +68,17 @@ function App() {
           <ProtectedRoute path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
           </ProtectedRoute>
-          <Route path='/reviews/:userId'>
-
+          {/* <Route path='/reviews/:userId'>
+          </Route> */}
+          <Route path='/reviews/create/:itemId'>
+            {/* !@#$ getting a 500 error from this review form
+                might need DB or route fixed?  */}
+            <ReviewForm />
+          </Route>
+          {/* <Route path='/reviews/edit/:userId'>
           </Route>
           <Route path='/reviews/create/:userId'>
-          </Route>
-          <Route path='/reviews/edit/:userId'>
-          </Route>
-          <Route path='/reviews/create/:userId'>
-          </Route>
+          </Route> */}
           <Route path='/' exact={true} >
             <h1>Splash Page</h1>
           </Route>

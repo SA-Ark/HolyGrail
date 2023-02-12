@@ -1,4 +1,5 @@
 export const normalize = (array) => {
+    if (!array) return null
     const object = {};
     for (let ele of array) {
         object[ele.id] = ele;
@@ -7,6 +8,7 @@ export const normalize = (array) => {
 }
 
 export const deNormalize = (object) => {
+    if (!object) return null
     const array = [];
 
     for (let value of Object.values(object))
@@ -59,10 +61,12 @@ export const getUserItems = (items, userId) => {
 
 export const getUserReviews = (reviews, userId) => {
     let userReviews = [];
+    console.log(reviews, "reviews")
     for (let review in reviews) {
         if (review.seller_id === userId )
 
         userReviews.push(review)
     }
+    console.log(userReviews, "userReviews" )
     return userReviews
 }

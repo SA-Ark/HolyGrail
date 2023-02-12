@@ -1,30 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReviewCard from '../../ReviewsComponents/ReviewCard';
 import { thunkLoadReviews } from '../../../store/reviews';
+import { thunkLoadItems } from '../../../store/items';
+import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils';
+
+
 
 const FeedbackTab = ({ reviews }) => {
-
-
-    const dispatch = useDispatch()
-    const {userId} = useParams()
-    // console.log(user_id)
-
-    useEffect(()=> {
-
-        // dispatch(thunkLoadReviews(userId))
-
-    },[reviews])
-
-
 
     return (
         <div className="feedback-container">
             <h2>Hello From feedback tab</h2>
             <div className="feedback-header">
                 <span className="score-title">
-                    Seller Score
                 </span>
                 <span className="avg-stars">
                     {/* Put average total star rating here */}
@@ -37,9 +27,9 @@ const FeedbackTab = ({ reviews }) => {
                 </span>
             </div>
             {
-                reviews?.length
-                    ? reviews.map(review => {
-                        return <ReviewCard review={review} />
+                reviews?.reviews?.length
+                    ? reviews.reviews.map(review => {
+                        return <ReviewCard review={review} key={review.id} />
                     })
                     : null
             }

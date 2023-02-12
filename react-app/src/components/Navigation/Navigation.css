@@ -10,3 +10,52 @@
   border-bottom: 1px solid rgb(230, 230, 230);
   padding: 15px;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
+}
+
+.home-button {
+  width: 100px;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  height: 30px;
+  width: 500px;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.search-button {
+  height: 30px;
+  width: 80px;
+  background-color: #111111;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.right-side-container {
+  display: flex;
+  align-items: center;
+}
+
+.sell-button,
+.shop-button,
+.profile-button {
+  width: 100px;
+  text-align: center;
+  /* margin-right: 60px; */
+}

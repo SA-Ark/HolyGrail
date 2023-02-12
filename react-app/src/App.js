@@ -49,6 +49,14 @@ function App() {
           <Route path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
           </Route>
+          <Route path='/reviews/:userId'>
+          </Route>
+          <Route path='/reviews/create/:userId'>
+          </Route>
+          <Route path='/reviews/edit/:userId'>
+          </Route>
+          <Route path='/reviews/create/:userId'>
+          </Route>
           <Route path='/' exact={true} >
             <h1>Splash Page</h1>
           </Route>

@@ -5,3 +5,8 @@
 .hidden {
   display: none;
 }
+
+.navbar {
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding: 15px;
+}

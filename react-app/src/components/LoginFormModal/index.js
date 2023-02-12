@@ -69,7 +69,7 @@ function LoginFormModal() {
             </div>
             <button
               className="modal-demo-button"
-              onClick={demoUser}
+              onClick={() => demoUser}
               type='submit'
             >Demo user
             </button>

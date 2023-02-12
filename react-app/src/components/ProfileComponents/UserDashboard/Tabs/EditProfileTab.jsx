@@ -1,6 +1,10 @@
 const EditProfileTab = () => {
     return (
-        "Edit profile tab - display edit user info form here"
+        <div className="purchases-container">
+            <div className="title">
+                Edit Profile Tab: Edit Profile Form Lives Here
+            </div>
+        </div>
     )
 }
 

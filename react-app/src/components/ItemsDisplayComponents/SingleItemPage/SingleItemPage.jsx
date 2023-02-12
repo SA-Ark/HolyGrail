@@ -4,6 +4,7 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import * as utils from '../../../store/utils'
 import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
+import './SingleItemPage.css'
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -12,6 +13,8 @@ const SingleItemPage = () => {
 
   const { itemId } = useParams()
 
+  console.log(item)
+
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id))
   }, [dispatch])
@@ -19,14 +22,16 @@ const SingleItemPage = () => {
   return (
     <div className="single-item-page-container">
       <div className="catergory-info-banner">
-        Category tag info
+       tags: {item?.category_tags}
       </div>
       <div className="large-img-container">
-        {item 
+        {item
           ? <ImageCarousel images={item.images?.length ? item.images : null}/>
           : null}
       </div>
       <div className="item-info-buttons-container">
+        <span>{item.name}</span>
+        <span>${item.price}</span>
       </div>
     </div>
   )

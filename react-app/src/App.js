@@ -50,8 +50,8 @@ function App() {
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
-          <Route path='/items' exact={true} >
-            <MainListingsPage />
+          <Route path='/items/:itemId' exact={true} >
+            <SingleItemPage />
           </Route>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
@@ -70,9 +70,6 @@ function App() {
           <ProtectedRoute path='/items/edit/:itemId' exact={true}>
             <ItemEditForm />
           </ProtectedRoute>
-          <Route path='/items/:itemId' exact={true} >
-            <SingleItemPage />
-          </Route>
           <ProtectedRoute path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
           </ProtectedRoute>

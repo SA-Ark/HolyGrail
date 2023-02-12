@@ -1,0 +1,5 @@
+
+.item-info-buttons-container{
+    display: flex;
+    flex-direction: column;
+}

@@ -39,7 +39,7 @@ const ItemCard = ({ item }) => {
                         Price: {item.price}
                     </span>
                     <br />
-                    <span className='listing-liked' onClick={e=> setLiked(true)}>
+                    <span className='listing-liked' onClick={e=> setLiked(!liked)}>
                         {/* !@#$ should be item.liked once we finish route to create liked */}
                         {liked ? "❤️" : "💔"}
                     </span>

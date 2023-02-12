@@ -11,9 +11,14 @@ import Forms from './components/Forms'
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
-import UserDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
+import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
+import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
+const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, SettingsTab, SizesTab } = Tabs
+
+// End of temporary components
+
 
 
 const { DeleteButton } = Buttons
@@ -34,6 +39,7 @@ function App() {
         <Switch>
           <Route path="/component-test/:userId">
             <h1>Component Tester</h1>
+            <MainDashboard/>
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
@@ -44,23 +50,21 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <ProtectedRoute path='/items' exact={true} >
-            <MainListingsPage />
-          </ProtectedRoute>
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
-
+          <Route path='/items' exact={true} >
+            <MainListingsPage />
+          </Route>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
           </Route>
-
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
           <Route path="dashboard/:userId">
-            <UserDashboard/>
+            <MainDashboard/>
+            {/* <PurchasesTab/> */}
           </Route>
-
           <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
           </ProtectedRoute>
@@ -76,8 +80,6 @@ function App() {
           {/* <Route path='/reviews/:userId'>
           </Route> */}
           <Route path='/reviews/create/:itemId'>
-            {/* !@#$ getting a 500 error from this review form
-                might need DB or route fixed?  */}
             <ReviewForm />
           </Route>
           {/* <Route path='/reviews/edit/:userId'>

@@ -1,7 +1,9 @@
 const PurchasesTab = () => {
     return (
         <div className="purchases-container">
-            <div className="title"></div>
+            <div className="title">
+                Purchases Tab
+            </div>
         </div>
     )
 }

@@ -6,7 +6,6 @@ import AvailableListings from './AvailableListings';
 import { thunkLoadItems } from '../../../store/items';
 import {deNormalize, getUserItems, getUserReviews} from '../../../store/utils';
 
-
 import "./PublicProfile.css"
 
 const PublicProfile = () => {
@@ -44,11 +43,7 @@ const PublicProfile = () => {
                 {/* !@#$% Might need to add logic here if rendering issues, but I think I got the
                 general compnent to render even with server errors  */}
 
-                {
-                    // reviews?.length ?
-                    <FeedbackTab reviews={reviews} />
-                    // : null
-                }
+                <FeedbackTab reviews={reviews} />
                 <AvailableListings items={items} />
 
 

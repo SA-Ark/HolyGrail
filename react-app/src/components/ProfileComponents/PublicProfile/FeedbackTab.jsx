@@ -10,34 +10,11 @@ import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils'
 
 const FeedbackTab = ({ reviews }) => {
 
-    // const dispatch = useDispatch();
-    // // const spots = utils.deNormalize(useSelector((store) => store.spots.allSpots));
-
-    // const reviewsObj = deNormalize(useSelector(state => state.reviews?.allReviews));
-    // // const userId = useSelector(state => state?.session?.user?.id);
-    // const items = useSelector(state => state?.items?.allItems);
-    // let reviews;
-
-    // const {userId} = useParams()
-    // console.log(userId)
-
-    // useEffect(()=> {
-
-    //     dispatch(thunkLoadReviews(userId))
-    //     dispatch(thunkLoadItems(userId))
-    //     if (reviewsObj) reviews = getUserReviews(deNormalize(reviewsObj), userId)
-    //     console.log(reviews)
-
-    // },[reviews, reviewsObj])
-
-
-
     return (
         <div className="feedback-container">
             <h2>Hello From feedback tab</h2>
             <div className="feedback-header">
                 <span className="score-title">
-                    Seller Score
                 </span>
                 <span className="avg-stars">
                     {/* Put average total star rating here */}
@@ -52,7 +29,7 @@ const FeedbackTab = ({ reviews }) => {
             {
                 reviews?.reviews?.length
                     ? reviews.reviews.map(review => {
-                        return <ReviewCard review={review} />
+                        return <ReviewCard review={review} key={review.id} />
                     })
                     : null
             }

@@ -43,6 +43,26 @@ export const dateToParts = (string) => {
 export const switchCarousel = (images, nonSequitur=false) => {
 
     if (nonSequitur) {
-        
+
     }
+}
+
+export const getUserItems = (items, userId) => {
+    let userItems = [];
+    for (let item in items) {
+        if (item.user_id === userId) {
+            userItems.push(item);
+        }
+    }
+    return userItems
+}
+
+export const getUserReviews = (reviews, userId) => {
+    let userReviews = [];
+    for (let review in reviews) {
+        if (review.seller_id === userId )
+        userReviews.push(review)
+    }
+    console.log(userReviews)
+    return userReviews
 }

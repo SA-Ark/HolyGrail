@@ -50,7 +50,7 @@ def seed_items():
                 cat = categories[0]
                 con = condition[4]
                 name = f"{brands[1]} {categories[1]}"
-            item = Item( user_id = u.id,
+            item = Item( seller_id = u.id,
                         name = name,
                         description = f"generic description {i}",
                         size = size,

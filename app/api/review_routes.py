@@ -30,7 +30,6 @@ def curr_user_reviews():
     Query for all reviews that current user has posted
     and returns them in a list of item dictionaries.
     """
-    print("***HEYYY**")
     reviews = Review.query.filter(Review.buyer_id == current_user.id).all()
     reviews_normalized = []
     if not reviews:
@@ -44,7 +43,6 @@ def curr_user_reviews():
         normalized_rev["item_description"] = item["description"]
         reviews_normalized.append(normalized_rev)
     return {"reviews": reviews_normalized}
-
 
 @review_routes.route('/current/<int:user_id>')
 @login_required
@@ -100,7 +98,7 @@ def post_review(item_id):
     Allows user to post review for that item.
     """
     item = Item.query.get(item_id).to_dict()
-    if item.seller_id != current_user.id:
+    if item['seller_id'] != current_user.id:
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 

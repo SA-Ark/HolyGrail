@@ -16,25 +16,17 @@ const PublicProfile = () => {
     const userId = useSelector(state => state?.session?.user?.id);
     const items = useSelector(state => state?.items?.allItems);
 
-    const [profileReviews, setProfileReviews] = useState("")
-    const [ availableListings, setAvailableListings] = useState(items)
-
     useEffect(() => {
         dispatch(thunkLoadReviews(userId))
         dispatch(thunkLoadItems(userId))
-        setProfileReviews(getUserReviews(deNormalize(reviews), userId))
-        // setAvailableListings(getUserItems(deNormalize(items), userId))
 
     }, [dispatch, userId])
-
-
-
 
     return (
         <>
             <div className="profile-header">
                 <img src="" alt="" />
-                <div className="join-in"></div>
+                <div className="joined-in"></div>
                 <div className="stars"></div>
                 <div className="transactions-count"></div>
                 <div className="followers"></div>
@@ -57,7 +49,7 @@ const PublicProfile = () => {
                     <FeedbackTab reviews={reviews} />
                     // : null
                 }
-                <AvailableListings items={availableListings} />
+                <AvailableListings items={items} />
 
 
             </div>

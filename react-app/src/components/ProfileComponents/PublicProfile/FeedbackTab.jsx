@@ -9,7 +9,6 @@ import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils'
 
 
 const FeedbackTab = ({ reviews }) => {
-    console.log(reviews, "<--- REVIEWS")
 
     // const dispatch = useDispatch();
     // // const spots = utils.deNormalize(useSelector((store) => store.spots.allSpots));
@@ -51,8 +50,8 @@ const FeedbackTab = ({ reviews }) => {
                 </span>
             </div>
             {
-                reviews?.length
-                    ? reviews.map(review => {
+                reviews?.reviews?.length
+                    ? reviews.reviews.map(review => {
                         return <ReviewCard review={review} />
                     })
                     : null

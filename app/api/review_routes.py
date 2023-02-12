@@ -74,16 +74,10 @@ def reviews_of_users(user_id):
         normalized_rev["item_description"] = item["description"]
         reviews_normalized.append(normalized_rev)
 
-    # rating = star_sum / len(reviews)
-    print("PRINT STATEMENT",{
-            'reviews': reviews_normalized,
-            # 'avg_star_rating': rating,
-            'num_reviews': len(reviews),
-            'num_sold': len(items)
-            } )
+    rating = star_sum / len(reviews)
     return {
             'reviews': reviews_normalized,
-            # 'avg_star_rating': rating,
+            'avg_star_rating': rating,
             'num_reviews': len(reviews),
             'num_sold': len(items)
             } , 200

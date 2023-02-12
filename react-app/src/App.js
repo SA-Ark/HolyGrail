@@ -71,6 +71,8 @@ function App() {
           {/* <Route path='/reviews/:userId'>
           </Route> */}
           <Route path='/reviews/create/:itemId'>
+            {/* !@#$ getting a 500 error from this review form
+                might need DB or route fixed?  */}
             <ReviewForm />
           </Route>
           {/* <Route path='/reviews/edit/:userId'>

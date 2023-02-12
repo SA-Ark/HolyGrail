@@ -106,7 +106,7 @@ def post_review(item_id):
             new_review = Review(
                 review_body = form.data['review_body'],
                 stars = form.data['stars'],
-                user_id = current_user.id,
+                buyer_id = current_user.id,
                 item_id = item_id
             )
             db.session.add(new_review)

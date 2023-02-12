@@ -21,10 +21,15 @@ const ReviewForm = () => {
         e.preventDefault();
         setErrors([formErrors])
 
-        const res = {ok: false}
+        const submission = {
+            reviewBody: review,
+            stars
+        }
 
-        dispatch(thunkCreateReview(review, itemId))
-        if (res.ok) {
+
+
+        const res = await dispatch(thunkCreateReview(submission, itemId))
+        if (res?.ok) {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         }
@@ -41,7 +46,7 @@ const ReviewForm = () => {
             <div>
                 <label>Leave a Review</label>
                 <textarea
-                    type='text'
+                    type='textarea'
                     name='review'
                     onChange={(e) => setReview(e.target.value)}
                     value={review}

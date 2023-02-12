@@ -92,8 +92,9 @@ export const thunkLoadSingleReview = (reviewId) => async (dispatch) => {
 
 
 export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) => {
-    const [reviewBody, stars] = reviewAttributes
+    const {reviewBody, stars} = reviewAttributes
 
+    console.log(reviewBody, stars, "THUNK LOG")
     const res = await fetch(`/api/reviews/create/${itemId}`, {
         method: 'POST',
         headers: {

@@ -1,9 +1,27 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import ReviewCard from '../../ReviewsComponents/ReviewCard';
+import { thunkLoadReviews } from '../../../store/reviews';
 
 const FeedbackTab = ({ reviews }) => {
 
+
+    const dispatch = useDispatch()
+    const {userId} = useParams()
+    console.log(user_id)
+
+    useEffect(()=> {
+
+        // dispatch(thunkLoadReviews(userId))
+
+    },[reviews])
+
+
+
     return (
         <div className="feedback-container">
+            <h2>Hello From feedback tab</h2>
             <div className="feedback-header">
                 <span className="score-title">
                     Seller Score

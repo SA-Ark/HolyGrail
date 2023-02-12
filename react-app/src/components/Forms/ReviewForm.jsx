@@ -13,7 +13,6 @@ const ReviewForm = () => {
     const user = useSelector(state => state.session?.user);
     const user_id = user?.id;
 
-
     const onSubmit = async (e) => {
         const formErrors = [];
         if (!review) formErrors.push('Gender is required!');
@@ -25,7 +24,6 @@ const ReviewForm = () => {
         const res = {ok: false}
         //await dispatch(thunkCreateReview(review))
         if (res.ok) {
-            console.log(res, 'res')
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         }

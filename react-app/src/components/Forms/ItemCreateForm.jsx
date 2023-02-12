@@ -95,7 +95,6 @@ const  CreateItemForm = () => {
 
     const res = await dispatch(thunkCreateItem(itemsAttributes))
     if (res.ok) {
-      console.log(res, 'res')
       const data = await res.json()
       if (data && data.errors) setErrors(data.errors)
     }

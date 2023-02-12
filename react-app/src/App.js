@@ -39,10 +39,10 @@ function App() {
             <h1>Component Tester</h1>
             <PublicProfile/>
             <h2>_____________________________________</h2>
-            {/* <UserDashboard/> */}
-            {/* <h2>_____________________________________</h2> */}
-            {/* <ReviewForm/>
-            <h2>_____________________________________</h2> */}
+            <UserDashboard/>
+            <h2>_____________________________________</h2>
+            <ReviewForm/>
+            <h2>_____________________________________</h2>
 
           </Route>
           <Route path="/signup">
@@ -67,6 +67,7 @@ function App() {
             <DeleteButton />
           </ProtectedRoute>
           <Route path='/reviews/:userId'>
+
           </Route>
           <Route path='/reviews/create/:userId'>
           </Route>

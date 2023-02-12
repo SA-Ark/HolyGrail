@@ -101,7 +101,6 @@ const ItemEditForm = () => {
         //! NEED TO ADD VALIDATION ERRORS
 
         const res = await dispatch(thunkEditItem(itemsAttributes))
-        console.log(res)
         // //   .then(() => {
         // //     // history.push(`/items/${itemId}`)
         // // })

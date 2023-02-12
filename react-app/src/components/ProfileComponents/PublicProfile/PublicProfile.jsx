@@ -41,24 +41,14 @@ const PublicProfile = () => {
                 <div className="listings-general-info"></div>
             </div>
             <div className="profile-tabs-container">
-                {/* Put feedback tab here */}
-                {
-                    profileReviews?.length
-                        ? <FeedbackTab reviews={reviews} />
-                        : null
-                }
-                {
-
-                    availableListings?.length
-                        ? <AvailableListings items={availableListings} />
-                        : null
-                }
-
+                {/* !@#$% Might need to add logic here if rendering issues, but I think I got the
+                general compnent to render even with server errors  */}
+                <FeedbackTab reviews={reviews} />
+                <AvailableListings items={availableListings} />
 
             </div>
         </>
     )
 }
-
 
 export default PublicProfile;

@@ -12,9 +12,12 @@ import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import UserDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
+//Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
+
+
 const { DeleteButton } = Buttons
-const { ItemCreateForm, ItemEditForm } = Forms
+const { ItemCreateForm, ItemEditForm, ReviewForm } = Forms
 
 
 function App() {
@@ -33,8 +36,14 @@ function App() {
             <LoginFormPage />
           </Route>
           <Route path="/component-test">
-            <AvailableListings/>
-            <h1>_____________________________________</h1>
+            <h1>Component Tester</h1>
+            <PublicProfile/>
+            <h2>_____________________________________</h2>
+            <UserDashboard/>
+            <h2>_____________________________________</h2>
+            <ReviewForm/>
+
+            <h2>_____________________________________</h2>
 
           </Route>
           <Route path="/signup">

@@ -51,11 +51,17 @@ export const switchCarousel = (images, nonSequitur=false) => {
 
 export const getUserItems = (items, userId) => {
     let userItems = [];
-    for (let item in items) {
-        if (item.user_id === userId) {
-            userItems.push(item);
-        }
+    if (items){
+
+        items.forEach((item) => {
+            console.log(item.seller_id, "seller_id", userId, "userId")
+            if (Number(item.seller_id) === Number(userId)) {
+                userItems.push(item);
+            }
+        })
     }
+
+    console.log(userItems, "helper useritems")
     return userItems
 }
 

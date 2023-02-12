@@ -23,15 +23,19 @@ const ReviewCard = ({ review }) => {
                         {/* {month + " "}{day + ", "}{year} */}
                         DATE HERE
                     </span>
+                    <br />
+
+                    <span className="title">
+                        {"<username here> reviewed : " + review.item_name}
+                    </span>
 
                     <br />
 
                     <span className="stars">
                         {/* {review.stars} */}
-                        {stars()}
+                        {"stars:" + stars()}
                     </span>
 
-                    <br />
                     <br />
 
                     <span className="review-text">
@@ -42,18 +46,11 @@ const ReviewCard = ({ review }) => {
 
                     <span className="badges">
                         {/* Put badges here */}
-                        SELLER BADGES HERE
+                        {/* SELLER BADGES HERE */}
                     </span>
 
                     <br />
-                    <br />
-                    <br />
 
-                    <span className="title">
-                        {review.name}
-                        ITEM NAME HERE
-                    </span>
-                    <br />
                     <span className="description">
                         {review.item_description}
                     </span>
@@ -68,7 +65,7 @@ const ReviewCard = ({ review }) => {
 
 
             </div>
-        
+
         </>
     )
 }

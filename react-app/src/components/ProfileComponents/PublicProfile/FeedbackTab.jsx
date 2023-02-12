@@ -9,7 +9,7 @@ import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils'
 
 
 const FeedbackTab = ({ reviews }) => {
-    
+
     return (
         <div className="feedback-container">
             <h2>Hello From feedback tab</h2>
@@ -22,14 +22,14 @@ const FeedbackTab = ({ reviews }) => {
 
                 <span className="avg-stars">
                     {/* Put average total star rating here */}
-                    PUT STAR RATING HERE
+                    {reviews.avg_star_rating}
                 </span>
 
                 <br />
 
                 <span className="review-count">
                     {/* Put total num reviews here */}
-                    {reviews.num_reviews} Feedback
+                    {reviews.num_reviews} Reviews
                 </span>
 
                 <br />

@@ -193,7 +193,7 @@ const itemsReducer = (state = initialState, action) => {
         case LOAD_ITEMS: {
 
             const newState = { ...initialState }
-            newState.allItems = action.payload.items
+            newState.allItems = utils.normalize(action.payload.items)
             return newState
         }
 

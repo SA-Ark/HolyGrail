@@ -16,6 +16,7 @@ const ItemCard = ({ item }) => {
     return (
         <div className="item-card-container">
             <img onClick={clickHandler} src={item.preview_url} alt="a product image" className="spot-card-img" />
+            ITEM CARD
             <div className="item-info-container">
                 <div className='name-size-container'>
                     <span className='listing-name'>
@@ -38,7 +39,7 @@ const ItemCard = ({ item }) => {
                 </div>
             </div>
         </div>
-    
+
     )
 }
 

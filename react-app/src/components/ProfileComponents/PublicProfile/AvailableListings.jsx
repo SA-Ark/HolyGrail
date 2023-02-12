@@ -1,17 +1,27 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import MultiSelect from "multiselect-react-dropdown";
 import ItemCard from '../../ItemsDisplayComponents/ItemCard';
+import { deNormalize, getUserItems } from "../../../store/utils";
 
 
 const AvailableListings = ({ items }) => {
+
+    const {userId} = useParams()
     const [department, setDepartment] = useState(["Menswear", "Womenswear"]);
     const [category, setCategory] = useState(["Tops", "Bottoms", "Outerwear", "Footwear"]);
     const [size, setSize] = useState(["XS", "S", "M", "L", "XL"])
     const [price, setPrice] = useState(["Min", "Max"]);
     const [condition, setCondition] = useState(["Worn", "Used", "Gently Used", "New/Never Worn"]);
-    
+
+    const userItems = getUserItems(deNormalize(items), userId)
+
+
+    console.log(userItems, "USERITEMS" )
+    console.log(items, "ITEMSSS")
     return (
         <div className="listings-tab-container">
+            <h1>Hello From listings tab</h1>
             <div className="filters">
 
                 <MultiSelect
@@ -148,15 +158,15 @@ const AvailableListings = ({ items }) => {
                     onSelect={(e) => {console.log(e)} }
                     options={condition}
                     showCheckbox
-                /> 
-                
+                />
+
                 */}
             </div>
             <div className="listings-container">
                 {
                     items?.length
                     ? items.map(item => {
-                        <ItemCard item={item} />
+                        return <ItemCard item={item} key={item.id}/>
                     })
                     : null
                 }
@@ -164,5 +174,4 @@ const AvailableListings = ({ items }) => {
         </div>
     )
 }
-
 export default AvailableListings;

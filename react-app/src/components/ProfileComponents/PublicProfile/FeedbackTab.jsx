@@ -1,21 +1,35 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ReviewCard from '../../ReviewsComponents/ReviewCard';
 import { thunkLoadReviews } from '../../../store/reviews';
+import { thunkLoadItems } from '../../../store/items';
+import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils';
+
+
 
 const FeedbackTab = ({ reviews }) => {
+    console.log(reviews, "<--- REVIEWS")
 
+    // const dispatch = useDispatch();
+    // // const spots = utils.deNormalize(useSelector((store) => store.spots.allSpots));
 
-    const dispatch = useDispatch()
-    const {userId} = useParams()
-    console.log(user_id)
+    // const reviewsObj = deNormalize(useSelector(state => state.reviews?.allReviews));
+    // // const userId = useSelector(state => state?.session?.user?.id);
+    // const items = useSelector(state => state?.items?.allItems);
+    // let reviews;
 
-    useEffect(()=> {
+    // const {userId} = useParams()
+    // console.log(userId)
 
-        // dispatch(thunkLoadReviews(userId))
+    // useEffect(()=> {
 
-    },[reviews])
+    //     dispatch(thunkLoadReviews(userId))
+    //     dispatch(thunkLoadItems(userId))
+    //     if (reviewsObj) reviews = getUserReviews(deNormalize(reviewsObj), userId)
+    //     console.log(reviews)
+
+    // },[reviews, reviewsObj])
 
 
 

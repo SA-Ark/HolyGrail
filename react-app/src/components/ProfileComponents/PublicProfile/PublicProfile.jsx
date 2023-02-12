@@ -17,26 +17,15 @@ const PublicProfile = () => {
     const items = useSelector(state => state?.items?.allItems);
 
     const [profileReviews, setProfileReviews] = useState("")
-    const [ availableListings, setAvailableListings] = useState("")
-
-    // let profileReviewsTwo = getUserReviews(deNormalize(reviews))
-    // let availableListingsThree = getUserItems(deNormalize(items), userId)
-
-    // const reviewfunc = async () => {
-    //     let data
-    //     return await dispatch(thunkLoadReviews(userId)).then((res) => res.json())
-
-    // }
-
+    const [ availableListings, setAvailableListings] = useState(items)
 
     useEffect(() => {
-        // const reviews = reviewfunc()
         dispatch(thunkLoadReviews(userId))
         dispatch(thunkLoadItems(userId))
-        if (reviews) setProfileReviews(getUserReviews(deNormalize(reviews), userId))
-        if (items) setAvailableListings(getUserItems(deNormalize(items), userId))
+        setProfileReviews(getUserReviews(deNormalize(reviews), userId))
+        // setAvailableListings(getUserItems(deNormalize(items), userId))
 
-    }, [dispatch, userId, reviews])
+    }, [dispatch, userId])
 
 
 
@@ -65,7 +54,7 @@ const PublicProfile = () => {
 
                 {
                     // reviews?.length ?
-                    <FeedbackTab reviews={profileReviews} />
+                    <FeedbackTab reviews={reviews} />
                     // : null
                 }
                 <AvailableListings items={availableListings} />

@@ -32,18 +32,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/component-test/:userId">
+            <h1>Component Tester</h1>
+            <h2>_____________________________________</h2>
+            {/* <UserDashboard/> */}
+            <h2>_____________________________________</h2>
+            {/* <ReviewForm/> */}
+            <h2>_____________________________________</h2>
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
-          </Route>
-          <Route path="/component-test">
-            <h1>Component Tester</h1>
-            <PublicProfile/>
-            <h2>_____________________________________</h2>
-            <UserDashboard/>
-            <h2>_____________________________________</h2>
-            <ReviewForm/>
-            <h2>_____________________________________</h2>
-
           </Route>
           <Route path="/signup">
             <SignupFormPage />
@@ -54,6 +52,11 @@ function App() {
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
+
+          <Route path='/users/profile/:userId'>
+            <PublicProfile />
+          </Route>
+
           <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
           </ProtectedRoute>

@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
+	const history = useHistory()
 	const [search, setSearch] = useState("");
+
+	const sellClick = () => {
+		history.push('/items/create');
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -34,7 +39,7 @@ function Navigation({ isLoaded }) {
 
 			<div className='right-side-container'>
 
-				<button className='sell-button'>SELL</button>
+				<button onClick={sellClick} className='sell-button'>SELL</button>
 				<NavLink className="shop-link" exact to="/items">SHOP</NavLink>
 				<button className='favorites-button'>♥</button>
 				{isLoaded && (

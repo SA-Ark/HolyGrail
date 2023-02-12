@@ -9,20 +9,34 @@ import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils'
 
 
 const FeedbackTab = ({ reviews }) => {
-
+    
     return (
         <div className="feedback-container">
             <h2>Hello From feedback tab</h2>
             <div className="feedback-header">
                 <span className="score-title">
+                    Seller Score
                 </span>
+
+                <br />
+
                 <span className="avg-stars">
                     {/* Put average total star rating here */}
+                    PUT STAR RATING HERE
                 </span>
+
+                <br />
+
                 <span className="review-count">
                     {/* Put total num reviews here */}
+                    {reviews.num_reviews} Feedback
                 </span>
+
+                <br />
+                <br />
+
                 <span className="badges">
+                    {/* Put badges here */}
                     Trusted Seller
                 </span>
             </div>

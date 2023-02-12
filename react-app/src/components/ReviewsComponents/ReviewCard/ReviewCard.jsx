@@ -4,35 +4,71 @@ const ReviewCard = ({ review }) => {
 
     // const [day, month, year] = utils.dateToParts(review.created_at);
 
+    const stars = () => {
+        if (review.stars === 5) return "⭐️⭐️⭐️⭐️⭐️";
+        if (review.stars === 4) return "⭐️⭐️⭐️⭐️";
+        if (review.stars === 3) return "⭐️⭐️⭐️";
+        if (review.stars === 2) return "⭐️⭐️";
+        else return "⭐️";
+    }
+
     return (
-        <div className="review-card-container">
-            "Hello from a review card"
-            <div className="review-body">
-                <span className="date">
-                    {/* {month + " "}{day + ", "}{year} */}
-                    DATE DATA
-                </span>
-                <span className="stars">
-                    {review.stars}
-                </span>
-                <span className="review-text">
-                    {review.review_body}
-                </span>
-                <span className="badges">
-                    Trusted Seller
-                </span>
-                <span className="title">
-                    {review.name}
-                </span>
-                <span className="description">
-                    {review.item_description}
-                </span>
+        <>
+            <hr />
+            <div className="review-card-container">
+                <br />
+                <div className="review-body">
+                    <span className="date">
+                        {/* {month + " "}{day + ", "}{year} */}
+                        DATE HERE
+                    </span>
 
-                <img src={review.preview_url} alt="" className="product-image" />
+                    <br />
+
+                    <span className="stars">
+                        {/* {review.stars} */}
+                        {stars()}
+                    </span>
+
+                    <br />
+                    <br />
+
+                    <span className="review-text">
+                        {review.review_body}
+                    </span>
+
+                    <br />
+
+                    <span className="badges">
+                        {/* Put badges here */}
+                        SELLER BADGES HERE
+                    </span>
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <span className="title">
+                        {review.name}
+                        ITEM NAME HERE
+                    </span>
+                    <br />
+                    <span className="description">
+                        {review.item_description}
+                    </span>
+
+                    <br />
+
+                    <img src={review.preview_url} alt="" className="product-image" />
+
+                    <br />
+
+                </div>
+
+
             </div>
-
-
-        </div>
+        
+        </>
     )
 }
 

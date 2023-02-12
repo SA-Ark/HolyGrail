@@ -1,12 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
+
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
 	const history = useHistory()
+	const ulRef = useRef();
+
 	const [search, setSearch] = useState("");
+	const [showMenu, setShowMenu] = useState(false);
+
+	const openMenu = () => {
+		if (showMenu) return;
+		setShowMenu(true);
+	};
+
+	useEffect(() => {
+		if (!showMenu) return;
+
+		const closeMenu = (e) => {
+			if (!ulRef.current.contains(e.target)) {
+				setShowMenu(false);
+			}
+		};
+
+		document.addEventListener("click", closeMenu);
+
+		return () => document.removeEventListener("click", closeMenu);
+	}, [showMenu]);
+
+	const closeMenu = () => setShowMenu(false);
+
 
 	const sellClick = () => {
 		history.push('/items/create');
@@ -25,8 +55,8 @@ function Navigation({ isLoaded }) {
 
 	return (
 		<div className='navbar'>
-			<div className='home-link'>
-				<NavLink exact to="/">Home</NavLink>
+			<div className='home-link-container'>
+				<NavLink className='home-link' exact to="/">HOLYGRAIL</NavLink>
 			</div>
 
 			<div className="search-container">
@@ -38,15 +68,35 @@ function Navigation({ isLoaded }) {
 
 
 			<div className='right-side-container'>
-
-				<button onClick={sellClick} className='sell-button'>SELL</button>
+				{sessionUser && (
+					<button onClick={sellClick} className='sell-button'>SELL</button>
+				)}
 				<NavLink className="shop-link" exact to="/items">SHOP</NavLink>
-				<button className='favorites-button'>♥</button>
-				{isLoaded && (
+
+				{!sessionUser && (
+					<>
+
+						<OpenModalButton
+						/>
+
+						{/* <OpenModalButton
+							buttonText="Sign Up"
+							onItemClick={closeMenu}
+							modalComponent={<SignupFormModal />}
+						/> */}
+					</>
+				)}
+
+				{sessionUser && (
+					<button className='favorites-button'>♥</button>
+				)}
+				{sessionUser && isLoaded && (
 					<div>
-						<ProfileButton user={sessionUser}  className="profile-button"/>
+						<ProfileButton user={sessionUser} className="profile-button" />
 					</div>
 				)}
+
+
 			</div>
 		</div>
 	);

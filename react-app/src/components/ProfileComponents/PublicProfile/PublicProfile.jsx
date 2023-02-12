@@ -6,6 +6,7 @@ import AvailableListings from './AvailableListings';
 import { thunkLoadItems } from '../../../store/items';
 import {deNormalize, getUserItems, getUserReviews} from '../../../store/utils';
 
+
 import "./PublicProfile.css"
 
 const PublicProfile = () => {

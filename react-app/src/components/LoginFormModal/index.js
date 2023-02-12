@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
+import * as sessionActions from "../../store/session";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -20,6 +23,14 @@ function LoginFormModal() {
       closeModal()
     }
   };
+
+  const demoUser = (e) => {
+    e.preventDefault()
+    const email = "user0@aa.io"
+    const password = '123'
+    dispatch(sessionActions.login({ email, password }))
+    closeModal()
+  }
 
   return (
     <>
@@ -45,7 +56,7 @@ function LoginFormModal() {
                 />
               </label>
               <label className="login-label">
-              <span className="login-label-text">Password</span>
+                <span className="login-label-text">Password</span>
                 <input
                   className="login-input"
                   type="password"
@@ -56,6 +67,20 @@ function LoginFormModal() {
               </label>
             </div>
             <button className="login-button" type="submit">LOG IN</button>
+            <div className="alternate-logins">
+              or
+            </div>
+            <button
+              className="modal-demo-button"
+              onClick={demoUser}
+              type='submit'
+            >Demo user
+            </button>
+            {/* <div className="signup-redirect"> */}
+            {/* <OpenModalButton
+
+              modalComponent={<SignupFormModal />}
+            /> */}
           </form>
         </div>
       </div>

@@ -15,15 +15,12 @@ import MainDashboard from './components/ProfileComponents/UserDashboard/MainDash
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
 import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
-const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, SettingsTab, SizesTab } = Tabs
+const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab } = Tabs
 
 // End of temporary components
 
-
-
 const { DeleteButton } = Buttons
-const { ItemCreateForm, ItemEditForm, ReviewForm } = Forms
-
+const { ItemCreateForm, ItemEditForm, ReviewForm, EditProfileForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -61,10 +58,12 @@ function App() {
           </Route>
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
+
           <Route path="dashboard/:userId">
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
+
           <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
           </ProtectedRoute>

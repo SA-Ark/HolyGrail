@@ -10,18 +10,36 @@ import {deNormalize, getUserItems, getUserReviews} from '../../../store/utils';
 import "./PublicProfile.css"
 
 const PublicProfile = () => {
+
     const dispatch = useDispatch();
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = useSelector(state => state?.session?.user?.id);
     const items = useSelector(state => state?.items?.allItems);
 
-    const profileReviews = reviews?.length ? getUserReviews(deNormalize(reviews)) : 0
-    const availableListings = items?.lenth  ? getUserItems(deNormalize(items), userId) : 0
+    const [profileReviews, setProfileReviews] = useState("")
+    const [ availableListings, setAvailableListings] = useState("")
+
+    // let profileReviewsTwo = getUserReviews(deNormalize(reviews))
+    // let availableListingsThree = getUserItems(deNormalize(items), userId)
+
+    // const reviewfunc = async () => {
+    //     let data
+    //     return await dispatch(thunkLoadReviews(userId)).then((res) => res.json())
+
+    // }
+
 
     useEffect(() => {
-        if (userId) dispatch(thunkLoadReviews(userId))
-        dispatch(thunkLoadItems())
-    }, [dispatch, userId])
+        // const reviews = reviewfunc()
+        dispatch(thunkLoadReviews(userId))
+        dispatch(thunkLoadItems(userId))
+        if (reviews) setProfileReviews(getUserReviews(deNormalize(reviews), userId))
+        if (items) setAvailableListings(getUserItems(deNormalize(items), userId))
+
+    }, [dispatch, userId, reviews])
+
+
+
 
     return (
         <>
@@ -44,8 +62,14 @@ const PublicProfile = () => {
             <div className="profile-tabs-container">
                 {/* !@#$% Might need to add logic here if rendering issues, but I think I got the
                 general compnent to render even with server errors  */}
-                <FeedbackTab reviews={reviews} />
+
+                {
+                    reviews?.length ?
+                    <FeedbackTab reviews={profileReviews} />
+                    : null
+                }
                 <AvailableListings items={availableListings} />
+
 
             </div>
         </>

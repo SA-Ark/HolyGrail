@@ -61,8 +61,8 @@ export const getUserReviews = (reviews, userId) => {
     let userReviews = [];
     for (let review in reviews) {
         if (review.seller_id === userId )
+
         userReviews.push(review)
     }
-    console.log(userReviews)
     return userReviews
 }

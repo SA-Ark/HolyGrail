@@ -6,6 +6,7 @@ const ReviewCard = ({ review }) => {
 
     return (
         <div className="review-card-container">
+            "Hello from a review card"
             <div className="review-body">
                 <span className="date">
                     {month + " "}{day + ", "}{year}

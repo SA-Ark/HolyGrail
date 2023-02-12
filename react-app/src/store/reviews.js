@@ -50,7 +50,6 @@ export const actionDeleteReview = (review) => {
 
 // THUNKS
 export const thunkLoadReviews = (userId) => async (dispatch) => {
-    console.log("THIS IS MY THUNK")
     const res = await fetch(`/api/reviews/${userId}`, {
         method: 'GET',
         headers: {
@@ -61,9 +60,6 @@ export const thunkLoadReviews = (userId) => async (dispatch) => {
         console.log("RES IS OK")
         const data = await res.json();
         dispatch(actionLoadReviews(data))
-    }else{
-        console.log("RESPONSE NOT OK")
-        console.log(res.json(), "THIHS IS RES")
     }
 }
 

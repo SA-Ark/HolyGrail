@@ -89,7 +89,6 @@ export const signUp = (userArr) => async (dispatch) => {
     shoeSize
   ] = userArr
 
-  console.log("username", username)
 
   const response = await fetch('/api/auth/signup', {
     method: 'POST',

@@ -59,6 +59,7 @@ export const thunkLoadReviews = (userId) => async (dispatch) => {
     if (res.ok) {
         console.log("RES IS OK")
         const data = await res.json();
+        console.log(data, '<----review data')
         dispatch(actionLoadReviews(data))
         console.log(data, "thunk review data")
     }

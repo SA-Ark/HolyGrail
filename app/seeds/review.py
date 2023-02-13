@@ -1,13 +1,17 @@
-from app.models import db, Item, Review, environment, SCHEMA
+from app.models import db, Item, Review, User, environment, SCHEMA
 from random import randint
 
 # Adds a review
 def seed_reviews():
     items = Item.query.all()
+    users = User.query.all()
+    buyer_id = 1
     for i in range(len(items)):
-        buyer_id = i
+        buyer_id += 1
+        if buyer_id > len(users):
+            buyer_id = 1
         while buyer_id == items[i].seller_id:
-            buyer_id = randint(0,i)
+            buyer_id = randint(0,len(users))
         review = Review(
             buyer_id = buyer_id,
             item_id = items[i].id,

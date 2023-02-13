@@ -10,8 +10,10 @@ const SplashPlage = () => {
     const [videoPlaying, setVideoPlaying] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const items = utils.deNormalize(useSelector(store => store.items.allItems))
+    // const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store => store.session?.user)
+
+    const items = useSelector((state) => state.items.allItems)
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
@@ -29,18 +31,11 @@ const SplashPlage = () => {
         setCurrentIndex((currentIndex + 4) % 5)
     };
 
-
-    const itemCards = items.map(item => {
+    const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
         return (
-
-            <ItemCard key={item.id} />
+            <ItemCard key={item.id} item={item} />
         )
     })
-
-
-    // items.length
-    // ? items.map(item => <ItemCard item={item} key={item.id} />)
-    // : null
 
     return (
         <div className="splash-page-container">
@@ -63,22 +58,16 @@ const SplashPlage = () => {
             </div>
             <div className='splash-carousel-container'>
                 <div className='staff-picks'>
-                    <div className='arrow prev' onClick={handlePrev}>
-                        &lt;
+                    <div className='arrow prev' onClick={handlePrev}>&lt;</div>
+                    <div className='carousel-item-container'>
+                        {itemCards.length > 0 ? itemCards : null}
                     </div>
-                    {items.length ?
-                        
-                        itemCards[currentIndex]
-
-                        : null}
-                   
-                    <div className='arrow next' onClick={handleNext}>
-                        &gt;
-                    </div>
+                    <div className='arrow next' onClick={handleNext}>&gt;</div>
                 </div>
                 <div className='Deals'></div>
             </div>
-        </div>
+        
+        </div >
     )
 }
 

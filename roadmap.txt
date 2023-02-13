@@ -27,3 +27,13 @@ SINGLE ITEM PAGE:
     * needs fixed up if anyone wants to take this.
      to-do:
      1. get images & desc & other item info rendering on page again
+
+
+
+TODO:
+
+1. Have dashboard render properly
+
+noraa - finish dashboard
+have reviews and cart rendering in the dashboard
+refactor delete button

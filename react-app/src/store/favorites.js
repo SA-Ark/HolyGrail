@@ -30,7 +30,7 @@ export const actionDeleteFavorite = (favorite) => {
 
 export const thunkLoadFavorites = () => async (dispatch) => {
 
-    res = await fetch(`/api/favorites/current`, {
+    const res = await fetch(`/api/favorites/current`, {
         headers: {
             'Content-Type': 'application/json',
         }

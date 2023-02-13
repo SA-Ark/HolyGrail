@@ -70,3 +70,12 @@ export const getUserReviews = (reviews, userId) => {
     }
     return userReviews
 }
+
+export const getUserFavoriteItems = (favorites, items) => {
+    console.log(items,favorites)
+}
+
+
+export const switchTab = (tab) => {
+    console.log(tab)
+}

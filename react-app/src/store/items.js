@@ -43,24 +43,15 @@ export const actionDeleteItem = (itemId) => {
 }
 
 //! thunks
-export const thunkLoadItems = (id) => async (dispatch) => {
-    let res = null
-    if (id) {
+export const thunkLoadItems = () => async (dispatch) => {
 
-        res = await fetch(`/api/items/current`, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    }
-    else {
 
-        res = await fetch(`/api/items/current`, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    }
+    const res = await fetch(`/api/items/current`, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+
 
     if (res.ok) {
         const items = await res.json()

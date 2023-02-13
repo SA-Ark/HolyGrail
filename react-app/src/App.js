@@ -61,7 +61,7 @@ function App() {
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
 
-          <Route path="dashboard/:userId">
+          <Route path="/dashboard/:userId">
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>

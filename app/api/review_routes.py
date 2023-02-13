@@ -62,7 +62,7 @@ def reviews_of_users(user_id):
     star_sum = 0
     reviews_normalized = []
     if not reviews:
-        return  "This user has not been reviewed yet", 200
+        return  {"message": "This user has not been reviewed yet"}, 200
 
     for review in reviews:
         star_sum += review.stars

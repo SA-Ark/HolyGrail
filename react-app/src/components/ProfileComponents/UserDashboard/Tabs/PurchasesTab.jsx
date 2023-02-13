@@ -8,4 +8,5 @@ const PurchasesTab = () => {
     )
 }
 
+
 export default PurchasesTab;

@@ -36,19 +36,12 @@ const ItemCard = ({ item }) => {
                 <br />
                 <div className='price-like-container'>
                     <span className='listing-price'>
-<<<<<<< HEAD
                         Price: {item.price}
                     </span>
                     <br />
                     <span className='listing-liked' onClick={e=> setLiked(!liked)}>
                         {/* !@#$ should be item.liked once we finish route to create liked */}
                         {liked ? "❤️" : "💔"}
-=======
-                        ${item.price}
-                    </span>
-                    <span className='listing-liked'>
-                        ♡{item.liked}
->>>>>>> frontend
                     </span>
                     <br />
                 </div>

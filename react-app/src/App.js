@@ -12,14 +12,12 @@ import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
+import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
-<<<<<<< HEAD
 import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
 const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab } = Tabs
-=======
-import SplashPlage from "./components/SplashPage/HomePage/HomePage";
->>>>>>> frontend
 
 // End of temporary components
 

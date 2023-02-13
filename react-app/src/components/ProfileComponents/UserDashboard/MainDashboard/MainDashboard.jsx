@@ -20,6 +20,7 @@ const MainDashboard = () => {
         dispatch(thunkLoadFavorites())
     }, [dispatch]);
 
+
     return (
         <>
         <h1>

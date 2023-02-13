@@ -30,15 +30,15 @@ const ItemCard = ({ item }) => {
                 </span>
                 <div className='price-like-container'>
                     <span className='listing-price'>
-                        {item.price}
+                        ${item.price}
                     </span>
                     <span className='listing-liked'>
-                        {item.liked}
+                        ♡{item.liked}
                     </span>
                 </div>
             </div>
         </div>
-    
+
     )
 }
 

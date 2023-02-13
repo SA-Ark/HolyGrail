@@ -83,23 +83,23 @@ const SplashPlage = () => {
             <div className='splash-carousel-wrapper'>
                 <div className='splash-carousel-container'>
                     <div className='staff-picks'>
-                        <div className='arrow prev' onClick={handlePrev}>&lt;</div>
+                        <div className='arrow prev' onClick={handlePrev}></div>
                         <div className='carousel-item-container'>
                             {itemCards.length > 0 ? itemCards : null}
                         </div>
-                        <div className='arrow next' onClick={handleNext}>&gt;</div>
+                        <div className='arrow next' onClick={handleNext}></div>
                     </div>
                 </div>
 
-                <span className='deals-text'> Deals: Under $100 </span>
                 <div className='splash-carousel-container'>
+                <h2 className='deals-text'> Deals: Under $100 </h2>
                     <div className='deals'>
 
-                        <div className='arrow prev' onClick={handlePrevDeals}>&lt;</div>
+                        <div className='arrow prev' onClick={handlePrevDeals}></div>
                         <div className='carousel-item-container'>
                             {dealCards.length > 0 ? dealCards : null}
                         </div>
-                        <div className='arrow next' onClick={handleNextDeals}>&gt;</div>
+                        <div className='arrow next' onClick={handleNextDeals}></div>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkCreateItem } from '../../store/items';
+import './ItemCreateForm.css'
+import { Modal } from '../../context/Modal';
 
-const  CreateItemForm = () => {
+const CreateItemForm = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
   const [genderStyle, setGenderStyle] = useState('');
@@ -99,152 +101,182 @@ const  CreateItemForm = () => {
       if (data && data.errors) setErrors(data.errors)
     }
 
-      // //   .then(() => {
-      // //     // history.push(`/items/${itemId}`)
-      // // })
-      // .catch(async (response) => {
-      //   const data = await response.json()
-      //   if (data.errors) setErrors([...data])
-      // });
+    // //   .then(() => {
+    // //     // history.push(`/items/${itemId}`)
+    // // })
+    // .catch(async (response) => {
+    //   const data = await response.json()
+    //   if (data.errors) setErrors([...data])
+    // });
 
   }
 
   return (
-    <form onSubmit={onSubmit} className="general-form">
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+    <>
+      <div className='create-edit-page-wrapper'>
+        <div className='create-edit-item-container'>
+          <form onSubmit={onSubmit} className="general-form">
+            <div>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+
+            <div className='details details-cat'>
+              <label className='create-item-label'>Category</label>
+              <input
+                type='text'
+                placeholder='Department/Category'
+                name='category'
+                onChange={(e) => setCategoryTags(e.target.value)}
+                className="create-item-input"
+                value={categoryTags}
+              ></input>
+            </div>
+            <div className='details details-size'>
+              <label className='create-item-label'>Size</label>
+              <input
+                type='text'
+                placeholder='Size (Select category first)'
+                name='size'
+                onChange={(e) => setSize(e.target.value)}
+                className="create-item-input"
+                value={size}
+              ></input>
+            </div>
+
+            <div className='details details-item-name'>
+              <label className='create-item-label'>Item Name</label>
+              <input
+                type='text'
+                name='name'
+                placeholder='Item name'
+                onChange={(e) => setName(e.target.value)}
+                className="create-item-input"
+                value={name}
+              // required
+              ></input>
+            </div>
+
+            <div className='details details-color'>
+              <label className='create-item-label'>Color</label>
+              <input
+                type='text'
+                placeholder='Color name, i.e. "Frozen Yellow"'
+                name='color'
+                onChange={(e) => setColor(e.target.value)}
+                className="create-item-input"
+                value={color}
+              ></input>
+            </div>
+            <div className='details details-condition'>
+              <label className='create-item-label'>Condition</label>
+              <input
+                type='text'
+                name='condition'
+                onChange={(e) => setCondition(e.target.value)}
+                value={condition}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-price'>
+              <label className='create-item-label'>Price</label>
+              <input
+                type='integer'
+                placeholder='Price (USD)'
+                name='price'
+                onChange={(e) => setPrice(e.target.value)}
+                className="create-item-input"
+                value={price}
+              ></input>
+            </div>
+            <div className='details details-desc'>
+              <label for="textbox">Description</label>
+              <textarea
+                className='create-edit-form-textarea'
+                type='textarea'
+                placeholder='
+          Add details about condition, how the garment fits, additional measurements, shipping policies, retail price, link to retail page, etc'
+                name='description'
+                onChange={(e) => setDescription(e.target.value)}
+                value={description}
+              ></textarea>
+            </div>
+            <div className='details details-shipping'>
+              <label className='create-item-label'>Shipping Cost</label>
+              <input
+                type='integer'
+                name='shipping_cost'
+                onChange={(e) => setShippingCost(e.target.value)}
+                value={shippingCost}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-gender'>
+              <label className='create-item-label'>Gender Style</label>
+              <input
+                type='text'
+                name='gender_style'
+                onChange={(e) => setGenderStyle(e.target.value)}
+                value={genderStyle}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-preview-url'>
+              <label className='create-item-label'>Preview Image</label>
+              <input
+                type='text'
+                name='preview_url'
+                onChange={(e) => setPreviewUrl(e.target.value)}
+                value={previewUrl}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-image-url'>
+              <label className='create-item-label'>Image Url 1</label>
+              <input
+                type='text'
+                name='image_url_1'
+                onChange={(e) => setImageUrl1(e.target.value)}
+                value={imageUrl1}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-image-url'>
+              <label className='create-item-label'>Image Url 2</label>
+              <input
+                type='text'
+                name='image_url_2'
+                onChange={(e) => setImageUrl2(e.target.value)}
+                value={imageUrl2}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-image-url'>
+              <label className='create-item-label'>Image Url 3</label>
+              <input
+                type='text'
+                name='image_url_3'
+                onChange={(e) => setImageUrl3(e.target.value)}
+                value={imageUrl3}
+                className="create-item-input"
+              ></input>
+            </div>
+            <div className='details details-image-url'>
+              <label className='create-item-label'>Image Url 4</label>
+              <input
+                type='text'
+                name='image_url_4'
+                onChange={(e) => setImageUrl4(e.target.value)}
+                value={imageUrl4}
+                className="create-item-input"
+              ></input>
+            </div>
+            <button className='create-item-button' type='submit'>List Item</button>
+          </form>
+        </div>
       </div>
-      <div>
-        <label>Item Name</label>
-        <input
-          type='text'
-          name='name'
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        // required
-        ></input>
-      </div>
-      <div>
-        <label>Size</label>
-        <input
-          type='text'
-          name='size'
-          onChange={(e) => setSize(e.target.value)}
-          value={size}
-        ></input>
-      </div>
-      <div>
-        <label>Color</label>
-        <input
-          type='text'
-          name='color'
-          onChange={(e) => setColor(e.target.value)}
-          value={color}
-        ></input>
-      </div>
-      <div>
-        <label>Condition</label>
-        <input
-          type='text'
-          name='condition'
-          onChange={(e) => setCondition(e.target.value)}
-          value={condition}
-        ></input>
-      </div>
-      <div>
-        <label>Category</label>
-        <input
-          type='text'
-          name='category'
-          onChange={(e) => setCategoryTags(e.target.value)}
-          value={categoryTags}
-        ></input>
-      </div>
-      <div>
-        <label>Price</label>
-        <input
-          type='integer'
-          name='price'
-          onChange={(e) => setPrice(e.target.value)}
-          value={price}
-        ></input>
-      </div>
-      <div>
-        <label>Description</label>
-        <input
-          type='textarea'
-          name='description'
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-        ></input>
-      </div>
-      <div>
-        <label>Shipping Cost</label>
-        <input
-          type='integer'
-          name='shipping_cost'
-          onChange={(e) => setShippingCost(e.target.value)}
-          value={shippingCost}
-        ></input>
-      </div>
-      <div>
-        <label>Gender Style</label>
-        <input
-          type='text'
-          name='gender_style'
-          onChange={(e) => setGenderStyle(e.target.value)}
-          value={genderStyle}
-        ></input>
-      </div>
-      <div>
-        <label>Preview Image</label>
-        <input
-          type='text'
-          name='preview_url'
-          onChange={(e) => setPreviewUrl(e.target.value)}
-          value={previewUrl}
-        ></input>
-      </div>
-      <div>
-        <label>Image Url 1</label>
-        <input
-          type='text'
-          name='image_url_1'
-          onChange={(e) => setImageUrl1(e.target.value)}
-          value={imageUrl1}
-        ></input>
-      </div>
-      <div>
-        <label>Image Url 2</label>
-        <input
-          type='text'
-          name='image_url_2'
-          onChange={(e) => setImageUrl2(e.target.value)}
-          value={imageUrl2}
-        ></input>
-      </div>
-      <div>
-        <label>Image Url 3</label>
-        <input
-          type='text'
-          name='image_url_3'
-          onChange={(e) => setImageUrl3(e.target.value)}
-          value={imageUrl3}
-        ></input>
-      </div>
-      <div>
-        <label>Image Url 4</label>
-        <input
-          type='text'
-          name='image_url_4'
-          onChange={(e) => setImageUrl4(e.target.value)}
-          value={imageUrl4}
-        ></input>
-      </div>
-      <button type='submit'>List Item</button>
-    </form>
+    </>
   );
 };
 

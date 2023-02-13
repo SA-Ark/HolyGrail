@@ -1,12 +1,14 @@
 import React, { useEffect, useState, } from 'react';
-import './HomePage.css';
-import ItemCard from '../../ItemsDisplayComponents/ItemCard';
+import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import * as utils from '../../../store/utils'
 import { thunkLoadItems } from '../../../store/items';
+import ItemCard from '../../ItemsDisplayComponents/ItemCard';
+import * as utils from '../../../store/utils'
+import './HomePage.css';
 
 const SplashPlage = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [videoPlaying, setVideoPlaying] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentIndexDeals, setCurrentIndexDeals] = useState(0);
@@ -39,6 +41,10 @@ const SplashPlage = () => {
 
     const handlePrevDeals = () => {
         setCurrentIndexDeals((currentIndexDeals + 4) % 5)
+    }
+
+    const handleShopAll = () => {
+        history.push('/items');
     }
 
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
@@ -92,7 +98,7 @@ const SplashPlage = () => {
                 </div>
 
                 <div className='splash-carousel-container'>
-                <h2 className='deals-text'> Deals: Under $100 </h2>
+                    <h2 className='deals-text'> Deals: Under $100 </h2>
                     <div className='deals'>
 
                         <div className='arrow prev' onClick={handlePrevDeals}></div>
@@ -102,6 +108,12 @@ const SplashPlage = () => {
                         <div className='arrow next' onClick={handleNextDeals}></div>
                     </div>
                 </div>
+            </div>
+
+            <div className='splash-bottom-container'>
+                <img className='splash-bottom-img' src='https://images.ctfassets.net/bdvz0u6oqffk/5WKjwaqsg7qdf3NFcnrFc3/7a24b9c497e5112d64c0eba0cf3eee59/Womens_HPBanner.jpg?fm=webp'></img>
+                <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>
+                <button onClick={handleShopAll} className='splash-bottom-button'>SHOP ALL</button>
             </div>
 
         </div >

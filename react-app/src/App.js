@@ -13,6 +13,7 @@ import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+import ItemCreateModal from "./components/Forms/ItemCreateModal";
 
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
@@ -22,7 +23,7 @@ const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTa
 // End of temporary components
 
 const { DeleteButton } = Buttons
-const { ItemCreateForm, ItemEditForm, ReviewForm, EditProfileForm } = Forms
+const { ItemEditForm, ReviewForm, EditProfileForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ function App() {
             <MainListingsPage />
           </ProtectedRoute>
           <ProtectedRoute path='/items/create' exact={true}>
-            <ItemCreateForm />
+            <ItemCreateModal />
           </ProtectedRoute>
           <Route path='/items/:itemId' >
             <SingleItemPage />

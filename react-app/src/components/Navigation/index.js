@@ -4,10 +4,12 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 
 import OpenModalButton from "../OpenModalButton";
+import CreateModalButton from "../CreateModalButton"
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 import './Navigation.css';
+import ItemCreateModal from '../Forms/ItemCreateModal';
 
 function Navigation({ isLoaded }) {
 	const history = useHistory()
@@ -68,22 +70,23 @@ function Navigation({ isLoaded }) {
 
 
 			<div className='right-side-container'>
+
 				{sessionUser && (
-					<button onClick={sellClick} className='sell-button'>SELL</button>
+					<>
+						<CreateModalButton
+							buttonText='SELL'
+							modalComponent={
+								<ItemCreateModal />
+							}
+						/>
+					</>
+
 				)}
 				<NavLink className="shop-link" exact to="/items">SHOP</NavLink>
 
 				{!sessionUser && (
 					<>
-
-						<OpenModalButton
-						/>
-
-						{/* <OpenModalButton
-							buttonText="Sign Up"
-							onItemClick={closeMenu}
-							modalComponent={<SignupFormModal />}
-						/> */}
+						<OpenModalButton/>
 					</>
 				)}
 

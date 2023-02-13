@@ -176,7 +176,10 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
 
 export const thunkDeleteItem = (itemId) => async (dispatch) => {
     const res = await fetch(`/api/items/delete/${itemId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     })
     if (res.ok) {
         const data = await res.json();

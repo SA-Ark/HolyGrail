@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import datetime
 
 class Like(db.Model):
     __tablename__ = 'likes'
@@ -9,6 +9,9 @@ class Like(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key= True, nullable=False )
     item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), primary_key= True, nullable=False )
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
+    
     user = db.relationship("User", back_populates="likes")
     item = db.relationship("Item", back_populates="likes")
 
@@ -17,5 +20,7 @@ class Like(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'product_id': self.product_id,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
             # "user": self.user
         }

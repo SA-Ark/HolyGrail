@@ -1,7 +1,7 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-
+from datetime import datetime
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -25,10 +25,13 @@ class User(db.Model, UserMixin):
     pant_size = db.Column(db.String(10), default ="small")
     shoe_size = db.Column(db.String(10), default ="small")
     hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
 
     items = db.relationship("Item", back_populates="user", cascade="all, delete-orphan")
     likes = db.relationship("Like", back_populates="user", cascade="all, delete-orphan")
     reviews = db.relationship("Review", back_populates="user", cascade="all, delete-orphan")
+    orders = db.relationship("Order", back_populates="user", cascade="all, delete-orphan")
 
     @property
     def password(self):
@@ -58,6 +61,8 @@ class User(db.Model, UserMixin):
             "shirt_size": self.shirt_size,
             "pant_size": self.pant_size,
             "shoe_size": self.shoe_size,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
             # "items": self.items,
             # "likes": self.likes,
             # "reviews": self.reviews

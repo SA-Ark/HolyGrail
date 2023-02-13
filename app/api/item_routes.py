@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Item, Like, User, ItemImage, db
 from flask_login import login_required, login_user, current_user
 from app.forms import FilterForm, CreateItemForm
+from datetime import datetime
 
 item_routes = Blueprint('items', __name__)
 
@@ -174,19 +175,22 @@ def get_edit_item(item_id):
     """
     userItems = Item.query.filter(Item.seller_id == current_user.id and Item.id == item_id).all()
     userItem = [item for item in userItems if item.id == item_id]
+    if userItem and userItem.sold == True:
+        return {"errors: You cannot edit a sold item."}
+
     if len(userItem) > 0:
         form = CreateItemForm()
         return form, 200
-    return  { 'errors': "You don't own this item so you can't edit it."}
+    return  { 'errors': "You don't own this item so you can't edit it."}, 401
 
-@item_routes.route('/edit/<int:item_id>', methods=["PUT"])
+@item_routes.route('/edit/<int:item_id>/<int:user_id>', methods=["PUT"])
 @login_required
-def edit_item(item_id):
+def edit_item(item_id, user_id):
     """
     Update item for logged in user through edit form
     """
-
-    userItems = Item.query.filter(Item.seller_id == current_user.id and Item.id == item_id).all()
+    user = User.query.get(user_id)
+    userItems = Item.query.filter(Item.user_id == user.id and Item.id == item_id).all()
     userItem = [item for item in userItems if item.id == item_id]
     if userItem:
 
@@ -205,12 +209,17 @@ def edit_item(item_id):
             edited_item.category_tags = form.data["category_tags"]
             edited_item.price = form.data["price"]
             edited_item.shipping_cost = form.data["shipping_cost"]
+            edited_item.updated_at = datetime.now()
 
             db.session.add(edited_item)
             db.session.commit()
 
             preview_image = edited_item.to_dict()["preview_image"]
+            prev_url = preview_image['url']
             preview_image['url'] = form.data["preview_url"]
+            if prev_url != preview_image["url"]:
+                preview_image['updated_at'] = datetime.now()
+
 
             # db.session.add(preview_image)
 
@@ -220,8 +229,10 @@ def edit_item(item_id):
             image_4 = ItemImage.query.filter(ItemImage.image_num == 4)
 
             if image_1:
+                old_url = image_1.url
                 image_1.url = form.data["image_url_1"]
-
+                if old_url != image_1.url:
+                    image_1.updated_at = datetime.now()
             elif form.data["image_url_1"]:
                 image_1 = ItemImage(
                     item_id = edited_item.id,
@@ -232,7 +243,10 @@ def edit_item(item_id):
                 db.session.add(image_1)
 
             if image_2:
+                old_url = image_2.url
                 image_2.url = form.data["image_url_2"]
+                if old_url != image_2.url:
+                    image_2.updated_at = datetime.now()
 
             elif form.data["image_url_2"]:
                 image_2 = ItemImage(
@@ -244,7 +258,10 @@ def edit_item(item_id):
                 db.session.add(image_2)
 
             if image_3:
+                old_url = image_3.url
                 image_3.url = form.data["image_url_3"]
+                if old_url != image_3.url:
+                    image_3.updated_at = datetime.now()
 
             elif form.data["image_url_3"]:
                 image_3 = ItemImage(
@@ -256,7 +273,10 @@ def edit_item(item_id):
                 db.session.add(image_3)
 
             if image_4:
+                old_url = image_4.url
                 image_4.url = form.data["image_url_4"]
+                if old_url != image_4.url:
+                    image_4.updated_at = datetime.now()
 
             elif form.data["image_url_4"]:
                 image_4 = ItemImage(
@@ -271,9 +291,9 @@ def edit_item(item_id):
 
             return edited_item.to_dict(), 200
         else:
-            return form.errors, 401
+            return form.errors, 400
     else:
-        return  { 'errors': "You don't own this item."}
+        return  { 'errors': "You don't own this item."}, 401
 
 
 @item_routes.route("/delete/<int:item_id>", methods=["GET", "DELETE"])
@@ -284,12 +304,14 @@ def delete_item(item_id):
     """
 
     item = Item.query.get(item_id)
+    if item.sold == True:
+        return {"errors: You cannot edit a sold item."}, 401
     if item.seller_id ==current_user.id:
         ans = item.to_dict()
         db.session.delete(item)
         db.session.commit()
         return ans, 200
-    return  { 'errors': "You don't own this item."}
+    return  { 'errors': "You don't own this item."}, 401
 
 # @item_routes.route('/')
 # def filtered_items():

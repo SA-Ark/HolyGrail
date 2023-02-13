@@ -1,11 +1,10 @@
 """empty message
 
-Revision ID: 800def971ca9
+Revision ID: fa2305c1c4e6
 Revises:
-Create Date: 2023-02-11 23:55:12.748496
+Create Date: 2023-02-12 13:56:35.750106
 
 """
-
 from alembic import op
 import sqlalchemy as sa
 
@@ -14,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '92b52ebeef8b'
+revision = 'fa2305c1c4e6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -39,6 +38,8 @@ def upgrade():
     sa.Column('pant_size', sa.String(length=10), nullable=True),
     sa.Column('shoe_size', sa.String(length=10), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('created_at', sa.Date(), nullable=True),
+    sa.Column('updated_at', sa.Date(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -60,6 +61,8 @@ def upgrade():
     sa.Column('price', sa.Integer(), nullable=False),
     sa.Column('shipping_cost', sa.Integer(), nullable=False),
     sa.Column('sold', sa.Boolean(), nullable=True),
+    sa.Column('created_at', sa.Date(), nullable=True),
+    sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -73,6 +76,8 @@ def upgrade():
     sa.Column('preview', sa.Boolean(), nullable=True),
     sa.Column('url', sa.String(), nullable=False),
     sa.Column('image_num', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.Date(), nullable=True),
+    sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -83,6 +88,8 @@ def upgrade():
     op.create_table('likes',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('item_id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.Date(), nullable=True),
+    sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'item_id')
@@ -97,6 +104,8 @@ def upgrade():
     sa.Column('item_id', sa.Integer(), nullable=True),
     sa.Column('review_body', sa.TEXT(), nullable=False),
     sa.Column('stars', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.Date(), nullable=True),
+    sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['buyer_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('id')

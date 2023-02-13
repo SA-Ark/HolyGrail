@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Item, User, Review ,db
 from flask_login import login_required, login_user, current_user
 from app.forms import CreateReviewForm
+from datetime import datetime
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -141,6 +142,7 @@ def edit_review(review_id):
             normalized_rev["preview_url"] = item["preview_url"]
             normalized_rev["item_name"] = item["name"]
             normalized_rev["item_description"] = item["description"]
+            normalized_rev["updated_at"] = datetime.now()
             return review.to_dict(), 200
         else:
             return form.errors, 401

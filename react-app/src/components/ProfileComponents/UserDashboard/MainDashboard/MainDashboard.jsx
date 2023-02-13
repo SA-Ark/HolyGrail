@@ -1,11 +1,12 @@
 import Tabs from '../Tabs'
-const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab} = Tabs
+const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab, FavoritesTab} = Tabs
 
 const MainDashboard = () => {
     return (
         <>
-            <PurchasesTab />
-            <EditProfileTab />
+    <PurchasesTab/>
+    <EditProfileTab/>
+    <FavoritesTab/>
         </>
     )
 

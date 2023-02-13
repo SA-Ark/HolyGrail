@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import Tabs from '../Tabs'
+import { getUserFavoriteItems, switchTab } from '../../../../store/utils'
 const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab, FavoritesTab} = Tabs
 
 
@@ -8,6 +9,9 @@ const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab
 const MainDashboard = () => {
     const dispatch = useDispatch()
     // const purchases = useSelector(state => state.orders.userOrders) !@#$ this needs configured with new store thunk
+    const user = useSelector(state => state?.session?.user)
+    const items = useSelector(state => state?.items?.allItems)
+    const favorites = useSelector(state => state?.favorites?.allFavorites)
 
     return (
         <>
@@ -16,7 +20,7 @@ const MainDashboard = () => {
         <div className="tab-container">
         <PurchasesTab/>
         <h1>-------------------------</h1>
-        <EditProfileTab/>
+        <EditProfileTab user={user}/>
         <h1>-------------------------</h1>
         <FavoritesTab/>
         </div>

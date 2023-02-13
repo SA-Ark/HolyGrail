@@ -20,8 +20,6 @@
 
 .dropdown-username,
 .dropdown-favorites,
-.dropdown-myaccount,
-.dropdown-myprofile,
 .dropdown-logout {
     padding-right: 20px;
     padding-left: 13px;
@@ -38,15 +36,8 @@
 }
 
 .dropdown-username,
-.dropdown-favorites,
-.dropdown-myaccount,
-.dropdown-myprofile {
+.dropdown-favorites {
     padding-bottom: 5px;
-}
-
-.dropdown-myaccount {
-    font-weight: bold;
-    padding-top: 5px;
 }
 
 .dropdown-logout {
@@ -55,7 +46,6 @@
 
 .dropdown-username:hover,
 .dropdown-favorites:hover,
-.dropdown-myprofile:hover,
 .dropdown-logout:hover {
     color: blue;
 }

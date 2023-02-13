@@ -55,40 +55,39 @@ function App() {
           <ProtectedRoute path='/items' exact={true} >
             <MainListingsPage />
           </ProtectedRoute>
-          <Route path='/items/:itemId' exact={true} >
+          <ProtectedRoute path='/items/create' exact={true}>
+            <ItemCreateForm />
+          </ProtectedRoute>
+          <Route path='/items/:itemId' >
             <SingleItemPage />
           </Route>
-          <ProtectedRoute path='/items/:itemId' exact={true} >
+          <ProtectedRoute path='/items/:itemId' >
             <SingleItemPage />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/edit/:itemId'>
+            <ItemEditForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/delete/:itemId'>
+            <DeleteButton />
+
           </ProtectedRoute>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
           </Route>
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
-
           <Route path="dashboard/:userId">
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
 
-          <ProtectedRoute path='/items/create' exact={true}>
-            <ItemCreateForm />
-          </ProtectedRoute>
-          <ProtectedRoute path='/items/edit/:itemId' exact={true}>
-            <ItemEditForm />
-          </ProtectedRoute>
-          <ProtectedRoute path='/items/delete/:itemId' exact={true}>
-            <DeleteButton />
-          </ProtectedRoute>
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-          <Route path='/reviews/create/:itemId'>
-            <ReviewForm />
-          </Route>
+          
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>
+            <ReviewForm/>
           </ProtectedRoute>
 
           <Route path='/' exact={true} >

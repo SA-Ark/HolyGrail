@@ -65,10 +65,7 @@ function ProfileButton({ user }) {
                       : null}
                   </div>
                   <div className="drop-down-border"></div>
-                  <span className='dropdown-myaccount' >MY ACOUNT</span>
-                  <div>
-                    <NavLink className='dropdown-myprofile' to={`users/profile/${sessionUser.id}`}>{user.username}</NavLink>
-                  </div>
+
                   <div className="drop-down-border"></div>
                   <div>
                     <Link className='dropdown-logout' onClick={handleLogout}>Sign Out</Link>

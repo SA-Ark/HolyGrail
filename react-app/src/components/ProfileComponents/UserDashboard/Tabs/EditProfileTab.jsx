@@ -1,6 +1,5 @@
 const EditProfileTab = () => {
     return (
-<<<<<<< HEAD
         // "Edit profile tab - display edit user info form here"
         <form>
             <label>Edit Your Profile</label>
@@ -59,14 +58,7 @@ const EditProfileTab = () => {
                 ></input>
             </div>
             <button type="submit">Update</button>
-        </form>  
-=======
-        <div className="purchases-container">
-            <div className="title">
-                Edit Profile Tab: Edit Profile Form Lives Here
-            </div>
-        </div>
->>>>>>> noraa-dev
+        </form>
     )
 }
 

@@ -14,8 +14,12 @@ import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
+<<<<<<< HEAD
 import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
 const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab } = Tabs
+=======
+import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+>>>>>>> frontend
 
 // End of temporary components
 
@@ -83,7 +87,7 @@ function App() {
           <Route path='/reviews/create/:userId'>
           </Route> */}
           <Route path='/' exact={true} >
-            <h1>Splash Page</h1>
+            <SplashPlage />
           </Route>
         </Switch>
       )}

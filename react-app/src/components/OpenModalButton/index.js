@@ -1,22 +1,31 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 
 function OpenModalButton({
-  modalComponent, // component to render inside the modal
-  buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onClick = () => {
+  const onLoginClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(modalComponent);
+    setModalContent(<LoginFormModal/>);
+    if (onButtonClick) onButtonClick();
+  };
+
+  const onSignupClick = () => {
+    if (onModalClose) setOnModalClose(onModalClose);
+    setModalContent(<SignupFormModal/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
-    <button onClick={onClick}>{buttonText}</button>
+    <>
+    <button onClick={onLoginClick} className='nav-login-button'>Login</button>
+    <button onClick={onSignupClick} className='nav-signup-button'>Sign Up</button>
+    </>
   );
 }
 

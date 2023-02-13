@@ -1,0 +1,135 @@
+.splash-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.splash-video-conatiner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 60vh;
+    width: 100%;
+    position: relative;
+    padding-bottom: .08rem;
+    margin-bottom: 3rem;
+    /* overflow-y: auto; */
+    text-align: center;
+}
+
+.splash-page-video {
+    z-index: -1;
+    width: 200vh;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.splash-video-title {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.splash-video-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.5;
+    width: 37rem;
+    margin-top: 1rem;
+}
+
+.splash-carousel-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.splash-carousel-container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    margin-top: 3rem;
+    /* width: 100%; */
+}
+
+.staff-picks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+}
+
+.deals {
+    padding-top:9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+}
+
+.deals-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-size: 21px;
+
+}
+
+.carousel-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+.arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 55px;
+    text-align: center;
+    border-radius: 40px;
+    background-color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.arrow :hover {
+    /* background-color: #ddd; */
+}
+
+.prev {
+    position: absolute;
+    transform: translate(-985%, -50%);
+}
+.prev::before {
+    content: '<';
+    margin-left: 25px;
+}
+
+.next {
+    position: absolute;
+    transform: translate(985%, -50%);
+}
+
+.next::after {
+    content: '>';
+    margin-right: 25px;
+}

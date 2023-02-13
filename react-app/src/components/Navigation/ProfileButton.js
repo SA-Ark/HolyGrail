@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import './ProfileButton.css'
+import { Link, NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+
+  const sessionUser = useSelector(state => state.session.user);
+
+  const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -39,34 +44,46 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button  className="profile-button" onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      <div className="profile-wrapper">
+        <div className="profile-container">
+          <button className="profile-button" onClick={openMenu}>
+            <i className="fas fa-user-circle" />
+          </button>
+          <ul className={ulClassName} ref={ulRef}>
+            {user ? (
+              <>
+                <div className="dropdown-menu-container">
+                  <div>
+                    {sessionUser ?
+                      <NavLink className='dropdown-username' to={`users/profile/${sessionUser.id}`}>{user.username}</NavLink>
+                      : null}
+                  </div>
+                  <div className="drop-down-border"></div>
+                  <div>
+                    {sessionUser ?
+                      <NavLink className='dropdown-favorites' to='/favorites'>Favorites</NavLink>
+                      : null}
+                  </div>
+                  <div className="drop-down-border"></div>
+                  <span className='dropdown-myaccount' >MY ACOUNT</span>
+                  <div>
+                    <NavLink className='dropdown-myprofile' to={`users/profile/${sessionUser.id}`}>{user.username}</NavLink>
+                  </div>
+                  <div className="drop-down-border"></div>
+                  <div>
+                    <Link className='dropdown-logout' onClick={handleLogout}>Sign Out</Link>
+                  </div>
+                </div>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+              </>
+            ) : (
+              <>
+
+              </>
+            )}
+          </ul>
+        </div>
+      </div>
     </>
   );
 }

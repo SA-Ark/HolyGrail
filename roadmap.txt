@@ -37,3 +37,12 @@ TODO:
 noraa - finish dashboard
 have reviews and cart rendering in the dashboard
 refactor delete button
+
+
+
+
+
+ACTIVE BUGS:
+
+    Refreshing form page makes the populated values diappear.
+    Currently working though if page isn't refreshed.

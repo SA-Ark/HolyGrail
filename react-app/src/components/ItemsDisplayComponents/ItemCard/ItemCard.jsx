@@ -13,7 +13,7 @@ const ItemCard = ({ item }) => {
     const [liked, setLiked] = useState(false)
     // !@#$ need to dispatch an update to create an item like as well
     const clickHandler = (e) => {
-        history.push(`/item/${item.id}`)
+        history.push(`/items/${item.id}`)
     }
 
     return (

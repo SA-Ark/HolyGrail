@@ -148,7 +148,7 @@ def edit_review(review_id):
             return form.errors, 401
     return  {'errors': "You can only edit reviews that you posted."}, 401
 
-@review_routes.route('/delete/<int:review_id>', methods=['DELETE'])
+@review_routes.route('/delete/<int:review_id>', methods=['GET', 'DELETE'])
 @login_required
 def delete_review(review_id):
     """

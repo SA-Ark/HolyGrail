@@ -52,9 +52,15 @@ function App() {
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
+          <ProtectedRoute path='/items' exact={true} >
+            <MainListingsPage />
+          </ProtectedRoute>
           <Route path='/items/:itemId' exact={true} >
             <SingleItemPage />
           </Route>
+          <ProtectedRoute path='/items/:itemId' exact={true} >
+            <SingleItemPage />
+          </ProtectedRoute>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
           </Route>
@@ -80,10 +86,11 @@ function App() {
           <Route path='/reviews/create/:itemId'>
             <ReviewForm />
           </Route>
-          {/* <Route path='/reviews/edit/:userId'>
-          </Route>
-          <Route path='/reviews/create/:userId'>
-          </Route> */}
+          <ProtectedRoute path='/reviews/delete/:reviewId'>
+          </ProtectedRoute>
+          <ProtectedRoute path='/reviews/create/:itemId'>
+          </ProtectedRoute>
+
           <Route path='/' exact={true} >
             <SplashPlage />
           </Route>

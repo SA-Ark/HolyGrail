@@ -31,6 +31,7 @@ def logged_in_items():
 
     return {"items": items_normalized}, 200
 
+
 @item_routes.route('/<int:item_id>')
 def item(item_id):
     """
@@ -42,18 +43,6 @@ def item(item_id):
     if item:
         return item.to_dict(), 200
     return  { 'errors': "Item does not exist."}, 401
-
-@item_routes.route('/')
-def items():
-    """
-    Query for all items and returns them in a list of item dictionaries.
-    Has the preview image and all images for the item.
-    Has number of likes 'num_likes' for the item.
-    """
-    items = Item.query.all()
-    items_normalized = [item.to_dict() for item in items]
-    return {"items": items_normalized}, 200
-
 
 @item_routes.route('/<int:item_id>')
 @login_required
@@ -76,6 +65,20 @@ def logged_in_item(item_id):
 
         return (item_normalized, 200)
     return  { 'errors': "Item does not exist."}, 401
+
+@item_routes.route('/')
+def items():
+    """
+    Query for all items and returns them in a list of item dictionaries.
+    Has the preview image and all images for the item.
+    Has number of likes 'num_likes' for the item.
+    """
+    items = Item.query.all()
+    items_normalized = [item.to_dict() for item in items]
+    return {"items": items_normalized}, 200
+
+
+
 
 @item_routes.route('/create')
 @login_required

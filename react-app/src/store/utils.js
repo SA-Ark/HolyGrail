@@ -70,3 +70,8 @@ export const getUserReviews = (reviews, userId) => {
     }
     return userReviews
 }
+
+
+export const switchTab = (tab) => {
+    return null
+}

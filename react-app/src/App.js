@@ -13,6 +13,7 @@ import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+import EditReviewForm from "./components/Forms/EditReviewForm";
 
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
@@ -90,7 +91,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>
           </ProtectedRoute>
-
+          <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
+            <EditReviewForm />
+          </ProtectedRoute>
           <Route path='/' exact={true} >
             <SplashPlage />
           </Route>

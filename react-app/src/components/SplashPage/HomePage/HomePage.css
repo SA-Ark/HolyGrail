@@ -1,0 +1,51 @@
+.splash-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.splash-video-conatiner {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 60vh;
+    width: 100%;
+    position: relative;
+    padding-bottom: .08rem;
+    margin-bottom: 3rem;
+    /* overflow-y: auto; */
+    text-align: center;
+}
+
+.splash-page-video {
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.splash-video-title {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
+
+.splash-video-text {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.5;
+    width: 37rem;
+    margin-top: 1rem;
+}

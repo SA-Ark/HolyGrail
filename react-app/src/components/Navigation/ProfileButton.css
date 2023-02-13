@@ -55,7 +55,6 @@
 
 .dropdown-username:hover,
 .dropdown-favorites:hover,
-.dropdown-myaccount:hover,
 .dropdown-myprofile:hover,
 .dropdown-logout:hover {
     color: blue;

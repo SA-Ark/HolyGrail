@@ -14,6 +14,7 @@ import PublicProfile from './components/ProfileComponents/PublicProfile'
 import UserDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
+import SplashPlage from "./components/SplashPage/HomePage/HomePage";
 
 
 const { DeleteButton } = Buttons
@@ -76,7 +77,7 @@ function App() {
           <Route path='/reviews/create/:userId'>
           </Route>
           <Route path='/' exact={true} >
-            <h1>Splash Page</h1>
+            <SplashPlage />
           </Route>
         </Switch>
       )}

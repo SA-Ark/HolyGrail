@@ -1,5 +1,6 @@
 .profile-dropdown {
   position: absolute;
+  z-index: 1;
 }
 
 .hidden {
@@ -111,8 +112,8 @@
   font-size: 16px;
   border: 1px solid #ccc;
   width: 75px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   margin-right: 20px;
 
 }

@@ -65,7 +65,6 @@ function App() {
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
-
           <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
           </ProtectedRoute>

@@ -4,8 +4,8 @@ const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab
 const MainDashboard = () => {
     return (
         <>
-    <PurchasesTab/>
-    <EditProfileTab/>
+            <PurchasesTab />
+            <EditProfileTab />
         </>
     )
 

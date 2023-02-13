@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Item, User, Review ,db
 from flask_login import login_required, login_user, current_user
 from app.forms import CreateReviewForm
+from datetime import datetime
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -30,7 +31,6 @@ def curr_user_reviews():
     Query for all reviews that current user has posted
     and returns them in a list of item dictionaries.
     """
-    print("***HEYYY**")
     reviews = Review.query.filter(Review.buyer_id == current_user.id).all()
     reviews_normalized = []
     if not reviews:
@@ -44,7 +44,6 @@ def curr_user_reviews():
         normalized_rev["item_description"] = item["description"]
         reviews_normalized.append(normalized_rev)
     return {"reviews": reviews_normalized}
-
 
 @review_routes.route('/current/<int:user_id>')
 @login_required
@@ -76,22 +75,16 @@ def reviews_of_users(user_id):
         normalized_rev["item_description"] = item["description"]
         reviews_normalized.append(normalized_rev)
 
-    # rating = star_sum / len(reviews)
-    print("PRINT STATEMENT",{
-            'reviews': reviews_normalized,
-            # 'avg_star_rating': rating,
-            'num_reviews': len(reviews),
-            'num_sold': len(items)
-            } )
+    rating = star_sum / len(reviews)
     return {
             'reviews': reviews_normalized,
-            # 'avg_star_rating': rating,
+            'avg_star_rating': rating,
             'num_reviews': len(reviews),
             'num_sold': len(items)
             } , 200
 
 
-
+# !@#$ this route eventually should take "transaction_id" rather than an item_id
 @review_routes.route('/create/<int:item_id>', methods=['GET', 'POST'])
 @login_required
 def post_review(item_id):
@@ -100,7 +93,7 @@ def post_review(item_id):
     Allows user to post review for that item.
     """
     item = Item.query.get(item_id).to_dict()
-    if item.seller_id != current_user.id:
+    if item['seller_id'] != current_user.id:
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -108,7 +101,7 @@ def post_review(item_id):
             new_review = Review(
                 review_body = form.data['review_body'],
                 stars = form.data['stars'],
-                user_id = current_user.id,
+                buyer_id = current_user.id,
                 item_id = item_id
             )
             db.session.add(new_review)
@@ -149,6 +142,7 @@ def edit_review(review_id):
             normalized_rev["preview_url"] = item["preview_url"]
             normalized_rev["item_name"] = item["name"]
             normalized_rev["item_description"] = item["description"]
+            normalized_rev["updated_at"] = datetime.now()
             return review.to_dict(), 200
         else:
             return form.errors, 401

@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA
-
+from datetime import datetime
 
 
 
@@ -14,6 +14,9 @@ class Review(db.Model):
     item_id = db.Column(db.Integer, db.ForeignKey("items.id"))
     review_body = db.Column(db.TEXT, nullable=False)
     stars = db.Column(db.Integer, nullable = False)
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
+
     item = db.relationship("Item", back_populates="reviews")
     user = db.relationship("User", back_populates="reviews")
 
@@ -23,6 +26,8 @@ class Review(db.Model):
             'id': self.id,
             'buyer_id': self.buyer_id,
             'review_body': self.review_body,
-            'stars': self.stars
+            'stars': self.stars,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
             # "user": self.user
         }

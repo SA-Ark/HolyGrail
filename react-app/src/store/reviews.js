@@ -50,7 +50,7 @@ export const actionDeleteReview = (review) => {
 
 // THUNKS
 export const thunkLoadReviews = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/reviews/${userId}`, {
+    const res = await fetch(`/api/reviews/current/${userId}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -60,11 +60,12 @@ export const thunkLoadReviews = (userId) => async (dispatch) => {
         console.log("RES IS OK")
         const data = await res.json();
         dispatch(actionLoadReviews(data))
+        console.log(data, "thunk review data")
     }
 }
 
-export const thunkLoadCurrReviews = () => async (dispatch) => {
-    const res = await fetch(`/api/reviews/current`, {
+export const thunkLoadCurrReviews = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/reviews/current/${userId}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -91,8 +92,9 @@ export const thunkLoadSingleReview = (reviewId) => async (dispatch) => {
 
 
 export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) => {
-    const [reviewBody, stars] = reviewAttributes
+    const {reviewBody, stars} = reviewAttributes
 
+    console.log(reviewBody, stars, "THUNK LOG")
     const res = await fetch(`/api/reviews/create/${itemId}`, {
         method: 'POST',
         headers: {
@@ -188,36 +190,35 @@ const reviewsReducer = (state = initialState, action) => {
         case LOAD_REVIEWS: {
 
             const newState = { ...initialState }
-            newState.allReviews = action.payload.reviews
+            newState.allReviews = action.payload
             return newState
         }
 
         case LOAD_CURR_REVIEWS: {
 
             const newState = { ...initialState }
-            newState.allReviews = action.payload.reviews
+            newState.allReviews = action.payload
             return newState
         }
-
 
         case LOAD_SINGLE_REVIEW: {
 
             const newState = { ...initialState }
-            newState.singleReview = action.payload.review
+            newState.singleReview = action.payload
             return newState
         }
 
         case CREATE_REVIEW: {
 
             const newState = { ...initialState }
-            newState.singleReview = action.payload.review
+            newState.singleReview = action.payload
             return newState
         }
 
         case EDIT_REVIEW: {
 
             const newState = { ...initialState }
-            newState.singleReview = action.payload.review
+            newState.singleReview = action.payload
             return newState
         }
 

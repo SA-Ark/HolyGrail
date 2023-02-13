@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import datetime
 
 
 class ItemImage(db.Model):
@@ -13,6 +13,9 @@ class ItemImage(db.Model):
     preview = db.Column(db.Boolean)
     url = db.Column(db.String, nullable=False)
     image_num = db.Column(db.Integer, nullable = False, default = 0)
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
+
     item = db.relationship("Item", back_populates="item_images")
 
     def to_dict(self):
@@ -21,5 +24,7 @@ class ItemImage(db.Model):
             'item_id': self.item_id,
             'preview': self.preview,
             "url": self.url,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
             # "item": self.item
         }

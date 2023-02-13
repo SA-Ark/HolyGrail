@@ -11,15 +11,17 @@ import Forms from './components/Forms'
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
-import UserDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
+import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
+const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab } = Tabs
 
+// End of temporary components
 
 const { DeleteButton } = Buttons
-const { ItemCreateForm, ItemEditForm, ReviewForm } = Forms
-
+const { ItemCreateForm, ItemEditForm, ReviewForm, EditProfileForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -33,28 +35,36 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/component-test/:userId">
+            <h1>Component Tester</h1>
+            <MainDashboard/>
+            {/* <h2>_____________________________________</h2> */}
+            {/* <h2>_____________________________________</h2> */}
+            {/* <h2>_____________________________________</h2> */}
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
-          </Route>
-          <Route path="/component-test">
-            <h1>Component Tester</h1>
-            <PublicProfile/>
-            <h2>_____________________________________</h2>
-            <UserDashboard/>
-            <h2>_____________________________________</h2>
-            <ReviewForm/>
-            <h2>_____________________________________</h2>
-
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <ProtectedRoute path='/items' exact={true} >
-            <MainListingsPage />
-          </ProtectedRoute>
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
+          <Route path='/items' exact={true} >
+            <MainListingsPage />
+          </Route>
+          <Route path='/users/profile/:userId'>
+            <PublicProfile />
+          </Route>
+          {/* !@#$ misc need to add conditional logic somewhere to only render if
+          the dashboard belongs to current user  */}
+
+          <Route path="dashboard/:userId">
+            <MainDashboard/>
+            {/* <PurchasesTab/> */}
+          </Route>
+
           <ProtectedRoute path='/items/create' exact={true}>
             <ItemCreateForm />
           </ProtectedRoute>
@@ -67,15 +77,15 @@ function App() {
           <ProtectedRoute path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
           </ProtectedRoute>
-          <Route path='/reviews/:userId'>
-
+          {/* <Route path='/reviews/:userId'>
+          </Route> */}
+          <Route path='/reviews/create/:itemId'>
+            <ReviewForm />
+          </Route>
+          {/* <Route path='/reviews/edit/:userId'>
           </Route>
           <Route path='/reviews/create/:userId'>
-          </Route>
-          <Route path='/reviews/edit/:userId'>
-          </Route>
-          <Route path='/reviews/create/:userId'>
-          </Route>
+          </Route> */}
           <Route path='/' exact={true} >
             <SplashPlage />
           </Route>

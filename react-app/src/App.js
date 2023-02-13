@@ -12,9 +12,10 @@ import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
+import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+
 //Temporary components imports for testing go here:
 import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
-import SplashPlage from "./components/SplashPage/HomePage/HomePage";
 import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
 const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab } = Tabs
 
@@ -51,8 +52,8 @@ function App() {
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
-          <Route path='/items' exact={true} >
-            <MainListingsPage />
+          <Route path='/items/:itemId' exact={true} >
+            <SingleItemPage />
           </Route>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
@@ -71,9 +72,6 @@ function App() {
           <ProtectedRoute path='/items/edit/:itemId' exact={true}>
             <ItemEditForm />
           </ProtectedRoute>
-          <Route path='/items/:itemId' exact={true} >
-            <SingleItemPage />
-          </Route>
           <ProtectedRoute path='/items/delete/:itemId' exact={true}>
             <DeleteButton />
           </ProtectedRoute>

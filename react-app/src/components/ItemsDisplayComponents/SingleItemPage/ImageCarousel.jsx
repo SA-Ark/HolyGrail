@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import * as utils from '../../../store/utils'
 
 const ImageCarousel = ({ images }) => {
-    let xPos = 0
+
+    const [xPos, setXPos] = useState(0)
 
     const [currentImage, setCurrentImage] = useState(null)
     const [imageContainerStyle, setimageContainerStyle] = useState({
@@ -16,14 +17,22 @@ const ImageCarousel = ({ images }) => {
         transform: `translateX(${xPos}px)`
         // position: 'absolute',
     })
-    
+
     const nonSequiturClick = null // logic coming soon
     const sequiturClick = null // logic coming soon
     const backClick = e => {
-        xPos -= 100
+        setXPos(xPos - 100)
         setimageContainerStyle({
-            ...imageContainerStyle, 
+            ...imageContainerStyle,
             transform:`translateX(${xPos}px)`
+        })
+    }
+
+    const forwardClick = e => {
+        setXPos(xPos + 100)
+        setimageContainerStyle({
+            ...imageContainerStyle,
+            transform: `translateX(${xPos}px)`
         })
     }
 
@@ -35,14 +44,14 @@ const ImageCarousel = ({ images }) => {
         width: '240px',
         overflow: 'hidden',
         // position: 'relative',
-        
-        
+
+
     }
     const largeImageStyle = {
         // height: '200px',
         // width: '100px',
-        
-        
+
+
     }
     // imageContainerStyle
 
@@ -59,7 +68,6 @@ const ImageCarousel = ({ images }) => {
                                     <div className='large-images' style={imageContainerStyle} >
                                         <img
                                             src={image.url}
-                                            
                                             style={largeImageStyle}
                                             alt="product image"
                                             // key={utils.deNormalize(images).findIndex(image)}
@@ -72,7 +80,7 @@ const ImageCarousel = ({ images }) => {
                         : null
                 }
             </div>
-            <span onClick={sequiturClick} className="forward-arrow">
+            <span onClick={forwardClick} className="forward-arrow">
                 {'>'}
             </span>
 

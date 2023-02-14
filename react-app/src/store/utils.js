@@ -74,7 +74,7 @@ export const getUserReviews = (reviews, userId) => {
 export const getUserFavoriteItems = (favorites, items) => {
     const favoriteIds = []
     const favoriteItems = []
-    if (!items || !favorites) return null
+    if (!Object.values(items).length || !Object.values(favorites).length) return null
     for (let favorite of deNormalize(favorites)) {
         favoriteIds.push(favorite.item_id)
     }

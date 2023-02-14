@@ -23,7 +23,7 @@ const MainDashboard = () => {
     useEffect(() => {
         dispatch(thunkLoadItems())
         dispatch(thunkLoadFavorites())
-        dispatch(thunkLoadOrders(user?.id))
+        // dispatch(thunkLoadOrders(user?.id))
     }, [dispatch, user]);
 
     return (

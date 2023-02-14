@@ -72,9 +72,8 @@ export const getUserReviews = (reviews, userId) => {
 }
 
 export const getUserFavoriteItems = (favorites, items) => {
-    console.log(items,favorites)
+    console.log(items,favorites, "itemsFavorites")
 }
-
 
 export const switchTab = (tab) => {
     console.log(tab)

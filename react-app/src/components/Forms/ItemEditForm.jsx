@@ -28,8 +28,9 @@ const ItemEditForm = () => {
     const [imageUrl4, setImageUrl4] = useState(item.image_url_4);
 
     useEffect(() => {
+        console.log(itemId, '<---- ITEM ID IN EDIT FORM')
         dispatch(thunkLoadSingleItem(itemId, userId))
-    }, [dispatch, userId, itemId])
+    }, [dispatch, itemId, userId])
 
     // const item = useSelector((state) => state.items.singleItem)
     //! NEED TO MAKE WE REDIRECT TO ITEM.ID <-----------------
@@ -100,7 +101,7 @@ const ItemEditForm = () => {
 
         //! NEED TO ADD VALIDATION ERRORS
 
-        const res = await dispatch(thunkEditItem(itemsAttributes))
+        return await dispatch(thunkEditItem(itemsAttributes))
         // //   .then(() => {
         // //     // history.push(`/items/${itemId}`)
         // // })

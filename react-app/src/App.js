@@ -51,10 +51,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/items' exact={true} >
-            <MainListingsPage />
-          </Route>
-          <ProtectedRoute path='/items' exact={true} >
+
+          <ProtectedRoute path='/items/edit/:itemId'>
+            <ItemEditForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/delete/:itemId'>
+            <DeleteButton />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/current' exact={true} >
             <MainListingsPage />
           </ProtectedRoute>
           <ProtectedRoute path='/items/create' exact={true}>
@@ -66,12 +70,10 @@ function App() {
           <ProtectedRoute path='/items/:itemId' >
             <SingleItemPage />
           </ProtectedRoute>
-          <ProtectedRoute path='/items/edit/:itemId'>
-            <ItemEditForm />
-          </ProtectedRoute>
-          <ProtectedRoute path='/items/delete/:itemId'>
-            <DeleteButton />
-          </ProtectedRoute>
+          <Route path='/items' exact={true} >
+            <MainListingsPage />
+          </Route>
+
           <Route path='/users/profile/:userId'>
             <PublicProfile />
           </Route>
@@ -86,13 +88,13 @@ function App() {
           {/* <Route path='/reviews/:userId'>
           </Route> */}
 
-          <ProtectedRoute path='/reviews/delete/:reviewId'>
-          </ProtectedRoute>
-          <ProtectedRoute path='/reviews/create/:itemId'>
-            <ReviewForm/>
-          </ProtectedRoute>
           <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
             <EditReviewForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/reviews/delete/:reviewId'>
+          </ProtectedRoute>
+          <ProtectedRoute path='/reviews/create'>
+            <ReviewForm/>
           </ProtectedRoute>
           <Route path='/' exact={true} >
             <SplashPlage />

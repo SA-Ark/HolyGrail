@@ -18,7 +18,6 @@ const MainDashboard = () => {
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
 
-
     useEffect(() => {
         dispatch(thunkLoadItems())
         dispatch(thunkLoadFavorites())

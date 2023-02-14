@@ -1,6 +1,5 @@
-import DeleteButton from "./DeleteButton";
-import EditProfileButton from "./EditProfileButton";
+import DeleteItemButton from "./DeleteItemButton";
 
-const Buttons = { DeleteButton, EditProfileButton }
+const Buttons = {DeleteItemButton}
 
 export default Buttons;

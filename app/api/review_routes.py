@@ -59,9 +59,12 @@ def reviews_of_users(user_id):
     of queried user. Total number of sales by user is also displayed
     """
 
-    reviews = Review.query.filter(Review.buyer_id == user_id).all()
+    reviews = Review.query.filter(Review.seller_id == user_id).all()
     items = Item.query.filter(Item.seller_id == user_id).all()
+    bought = Order.query.filter(Order.buyer_id == user_id).all()
+    total_items = len(items)
     items = [item for item in items if item.sold == True]
+    items_listed = total_items - len(items)
     star_sum = 0
     reviews_normalized = []
     if not reviews:
@@ -83,9 +86,11 @@ def reviews_of_users(user_id):
     rating = star_sum / len(reviews)
     return {
             'reviews': reviews_normalized,
+            "items_listed": items_listed,
             'avg_star_rating': rating,
             'num_reviews': len(reviews),
-            'num_sold': len(items)
+            'num_sold': len(items),
+            'total_transactions': len(items) + len(bought)
             } , 200
 
 

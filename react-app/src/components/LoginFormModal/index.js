@@ -23,9 +23,7 @@ function LoginFormModal() {
 
   const demoUser = (e) => {
     e.preventDefault()
-    const email = "user1@aa.io"
-    const password = '123'
-    dispatch(login({ email, password }))
+    dispatch(login('user1@aa.io', '123'))
     closeModal()
   }
 
@@ -69,10 +67,11 @@ function LoginFormModal() {
             </div>
             <button
               className="modal-demo-button"
-              onClick={() => demoUser}
               type='submit'
-            >Demo user
+              onClick={(e) => demoUser(e)}            
+              >Demo user
             </button>
+
           </form>
         </div>
       </div>

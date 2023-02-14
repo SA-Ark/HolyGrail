@@ -1,0 +1,77 @@
+
+
+.create-edit-page-wrapper {
+    height: 800px;
+    width: 720px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    
+}
+
+.modal-title {
+    font-size: 34px;
+    padding-top: 30px;
+    margin-left: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.listing-edit-form {
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create-edit-item-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.create-edit-label-text {
+    margin-bottom: 5px;
+}
+
+.create-edit-item-input{
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 20px;
+    padding-bottom: 15px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+}
+
+.create-edit-edit-form-textarea {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 20px;
+    padding-bottom: 15px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+}
+
+.create-edit-item-button {
+    background-color: black;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    height: 48px;
+    margin-top: 25px;
+    touch-action: manipulation;
+}
+
+.create-edit-item-button:hover {
+    background-color: rgb(26, 26, 26);
+}

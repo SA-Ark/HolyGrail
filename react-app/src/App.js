@@ -13,6 +13,7 @@ import Buttons from './components/Buttons'
 import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+import ItemCreateModal from "./components/Forms/ItemCreateModal";
 import EditReviewForm from "./components/Forms/EditReviewForm";
 
 //Temporary components imports for testing go here:
@@ -23,7 +24,7 @@ const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTa
 // End of temporary components
 
 const { DeleteButton } = Buttons
-const { ItemCreateForm, ItemEditForm, ReviewForm, EditProfileForm } = Forms
+const { ItemEditForm, ReviewForm, EditProfileForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -56,40 +57,36 @@ function App() {
           <ProtectedRoute path='/items' exact={true} >
             <MainListingsPage />
           </ProtectedRoute>
-          <Route path='/items/:itemId' exact={true} >
+          <ProtectedRoute path='/items/create' exact={true}>
+            <ItemCreateModal />
+          </ProtectedRoute>
+          <Route path='/items/:itemId' >
             <SingleItemPage />
           </Route>
-          <ProtectedRoute path='/items/:itemId' exact={true} >
+          <ProtectedRoute path='/items/:itemId' >
             <SingleItemPage />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/edit/:itemId'>
+            <ItemEditForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/items/delete/:itemId'>
+            <DeleteButton />
           </ProtectedRoute>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
           </Route>
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
-
           <Route path="/dashboard/:userId">
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
-
-          <ProtectedRoute path='/items/create' exact={true}>
-            <ItemCreateForm />
-          </ProtectedRoute>
-          <ProtectedRoute path='/items/edit/:itemId' exact={true}>
-            <ItemEditForm />
-          </ProtectedRoute>
-          <ProtectedRoute path='/items/delete/:itemId' exact={true}>
-            <DeleteButton />
-          </ProtectedRoute>
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-          <Route path='/reviews/create/:itemId'>
-            <ReviewForm />
-          </Route>
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>
+            <ReviewForm/>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
             <EditReviewForm />

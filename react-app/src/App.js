@@ -81,15 +81,6 @@ function App() {
           </Route>
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-<<<<<<< HEAD
-          <ProtectedRoute path='/reviews/delete/:reviewId'>
-          </ProtectedRoute>
-          <ProtectedRoute path='/reviews/create/:itemId'>
-            <ReviewForm/>
-          </ProtectedRoute>
-=======
-
->>>>>>> frontend
           <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
             <EditReviewForm />
           </ProtectedRoute>

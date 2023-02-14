@@ -72,7 +72,15 @@ export const getUserReviews = (reviews, userId) => {
 }
 
 export const getUserFavoriteItems = (favorites, items) => {
-    console.log(items,favorites, "itemsFavorites")
+    const favoriteIds = []
+    const favoriteItems = []
+    for (let favorite of deNormalize(favorites)) {
+        favoriteIds.push(favorite.item_id)
+    }
+
+    for (let id of favoriteIds) {
+        favoriteItems.push(items[id])
+    }
 }
 
 export const switchTab = (tab) => {

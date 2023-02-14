@@ -14,7 +14,10 @@ const MainDashboard = () => {
     const user = useSelector(state => state?.session?.user)
     const items = useSelector(state => state?.items?.allItems)
     const favorites = useSelector(state => state?.favorites?.allFavorites)
-    console.log(user, items, favorites, "useritemsfavorites")
+
+    const userFavoriteItems = getUserFavoriteItems(favorites, items)
+
+
 
     useEffect(() => {
         dispatch(thunkLoadItems())

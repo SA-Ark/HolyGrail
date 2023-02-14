@@ -51,10 +51,6 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-
-          <ProtectedRoute path='/items/create' exact={true}>
-            <ItemCreateModal />
-          </ProtectedRoute>
           <ProtectedRoute path='/items/edit/:itemId'>
             <ItemEditForm />
           </ProtectedRoute>

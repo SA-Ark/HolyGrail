@@ -73,6 +73,7 @@ export const getUserReviews = (reviews, userId) => {
     return userReviews
 }
 
+
 export const getUserFavoriteItems = (favorites, items) => {
     // pure function
     //Takes in favorites and items nested objects and filters for items favorites
@@ -87,6 +88,7 @@ export const getUserFavoriteItems = (favorites, items) => {
     for (let id of favoriteIds) {
         favoriteItems.push(items[id])
         // !@#$ check the ids against each other console.log(items[id], id, "meowwwwwww")
+        console.log(items[id-1], id, "meowwwwwww")
     }
     return favoriteItems
 }
@@ -95,22 +97,22 @@ export const getUserPurchases = (purchases, items) => {
     // pure function
     // Takes in purchases and items objects. builds array of objects that have been purchased by the user
     // and builds an array of larger purchased items objects from the filtered items
-    const purchasedIds = []
-    const purchasedItems = []
-    const purchaseObjects = []
-    if (!Object.values(items).length || !Object.values(purchases).length) return null
+    // const purchasedIds = []
+    // const purchasedItems = []
+    // const purchaseObjects = []
+    // if (!Object.values(items).length || !Object.values(purchases).length) return null
 
-    for (let purchase of deNormalize(purchases)) {
-        purchasedIds.push(purchase.item_id)
-    }
+    // for (let purchase of deNormalize(purchases)) {
+    //     purchasedIds.push(purchase.item_id)
+    // }
 
-    for (let id of purchasedIds) {
-        purchaseObjects.push(items[id])
-    }
+    // for (let id of purchasedIds) {
+    //     purchaseObjects.push(items[id])
+    // }
 
-    for (let object of purchaseObjects){
-        console.log(object, "OBJECKT@!")
-    }
+    // for (let object of purchaseObjects){
+    //     console.log(object, "OBJECKT@!")
+    // }
 
 
 }

@@ -60,7 +60,7 @@ def get_purchases():
     purchases_normalized = []
     for purchase in purchases:
         purchase = purchase.to_dict()
-        item = Item.query.get(purchase.item_id)
+        item = Item.query.get(purchase['item_id'])
         purchase["preview_url"] = item["preview_url"]
         purchase["item_name"] = item["name"]
         purchase["item_description"] = item["description"]

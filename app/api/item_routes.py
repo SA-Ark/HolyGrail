@@ -194,8 +194,12 @@ def edit_item(item_id):
     """
     # user = User.query.get(user_id)
     print('python route')
-    userItems = Item.query.filter(Item.seller_id == current_user.id and Item.id == item_id).all()
+    userItems = Item.query.filter(Item.seller_id == current_user.id).all()
     userItem = [item for item in userItems if item.id == item_id]
+    for item in userItems:
+        print(item.id, 'item idddddddddddd')    
+    print(item_id, 'item id')
+    print(userItems, 'userItems')
     if userItem:
         print('python route useritem')
 
@@ -308,14 +312,16 @@ def delete_item(item_id):
     """
     Delete item if user owns it
     """
-
+    print('route pls work')
     item = Item.query.get(item_id)
     if item.sold == True:
-        return {"errors: You cannot edit a sold item."}, 401
+    
+        return {"errors": "You cannot edit a sold item."}, 401
     if item.seller_id ==current_user.id:
         ans = item.to_dict()
         db.session.delete(item)
         db.session.commit()
+        print('ans', ans)
         return ans, 200
     return  { 'errors': "You don't own this item."}, 401
 

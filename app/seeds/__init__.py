@@ -31,8 +31,8 @@ def seed():
     seed_items()
     seed_item_images()
     seed_likes()
-    seed_reviews()
     seed_orders()
+    seed_reviews()
     # Add other seed functions here
 
 

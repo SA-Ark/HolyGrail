@@ -18,8 +18,6 @@ const MainDashboard = () => {
     const userFavoriteItems = getUserFavoriteItems(favorites, items)
     console.log(userFavoriteItems, "userfavoriteitems")
 
-
-
     useEffect(() => {
         dispatch(thunkLoadItems())
         dispatch(thunkLoadFavorites())

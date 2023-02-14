@@ -11,7 +11,7 @@ const FavoritesTab = ({items}) => {
                 {
                     items?.length
                         ? items.map(item => {
-                            return <ItemCard item={item} key={item.id}/>
+                            return <ItemCard item={item} key={item?.id}/>
                         })
                         : null
                 }

@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { thunkLoadFavorites } from '../../../../store/favorites'
 import { thunkLoadItems } from '../../../../store/items'
 import { thunkLoadOrders } from '../../../../store/payments'
-import Tabs from '../Tabs'
-import { getUserFavoriteItems, switchTab } from '../../../../store/utils'
+import Tabs from '../Tabs';
+import { getUserFavoriteItems, switchTab } from '../../../../store/utils';
+import EditProfileButton from '../../../Buttons/EditProfileButton';
 const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab, FavoritesTab} = Tabs
 
 
@@ -30,12 +31,16 @@ const MainDashboard = () => {
         <>
         <h1>
         </h1>
+        <div className="edit-profile-btn">
+            <EditProfileButton />
+        </div>
+
         <div className="tab-container">
-        <PurchasesTab purchases={purchases}/>
-        <h1>-------------------------</h1>
-        <EditProfileTab user={user}/>
-        <h1>-------------------------</h1>
-        <FavoritesTab items={userFavoriteItems}/>
+            <PurchasesTab purchases={purchases}/>
+            <h1>-------------------------</h1>
+            <EditProfileTab user={user}/>
+            <h1>-------------------------</h1>
+            <FavoritesTab items={userFavoriteItems}/>
         </div>
         </>
     )

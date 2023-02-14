@@ -67,7 +67,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
 
 
     op.create_table('item_images',

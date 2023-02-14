@@ -4,7 +4,7 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import * as utils from '../../../store/utils'
 import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
-// import { ProfileCard } from '../../ProfileComponents/ProfileCard/ProfileCard'
+import ProfileCard  from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
 
 const SingleItemPage = () => {
@@ -13,8 +13,6 @@ const SingleItemPage = () => {
   const user = useSelector(store=> store.session?.user)
 
   const { itemId } = useParams()
-
-  console.log(item)
 
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id))
@@ -27,7 +25,7 @@ const SingleItemPage = () => {
           ? <ImageCarousel images={item.images?.length ? item.images : null}/>
           : null}
       </div>
-      
+
       <div className="item-info-buttons-container">
         <span id="item-name">{item.name}</span>
         <span id="item-size">Size {item.size}</span>
@@ -43,9 +41,9 @@ const SingleItemPage = () => {
         <span id="item-created-at">Posted on {item.created_at}</span>
       </div>
 
-      {/* <div>
+      <div>
         <ProfileCard item={item} />
-      </div> */}
+      </div>
     </div>
   )
 }

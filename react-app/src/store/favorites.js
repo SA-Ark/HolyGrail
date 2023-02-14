@@ -37,7 +37,6 @@ export const thunkLoadFavorites = () => async (dispatch) => {
     })
 
 
-    console.log(res, "<------ RES!!")
     if (res.ok) {
         const favorites = await res.json()
         dispatch(actionLoadFavorites(favorites))

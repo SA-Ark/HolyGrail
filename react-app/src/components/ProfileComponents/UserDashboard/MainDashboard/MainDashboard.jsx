@@ -18,8 +18,8 @@ const MainDashboard = () => {
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
 
-    const userFavoriteItems = getUserFavoriteItems(favorites, items)
-    console.log(userFavoriteItems, "userfavoriteitems")
+    // const userFavoriteItems = getUserFavoriteItems(favorites, items)
+    // console.log(userFavoriteItems, "userfavoriteitems")
 
     useEffect(() => {
         dispatch(thunkLoadItems())
@@ -36,7 +36,7 @@ const MainDashboard = () => {
         <h1>-------------------------</h1>
         <EditProfileTab user={user}/>
         <h1>-------------------------</h1>
-        <FavoritesTab items={userFavoriteItems}/>
+        <FavoritesTab favoriteItems={favorites}/>
         </div>
         <h1>-------------------------</h1>
         <AvailableListingsTab items={items}/>

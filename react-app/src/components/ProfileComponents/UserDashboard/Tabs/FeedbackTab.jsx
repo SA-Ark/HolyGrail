@@ -43,7 +43,7 @@ const FeedbackTab = ({ reviews }) => {
             {
                 reviews?.reviews?.length
                     ? reviews.reviews.map(review => {
-                        return <ReviewCard review={review} key={review.id} />
+                        return <ReviewCard review={review} key={review.review.id} />
                     })
                     : null
             }

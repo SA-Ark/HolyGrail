@@ -2,14 +2,18 @@ import * as utils from '../../../store/utils';
 
 const ReviewCard = ({ review }) => {
 
+    // !@#$ Take note about what is coming into this card. Each review is an object containing a review and its corresponding item
+    // review.review and review.item
+
+
     // const [day, month, year] = utils.dateToParts(review.created_at);
     console.log(review, "<-----review")
 
     const stars = () => {
-        if (review.stars === 5) return "⭐️⭐️⭐️⭐️⭐️";
-        if (review.stars === 4) return "⭐️⭐️⭐️⭐️";
-        if (review.stars === 3) return "⭐️⭐️⭐️";
-        if (review.stars === 2) return "⭐️⭐️";
+        if (review.review.stars === 5) return "⭐️⭐️⭐️⭐️⭐️";
+        if (review.review.stars === 4) return "⭐️⭐️⭐️⭐️";
+        if (review.review.stars === 3) return "⭐️⭐️⭐️";
+        if (review.review.stars === 2) return "⭐️⭐️";
         else return "⭐️";
     }
 
@@ -26,7 +30,7 @@ const ReviewCard = ({ review }) => {
                     <br />
 
                     <span className="title">
-                        {"<username here> reviewed : " + review.item_name}
+                        {"<username here> reviewed : " + review.item.name}
                     </span>
 
                     <br />
@@ -39,7 +43,7 @@ const ReviewCard = ({ review }) => {
                     <br />
 
                     <span className="review-text">
-                        {review.review_body}
+                        {review.review.review_body}
                     </span>
 
                     <br />

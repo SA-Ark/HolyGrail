@@ -1,4 +1,6 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .user import User
+from .item import Item
 from datetime import datetime
 
 
@@ -10,8 +12,8 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    buyer_id = db.Column(db.Integer, db.ForeignKey("users.id") )
-    item_id = db.Column(db.Integer, db.ForeignKey("items.id"))
+    buyer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")))
     review_body = db.Column(db.TEXT, nullable=False)
     stars = db.Column(db.Integer, nullable = False)
     created_at = db.Column(db.Date, default=datetime.now())

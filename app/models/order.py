@@ -1,4 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .user import User
+from .item import Item
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
@@ -14,7 +16,7 @@ class Order(db.Model):
     seller_id = db.Column(db.Integer, nullable=False)
     transaction_id = db.Column(db.Integer, nullable=False, unique= True)
     order_total = db.Column(db.Integer, nullable=False)
-    card_number = db.Column(db.Integer, nullable=False)
+    card_number = db.Column(db.String, nullable=False)
     expiry = db.Column(db.Date, nullable=False)
     cvc = db.Column(db.Integer, nullable=False)
     card_country = db.Column(db.String, nullable=False)

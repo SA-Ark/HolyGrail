@@ -52,3 +52,6 @@ ACTIVE BUGS:
 
     Refreshing form page makes the populated values diappear.
     Currently working though if page isn't refreshed.
+
+    something is weird with the util function in store. the item ids
+    arent matching up. check in the commented out console log with the noraa !@#$ flag

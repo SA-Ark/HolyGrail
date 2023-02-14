@@ -1,6 +1,7 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 import ItemCreateModal from '../Forms/ItemCreateModal';
+import ItemEditForm from '../Forms/ItemEditForm';
 
 function CreateModalButton({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
@@ -10,13 +11,13 @@ function CreateModalButton({
 
   const onSellClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<ItemCreateModal/>);
+    setModalContent(<ItemEditForm/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-    <button onClick={onSellClick} className='sell-button'>SELL</button>
+    <button onClick={onSellClick} className='nav-sell-button'>EDIT</button>
     </>
   );
 }

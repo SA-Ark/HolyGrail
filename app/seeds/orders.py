@@ -15,26 +15,34 @@ def seed_orders():
     for u in users:
         for i in range(number):
             item_idx = randint(0,len(items)-1)
-            while u.id == items[item_idx].seller_id or items[item_idx].sold == True:
+            count = 0
+            next = False
+            while items and u.id == items[item_idx].seller_id or items[item_idx].sold == True:
                 item_idx = randint(0,len(items)-1)
-            order = Order(
-                buyer_id=u.id,
-                item_id=items[item_idx].id,
-                seller_id=items[item_idx].seller_id,
-                transaction_id=1,
-                order_total=items[item_idx].price*1.1,
-                card_number=int(f'{i%10}567{i%10}5{i%10}68{i%10}30340'),
-                expiry=date,
-                cvc=int(f'{i%5}{i%7}{i%3}'),
-                card_country="USA",
-                card_zip=int(f'93{i%6}{i%4}{i%9}'),
-                shipping_address=f'{i%3}{i%6}{i%5} main street, apt# {i}, city, state',
-                created_at=date,
-                updated_at=date
+                count+=1
+                if count > 9:
+                    next =True
+                    break
+            if not next:
+                order = Order(
+                    buyer_id=u.id,
+                    item_id=items[item_idx].id,
+                    seller_id=items[item_idx].seller_id,
+                    transaction_id=1,
+                    order_total=items[item_idx].price*1.1,
+                    card_number=f'{i%9}567{i%9}5{i%9}68{i%9}303400',
+                    expiry=date,
+                    cvc=int(f'{i%5}{i%7}{i%3}'),
+                    card_country="USA",
+                    card_zip=int(f'93{i%6}{i%4}{i%9}'),
+                    shipping_address=f'{i%3}{i%6}{i%5} main street, apt# {i}, city, state',
+                    created_at=date,
+                    updated_at=date
 
-            )
-            items[item_idx].sold = True
-            db.session.add(order)
+                )
+                items[item_idx].sold = True
+                items.pop(item_idx)
+                db.session.add(order)
 
 
     db.session.commit()

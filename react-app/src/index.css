@@ -8,3 +8,30 @@ body {
 button {
     font-family: "Video",monospace;
 }
+
+select {
+    appearance: none;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  select:hover {
+    border-color: #aaa;
+  }
+  
+  select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  select option {
+    background-color: #fff;
+    color: #333;
+  }
+  
+  

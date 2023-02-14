@@ -68,8 +68,7 @@ export const thunkLoadItems = (userId) => async (dispatch) => {
 
 export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     let res = null
-    console.log(userId, '<--- USER ID')
-    console.log(itemId, "<---- ITEM ID")
+    console.log(itemId, "THUNK LOGGGGGG")
     if (userId) {
         res = await fetch(`/api/items/${itemId}`, {
             headers: {
@@ -86,7 +85,6 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     }
 
     if (res.ok) {
-        console.log(itemId, '<---- ITEM ID IN EDIT THUNK')
         const item = await res.json()
         dispatch(actionLoadSingleItem(item))
     }
@@ -140,7 +138,6 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
         price, shippingCost, description, name, previewUrl,
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, itemId, userId
     ] = itemsAttributes
-    console.log(itemId, '<--- ITEM ID IN EDIT THUNK')
     const res = await fetch(`/api/items/edit/${itemId}`, {
 
         method: 'PUT',
@@ -185,9 +182,13 @@ export const thunkDeleteItem = (itemId) => async (dispatch) => {
     })
     if (res.ok) {
         const data = await res.json();
-        console.log(data, "RESULT DEL")
         dispatch(actionDeleteItem(itemId))
-    }
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+      }
 }
 
 //! reducer

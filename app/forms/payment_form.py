@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, ValidationError
 
 class PaymentForm(FlaskForm):
     order_total = IntegerField("Order Total", validators=[DataRequired()])
-    card_number = IntegerField("Card Number", validators=[DataRequired()])
+    card_number = StringField("Card Number", validators=[DataRequired()])
     expiry =DateField("Expiry", validators=[DataRequired()])
     cvc = IntegerField("CVC", validators=[DataRequired()])
     card_country = StringField("Card Country", validators=[DataRequired()])

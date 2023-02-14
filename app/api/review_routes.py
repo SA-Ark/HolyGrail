@@ -55,7 +55,6 @@ def reviews_of_users(user_id):
     of queried user. Total number of sales by user is also displayed
     """
 
-    print("***HEY***")
     reviews = Review.query.filter(Review.buyer_id == user_id).all()
     items = Item.query.filter(Item.seller_id == user_id).all()
     items = [item for item in items if item.sold == True]
@@ -93,9 +92,12 @@ def post_review(item_id):
     Allows user to post review for that item.
     """
     item = Item.query.get(item_id).to_dict()
-    order = Order.query.get(current_user.id, item_id)
+    order = Order.query.get((current_user.id, item_id))
 
     if order:
+        review = Review.query.filter(Review.item_id == item_id).first()
+        if review:
+            return {'errors': 'You cannot add more than one review'}, 401
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -129,7 +131,8 @@ def edit_review(review_id):
     Allows user to edit that review.
     """
     review = Review.query.get(review_id)
-    if review.buyer_id == current_user.id:
+    print(review, 'reviewwww')
+    if review and review.buyer_id == current_user.id:
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 

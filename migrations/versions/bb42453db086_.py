@@ -43,6 +43,11 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
+
     op.create_table('items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=False),
@@ -61,6 +66,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
+
+
     op.create_table('item_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('item_id', sa.Integer(), nullable=True),
@@ -96,7 +105,7 @@ def upgrade():
     sa.Column('seller_id', sa.Integer(), nullable=False),
     sa.Column('transaction_id', sa.Integer(), nullable=False),
     sa.Column('order_total', sa.Integer(), nullable=False),
-    sa.Column('card_number', sa.Integer(), nullable=False),
+    sa.Column('card_number', sa.String(), nullable=False),
     sa.Column('expiry', sa.Date(), nullable=False),
     sa.Column('cvc', sa.Integer(), nullable=False),
     sa.Column('card_country', sa.String(), nullable=False),

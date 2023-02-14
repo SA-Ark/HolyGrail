@@ -10,7 +10,6 @@ const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab
 
 const MainDashboard = () => {
     const dispatch = useDispatch()
-    // const purchases = useSelector(state => state.orders.userOrders) !@#$ this needs configured with new store thunk
     const user = useSelector(state => state?.session?.user)
     const items = useSelector(state => state?.items?.allItems)
     const favorites = useSelector(state => state?.favorites?.allFavorites)

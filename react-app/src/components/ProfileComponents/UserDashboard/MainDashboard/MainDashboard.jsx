@@ -4,7 +4,7 @@ import { thunkLoadFavorites } from '../../../../store/favorites'
 import { thunkLoadItems } from '../../../../store/items'
 import { thunkLoadOrders } from '../../../../store/payments'
 import Tabs from '../Tabs'
-import { getUserFavoriteItems, switchTab } from '../../../../store/utils'
+import { getUserFavoriteItems, getUserPurchases, switchTab } from '../../../../store/utils'
 const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab, FavoritesTab} = Tabs
 
 const MainDashboard = () => {
@@ -15,8 +15,8 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
 
     const userFavoriteItems = getUserFavoriteItems(favorites, items)
+    const userPurchases = getUserPurchases(purchases, items)
     console.log(userFavoriteItems, "userfavoriteitems")
-
 
     useEffect(() => {
         dispatch(thunkLoadItems())

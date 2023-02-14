@@ -42,7 +42,7 @@ const SingleItemPage = () => {
       </div>
 
       <div>
-        <ProfileCard item={item} />
+        <ProfileCard />
       </div>
     </div>
   )

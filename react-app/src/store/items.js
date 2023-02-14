@@ -119,7 +119,7 @@ export const thunkCreateItem = (itemsAttributes) => async (dispatch) => {
             image_url_2: imageUrl2,
             image_url_3: imageUrl3,
             image_url_4: imageUrl4,
-
+            user_id
             })
     })
     if (res.ok) {

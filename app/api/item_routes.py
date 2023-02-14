@@ -116,7 +116,7 @@ def create_item():
             category_tags = form.data["category_tags"],
             price = form.data["price"],
             shipping_cost = form.data["shipping_cost"],
-            user_id = current_user.id
+            seller_id = current_user.id
         )
         db.session.add(new_item)
         db.session.commit()

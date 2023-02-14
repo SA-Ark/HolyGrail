@@ -22,7 +22,7 @@ const DeleteReviewButton = () => {
         setErrors([])
         const res = dispatch(thunkDeleteReview(reviewId))
         if (res.ok) {
-            history.push('/items')
+            history.push('/reviews')
         }
     }
 

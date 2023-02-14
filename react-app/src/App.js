@@ -76,14 +76,11 @@ function App() {
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
           <Route path="/dashboard/:userId">
-            "Hello"
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
-
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-
           <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
             <EditReviewForm />
           </ProtectedRoute>

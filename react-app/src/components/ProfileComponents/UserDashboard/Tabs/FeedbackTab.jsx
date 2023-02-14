@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ReviewCard from '../../../ReviewsComponents/ReviewCard';
+import ReviewCard from '../../../Cards/ReviewCard';
 import { thunkLoadReviews } from '../../../../store/reviews';
 import { thunkLoadItems } from '../../../../store/items';
 import { deNormalize, getUserItems, getUserReviews } from '../../../../store/utils';
@@ -43,7 +43,7 @@ const FeedbackTab = ({ reviews }) => {
             {
                 reviews?.reviews?.length
                     ? reviews.reviews.map(review => {
-                        return <ReviewCard review={review} key={review.id} />
+                        return <ReviewCard review={review} key={review.review.id} />
                     })
                     : null
             }

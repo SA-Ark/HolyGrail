@@ -17,9 +17,6 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
-
-    const userFavoriteItems = getUserFavoriteItems(favorites, items)
-    // console.log(userFavoriteItems, "userfavoriteitems")
     const [selectedTab, setSelectedTab] = useState('AvailableListingsTab');
 
     useEffect(() => {
@@ -52,7 +49,7 @@ const MainDashboard = () => {
             <div>
                 {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}
                 {selectedTab === 'EditProfileTab' && <EditProfileTab user={user} />}
-                {selectedTab === 'FavoritesTab' && <FavoritesTab items={userFavoriteItems} />}
+                {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} />}
                 {selectedTab === 'AvailableListingsTab' && <AvailableListingsTab items={items} />}
                 {selectedTab === 'FeedbackTab' && <FeedbackTab reviews={reviews} />}
             </div>

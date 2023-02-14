@@ -16,7 +16,7 @@ import ItemCreateModal from "./components/Forms/ItemCreateModal";
 import EditReviewForm from "./components/Forms/EditReviewForm";
 
 
-const { DeleteButton } = Buttons
+const { DeleteItemButton } = Buttons
 const { ItemEditForm, ReviewForm, EditProfileForm } = Forms
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
             <ItemEditForm />
           </ProtectedRoute>
           <ProtectedRoute path='/items/delete/:itemId'>
-            <DeleteButton />
+            <DeleteItemButton />
           </ProtectedRoute>
           <ProtectedRoute path='/items/current' exact={true} >
             <MainListingsPage />

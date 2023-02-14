@@ -7,7 +7,6 @@ import Tabs from '../Tabs'
 import { getUserFavoriteItems, switchTab } from '../../../../store/utils'
 const {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab, FavoritesTab} = Tabs
 
-
 const MainDashboard = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state?.session?.user)

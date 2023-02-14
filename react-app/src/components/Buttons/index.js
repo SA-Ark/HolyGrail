@@ -1,4 +1,4 @@
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "./DeleteItemButton";
 
 const Buttons = {DeleteButton}
 

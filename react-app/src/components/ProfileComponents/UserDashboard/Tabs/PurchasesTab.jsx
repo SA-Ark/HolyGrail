@@ -1,3 +1,4 @@
+import PurchaseCard from "../../../Cards/PurchaseCard";
 import { deNormalize } from "../../../../store/utils";
 
 const PurchasesTab = ({purchases}) => {
@@ -6,8 +7,17 @@ const PurchasesTab = ({purchases}) => {
 
     return (
         <div className="purchases-container">
-            PURCHASES TAB
             <div className="title">
+
+                {
+                    purchaseList?.length
+                        ? purchaseList.map(purchase => {
+                            return <PurchaseCard purchase={purchase}/>
+                        })
+                        : null
+                }
+
+
 
             </div>
         </div>

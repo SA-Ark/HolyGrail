@@ -82,10 +82,8 @@ function App() {
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
-
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>

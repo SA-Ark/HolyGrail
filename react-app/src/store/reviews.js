@@ -120,7 +120,7 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
 
 
 export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) => {
-    const [reviewBody, stars] = reviewAttributes
+    const {reviewBody, stars} = reviewAttributes
 
     const res = await fetch(`/api/reviews/edit/${reviewId}`, {
         method: 'PUT',

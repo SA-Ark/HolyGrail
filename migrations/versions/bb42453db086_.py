@@ -1,19 +1,26 @@
 """empty message
 
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
 Revision ID: bb42453db086
 Revises:
 Create Date: 2023-02-13 14:35:12.513959
+=======
+Revision ID: 2fad1464ff2e
+Revises: 
+Create Date: 2023-02-13 11:51:46.517851
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
 revision = 'bb42453db086'
+=======
+revision = '2fad1464ff2e'
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,10 +51,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=False),
@@ -66,10 +69,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE items SET SCHEMA {SCHEMA};")
-
     op.create_table('item_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('item_id', sa.Integer(), nullable=True),
@@ -81,11 +80,14 @@ def upgrade():
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
 
     if environment == "production":
         op.execute(f"ALTER TABLE item_images SET SCHEMA {SCHEMA};")
 
 
+=======
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
     op.create_table('likes',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('item_id', sa.Integer(), nullable=False),
@@ -95,15 +97,21 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'item_id')
     )
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
 
     if environment == "production":
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
 
+=======
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
     op.create_table('orders',
     sa.Column('buyer_id', sa.Integer(), nullable=False),
     sa.Column('item_id', sa.Integer(), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=False),
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
     sa.Column('transaction_id', sa.Integer(), nullable=False),
+=======
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
     sa.Column('order_total', sa.Integer(), nullable=False),
     sa.Column('card_number', sa.Integer(), nullable=False),
     sa.Column('expiry', sa.Date(), nullable=False),
@@ -115,6 +123,7 @@ def upgrade():
     sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['buyer_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
     sa.PrimaryKeyConstraint('buyer_id', 'item_id'),
     sa.UniqueConstraint('transaction_id')
     )
@@ -122,6 +131,10 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
 
+=======
+    sa.PrimaryKeyConstraint('buyer_id', 'item_id')
+    )
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('buyer_id', sa.Integer(), nullable=True),
@@ -134,8 +147,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+<<<<<<< HEAD:migrations/versions/bb42453db086_.py
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+=======
+>>>>>>> fb5dba33f9866bc6fbde08b33937e400c690d04b:migrations/versions/2fad1464ff2e_.py
     # ### end Alembic commands ###
 
 

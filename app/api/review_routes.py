@@ -136,7 +136,6 @@ def edit_review(review_id):
         if form.validate_on_submit():
             review.review_body = form.data['review_body']
             review.stars = form.data['stars']
-            review.updated_at = datetime.now()
 
             db.session.commit()
             item = Item.query.get(review.item_id).to_dict()
@@ -146,7 +145,7 @@ def edit_review(review_id):
             normalized_rev["item_name"] = item["name"]
             normalized_rev["item_description"] = item["description"]
             normalized_rev["updated_at"] = datetime.now()
-            return review.to_dict(), 200
+            return normalized_rev, 200
         else:
             return form.errors, 401
     return  {'errors': "You can only edit reviews that you posted."}, 401

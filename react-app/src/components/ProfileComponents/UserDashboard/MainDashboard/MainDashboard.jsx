@@ -16,6 +16,7 @@ const MainDashboard = () => {
     const favorites = useSelector(state => state?.favorites?.allFavorites)
 
     const userFavoriteItems = getUserFavoriteItems(favorites, items)
+    console.log(userFavoriteItems, "userfavoriteitems")
 
 
 

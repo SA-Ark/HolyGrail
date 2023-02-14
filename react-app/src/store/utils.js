@@ -81,6 +81,7 @@ export const getUserFavoriteItems = (favorites, items) => {
     for (let id of favoriteIds) {
         favoriteItems.push(items[id])
     }
+    return favoriteItems
 }
 
 export const switchTab = (tab) => {

@@ -44,7 +44,7 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
@@ -66,7 +66,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['seller_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-     if environment == "production":
+    if environment == "production":
         op.execute(f"ALTER TABLE images SET SCHEMA {SCHEMA};")
 
 

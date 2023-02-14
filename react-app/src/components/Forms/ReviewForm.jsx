@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
+import { thunkLoadSingleItem } from '../../store/items';
 import { thunkCreateReview } from '../../store/reviews';
 
 const ReviewForm = () => {
@@ -13,6 +14,9 @@ const ReviewForm = () => {
 
     const user = useSelector(state => state.session?.user);
     const user_id = user?.id;
+    useEffect(() => {
+        dispatch(thunkLoadSingleItem(itemId, user_id))
+    }, [dispatch])
 
     const onSubmit = async (e) => {
         const formErrors = [];

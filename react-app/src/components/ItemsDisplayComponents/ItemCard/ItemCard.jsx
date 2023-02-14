@@ -15,6 +15,8 @@ const ItemCard = ({ item }) => {
     const clickHandler = (e) => {
         history.push(`/items/${item.id}`)
     }
+    if (!item) return null
+
 
     return (
         <div className="item-card-container">

@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkCreateItem } from '../../store/items';
-import './ItemCreateForm.css'
+import './ItemCreateModal.css'
 
 const ItemCreateModal = () => {
     const dispatch = useDispatch();
@@ -22,8 +22,8 @@ const ItemCreateModal = () => {
     const [imageUrl2, setImageUrl2] = useState('');
     const [imageUrl3, setImageUrl3] = useState('');
     const [imageUrl4, setImageUrl4] = useState('');
-    
-    const { closeModal } = useModal() 
+
+    const { closeModal } = useModal()
 
     const user = useSelector(state => state.session?.user);
     const user_id = user?.id;
@@ -116,165 +116,155 @@ const ItemCreateModal = () => {
     return (
         <>
             <div className='create-edit-page-wrapper'>
+                <h1 className="modal-title">List your item</h1>
                 <div className='create-edit-item-container'>
-                    <form onSubmit={onSubmit} className="general-form">
+                    <form onSubmit={onSubmit} className="listing-edit-form">
                         <div>
                             {errors.map((error, ind) => (
                                 <div key={ind}>{error}</div>
                             ))}
                         </div>
-
-                        <div className='details details-cat'>
-                            <label className='create-item-label'>Category</label>
+                        <div className='create-edit-label-container'>
+                        <label className='create-edit-item-label'>
+                            <span className='create-edit-label-text'>Category</span>
                             <input
                                 type='text'
                                 placeholder='Department/Category'
                                 name='category'
                                 onChange={(e) => setCategoryTags(e.target.value)}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                                 value={categoryTags}
                             ></input>
-                        </div>
-                        <div className='details details-size'>
-                            <label className='create-item-label'>Size</label>
+                        </label>
+                        <label className='create-edit-item-label'>
+                        <span className='create-edit-label-text'>Size</span>
                             <input
                                 type='text'
                                 placeholder='Size (Select category first)'
                                 name='size'
                                 onChange={(e) => setSize(e.target.value)}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                                 value={size}
                             ></input>
-                        </div>
-
-                        <div className='details details-item-name'>
-                            <label className='create-item-label'>Item Name</label>
+                        </label>
+                        <label className='create-edit-item-label'>
+                        <span className='create-edit-label-text'>Item Name</span>
                             <input
                                 type='text'
                                 name='name'
                                 placeholder='Item name'
                                 onChange={(e) => setName(e.target.value)}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                                 value={name}
                             // required
                             ></input>
-                        </div>
+                        </label>
 
-                        <div className='details details-color'>
-                            <label className='create-item-label'>Color</label>
+                        <label className='create-edit-item-label'>Color
+                        <span className='create-edit-label-text'>Item Name</span>
                             <input
                                 type='text'
                                 placeholder='Color name, i.e. "Frozen Yellow"'
                                 name='color'
                                 onChange={(e) => setColor(e.target.value)}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                                 value={color}
                             ></input>
-                        </div>
-                        <div className='details details-condition'>
-                            <label className='create-item-label'>Condition</label>
+                        </label>
+                        <label className='create-edit-item-label'>Condition
                             <input
                                 type='text'
                                 name='condition'
                                 onChange={(e) => setCondition(e.target.value)}
                                 value={condition}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-price'>
-                            <label className='create-item-label'>Price</label>
+                        </label>
+                        <label className='create-edit-item-label'>Price
                             <input
                                 type='integer'
                                 placeholder='Price (USD)'
                                 name='price'
                                 onChange={(e) => setPrice(e.target.value)}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                                 value={price}
                             ></input>
-                        </div>
-                        <div className='details details-desc'>
-                            <label for="textbox">Description</label>
+                        </label>
+                        <label className='create-edit-item-label'>Description
                             <textarea
-                                className='create-edit-form-textarea'
+                                className='create-edit-edit-form-textarea'
                                 type='textarea'
-                                placeholder='
-            Add details about condition, how the garment fits, additional measurements, shipping policies, retail price, link to retail page, etc'
+                                placeholder='Add details about condition, how the garment fits, additional measurements, shipping policies, retail price, link to retail page, etc'
                                 name='description'
                                 onChange={(e) => setDescription(e.target.value)}
                                 value={description}
                             ></textarea>
-                        </div>
-                        <div className='details details-shipping'>
-                            <label className='create-item-label'>Shipping Cost</label>
+                        </label>
+                        <label className='create-edit-item-label'>Shipping Cost
                             <input
                                 type='integer'
                                 name='shipping_cost'
                                 onChange={(e) => setShippingCost(e.target.value)}
                                 value={shippingCost}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-gender'>
-                            <label className='create-item-label'>Gender Style</label>
+                        </label>
+                        <label className='create-edit-item-label'>Gender Style
                             <input
                                 type='text'
                                 name='gender_style'
                                 onChange={(e) => setGenderStyle(e.target.value)}
                                 value={genderStyle}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-preview-url'>
-                            <label className='create-item-label'>Preview Image</label>
+                        </label>
+                        <label className='create-edit-item-label'>Preview Image
                             <input
                                 type='text'
                                 name='preview_url'
                                 onChange={(e) => setPreviewUrl(e.target.value)}
                                 value={previewUrl}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-image-url'>
-                            <label className='create-item-label'>Image Url 1</label>
+                        </label>
+                        <label className='create-edit-item-label'>Image Url 1
                             <input
                                 type='text'
                                 name='image_url_1'
                                 onChange={(e) => setImageUrl1(e.target.value)}
                                 value={imageUrl1}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-image-url'>
-                            <label className='create-item-label'>Image Url 2</label>
+                        </label>
+                        <label className='create-edit-item-label'>Image Url 2
                             <input
                                 type='text'
                                 name='image_url_2'
                                 onChange={(e) => setImageUrl2(e.target.value)}
                                 value={imageUrl2}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-image-url'>
-                            <label className='create-item-label'>Image Url 3</label>
+                        </label>
+                        <label className='create-edit-item-label'>Image Url 3
                             <input
                                 type='text'
                                 name='image_url_3'
                                 onChange={(e) => setImageUrl3(e.target.value)}
                                 value={imageUrl3}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
-                        </div>
-                        <div className='details details-image-url'>
-                            <label className='create-item-label'>Image Url 4</label>
+                        </label>
+                        <label className='create-edit-item-label'>Image Url 4
                             <input
                                 type='text'
                                 name='image_url_4'
                                 onChange={(e) => setImageUrl4(e.target.value)}
                                 value={imageUrl4}
-                                className="create-item-input"
+                                className="create-edit-item-input"
                             ></input>
+                        </label>
                         </div>
-                        <button className='create-item-button' type='submit'>List Item</button>
+                        <button className='create-edit-item-button' type='submit'>List Item</button>
                     </form>
                 </div>
             </div>

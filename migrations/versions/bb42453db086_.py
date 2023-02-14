@@ -105,7 +105,7 @@ def upgrade():
     sa.Column('seller_id', sa.Integer(), nullable=False),
     sa.Column('transaction_id', sa.Integer(), nullable=False),
     sa.Column('order_total', sa.Integer(), nullable=False),
-    sa.Column('card_number', sa.Integer(), nullable=False),
+    sa.Column('card_number', sa.String(), nullable=False),
     sa.Column('expiry', sa.Date(), nullable=False),
     sa.Column('cvc', sa.Integer(), nullable=False),
     sa.Column('card_country', sa.String(), nullable=False),

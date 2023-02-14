@@ -47,11 +47,7 @@ const MainDashboard = () => {
         <h1>-------------------------</h1>
         <EditProfileTab user={user}/>
         <h1>-------------------------</h1>
-        {
-
-            <FavoritesTab items={userFavoriteItems} otherItems={items} />
-
-        }
+        <FavoritesTab items={userFavoriteItems}/>
         </div>
         </>
     )

@@ -43,15 +43,22 @@ export const actionDeleteItem = (itemId) => {
 }
 
 //! thunks
-export const thunkLoadItems = () => async (dispatch) => {
+export const thunkLoadItems = (userId) => async (dispatch) => {
+    let res; 
 
-
-    const res = await fetch(`/api/items/current`, {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-
+    if (userId) {
+        res = await fetch(`/api/items/current`, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    } else {
+        res = await fetch(`/api/items`, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+    }
 
     if (res.ok) {
         const items = await res.json()
@@ -61,6 +68,8 @@ export const thunkLoadItems = () => async (dispatch) => {
 
 export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     let res = null
+    console.log(userId, '<--- USER ID')
+    console.log(itemId, "<---- ITEM ID")
     if (userId) {
         res = await fetch(`/api/items/${itemId}`, {
             headers: {
@@ -77,6 +86,7 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     }
 
     if (res.ok) {
+        console.log(itemId, '<---- ITEM ID IN EDIT THUNK')
         const item = await res.json()
         dispatch(actionLoadSingleItem(item))
     }
@@ -109,7 +119,7 @@ export const thunkCreateItem = (itemsAttributes) => async (dispatch) => {
             image_url_2: imageUrl2,
             image_url_3: imageUrl3,
             image_url_4: imageUrl4,
-
+            user_id
             })
     })
     if (res.ok) {
@@ -130,8 +140,9 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
         price, shippingCost, description, name, previewUrl,
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, itemId, userId
     ] = itemsAttributes
-
+    console.log(itemId, '<--- ITEM ID IN EDIT THUNK')
     const res = await fetch(`/api/items/edit/${itemId}`, {
+
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

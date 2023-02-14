@@ -4,32 +4,28 @@ import { thunkLoadReviews } from '../../../store/reviews';
 import FeedbackTab from './FeedbackTab';
 import AvailableListings from './AvailableListings';
 import { thunkLoadItems } from '../../../store/items';
-import * as utils from '../../../store/utils';
+import {deNormalize, getUserItems, getUserReviews} from '../../../store/utils';
 
 import "./PublicProfile.css"
 
 const PublicProfile = () => {
+
     const dispatch = useDispatch();
-    const reviews = utils.deNormalize(useSelector(state => state?.reviews?.allReviews));
+    const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = useSelector(state => state?.session?.user?.id);
-    const items = utils.deNormalize(useSelector(state => state?.items?.allItems));
-    let userItems = [];
-    for (let item in items) {
-        if (item.user_id === userId) {
-            userItems.push(item);
-        }
-    }
+    const items = useSelector(state => state?.items?.allItems);
 
     useEffect(() => {
         dispatch(thunkLoadReviews(userId))
-        dispatch(thunkLoadItems())
+        dispatch(thunkLoadItems(userId))
+
     }, [dispatch, userId])
 
     return (
         <>
             <div className="profile-header">
                 <img src="" alt="" />
-                <div className="join-in"></div>
+                <div className="joined-in"></div>
                 <div className="stars"></div>
                 <div className="transactions-count"></div>
                 <div className="followers"></div>
@@ -44,13 +40,16 @@ const PublicProfile = () => {
                 <div className="listings-general-info"></div>
             </div>
             <div className="profile-tabs-container">
-                {/* Put feedback tab here */}
+                {/* !@#$% Might need to add logic here if rendering issues, but I think I got the
+                general compnent to render even with server errors  */}
+
                 <FeedbackTab reviews={reviews} />
-                <AvailableListings items={userItems} />
+                <AvailableListings items={items} />
+
+
             </div>
         </>
     )
 }
-
 
 export default PublicProfile;

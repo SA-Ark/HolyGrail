@@ -43,24 +43,15 @@ export const actionDeleteItem = (itemId) => {
 }
 
 //! thunks
-export const thunkLoadItems = (id) => async (dispatch) => {
-    let res = null
-    if (id) {
+export const thunkLoadItems = () => async (dispatch) => {
 
-        res = await fetch(`/api/items/current/${id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    }
-    else {
 
-        res = await fetch(`/api/items`, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-    }
+    const res = await fetch(`/api/items/current`, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+
 
     if (res.ok) {
         const items = await res.json()
@@ -71,7 +62,7 @@ export const thunkLoadItems = (id) => async (dispatch) => {
 export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     let res = null
     if (userId) {
-        res = await fetch(`/api/items/${itemId}/${userId}`, {
+        res = await fetch(`/api/items/${itemId}`, {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -97,8 +88,8 @@ export const thunkCreateItem = (itemsAttributes) => async (dispatch) => {
         price, shippingCost, description, name, previewUrl,
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, user_id
     ] = itemsAttributes
-    
-    const res = await fetch(`/api/items/create/${user_id}`, {
+
+    const res = await fetch(`/api/items/create`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -118,7 +109,7 @@ export const thunkCreateItem = (itemsAttributes) => async (dispatch) => {
             image_url_2: imageUrl2,
             image_url_3: imageUrl3,
             image_url_4: imageUrl4,
-            user_id
+
             })
     })
     if (res.ok) {
@@ -140,7 +131,7 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, itemId, userId
     ] = itemsAttributes
 
-    const res = await fetch(`/api/items/edit/${itemId}/${userId}`, {
+    const res = await fetch(`/api/items/edit/${itemId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -176,9 +167,14 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
 
 export const thunkDeleteItem = (itemId) => async (dispatch) => {
     const res = await fetch(`/api/items/delete/${itemId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
     })
     if (res.ok) {
+        const data = await res.json();
+        console.log(data, "RESULT DEL")
         dispatch(actionDeleteItem(itemId))
     }
 }
@@ -191,7 +187,7 @@ const itemsReducer = (state = initialState, action) => {
         case LOAD_ITEMS: {
 
             const newState = { ...initialState }
-            newState.allItems = action.payload.items
+            newState.allItems = utils.normalize(action.payload.items)
             return newState
         }
 
@@ -219,6 +215,7 @@ const itemsReducer = (state = initialState, action) => {
         case DELETE_ITEM: {
 
             const newState = { ...initialState }
+            delete newState.singleItem
             return newState
         }
 

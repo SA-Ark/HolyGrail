@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-
+from datetime import datetime
 
 
 class Item(db.Model):
@@ -9,7 +9,7 @@ class Item(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable = False )
+    seller_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False )
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=False)
     size = db.Column(db.String(10), nullable=False)
@@ -20,15 +20,19 @@ class Item(db.Model):
     price = db.Column(db.Integer, nullable=False)
     shipping_cost = db.Column(db.Integer, nullable=False, default=10)
     sold = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.Date, default=datetime.now())
+    updated_at = db.Column(db.Date, default=datetime.now())
+
     user = db.relationship("User", back_populates="items")
     item_images = db.relationship("ItemImage", back_populates="item", cascade="all, delete-orphan")
-    likes = db.relationship("Like", back_populates="item")
+    likes = db.relationship("Like", back_populates="item", cascade="all, delete-orphan")
     reviews = db.relationship("Review", back_populates="item", cascade="all, delete-orphan")
+    order = db.relationship("Order", back_populates="item")
 
     def to_dict(self):
         return {
             'id': self.id,
-            'user_id': self.user_id,
+            'seller_id': self.seller_id,
             'name': self.name,
             'description': self.description,
             'size': self.size,
@@ -41,7 +45,9 @@ class Item(db.Model):
             "preview_url": self.get_preview_url(),
             "num_likes": self.get_num_likes(),
             "images": self.get_images(),
-            "preview_image": self.get_preview_image()
+            "preview_image": self.get_preview_image(),
+            "created_at": self.created_at,
+            "updated_at": self.updated_at
 
             # "user": self.user,
             # "item_images": self.item_images,

@@ -2,9 +2,10 @@ import AddressesTab from './AddressesTab';
 import MessagesTab from './MessagesTab';
 import NotificationsTab from './NotificationsTab';
 import PurchasesTab from './PurchasesTab';
-import SettingsTab from './SettingsTab';
+import EditProfileTab from './EditProfileTab';
 import SizesTab from './SizesTab';
+import FavoritesTab from './FavoritesTab';
 
 
-const Tabs = {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, SettingsTab, SizesTab};
-export default Tabs;
+const Tabs = {AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab, FavoritesTab};
+export default Tabs

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkLoadSingleItem, thunkEditItem } from '../../store/items';
 
-export default function ItemEditForm() {
+const ItemEditForm = () => {
     const { itemId } = useParams()
     const dispatch = useDispatch();
 
@@ -101,7 +101,6 @@ export default function ItemEditForm() {
         //! NEED TO ADD VALIDATION ERRORS
 
         const res = await dispatch(thunkEditItem(itemsAttributes))
-        console.log(res)
         // //   .then(() => {
         // //     // history.push(`/items/${itemId}`)
         // // })
@@ -113,7 +112,7 @@ export default function ItemEditForm() {
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="general-form">
             <div>
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -250,3 +249,5 @@ export default function ItemEditForm() {
         </form>
     );
 };
+
+export default ItemEditForm

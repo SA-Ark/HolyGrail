@@ -1,4 +1,5 @@
 export const normalize = (array) => {
+    if (!array) return null
     const object = {};
     for (let ele of array) {
         object[ele.id] = ele;
@@ -7,6 +8,7 @@ export const normalize = (array) => {
 }
 
 export const deNormalize = (object) => {
+    if (!object) return null
     const array = [];
 
     for (let value of Object.values(object))
@@ -43,6 +45,37 @@ export const dateToParts = (string) => {
 export const switchCarousel = (images, nonSequitur=false) => {
 
     if (nonSequitur) {
-        
+
     }
+}
+
+export const getUserItems = (items, userId) => {
+    let userItems = [];
+    if (items){
+
+        items.forEach((item) => {
+            if (Number(item.seller_id) === Number(userId)) {
+                userItems.push(item);
+            }
+        })
+    }
+    return userItems
+}
+
+export const getUserReviews = (reviews, userId) => {
+    let userReviews = [];
+    for (let review in reviews) {
+        if (review.seller_id === userId )
+        userReviews.push(review)
+    }
+    return userReviews
+}
+
+export const getUserFavoriteItems = (favorites, items) => {
+    console.log(items,favorites)
+}
+
+
+export const switchTab = (tab) => {
+    console.log(tab)
 }

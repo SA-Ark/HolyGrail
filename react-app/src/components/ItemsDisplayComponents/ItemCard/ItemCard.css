@@ -1,0 +1,48 @@
+.item-card-container {}
+
+.spot-card-img {
+    object-fit: cover;
+    width: 11.6rem;
+    height: 14.8rem;
+}
+
+.item-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-size-container {
+    padding-bottom: 6px;
+}
+
+.listing-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.listing-size {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.listing-description {
+    font-size: 14px;
+    font-weight: 200;
+    padding-bottom: 6px;
+}
+
+.price-like-container {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.listing-price {
+    font-family: "Video", monospace;
+    font-weight: bold;
+}
+
+.listing-liked {
+    color: black;
+}
+

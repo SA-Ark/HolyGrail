@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from "../../context/Modal";
+import { Redirect } from 'react-router-dom';
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
 
@@ -10,13 +11,42 @@ function SignupFormModal() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [firstName, setFirstName] = useState('')
+	const [lastName, setLastName] = useState('')
+	const [streetAddress, setStreetAddress] = useState('')
+	const [city, setCity] = useState('')
+	const [state, setState] = useState('')
+	const [postalCode, setPostalCode] = useState('')
+	const [country, setCountry] = useState('')
+	const [genderStyle, setGenderStyle] = useState('')
+	const [shirtSize, setShirtSize] = useState('')
+	const [pantSize, setPantSize] = useState('')
+	const [shoeSize, setShoeSize] = useState('')
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+
+	const sessionUser = useSelector((state) => state.session.user);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const userArr = [
+				username,
+				email,
+				password,
+				firstName,
+				lastName,
+				streetAddress,
+				city,
+				state,
+				postalCode,
+				country,
+				genderStyle,
+				shirtSize,
+				pantSize,
+				shoeSize
+			]
+			const data = await dispatch(signUp(userArr));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -29,53 +59,247 @@ function SignupFormModal() {
 		}
 	};
 
+	const updateUsername = (e) => {
+		setUsername(e.target.value);
+	};
+
+	const updateEmail = (e) => {
+		setEmail(e.target.value);
+	};
+
+	const updateFirstName = (e) => {
+		setFirstName(e.target.value);
+	};
+
+	const updateLastName = (e) => {
+		setLastName(e.target.value);
+	};
+
+	const updateStreetAddress = (e) => {
+		setStreetAddress(e.target.value);
+	};
+
+	const updateCity = (e) => {
+		setCity(e.target.value);
+	};
+
+	const updateState = (e) => {
+		setState(e.target.value);
+	};
+
+	const updatePostalCode = (e) => {
+		setPostalCode(e.target.value);
+	};
+
+	const updateCountry = (e) => {
+		setCountry(e.target.value);
+	};
+
+	const updateGenderStyle = (e) => {
+		setGenderStyle(e.target.value);
+	};
+
+	const updateShirtSize = (e) => {
+		setShirtSize(e.target.value);
+	};
+
+	const updatePantSize = (e) => {
+		setPantSize(e.target.value);
+	};
+
+	const updateShoeSize = (e) => {
+		setShoeSize(e.target.value);
+	};
+
+	const updatePassword = (e) => {
+		setPassword(e.target.value);
+	};
+
+	const updateconfirmPassword = (e) => {
+		setConfirmPassword(e.target.value);
+	};
+
+	if (sessionUser) {
+		return <Redirect to='/' />;
+	}
+
 	return (
 		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Sign Up</button>
-			</form>
+			<div className="signup-modal-container">
+				<h1 className="modal-title"> Sign Up</h1>
+				<div className="signup-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
+				<div className="login-signup-form-container">
+					<form className="login-signup-form" onSubmit={handleSubmit}>
+						<div>
+							{errors.map((error, idx) => <div key={idx}>{error}</div>)}
+						</div>
+						<div className="login-signup-label-container">
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='email'
+									placeholder="Email"
+									onChange={updateEmail}
+									value={email}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Username"
+									onChange={updateUsername}
+									value={username}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='password'
+									placeholder="Password"
+									onChange={updatePassword}
+									value={password}
+									required
+								/>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='password'
+									placeholder="Confirm Password"
+									onChange={updateconfirmPassword}
+									value={confirmPassword}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="First"
+									onChange={updateFirstName}
+									value={firstName}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Last Name"
+									onChange={updateLastName}
+									value={lastName}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Street Address"
+									onChange={updateStreetAddress}
+									value={streetAddress}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="City"
+									onChange={updateCity}
+									value={city}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="State"
+									onChange={updateState}
+									value={state}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Postal Code"
+									onChange={updatePostalCode}
+									value={postalCode}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Country"
+									onChange={updateCountry}
+									value={country}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Gender Style"
+									onChange={updateGenderStyle}
+									value={genderStyle}
+									required
+								></input>
+							</label>
+
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Shirt Size"
+									onChange={updateShirtSize}
+									value={shirtSize}
+								></input>
+
+							</label>
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Pant Size"
+									onChange={updatePantSize}
+									value={pantSize}
+								></input>
+
+							</label>
+							<label className="login-signup-label">
+								<input
+									className="signup-input"
+									type='text'
+									placeholder="Shoe Size"
+									onChange={updateShoeSize}
+									value={shoeSize}
+								></input>
+							</label>
+						</div>
+						<button className="login-signup-button"  type='submit'>Sign Up</button>
+					</form>
+				</div>
+			</div>
 		</>
 	);
 }

@@ -17,39 +17,64 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
+  const demoUser = (e) => {
+    e.preventDefault()
+    dispatch(login('user1@aa.io', '123'))
+    closeModal()
+  }
+
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
+      <div className="login-signup-modal-container">
+        <h1 className="modal-title">Log in</h1>
+        <div className="login-signup-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
+        <div className="login-signup-form-container">
+          <form className="login-signup-form" onSubmit={handleSubmit}>
+            <ul>
+              {errors.map((error, idx) => (
+                <li key={idx}>{error}</li>
+              ))}
+            </ul>
+            <div className="login-signup-label-container">
+              <label className="login-signup-label">
+                <span className="login-signup-label-text">Email</span>
+                <input
+                  className="login-signup-input"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </label>
+              <label className="login-signup-label">
+                <span className="login-signup-label-text">Password</span>
+                <input
+                  className="login-signup-input"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <button className="login-signup-button" type="submit">LOG IN</button>
+            <div className="alternate-logins">
+              or
+            </div>
+            <button
+              className="modal-demo-button"
+              type='submit'
+              onClick={(e) => demoUser(e)}            
+              >Demo user
+            </button>
+
+          </form>
+        </div>
+      </div>
     </>
   );
 }

@@ -1,20 +1,51 @@
 from flask import Blueprint, request
-from app.models import Item, User, Review ,db
+from app.models import Item, User, Order, Review ,db
 from flask_login import login_required, login_user, current_user
 from app.forms import CreateReviewForm
+from datetime import datetime
 
 review_routes = Blueprint('reviews', __name__)
 
-@review_routes.route('/current/<int:user_id>')
+@review_routes.route('/<int:review_id>')
+def get_review_for_item(review_id):
+    """
+    Returns the review queried by the review id
+    plus all of the misc info associated with it.
+    """
+
+    review = Review.query.get(review_id)
+    if review:
+        item = Item.query.get(review.item_id).to_dict()
+        normalized_rev = review.to_dict()
+        normalized_rev["seller_id"] = item["seller_id"]
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
+        return {"review": normalized_rev}
+    return {"errors": "This review does not exist"}
+
+@review_routes.route('/current')
 @login_required
-def curr_user_reviews(user_id):
+def curr_user_reviews():
     """
     Query for all reviews that current user has posted
     and returns them in a list of item dictionaries.
     """
-    pass
+    reviews = Review.query.filter(Review.buyer_id == current_user.id).all()
+    reviews_normalized = []
+    if not reviews:
+        return  "You have not posted any reviews", 200
+    for review in reviews:
+        item = Item.query.get(review.item_id).to_dict()
+        normalized_rev = review.to_dict()
+        normalized_rev["seller_id"] = item["seller_id"]
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
+        reviews_normalized.append(normalized_rev)
+    return {"reviews": reviews_normalized}
 
-@review_routes.route('/<int:user_id>')
+@review_routes.route('/current/<int:user_id>')
 @login_required
 def reviews_of_users(user_id):
     """
@@ -23,15 +54,26 @@ def reviews_of_users(user_id):
     Also returns total number of reviews & avg star rating
     of queried user. Total number of sales by user is also displayed
     """
-    reviews = Review.query.filter(Review.user_id == user_id).all()
-    items = Item.query.filter(Item.user_id == user_id).all()
+
+    print("***HEY***")
+    reviews = Review.query.filter(Review.buyer_id == user_id).all()
+    items = Item.query.filter(Item.seller_id == user_id).all()
     items = [item for item in items if item.sold == True]
     star_sum = 0
     reviews_normalized = []
+    if not reviews:
+        return  {"message": "This user has not been reviewed yet"}, 200
 
     for review in reviews:
         star_sum += review.stars
-        reviews_normalized.append(review.to_dict())
+        item = Item.query.get(review.item_id).to_dict()
+
+        normalized_rev = review.to_dict()
+        normalized_rev["seller_id"] = item["seller_id"]
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
+        reviews_normalized.append(normalized_rev)
 
     rating = star_sum / len(reviews)
     return {
@@ -41,15 +83,19 @@ def reviews_of_users(user_id):
             'num_sold': len(items)
             } , 200
 
-@review_routes.route('/create/<int:item_id>/<int:user_id>', methods=['GET', 'POST'])
+
+# !@#$ this route eventually should take "transaction_id" rather than an item_id
+@review_routes.route('/create/<int:item_id>', methods=['GET', 'POST'])
 @login_required
-def post_review(user_id, item_id):
+def post_review(item_id):
     """
     Queries for user by user id and item by item id.
     Allows user to post review for that item.
     """
-    item = Item.query.get(item_id)
-    if item.user_id != user_id:
+    item = Item.query.get(item_id).to_dict()
+    order = Order.query.get(current_user.id, item_id)
+
+    if order:
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -57,49 +103,70 @@ def post_review(user_id, item_id):
             new_review = Review(
                 review_body = form.data['review_body'],
                 stars = form.data['stars'],
-                user_id = user_id,
+                buyer_id = current_user.id,
                 item_id = item_id
             )
             db.session.add(new_review)
             db.session.commit()
+
+            normalized_rev = new_review.to_dict()
+            normalized_rev["seller_id"] = item["seller_id"]
+            normalized_rev["preview_url"] = item["preview_url"]
+            normalized_rev["item_name"] = item["name"]
+            normalized_rev["item_description"] = item["description"]
+
             return new_review.to_dict(), 200
         else:
             return form.errors, 401
-    return  { 'errors': "You cannot review items that you own."}, 401
+    return  { 'errors': "You cannot review items that you have not purchased."}, 401
 
 
-@review_routes.route('/edit/<int:review_id>/<int:user_id>', methods=['GET', 'PUT'])
+@review_routes.route('/edit/<int:review_id>', methods=['GET', 'PUT'])
 @login_required
-def edit_review(user_id, review_id):
+def edit_review(review_id):
     """
     Queries for user by user id and review by review id.
     Allows user to edit that review.
     """
     review = Review.query.get(review_id)
-    if review.user_id == user_id:
+    if review.buyer_id == current_user.id:
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
         if form.validate_on_submit():
-            review.review_body = form.data['review_body'],
-            review.stars = form.data['stars'],
+            review.review_body = form.data['review_body']
+            review.stars = form.data['stars']
 
             db.session.commit()
-            return review.to_dict(), 200
+            item = Item.query.get(review.item_id).to_dict()
+            normalized_rev = review.to_dict()
+            normalized_rev["seller_id"] = item["seller_id"]
+            normalized_rev["preview_url"] = item["preview_url"]
+            normalized_rev["item_name"] = item["name"]
+            normalized_rev["item_description"] = item["description"]
+            normalized_rev["updated_at"] = datetime.now()
+            return normalized_rev, 200
         else:
             return form.errors, 401
     return  {'errors': "You can only edit reviews that you posted."}, 401
 
-@review_routes.route('/delete/<int:review_id>/<int:user_id>', methods=['DELETE'])
+@review_routes.route('/delete/<int:review_id>', methods=['GET', 'DELETE'])
 @login_required
-def delete_review(user_id, review_id):
+def delete_review(review_id):
     """
     Queries for user by user id and review by review id.
     Allows user to delete that review.
     """
     review = Review.query.get(review_id)
-    if review.user_id == user_id:
+    if review.buyer_id == current_user.id:
         deleted_review = review
         db.session.delete(review)
+        item = Item.query.get(review.item_id).to_dict()
+        normalized_rev = deleted_review.to_dict()
+        normalized_rev["seller_id"] = item.seller_id
+        normalized_rev["preview_url"] = item["preview_url"]
+        normalized_rev["item_name"] = item["name"]
+        normalized_rev["item_description"] = item["description"]
+
         return deleted_review.to_dict(), 200
     return  {'errors': "You can only delete reviews that you posted."}, 401

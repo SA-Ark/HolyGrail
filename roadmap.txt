@@ -1,0 +1,54 @@
+
+
+**** SUBJECT TO CHANGE!!!!
+
+PUBLIC PROFILE COMPONENT:
+
+    *getting to this component:
+    user clicks on a navlink in dropdown.
+    the navlink will contain the text of the
+    current logged in users username
+
+    * frontend url: users/profile/:userId
+    * contains: listings tab, feedback tab
+
+
+MAIN DASHBOARD COMPONENT:
+
+    * getting to this component:
+    user clicks on a navlink in dropdown
+
+    * frontend url: dashboard/:userId
+    * contains: likes tab, edit profile tab, purchase history tab
+
+
+SINGLE ITEM PAGE:
+
+    * needs fixed up if anyone wants to take this.
+     to-do:
+     1. get images & desc & other item info rendering on page again
+
+
+
+
+
+***Backend:
+
+payment needs debugging
+update signup form??
+TODO:
+
+1. Have dashboard render properly
+
+noraa - finish dashboard
+have reviews and cart rendering in the dashboard
+refactor delete button
+
+
+
+
+
+ACTIVE BUGS:
+
+    Refreshing form page makes the populated values diappear.
+    Currently working though if page isn't refreshed.

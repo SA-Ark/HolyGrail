@@ -15,7 +15,6 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
 
     const userFavoriteItems = getUserFavoriteItems(favorites, items)
-    const userPurchases = getUserPurchases(purchases, items)
     console.log(userFavoriteItems, "userfavoriteitems")
 
     useEffect(() => {

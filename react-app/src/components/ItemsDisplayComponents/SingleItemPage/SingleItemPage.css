@@ -12,18 +12,14 @@
     /* border: 1px solid black; */
 }
 
-.large-img-container {
+.img-container {
     display: flex;
     flex-direction: column;
     width: 900px;
-    height: 800px;
+    height: 700px;
     align-items: center;
     /* border: 1px solid red; */
 }
-
-/* .single-item-page-container .item-info-buttons-container {
-    align-self: flex-end;
-} */
 
 .item-info-buttons-container {
     display: flex;

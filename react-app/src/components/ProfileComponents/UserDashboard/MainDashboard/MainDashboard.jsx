@@ -14,11 +14,16 @@ const MainDashboard = () => {
     const user = useSelector(state => state?.session?.user)
     const items = useSelector(state => state?.items?.allItems)
     const favorites = useSelector(state => state?.favorites?.allFavorites)
-    console.log(user, items, favorites)
+
+    const userFavoriteItems = getUserFavoriteItems(favorites, items)
+
+
+
     useEffect(() => {
         dispatch(thunkLoadItems())
         dispatch(thunkLoadFavorites())
     }, [dispatch]);
+
 
 
     return (
@@ -34,7 +39,6 @@ const MainDashboard = () => {
         </div>
         </>
     )
-
 }
 
 export default MainDashboard;

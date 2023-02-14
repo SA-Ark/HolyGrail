@@ -75,7 +75,7 @@
 }
 
 .deals {
-    padding-top:9px;
+    padding-top: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,6 +119,7 @@
     position: absolute;
     transform: translate(-985%, -50%);
 }
+
 .prev::before {
     content: '<';
     margin-left: 25px;
@@ -132,4 +133,55 @@
 .next::after {
     content: '>';
     margin-right: 25px;
+}
+
+.splash-bottom-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+    width: 100%;
+    position: relative;
+}
+
+.splash-bottom-img {
+    object-fit: cover;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    height: 370px;
+}
+
+.splash-bottom-text,
+.splash-bottom-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-80%);
+    text-align: center;
+}
+
+.splash-bottom-text {
+    color: white;
+    font-size: 39px;
+    font-weight: 300;
+    width: 50%;
+    margin-bottom: 4rem;
+}
+
+.splash-bottom-button {
+    background-color: #0000ff;
+    color: white;
+    font-size: 17px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 58px;
+    padding-right: 58px;
+    margin-top: 8.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+.splash-bottom-button:hover {
+    background-color: #2e2efe;
 }

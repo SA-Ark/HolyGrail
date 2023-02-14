@@ -4,12 +4,14 @@ import session from './session'
 import itemsReducer from './items';
 import reviewsReducer from './reviews';
 import favoritesReducer from './favorites';
+import paymentsReducer from './payments';
 
 const rootReducer = combineReducers({
   session,
   items: itemsReducer,
   reviews: reviewsReducer,
-  favorites: favoritesReducer
+  favorites: favoritesReducer,
+  payments: paymentsReducer
 });
 
 let enhancer;

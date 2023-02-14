@@ -1,4 +1,5 @@
-const PurchasesTab = () => {
+const PurchasesTab = ({purchases}) => {
+    console.log(purchases)
     return (
         <div className="purchases-container">
             <div className="title">

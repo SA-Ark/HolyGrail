@@ -60,7 +60,7 @@ export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) =>
 }
 
 //! reducer
-const initialState = { allReviews: {}, singleReview: {} }
+const initialState = { allOrders: {}, singleOrder: {} }
 
 const paymentsReducer = (state = initialState, action) => {
     switch (action.type) {

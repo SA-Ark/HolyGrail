@@ -94,7 +94,7 @@ const favoritesReducer = (state = initialState, action) => {
         case LOAD_FAVORITES: {
 
             const newState = { ...initialState }
-            newState.allFavorites = action.payload
+            newState.allFavorites = {...action.payload}
             return newState
         }
 

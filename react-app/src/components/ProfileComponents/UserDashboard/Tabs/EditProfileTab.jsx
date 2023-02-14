@@ -14,7 +14,7 @@ const EditProfileTab = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        
+
         const profileUpdates = [
             username,
             email,

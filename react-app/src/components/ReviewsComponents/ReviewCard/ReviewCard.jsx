@@ -7,8 +7,6 @@ const ReviewCard = ({ review }) => {
 
 
     // const [day, month, year] = utils.dateToParts(review.created_at);
-    console.log(review, "<-----review")
-
     const stars = () => {
         if (review.review.stars === 5) return "⭐️⭐️⭐️⭐️⭐️";
         if (review.review.stars === 4) return "⭐️⭐️⭐️⭐️";

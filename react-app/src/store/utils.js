@@ -67,5 +67,5 @@ export const getUserItems = (items, userId) => {
 
 
 export const switchTab = (tab) => {
-    console.log(tab)
+    return null
 }

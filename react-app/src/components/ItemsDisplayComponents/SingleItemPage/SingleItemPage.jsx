@@ -13,8 +13,6 @@ const SingleItemPage = () => {
 
   const { itemId } = useParams()
 
-  console.log(item)
-
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id))
   }, [dispatch])
@@ -26,7 +24,7 @@ const SingleItemPage = () => {
           ? <ImageCarousel images={item.images?.length ? item.images : null}/>
           : null}
       </div>
-      
+
       <div className="item-info-buttons-container">
         <span id="item-name">{item.name}</span>
         <span>Size {item.size}</span>

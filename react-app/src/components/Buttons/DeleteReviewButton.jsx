@@ -2,25 +2,25 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
-import { thunkDeleteItem, thunkLoadSingleItem } from '../../store/items';
+import { thunkDeleteReview, thunkLoadSingleReview } from '../../store/reviews';
 
-const DeleteButton = () => {
+const DeleteReviewButton = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
-    let item = useState(store => store?.items?.singleItem)
+    let review = useState(store => store?.reviews?.singleReview)
     let user = useState(store => store?.session?.user)
     let userId = user?.id
-    const { itemId } = useParams();
+    const { reviewId } = useParams();
 
     useEffect(() => {
-        dispatch(thunkLoadSingleItem(itemId, userId))
-    }, [itemId, userId, dispatch])
+        dispatch(thunkLoadSingleReview(reviewId))
+    }, [reviewId, userId, dispatch])
 
     const deleteItem = (e) => {
         e.preventDefault();
         setErrors([])
-        const res = dispatch(thunkDeleteItem(itemId))
+        const res = dispatch(thunkDeleteReview(reviewId))
         if (res.ok) {
             history.push('/items')
         }
@@ -33,4 +33,4 @@ const DeleteButton = () => {
     )
 };
 
-export default DeleteButton
+export default DeleteReviewButton

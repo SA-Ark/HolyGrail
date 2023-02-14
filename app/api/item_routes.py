@@ -116,7 +116,7 @@ def create_item():
             category_tags = form.data["category_tags"],
             price = form.data["price"],
             shipping_cost = form.data["shipping_cost"],
-            user_id = current_user.id
+            seller_id = current_user.id
         )
         db.session.add(new_item)
         db.session.commit()
@@ -186,23 +186,25 @@ def get_edit_item(item_id):
         return form, 200
     return  { 'errors': "You don't own this item so you can't edit it."}, 401
 
-@item_routes.route('/edit/<int:item_id>/<int:user_id>', methods=["PUT"])
+@item_routes.route('/edit/<int:item_id>', methods=["PUT"])
 @login_required
-def edit_item(item_id, user_id):
+def edit_item(item_id):
     """
     Update item for logged in user through edit form
     """
-    user = User.query.get(user_id)
-    userItems = Item.query.filter(Item.user_id == user.id and Item.id == item_id).all()
+    # user = User.query.get(user_id)
+    print('python route')
+    userItems = Item.query.filter(Item.seller_id == current_user.id and Item.id == item_id).all()
     userItem = [item for item in userItems if item.id == item_id]
     if userItem:
+        print('python route useritem')
 
         form = CreateItemForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
         if form.validate_on_submit():
             edited_item = Item.query.get(item_id)
-
+            print('python route validates')
             edited_item.name = form.data["name"]
             edited_item.description = form.data["description"]
             edited_item.size = form.data["size"]
@@ -226,10 +228,10 @@ def edit_item(item_id, user_id):
 
             # db.session.add(preview_image)
 
-            image_1 = ItemImage.query.filter(ItemImage.image_num == 1)
-            image_2 = ItemImage.query.filter(ItemImage.image_num == 2)
-            image_3 = ItemImage.query.filter(ItemImage.image_num == 3)
-            image_4 = ItemImage.query.filter(ItemImage.image_num == 4)
+            image_1 = ItemImage.query.filter(ItemImage.image_num == 1).first()
+            image_2 = ItemImage.query.filter(ItemImage.image_num == 2).first()
+            image_3 = ItemImage.query.filter(ItemImage.image_num == 3).first()
+            image_4 = ItemImage.query.filter(ItemImage.image_num == 4).first()
 
             if image_1:
                 old_url = image_1.url
@@ -296,6 +298,7 @@ def edit_item(item_id, user_id):
         else:
             return form.errors, 400
     else:
+        print("You don't own this item.")
         return  { 'errors': "You don't own this item."}, 401
 
 

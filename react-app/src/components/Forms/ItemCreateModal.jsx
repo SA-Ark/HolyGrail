@@ -98,7 +98,7 @@ const ItemCreateModal = () => {
         //! needs validation for when price is 0
 
         const res = await dispatch(thunkCreateItem(itemsAttributes))
-        if (res.ok) {
+        if (res?.ok) {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
         }
@@ -160,8 +160,8 @@ const ItemCreateModal = () => {
                             ></input>
                         </label>
 
-                        <label className='create-edit-item-label'>Color
-                        <span className='create-edit-label-text'>Item Name</span>
+                        <label className='create-edit-item-label'>
+                        <span className='create-edit-label-text'>Color</span>
                             <input
                                 type='text'
                                 placeholder='Color name, i.e. "Frozen Yellow"'

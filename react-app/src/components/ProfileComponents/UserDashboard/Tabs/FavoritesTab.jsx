@@ -8,11 +8,10 @@ const FavoritesTab = ({items}) => {
         <div className="favorites-container">
             <div className="title">
                 Favorites Tab
-
                 {
                     items?.length
                         ? items.map(item => {
-                            return <ItemCard item={item}/>
+                            return <ItemCard item={item} key={item.id}/>
                         })
                         : null
                 }

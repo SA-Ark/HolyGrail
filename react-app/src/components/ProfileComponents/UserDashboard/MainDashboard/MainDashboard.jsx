@@ -34,7 +34,7 @@ const MainDashboard = () => {
         <div className="tab-container">
         <PurchasesTab/>
         <h1>-------------------------</h1>
-        <EditProfileTab user={userFavoriteItems}/>
+        <EditProfileTab user={user}/>
         <h1>-------------------------</h1>
         <FavoritesTab items={userFavoriteItems} />
         </div>

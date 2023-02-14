@@ -16,7 +16,7 @@ def seed_orders():
         for i in range(number):
             item_idx = randint(0,len(items)-1)
             while u.id == items[item_idx].seller_id or items[item_idx].sold == True:
-                item_idx = randint(0,len(items))
+                item_idx = randint(0,len(items)-1)
             order = Order(
                 buyer_id=u.id,
                 item_id=items[item_idx].id,

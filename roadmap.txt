@@ -27,3 +27,12 @@ SINGLE ITEM PAGE:
     * needs fixed up if anyone wants to take this.
      to-do:
      1. get images & desc & other item info rendering on page again
+
+
+
+
+
+***Backend:
+
+payment needs debugging
+update signup form??

@@ -58,8 +58,14 @@ def reviews_of_users(user_id):
     Also returns total number of reviews & avg star rating
     of queried user. Total number of sales by user is also displayed
     """
-
-    reviews = Review.query.filter(Review.seller_id == user_id).all()
+    sold_items = Order.query.filter(Order.seller_id == user_id).all()
+    item_ids = [sold.item_id for sold in sold_items]
+    reviews = []
+    for id in item_ids:
+        new_review = Review.query.filter(Review.item_id == id).first()
+        if new_review:
+            reviews.append(new_review)
+    
     items = Item.query.filter(Item.seller_id == user_id).all()
     bought = Order.query.filter(Order.buyer_id == user_id).all()
     total_items = len(items)

@@ -27,3 +27,28 @@ SINGLE ITEM PAGE:
     * needs fixed up if anyone wants to take this.
      to-do:
      1. get images & desc & other item info rendering on page again
+
+
+
+
+
+***Backend:
+
+payment needs debugging
+update signup form??
+TODO:
+
+1. Have dashboard render properly
+
+noraa - finish dashboard
+have reviews and cart rendering in the dashboard
+refactor delete button
+
+
+
+
+
+ACTIVE BUGS:
+
+    Refreshing form page makes the populated values diappear.
+    Currently working though if page isn't refreshed.

@@ -17,15 +17,15 @@ states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
             'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    for i in range(10):
+    for i in range(100):
         demoUser = User(
         username = f'User#{i}',
         email =f'user{i}@aa.io',
-        first_name =f'{names[i]}',
-        last_name =f'{last[i]}',
+        first_name =f'{names[i% len(names)]}',
+        last_name =f'{last[i % len(last)]}',
         street_address = f'12{i} street, unit #{i}',
-        city =f'{cities[i]}',
-        state =f'{states[i]}',
+        city =f'{cities[i % len(cities)]}',
+        state =f'{states[i % len(states)]}',
         postal_code = f'9047{i}',
         country = 'USA',
         trusted_seller = False,

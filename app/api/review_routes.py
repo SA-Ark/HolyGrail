@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Item, User, Review ,db
+from app.models import Item, User, Order, Review ,db
 from flask_login import login_required, login_user, current_user
 from app.forms import CreateReviewForm
 from datetime import datetime
@@ -93,7 +93,9 @@ def post_review(item_id):
     Allows user to post review for that item.
     """
     item = Item.query.get(item_id).to_dict()
-    if item['seller_id'] != current_user.id:
+    order = Order.query.get(current_user.id, item_id)
+
+    if order:
         form = CreateReviewForm()
         form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -116,7 +118,7 @@ def post_review(item_id):
             return new_review.to_dict(), 200
         else:
             return form.errors, 401
-    return  { 'errors': "You cannot review items that you own."}, 401
+    return  { 'errors': "You cannot review items that you have not purchased."}, 401
 
 
 @review_routes.route('/edit/<int:review_id>', methods=['GET', 'PUT'])
@@ -132,8 +134,8 @@ def edit_review(review_id):
         form['csrf_token'].data = request.cookies['csrf_token']
 
         if form.validate_on_submit():
-            review.review_body = form.data['review_body'],
-            review.stars = form.data['stars'],
+            review.review_body = form.data['review_body']
+            review.stars = form.data['stars']
 
             db.session.commit()
             item = Item.query.get(review.item_id).to_dict()
@@ -143,7 +145,7 @@ def edit_review(review_id):
             normalized_rev["item_name"] = item["name"]
             normalized_rev["item_description"] = item["description"]
             normalized_rev["updated_at"] = datetime.now()
-            return review.to_dict(), 200
+            return normalized_rev, 200
         else:
             return form.errors, 401
     return  {'errors': "You can only edit reviews that you posted."}, 401

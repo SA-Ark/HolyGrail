@@ -30,7 +30,7 @@ def seed_orders():
                     seller_id=items[item_idx].seller_id,
                     transaction_id=1,
                     order_total=items[item_idx].price*1.1,
-                    card_number=int(f'{i%10}567{i%10}5{i%10}68{i%10}30340'),
+                    card_number=f'{i%9}567{i%9}5{i%9}68{i%9}303400',
                     expiry=date,
                     cvc=int(f'{i%5}{i%7}{i%3}'),
                     card_country="USA",

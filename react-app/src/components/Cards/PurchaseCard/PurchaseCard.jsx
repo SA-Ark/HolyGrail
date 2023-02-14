@@ -41,7 +41,6 @@ const PurchaseCard = ({purchase}) => {
         </div>
 
     )
-
 }
 
 export default PurchaseCard;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ReviewCard from '../../ReviewsComponents/ReviewCard';
-import { thunkLoadReviews } from '../../../store/reviews';
-import { thunkLoadItems } from '../../../store/items';
-import { deNormalize, getUserItems, getUserReviews } from '../../../store/utils';
+import ReviewCard from '../../../ReviewsComponents/ReviewCard';
+import { thunkLoadReviews } from '../../../../store/reviews';
+import { thunkLoadItems } from '../../../../store/items';
+import { deNormalize, getUserItems, getUserReviews } from '../../../../store/utils';
 
 
 

@@ -6,6 +6,7 @@ const PurchasesTab = ({purchases}) => {
 
     return (
         <div className="purchases-container">
+            PURCHASES TAB
             <div className="title">
 
             </div>

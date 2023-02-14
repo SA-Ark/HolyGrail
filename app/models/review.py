@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, User, Item, environment, SCHEMA
 from datetime import datetime
 
 

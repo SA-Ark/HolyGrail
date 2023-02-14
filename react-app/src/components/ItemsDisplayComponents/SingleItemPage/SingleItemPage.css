@@ -1,37 +1,90 @@
-.item-info-buttons-container{
-    display: flex;
-    flex-direction: column;
-    /* border: 1px solid black; */
-}
-
 .single-item-page-container {
     display: flex;
     flex-direction: row;
-    margin-left: 50px;
-    margin-right: 50px;
-    /* border: 1px solid black; */
+    justify-content: center;
+    
 }
 
-.large-img-container {
+/* item carousel */
+.splash-carousel-container {
+    display: flex;
+    flex-direction: row;
+    margin-right: 150px;
+}
+
+.single-item-image {
+    height: 680px;
+    width: 530px;
+    object-fit: cover;
+}
+
+/* item info */
+.item-info-buttons-container{
+    margin-top: 4.6rem;
     display: flex;
     flex-direction: column;
-    width: 900px;
-    height: 800px;
-    align-items: center;
-    /* border: 1px solid red; */
+    /* border: 1px solid black; */
 }
 
-/* .single-item-page-container .item-info-buttons-container {
-    align-self: flex-end;
-} */
-
-.item-info-buttons-container {
+.item-name-favs-container {
     display: flex;
-    width: 550px;
-    align-items: right-center;
-    /* border: 1px solid black; */
+    justify-content: space-between;
 }
 
 #item-name {
-    text-decoration: underline;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.item-favorites {
+
+}
+
+.size {
+    padding-top: 15px;
+    font-weight: 200;
+    font-size: 16px;
+}
+
+.color, .condition {
+    font-weight: 200;
+    padding-top: 10px;
+    font-size: 16px;
+}
+
+.price {
+    padding-top: 15px;
+    font-family: "Video",monospace;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.shipping {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 200;
+}
+
+.purchase-button {
+    background-color: black;
+    font-size: 17px;
+    color: white;
+    border: none;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.purchase-button:hover {
+    cursor: pointer;
+    background-color: #333333;
+} 
+
+.item-desc-title {
+    padding-top: 15px;
+    font-weight: bold;
+}
+
+.item-desc {
+    padding-top: 10px;
+    font-weight: 200;
 }

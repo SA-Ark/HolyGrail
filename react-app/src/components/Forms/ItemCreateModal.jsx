@@ -138,6 +138,7 @@ const ItemCreateModal = () => {
                             <label className='create-edit-item-label'>
                                 <span className='create-edit-label-text'>Category</span>
                                 <select
+                                    required
                                     name='category'
                                     onChange={(e) => setCategoryTags(e.target.value)}
                                     className="create-edit-item-input"
@@ -155,6 +156,7 @@ const ItemCreateModal = () => {
                             <label className='create-edit-item-label'>
                                 <span className='create-edit-label-text'>Size</span>
                                 <select
+                                    required
                                     name='size'
                                     onChange={(e) => setSize(e.target.value)}
                                     className="create-edit-item-input"
@@ -170,6 +172,7 @@ const ItemCreateModal = () => {
                             <label className='create-edit-item-label'>
                                 <span className='create-edit-label-text'>Item Name</span>
                                 <input
+                                    required
                                     type='text'
                                     name='name'
                                     placeholder='Item name'
@@ -183,6 +186,7 @@ const ItemCreateModal = () => {
                             <label className='create-edit-item-label'>
                                 <span className='create-edit-label-text'>Color</span>
                                 <input
+                                    required
                                     type='text'
                                     placeholder='Color name, i.e. "Frozen Yellow"'
                                     name='color'
@@ -193,6 +197,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Condition
                                 <select
+                                    required
                                     type='text'
                                     name='condition'
                                     onChange={(e) => setCondition(e.target.value)}
@@ -206,6 +211,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Price
                                 <input
+                                    required
                                     type='integer'
                                     placeholder='Price (USD)'
                                     name='price'
@@ -226,6 +232,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Shipping Cost
                                 <input
+                                    required
                                     type='integer'
                                     name='shipping_cost'
                                     onChange={(e) => setShippingCost(e.target.value)}
@@ -235,6 +242,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Gender Style
                                 <input
+                                    required
                                     type='text'
                                     name='gender_style'
                                     onChange={(e) => setGenderStyle(e.target.value)}
@@ -244,6 +252,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Preview Image
                                 <input
+                                    required
                                     type='text'
                                     name='preview_url'
                                     onChange={(e) => setPreviewUrl(e.target.value)}

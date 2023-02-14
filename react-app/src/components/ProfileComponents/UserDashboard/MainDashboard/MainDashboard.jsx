@@ -18,10 +18,23 @@ const MainDashboard = () => {
     const userFavoriteItems = getUserFavoriteItems(favorites, items)
     console.log(userFavoriteItems, "userfavoriteitems")
 
+
     useEffect(() => {
         dispatch(thunkLoadItems())
         dispatch(thunkLoadFavorites())
     }, [dispatch]);
+
+
+
+    // const dispatches = async () => {
+    //     return await dispatch(thunkLoadItems())
+    //     // const res2 = await dispatch(thunkLoadItems())
+    // }
+
+    // useEffect(() => {
+    //     dispatches()
+
+    // },[])
 
 
 
@@ -34,7 +47,11 @@ const MainDashboard = () => {
         <h1>-------------------------</h1>
         <EditProfileTab user={user}/>
         <h1>-------------------------</h1>
-        <FavoritesTab items={userFavoriteItems} />
+        {
+
+            <FavoritesTab items={userFavoriteItems} otherItems={items} />
+
+        }
         </div>
         </>
     )

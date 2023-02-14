@@ -78,7 +78,10 @@ export const getUserFavoriteItems = (favorites, items) => {
         favoriteIds.push(favorite.item_id)
     }
 
+    console.log(items, "ITEMSSSSSS")
+    console.log(items, favoriteIds, favorites, "itemsidsfavorites")
     for (let id of favoriteIds) {
+        console.log(items[id])
         favoriteItems.push(items[id])
     }
     return favoriteItems

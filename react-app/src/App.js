@@ -71,21 +71,21 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/items/delete/:itemId'>
             <DeleteButton />
-
           </ProtectedRoute>
           <Route path='/users/profile/:userId'>
             <PublicProfile />
           </Route>
           {/* !@#$ misc need to add conditional logic somewhere to only render if
           the dashboard belongs to current user  */}
-          <Route path="dashboard/:userId">
+          <Route path="/dashboard/:userId">
+            "Hello"
             <MainDashboard/>
             {/* <PurchasesTab/> */}
           </Route>
 
           {/* <Route path='/reviews/:userId'>
           </Route> */}
-          
+
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>

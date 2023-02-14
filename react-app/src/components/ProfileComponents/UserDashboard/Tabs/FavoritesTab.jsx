@@ -1,6 +1,8 @@
+import { deNormalize } from "../../../../store/utils";
 import ItemCard from "../../../ItemsDisplayComponents/ItemCard";
 
-const FavoritesTab = ({items}) => {
+const FavoritesTab = ({favoriteItems}) => {
+    const favoritesList = deNormalize(favoriteItems)
 
     //!@#$ need liked items to come in as prop
     return (
@@ -8,9 +10,9 @@ const FavoritesTab = ({items}) => {
             <div className="title">
                 Favorites Tab
                 {
-                    items?.length
-                        ? items.map(item => {
-                            return <ItemCard item={item} key={item.id}/>
+                    favoritesList?.length
+                        ? favoritesList.map((favoriteItem) => {
+                            return <ItemCard item={favoriteItem.item} key={favoriteItem.item.id}/>
                         })
                         : null
                 }

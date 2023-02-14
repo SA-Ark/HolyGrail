@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import MultiSelect from "multiselect-react-dropdown";
-import ItemCard from '../../ItemsDisplayComponents/ItemCard';
-import { deNormalize, getUserItems } from "../../../store/utils";
+import ItemCard from '../../../ItemsDisplayComponents/ItemCard';
+import { deNormalize, getUserItems } from "../../../../store/utils";
 
 
-const AvailableListings = ({ items }) => {
+const AvailableListingsTab = ({ items }) => {
 
     const {userId} = useParams()
     const [department, setDepartment] = useState(["Menswear", "Womenswear"]);
@@ -173,4 +173,4 @@ const AvailableListings = ({ items }) => {
         </div>
     )
 }
-export default AvailableListings;
+export default AvailableListingsTab;

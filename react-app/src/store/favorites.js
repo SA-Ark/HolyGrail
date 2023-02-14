@@ -29,7 +29,7 @@ export const actionDeleteFavorite = (favorite) => {
 
 
 export const thunkLoadFavorites = () => async (dispatch) => {
-    
+
     const res = await fetch(`/api/favorites/current`, {
         headers: {
             'Content-Type': 'application/json',
@@ -37,7 +37,6 @@ export const thunkLoadFavorites = () => async (dispatch) => {
     })
 
 
-    console.log(res, "<------ RES!!")
     if (res.ok) {
         const favorites = await res.json()
         dispatch(actionLoadFavorites(favorites))
@@ -73,6 +72,7 @@ export const thunkDeleteFavorite = (itemId) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
+
     if (res.ok) {
         const data = await res.json();
         dispatch(actionDeleteFavorite(data))

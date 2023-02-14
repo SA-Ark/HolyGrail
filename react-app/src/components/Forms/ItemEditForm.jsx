@@ -31,7 +31,6 @@ const ItemEditForm = () => {
     const [imageUrl4, setImageUrl4] = useState(item.image_url_4);
 
     useEffect(() => {
-        console.log(itemId, '<---- ITEM ID IN EDIT FORM')
         dispatch(thunkLoadSingleItem(itemId, userId))
     }, [dispatch, itemId, userId])
 

@@ -17,14 +17,8 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
-
-<<<<<<< HEAD
-=======
-    const userFavoriteItems = getUserFavoriteItems(favorites, items)
-    // console.log(userFavoriteItems, "userfavoriteitems")
     const [selectedTab, setSelectedTab] = useState('AvailableListingsTab');
 
->>>>>>> steven-dev
     useEffect(() => {
         dispatch(thunkLoadItems())
         dispatch(thunkLoadFavorites())
@@ -36,15 +30,6 @@ const MainDashboard = () => {
     const rating = parseFloat(reviews.avg_star_rating).toFixed(1)
 
     return (
-<<<<<<< HEAD
-        <>
-        <div className="tab-container">
-        <PurchasesTab purchases={purchases}/>
-        <h1>-------------------------</h1>
-        <EditProfileTab user={user}/>
-        <h1>-------------------------</h1>
-        <FavoritesTab favoriteItems={favorites}/>
-=======
         <div className='user-dashboard-container'>
             <div className="profile-header">
                 <img src="" alt="" />
@@ -64,11 +49,10 @@ const MainDashboard = () => {
             <div>
                 {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}
                 {selectedTab === 'EditProfileTab' && <EditProfileTab user={user} />}
-                {selectedTab === 'FavoritesTab' && <FavoritesTab items={userFavoriteItems} />}
+                {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} />}
                 {selectedTab === 'AvailableListingsTab' && <AvailableListingsTab items={items} />}
                 {selectedTab === 'FeedbackTab' && <FeedbackTab reviews={reviews} />}
             </div>
->>>>>>> steven-dev
         </div>
 
     )

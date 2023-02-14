@@ -4,6 +4,7 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import * as utils from '../../../store/utils'
 import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
+import { ProfileCard } from '../../ProfileComponents/ProfileCard/ProfileCard'
 import './SingleItemPage.css'
 
 const SingleItemPage = () => {
@@ -40,6 +41,10 @@ const SingleItemPage = () => {
         <span id="item-description">Description<br />{item.description}</span>
         <span id="item-tags">Tags</span>
         <span id="item-created-at">Posted on {item.created_at}</span>
+      </div>
+
+      <div>
+        <ProfileCard item={item} />
       </div>
     </div>
   )

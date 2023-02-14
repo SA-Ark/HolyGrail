@@ -41,6 +41,7 @@ def purchase(item_id):
             normalized_order["preview_url"] = item["preview_url"]
             normalized_order["item_name"] = item["name"]
             normalized_order["item_description"] = item["description"]
+            normalized_order["item_size"] = item["size"]
 
             return normalized_order, 200
         else:
@@ -64,6 +65,7 @@ def get_purchases():
         purchase["preview_url"] = item["preview_url"]
         purchase["item_name"] = item["name"]
         purchase["item_description"] = item["description"]
+        purchase["item_size"] = item["size"]
         purchases_normalized.append(purchase)
     return purchases_normalized, 200
 

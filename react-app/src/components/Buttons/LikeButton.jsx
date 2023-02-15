@@ -31,18 +31,7 @@ const LikeButton = ({ itemId, liked }) => {
         await dispatch(thunkLoadFavorites())
     }
 
-    // return (
-    // <>
-    //     <button type='button' onClick={likeFunc}>
-    //         {
-    //             liked
-    //                 ? "❤️Unlike❤️"
-    //                 : "Like"
-    //         }
-    //     </button>
-    // </>
 
-    // )
     if (like) {
 
         return (

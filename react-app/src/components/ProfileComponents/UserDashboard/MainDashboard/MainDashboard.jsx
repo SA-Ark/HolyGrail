@@ -31,40 +31,49 @@ const MainDashboard = () => {
     const rating = parseFloat(reviews.avg_star_rating).toFixed(1)
 
     return (
-        <div className='user-dashboard-container'>
-            <div className="profile-header">
-                <div className='prof-icon-container'>
-                    <div>{user.username}</div>
-                    <i class="fa-solid fa-circle-user"></i>
+        <>
+            <div className='user-dash-container'>
+                <div className='edit-button-container'>
+                    <button className='profile-edit' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button>
                 </div>
-                <div className='joined-in-container'>
-                    <span>Joined on </span>
-                    <div className="profile-joined-in">{user.created_at}</div>
+                <div className="profile-header">
+                    <div className='prof-icon-container'>
+                        <i className="fa-solid fa-circle-user"></i>
+                        <div className='joined-in-container'>
+                            <div className='profile-username'>{user.username}</div>
+                            <span className='joined-on'>Joined on {user.created_at}</span>
+                        </div>
+                    </div>
+                    <div className='stars-container'>
+                        <div className="profile-stars">
+                            {!rating ? null : `★${rating}`}
+                        </div>
+                        <div className='total-reviews'>
+                            {reviews.num_reviews} {reviews.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
+                    </div>
+                    <div className='transaction-container'>
+                        <div className="profile-transactions-count">
+                            {!reviews.total_transactions ? 'No transactions' : reviews.total_transactions}
+                        </div>
+                        <span className='transactions'>Transsactions</span>
+                    </div>
+
                 </div>
-                <div className='stars-transaction-container'>
-                    <div className="profile-stars">★{rating}</div>
-                    <div className="profile-transactions-count">{reviews.total_transactions}</div>
+                <div className="tab-container">
+                    <div className='purchases-tab' onClick={() => setSelectedTab('PurchasesTab')}>Purchases</div>
+                    <div className='favorites-tab' onClick={() => setSelectedTab('FavoritesTab')}>Favorites</div>
+                    <div className='available-listings-tab' onClick={() => setSelectedTab('AvailableListingsTab')}>Available Listings</div>
+                    <div className='feedback-tab' onClick={() => setSelectedTab('FeedbackTab')}>Feedback</div>
                 </div>
-                <div className='prof-followrs-container'>
-                    <div className="profile-followers"></div>
-                    <span className='profile-followers-text'>Followers</span>
+                <div>
+                    {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}
+                    {selectedTab === 'EditProfileTab' && <EditProfileTab user={user} />}
+                    {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} />}
+                    {selectedTab === 'AvailableListingsTab' && <AvailableListingsTab items={items} />}
+                    {selectedTab === 'FeedbackTab' && <FeedbackTab reviews={reviews} />}
                 </div>
-                <button className='edit-profile-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button>
             </div>
-            <div className="tab-container">
-                <div className='purchases-tab' onClick={() => setSelectedTab('PurchasesTab')}>Purchases</div>
-                <div className='favorites-tab' onClick={() => setSelectedTab('FavoritesTab')}>Favorites</div>
-                <div className='available-listings-tab' onClick={() => setSelectedTab('AvailableListingsTab')}>Available Listings</div>
-                <div className='feedback-tab' onClick={() => setSelectedTab('FeedbackTab')}>Feedback</div>
-            </div>
-            <div>
-                {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}
-                {selectedTab === 'EditProfileTab' && <EditProfileTab user={user} />}
-                {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} />}
-                {selectedTab === 'AvailableListingsTab' && <AvailableListingsTab items={items} />}
-                {selectedTab === 'FeedbackTab' && <FeedbackTab reviews={reviews} />}
-            </div>
-        </div>
+        </>
 
     )
 }

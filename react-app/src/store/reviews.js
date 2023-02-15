@@ -142,14 +142,18 @@ export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) 
 }
 
 export const thunkDeleteReview = (reviewId) => async (dispatch) => {
-    const res = await fetch(`/api/reviews/${reviewId}`, {
+    console.log("Enter")
+    const res = await fetch(`/api/reviews/delete/${reviewId}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json"
         }
     })
+
     if (res.ok) {
+
         const data = await res.json();
+        console.log(data, "data")
         dispatch(actionDeleteReview(data))
     }  else if (res.status < 500) {
         const data = await res.json();
@@ -181,7 +185,7 @@ const reviewsReducer = (state = initialState, action) => {
         case LOAD_SINGLE_REVIEW: {
 
             const newState = { ...state }
-           
+
             newState.singleReview = action.payload.review
             return newState
         }
@@ -195,14 +199,14 @@ const reviewsReducer = (state = initialState, action) => {
 
         case EDIT_REVIEW: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleReview = action.payload
             return newState
         }
 
         case DELETE_REVIEW: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             delete newState.singleReview
             return newState
         }

@@ -67,6 +67,7 @@ export const thunkLoadItems = (userId) => async (dispatch) => {
 }
 
 export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
+    console.log(itemId, userId, " <------ITEMID")
     let res = null
     if (userId) {
         res = await fetch(`/api/items/${itemId}`, {

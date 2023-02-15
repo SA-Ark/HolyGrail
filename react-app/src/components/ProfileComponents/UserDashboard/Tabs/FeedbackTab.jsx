@@ -16,10 +16,10 @@ const FeedbackTab = ({ reviews }) => {
     console.log('REVIEW --->', reviews)
 
     const avg_star_rating = () => {
-        if (reviews.avg_star_rating === 5) return "★★★★★";
-        if (reviews.avg_star_rating === 4) return "★★★★";
-        if (reviews.avg_star_rating === 3) return "★★★";
-        if (reviews.avg_star_rating === 2) return "★★";
+        if (reviews.avg_star_rating > 4.5) return "★★★★★";
+        if (reviews.avg_star_rating > 3.5) return "★★★★";
+        if (reviews.avg_star_rating > 2.5) return "★★★";
+        if (reviews.avg_star_rating > 1.5) return "★★";
         else return "★";
     }
 

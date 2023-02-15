@@ -1,0 +1,25 @@
+.fav-item-card .name-size-container {
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+}
+
+.fav-item-card .item-info-container {
+    display: flex;
+    flex-direction: column;
+    /* margin: 10px; */
+    /* border: 1px solid black; */
+    padding: 10px;
+}
+
+.favorites-container img {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.favorites-container .fav-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* border: 1px solid black; */
+}

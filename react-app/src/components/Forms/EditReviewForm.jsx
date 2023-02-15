@@ -1,40 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
 
-const EditReviewForm = () => {
+
+const EditReviewForm = ({review, itemId}) => {
     const dispatch = useDispatch();
-    const { reviewId } = useParams();
 
-    const oldReview = useSelector(state => state?.reviews?.singleReview?.review);
-    // console.log("OLD --->", oldReview);
-
-    const [review, setReview] = useState(oldReview?.review_body);
-    const [stars, setStars] = useState(oldReview?.stars);
+    const [reviewBody, setReviewBody] = useState(review?.review_body);
+    const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState([]);
+    const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
 
-    useEffect(() => {
-        dispatch(thunkLoadSingleReview(reviewId))
-            setReview(oldReview?.review_body);
-            setStars(oldReview?.stars);
-            // console.log("XXXXXXXXX", stars, review)
-    }, [dispatch, reviewId])
 
 
     const onSubmit = async (e) => {
-        const formErrors = [];
-        if (!review) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
         e.preventDefault();
+        const formErrors = [];
+        if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
+        if (!stars) formErrors.push('A star rating is required!');
         setErrors([formErrors])
+        let newReview;
+        let res;
 
-        const newReview = {
-            reviewBody: review,
+        newReview = {
+            reviewBody,
             stars
         }
+        if (errors.length){
+            if(review){
 
-        const res = await dispatch(thunkEditReview(newReview, reviewId));
+                setSubmitText("Edit Feedback")
+                res = await dispatch(thunkEditReview(newReview, review?.id));
+            }else{
+                setSubmitText("Edit Feedback")
+                res = await dispatch(thunkCreateReview(newReview, itemId))
+            }
+
+        }
+
 
         if (res?.ok) {
             const data = await res.json();
@@ -54,8 +58,8 @@ const EditReviewForm = () => {
                 <textarea
                     type='textarea'
                     name='review'
-                    onChange={(e) => setReview(e.target.value)}
-                    value={review}
+                    onChange={(e) => setReviewBody(e.target.value)}
+                    value={review?.review_body}
                 ></textarea>
             </div>
             <div>
@@ -64,10 +68,10 @@ const EditReviewForm = () => {
                     type='number'
                     name='stars'
                     onChange={(e) => setStars(e.target.value)}
-                    value={stars}
+                    value={review?.stars}
                 ></input>
             </div>
-            <button type='submit'>Submit Review</button>
+            <button type='submit'>{submitText}</button>
         </form>
     )
 }

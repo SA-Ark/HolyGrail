@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Item, Like, User, ItemImage, Order, db
+from app.models import Item, Like, Review, ItemImage, Order, db
 from flask_login import login_required, login_user, current_user
 from app.forms import PaymentForm
 from datetime import datetime
@@ -62,8 +62,16 @@ def get_purchases():
     purchases = Order.query.filter(Order.buyer_id == current_user.id)
     purchases_normalized = []
     for purchase in purchases:
+
         purchase = purchase.to_dict()
         item = Item.query.get(purchase['item_id']).to_dict()
+        review = Review.query.filter(purchase["item_id"] == Review.item_id).first()
+        if review:
+            purchase["review"] = review.to_dict()
+        else:
+            purchase["review"] = None
+
+
         # purchase["preview_url"] = item["preview_url"]
         # purchase["item_name"] = item["name"]
         # purchase["item_description"] = item["description"]

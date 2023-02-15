@@ -21,7 +21,7 @@ const MainDashboard = () => {
     const [selectedTab, setSelectedTab] = useState('AvailableListingsTab');
 
     useEffect(() => {
-        dispatch(thunkLoadItems())
+        dispatch(thunkLoadItems(user?.id))
         dispatch(thunkLoadFavorites())
         dispatch(thunkLoadOrders(user?.id))
         dispatch(thunkLoadReviews(userId))

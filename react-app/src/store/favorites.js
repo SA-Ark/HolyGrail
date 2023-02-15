@@ -93,21 +93,21 @@ const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_FAVORITES: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.allFavorites = {...action.payload}
             return newState
         }
 
         case CREATE_FAVORITE: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleFavorite = action.payload
             return newState
         }
 
         case DELETE_FAVORITE: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             delete newState.singleFavorite
             return newState
         }

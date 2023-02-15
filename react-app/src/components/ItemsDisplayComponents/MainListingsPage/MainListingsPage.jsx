@@ -5,17 +5,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import MultiSelect from "multiselect-react-dropdown";
 import * as utils from '../../../store/utils'
+import { thunkLoadFavorites } from '../../../store/favorites'
 
 const MainListingsPage = () => {
     const dispatch = useDispatch()
     const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store=> store.session?.user)
+
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
-    }, [dispatch, user])
+        dispatch(thunkLoadFavorites())
+    }, [dispatch])
 
     return (
         <>
+        
             <div className="filters">
                 <MultiSelect
                     placeholder="Search Filters"
@@ -99,7 +103,7 @@ const MainListingsPage = () => {
                         : null
                 }
             </div>
-        
+
         </>
     )
 }

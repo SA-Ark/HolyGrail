@@ -17,13 +17,14 @@ def get_favorites():
     favorites_normalized = []
     for favorite in favorites:
         item = Item.query.get(favorite.item_id).to_dict()
-        # normalized_fav = favorite.to_dict()
-        # normalized_fav["seller_id"] = item["seller_id"]
-        # normalized_fav["preview_url"] = item["preview_url"]
-        # normalized_fav["item_name"] = item["name"]
-        # normalized_fav["item_description"] = item["description"]
+        liked = Like.query.filter(Like.item_id == item["id"])
         normalized_fav = {"favorite": favorite.to_dict()}
         normalized_fav["item"] = item
+        if liked:
+            normalized_fav["item"]["liked"] = True
+        else:
+            normalized_fav["item"]["liked"] = False
+
         favorites_normalized.append(normalized_fav)
     return favorites_normalized, 200
 
@@ -42,6 +43,7 @@ def create_favorite(item_id):
             user_id = current_user.id,
             item_id = item_id,
         )
+        # print(favorite.to_dict(), "<--- favorite!!!!!!")
         db.session.add(favorite)
         db.session.commit()
         # normalized_fav = favorite.to_dict()

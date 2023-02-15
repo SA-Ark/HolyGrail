@@ -2,7 +2,9 @@ import { deNormalize } from "../../../../store/utils";
 import ItemCard from "../../../ItemsDisplayComponents/ItemCard";
 
 const FavoritesTab = ({favoriteItems}) => {
+
     const favoritesList = deNormalize(favoriteItems)
+
     console.log(favoritesList, 'FAVORITES!!!!')
 
     //!@#$ need liked items to come in as prop

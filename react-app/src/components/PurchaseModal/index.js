@@ -1,8 +1,10 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import PurchaseFrom from '../Forms/PurchaseForm'
+import ItemCreateModal from '../Forms/ItemCreateModal';
+import PurchaseForm from '../Forms/PurchaseForm';
 
-function PurchItemModal({
+function PurchaseModal({
+  item,
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
@@ -10,15 +12,15 @@ function PurchItemModal({
 
   const onPurchaseClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<PurchaseFrom/>);
+    setModalContent(<PurchaseForm item={item}/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-    <button onClick={onPurchaseClick} className='nav-sell-button'>EDIT</button>
+      <button onClick={onPurchaseClick} className='purchase-button'>PURCHASE</button>
     </>
   );
 }
 
-export default PurchItemModal;
+export default PurchaseModal;

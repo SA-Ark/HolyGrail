@@ -7,7 +7,7 @@ from datetime import datetime
 payment_routes = Blueprint('payments', __name__)
 
 
-@payment_routes.route('/item_id', methods=["GET", "POST"])
+@payment_routes.route('/<int:item_id>', methods=["GET", "POST"])
 @login_required
 def purchase(item_id):
     """
@@ -32,7 +32,8 @@ def purchase(item_id):
                 card_country = form.data["card_country"],
                 card_zip = form.data["card_zip"],
                 shipping_address = form.data["shipping_address"],
-
+                created_at=datetime.now(),
+                updated_at=datetime.now()
             )
             item.sold = True
             db.session.add(order)

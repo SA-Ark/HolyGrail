@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { thunkCreateItem } from '../../store/items';
+import { thunkCreateOrder } from '../../store/payments';
 
 
 const PurchaseForm = ({ item }) => {
@@ -18,12 +18,12 @@ const PurchaseForm = ({ item }) => {
     const [expiry, setExpiry] = useState("")
     const [cvc, setCvc] = useState("")
 
-    if (sessionUser) return <Redirect to="/" />;
+    // if (sessionUser) return <Redirect to="/" />;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const order = {
-            order_total: item.price,
+            order_total: item?.price,
             card_number: cardNumber,
             shipping_address: shippingAddress,
             card_zip: cardZip,
@@ -31,8 +31,8 @@ const PurchaseForm = ({ item }) => {
             expiry,
             cvc,
         }
-
-        const res = await dispatch(thunkCreateItem(order, item.id))
+        console.log(item, 'item in purchase form')
+        const res = await dispatch(thunkCreateOrder(order, item?.id))
         if (res?.ok) {
             const data = await res.json()
             if (data && data.errors) setErrors(data.errors)
@@ -92,7 +92,7 @@ const PurchaseForm = ({ item }) => {
                 <div>
                     <label>Expiration Date</label>
                     <input
-                        type='text'
+                        type='date'
                         onChange={e => setExpiry(e.target.value)}
                         value={expiry}
                     ></input>
@@ -105,7 +105,7 @@ const PurchaseForm = ({ item }) => {
                         value={cvc}
                     ></input>
                 </div>
-                <button type='submit'>Purchase: ${item.price}</button>
+                <button type='submit'>Purchase: ${item?.price}</button>
             </form>
         </>
     );

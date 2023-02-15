@@ -1,111 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import { actionEditReview, thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
 const { DeleteReviewButton } = Buttons;
 
 
 const EditReviewForm = ({ review, itemId, closeModal }) => {
+    console.log(review, 'reviewwwww')
     const dispatch = useDispatch();
-    const history = useHistory()
-    const stateReview = useSelector(state => state.reviews?.singleReview?.review)
-    const [reviewBody, setReviewBody] = useState(review?.review_body);
-    const [stars, setStars] = useState(review?.stars);
+    const history = useHistory();
+    const [reviewBody, setReviewBody] = useState(review?.review_body || '');
+    const [stars, setStars] = useState(review?.stars || '');
     const [errors, setErrors] = useState([]);
-    const [hasSubmitted, setHasSubmitted] = useState(false)
-    const [rev, setRev] = useState("")
-    const [star, setStar] = useState("")
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback" : "Leave Feedback");
+    const sessionUser = useSelector(state => state.user);
 
-    // const [deleted, setDeleted] = useState(false)
-    const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback" : "Leave Feedback")
-    console.log(stateReview, stateReview?.review_body, stateReview?.stars, "STATE")
-    const sessionUser = useSelector(state => state.user)
-
-    useEffect(() => {
-        if (!stateReview?.id) {
-
-            // setReviewBody("")
-            // setStars(stateReview?.stars)
-        }
-    }, [review, stateReview])
-    console.log(reviewBody, stars, "reviews")
-
-
-
-    const onClick = () => {
-        console.log("COMING IN")
+    const reviewRefresh = async () => {
+        await dispatch[actionEditReview(review.buyer_id)]
     }
 
-
-    // const onSubmit = (e) => {
-    //     e.preventDefault()
-        
-    //     const formErrors = [];
-    //     if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
-    //     if (!stars) formErrors.push('A star rating is required!');
-    //     setErrors([formErrors])
-
-    //     let newReview = {
-    //         reviewBody,
-    //         stars
-    //     }
-        
-    //     dispatch(thunkEditReview(newReview, itemId))
-    //         .then(() => {
-    //             setHasSubmitted(!hasSubmitted);
-    //         })
-    //         .then(() => {
-    //             history.push(`/dashboard/${sessionUser}`);
-    //         })
-    //         .then(() => {
-    //             setStars(newReview.stars);
-    //             setReviewBody(newReview.reviewBody);
-    //         })
-    //         .catch(async (res) => {
-    //             const data = await res.json()
-    //             if (data.errors) {
-    //                 setErrors(data.errors);
-    //             }
-    //         })
-    // };
-
-
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
+
+
         const formErrors = [];
         if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
         if (!stars) formErrors.push('A star rating is required!');
-        setErrors([formErrors])
-        let newReview;
-        let res;
+        setErrors(formErrors);
 
-    newReview = {
-        reviewBody,
-        stars
-    }
-        if (errors.length) {
-            if (review) {
+        let newReview = {
+            reviewBody,
+            stars
+        };
 
-                setSubmitText("Edit Feedback")
-                res = await dispatch(thunkEditReview(newReview, review?.id));
-            }
-            else {
-                setSubmitText("Edit Feedback")
-                res = await dispatch(thunkCreateReview(newReview, itemId))
-            }
+        dispatch(thunkEditReview(newReview, review?.id))
+            .then(() => {
+                setStars(newReview.stars);
+                setReviewBody(newReview.reviewBody);
+            })
+            .then(() => {
+                setHasSubmitted(!hasSubmitted);
+            })
+            .then(() => {
+                history.push(`/dashboard/${sessionUser}`);
+            })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data.errors) {
+                    setErrors(data.errors);
+                }
+            });
+    };
 
-        }
-        let data;
-        if (res?.ok) {
-            data = await res.json();
-            console.log(data, 'data in if')
-            if (data && data.errors) setErrors(data.errors)
-        } else {
-            console.log(data, 'data')
-        }
-        // closeModal()
-    }
+    if (onSubmit) reviewRefresh()
 
 
     return (
@@ -136,7 +85,9 @@ const EditReviewForm = ({ review, itemId, closeModal }) => {
             <button type='submit'>{submitText}</button>
             <DeleteReviewButton revBod={setReviewBody} star={setStars} reviewId={review?.id} />
         </form>
-    )
-}
+    );
+};
 
 export default EditReviewForm;
+
+

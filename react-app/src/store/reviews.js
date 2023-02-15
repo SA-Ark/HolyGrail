@@ -118,7 +118,7 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
 
 export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) => {
     const {reviewBody, stars} = reviewAttributes
-
+console.log(reviewAttributes, 'rev attributes')
     const res = await fetch(`/api/reviews/edit/${reviewId}`, {
         method: 'PUT',
         headers: {
@@ -131,6 +131,8 @@ export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) 
     })
     if (res.ok) {
         const data = await res.json();
+        console.log(data, 'data in thunk')
+
         dispatch(actionEditReview(data))
         return data
     } else if (res.status < 500) {

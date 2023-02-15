@@ -3,7 +3,7 @@ import { useModal } from '../../context/Modal';
 import EditReviewForm from '../Forms/EditReviewForm';
 
 function EditReviewModal({
-  review, itemId,
+  review, itemId, closeModal,
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
@@ -11,7 +11,7 @@ function EditReviewModal({
 
   const onReviewClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<EditReviewForm review={review} itemId={itemId}/>);
+    setModalContent(<EditReviewForm closeModal={closeModal} review={review} itemId={itemId}/>);
     if (onButtonClick) onButtonClick();
   };
 

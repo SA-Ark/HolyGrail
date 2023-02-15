@@ -1,8 +1,10 @@
 import CreateReviewModal from "../../CreateReviewModal";
 import EditReviewModal from "../../EditReviewModal";
+import { useModal } from "../../../context/Modal";
 
 const PurchaseCard = ({ purchase }) => {
     let reviewId = null
+    const { closeModal } = useModal()
     if (purchase?.order?.review_id) {
         reviewId = purchase.order.review_id
     }
@@ -43,9 +45,9 @@ const PurchaseCard = ({ purchase }) => {
                     depending on if feedback has already been left  */}
                 {purchase.order.review
                     ?
-                    <EditReviewModal review={purchase.order.review} itemId={purchase.item.id} />
+                    <EditReviewModal closeModal={closeModal} review={purchase.order.review} itemId={purchase.item.id} />
                     :
-                    <CreateReviewModal review={purchase.order.review} itemId={purchase.item.id} />
+                    <CreateReviewModal closeModal={closeModal} review={purchase.order.review} itemId={purchase.item.id} />
                 }
             </div>
         </div>

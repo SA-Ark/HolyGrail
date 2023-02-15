@@ -6,10 +6,11 @@
 }
 
 /* item carousel */
-.splash-carousel-container {
+.single-item-carousel-container{
     display: flex;
     flex-direction: row;
-    margin-right: 150px;
+    margin-right: 120px;
+    padding-top: 42px;
 }
 
 .single-item-image {

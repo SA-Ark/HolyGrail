@@ -22,7 +22,7 @@ const SingleItemPage = () => {
 
   return (
     <div className="single-item-page-container">
-      <div className='splash-carousel-container'>
+      <div className='single-item-carousel-container'>
         {item?.images?.map((image, index) => (
           <div className='carousel-item-container' key={index} style={{ display: index === currentImageIndex ? 'block' : 'none' }}>
             <img className='single-item-image' src={image.url} alt={`Image ${currentImageIndex + 1}`} />
@@ -30,11 +30,11 @@ const SingleItemPage = () => {
         ))}
         <div className='arrow-container'>
           <div
-            className='arrow-prev'
+            className='back'
             onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item.images?.length - 1)}
           >back</div>
           <div
-            className='arrow-next'
+            className='forward'
             onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}
           >forward</div>
         </div>

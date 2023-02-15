@@ -1,5 +1,5 @@
 import React, { useEffect, useState, } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { thunkLoadItems } from '../../../store/items';
 import ItemCard from '../../ItemsDisplayComponents/ItemCard';
@@ -12,7 +12,6 @@ const SplashPlage = () => {
     const [videoPlaying, setVideoPlaying] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentIndexDeals, setCurrentIndexDeals] = useState(0);
-
 
     // const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store => store.session?.user)

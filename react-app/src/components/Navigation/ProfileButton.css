@@ -1,5 +1,27 @@
 
 /* logged in drop down menu */
+
+.profile-button {
+    background-color: rgb(240, 240, 240);
+    border: none;
+    border-radius: 25px;
+    padding: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.fa-user {
+    color:rgb(200, 200, 200);
+    font-size: 17px;
+    /* padding: 30px; */
+}
+
+/* .fa-solid {
+    color:rgb(187, 187, 187);
+    padding: 30px;
+} */
+
 .dropdown-menu-container {
     border: 1px solid rgb(220, 220, 220);
 
@@ -42,6 +64,7 @@
 
 .dropdown-logout {
     padding-top: 5px;
+    cursor: pointer;
 }
 
 .dropdown-username:hover,

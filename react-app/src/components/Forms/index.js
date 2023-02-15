@@ -4,8 +4,5 @@ import ReviewForm from './ReviewForm'
 import EditProfileForm from './EditProfileForm'
 import PurchaseForm from './PurchaseForm'
 
-
-
-
 const Forms = { ItemEditForm, ReviewForm, EditProfileForm, PurchaseForm}
 export default Forms;

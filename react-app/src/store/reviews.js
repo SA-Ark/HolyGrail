@@ -181,7 +181,7 @@ const reviewsReducer = (state = initialState, action) => {
         case LOAD_SINGLE_REVIEW: {
 
             const newState = { ...state }
-           
+
             newState.singleReview = action.payload.review
             return newState
         }

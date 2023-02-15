@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
-
+import Buttons from '../Buttons';
+const { DeleteReviewButton } = Buttons;
 
 const EditReviewForm = ({review, itemId}) => {
     const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const EditReviewForm = ({review, itemId}) => {
     const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState([]);
     const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
-
 
 
     const onSubmit = async (e) => {
@@ -32,7 +32,8 @@ const EditReviewForm = ({review, itemId}) => {
 
                 setSubmitText("Edit Feedback")
                 res = await dispatch(thunkEditReview(newReview, review?.id));
-            }else{
+            }
+            else {
                 setSubmitText("Edit Feedback")
                 res = await dispatch(thunkCreateReview(newReview, itemId))
             }
@@ -45,6 +46,7 @@ const EditReviewForm = ({review, itemId}) => {
             if (data && data.errors) setErrors(data.errors)
         }
     }
+
 
     return (
         <form className="edit-review-form" onSubmit={onSubmit}>
@@ -72,6 +74,7 @@ const EditReviewForm = ({review, itemId}) => {
                 ></input>
             </div>
             <button type='submit'>{submitText}</button>
+            <DeleteReviewButton/>
         </form>
     )
 }

@@ -88,11 +88,11 @@ const SplashPlage = () => {
             <div className='splash-carousel-wrapper'>
                 <div className='splash-carousel-container'>
                     <div className='staff-picks'>
-                        <div className='arrow prev' onClick={handlePrev}></div>
+                        <button className='back-arrow' onClick={handlePrev}>{''}</button>
                         <div className='carousel-item-container'>
                             {itemCards.length > 0 ? itemCards : null}
                         </div>
-                        <div className='arrow next' onClick={handleNext}></div>
+                        <button className='next-arrow' onClick={handleNext}>{''}</button>
                     </div>
                 </div>
 
@@ -100,11 +100,11 @@ const SplashPlage = () => {
                     <h2 className='deals-text'> Deals: Under $100 </h2>
                     <div className='deals'>
 
-                        <div className='arrow prev' onClick={handlePrevDeals}></div>
+                        <button className='back-arrow' onClick={handlePrevDeals}></button>
                         <div className='carousel-item-container'>
                             {dealCards.length > 0 ? dealCards : null}
                         </div>
-                        <div className='arrow next' onClick={handleNextDeals}></div>
+                        <button className='next-arrow' onClick={handleNextDeals}></button>
                     </div>
                 </div>
             </div>

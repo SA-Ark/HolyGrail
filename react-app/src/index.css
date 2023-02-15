@@ -1,6 +1,5 @@
 /* TODO Add site wide styles */
 
-
 body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
@@ -33,5 +32,7 @@ select {
     background-color: #fff;
     color: #333;
   }
+  
+  
   
   

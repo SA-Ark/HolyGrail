@@ -14,7 +14,8 @@ const AvailableListingsTab = ({ items }) => {
     const [itemsList, setItemsList] = useState(items)
 
 
-    const userItems = getUserItems(deNormalize(items), userId)
+    const userItemsAll = getUserItems(deNormalize(items), userId)
+    const userItems = userItemsAll.filter(userItem => userItem.sold === false)
 
     return (
         <div className="listings-tab-container">
@@ -95,6 +96,7 @@ const AvailableListingsTab = ({ items }) => {
                 {
                     userItems?.length
                     ? userItems.map(item => {
+                        console.log(item);
                         return <ItemCard classProp="item-card-listings" item={item} key={item.id}/>
                     })
                     : null

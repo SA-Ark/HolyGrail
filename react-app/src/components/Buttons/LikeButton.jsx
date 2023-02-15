@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { thunkCreateFavorite, thunkLoadFavorites, thunkDeleteFavorite } from '../../store/favorites';
 import { thunkLoadItems, thunkLoadSingleItem } from '../../store/items';
 
-const LikeButton = ({itemId, liked}) => {
+const LikeButton = ({ itemId, liked }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -28,40 +28,39 @@ const LikeButton = ({itemId, liked}) => {
         // dispatch(thunkLoadItems(userId))
         setLike(!like)
         //come back to this for flex
-         await dispatch(thunkLoadFavorites())
-
+        await dispatch(thunkLoadFavorites())
     }
 
     // return (
-        // <>
-        //     <button type='button' onClick={likeFunc}>
-        //         {
-        //             liked
-        //                 ? "❤️Unlike❤️"
-        //                 : "Like"
-        //         }
-        //     </button>
-        // </>
+    // <>
+    //     <button type='button' onClick={likeFunc}>
+    //         {
+    //             liked
+    //                 ? "❤️Unlike❤️"
+    //                 : "Like"
+    //         }
+    //     </button>
+    // </>
 
     // )
-    if (like){
+    if (like) {
 
-    return (
-        <>
-        <button type='button' onClick={likeFunc}>
-        ❤️Unlike❤️
-        </button>
-    </>
-    )
-}else{
-    return (
-        <>
-        <button type='button' onClick={likeFunc}>
-        Like
-        </button>
-    </>
-    )
-}
+        return (
+            <>
+                <button disabled={!user.id} type='button' onClick={likeFunc}>
+                    ❤️Unlike❤️
+                </button>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <button disabled={!user.id} type='button' onClick={likeFunc}>
+                    Like
+                </button>
+            </>
+        )
+    }
 };
 
 export default LikeButton

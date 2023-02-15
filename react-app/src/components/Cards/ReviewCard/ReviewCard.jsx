@@ -5,6 +5,8 @@ const ReviewCard = ({ review }) => {
     // !@#$ Take note about what is coming into this card. Each review is an object containing a review and its corresponding item
     // review.review and review.item
 
+    console.log("REVIEW -->", review);
+
 
     // const [day, month, year] = utils.dateToParts(review.created_at);
     const stars = () => {
@@ -23,19 +25,14 @@ const ReviewCard = ({ review }) => {
                 <div className="review-body">
                     <span className="date">
                         {/* {month + " "}{day + ", "}{year} */}
-                        DATE HERE
-                    </span>
-                    <br />
-
-                    <span className="title">
-                        {"<username here> reviewed : " + review.item.name}
+                        {review.review.created_at}
                     </span>
 
                     <br />
 
                     <span className="stars">
                         {/* {review.stars} */}
-                        {"stars:" + stars()}
+                        {stars()}
                     </span>
 
                     <br />
@@ -46,20 +43,13 @@ const ReviewCard = ({ review }) => {
 
                     <br />
 
-                    <span className="badges">
-                        {/* Put badges here */}
-                        {/* SELLER BADGES HERE */}
-                    </span>
-
-                    <br />
-
                     <span className="description">
-                        {review.item_description}
+                        {review.item.name}
                     </span>
 
                     <br />
 
-                    <img src={review.preview_url} alt="" className="product-image" />
+                    <img src={review.item.preview_url} alt="" className="product-image" />
 
                     <br />
 

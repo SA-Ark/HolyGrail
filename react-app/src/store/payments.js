@@ -66,13 +66,13 @@ const paymentsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ORDERS: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.allOrders = {...action.payload}
             return newState
         }
         case CREATE_ORDER: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleOrder = action.payload
             return newState
         }

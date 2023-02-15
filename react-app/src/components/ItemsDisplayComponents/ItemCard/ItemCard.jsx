@@ -25,21 +25,21 @@ const ItemCard = ({ item }) => {
             <div className="item-info-container">
                 <div className='name-size-container'>
                     <span className='listing-name'>
-                        name: {item.name}
+                        {item.name}
                     </span>
                     <br />
                     <span className='listing-size'>
-                        size: {item.size}
+                        {item.size}
                     </span>
                 </div>
                 <br />
                 <span className='listing-description'>
-                    Description: {item.description}
+                    {item.description}
                 </span>
                 <br />
                 <div className='price-like-container'>
                     <span className='listing-price'>
-                        Price: {item.price}
+                        ${item.price}
                     </span>
                     <br />
                     <span className='listing-liked'>

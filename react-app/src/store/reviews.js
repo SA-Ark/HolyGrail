@@ -166,28 +166,28 @@ const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_REVIEWS: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.allReviews = action.payload
             return newState
         }
 
         case LOAD_CURR_REVIEWS: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.allReviews = action.payload
             return newState
         }
 
         case LOAD_SINGLE_REVIEW: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleReview = action.payload
             return newState
         }
 
         case CREATE_REVIEW: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleReview = action.payload
             return newState
         }

@@ -80,6 +80,7 @@ const EditProfileTab = () => {
                         </label>
                         <label className='edit-prof-label'>Bio
                             <textarea
+                            className='edit-prof-textarea'
                                 type='textarea'
                             // onChange={}
                             // value={}

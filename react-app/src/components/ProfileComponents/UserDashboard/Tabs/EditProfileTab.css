@@ -1,6 +1,7 @@
 .edit-prof-container {
 display: flex;
 flex-direction: row;
+padding-bottom: 70px;
     /* border-radius: 10px; */
     /* box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3); */
 }
@@ -58,6 +59,10 @@ flex-direction: row;
     padding-bottom: 15px;
     border: 1px solid rgb(220, 220, 220);
     border-radius: 5px;
+}
+
+.edit-prof-textarea {
+    padding: 20px;
 }
 
 .edit-prof-button {

@@ -8,7 +8,7 @@ import {useState} from "react"
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
 import './ItemCard.css'
-const { DeleteLikeButton, LikeButton } = Buttons;
+const { LikeButton } = Buttons;
 
 const ItemCard = ({ item }) => {
     const history = useHistory()

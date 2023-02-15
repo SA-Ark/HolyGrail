@@ -28,7 +28,7 @@ const LikeButton = ({itemId, liked}) => {
         // dispatch(thunkLoadItems(userId))
         setLike(!like)
         //come back to this for flex
-        // await dispatch(thunkLoadSingleItem(1))
+         await dispatch(thunkLoadFavorites())
 
     }
 

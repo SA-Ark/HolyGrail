@@ -65,7 +65,7 @@ def reviews_of_users(user_id):
         new_review = Review.query.filter(Review.item_id == id).first()
         if new_review:
             reviews.append(new_review)
-    
+
     items = Item.query.filter(Item.seller_id == user_id).all()
     bought = Order.query.filter(Order.buyer_id == user_id).all()
     total_items = len(items)
@@ -181,10 +181,12 @@ def delete_review(review_id):
     Queries for user by user id and review by review id.
     Allows user to delete that review.
     """
+    print("***************")
     review = Review.query.get(review_id)
     if review.buyer_id == current_user.id:
         deleted_review = review
         db.session.delete(review)
+        db.session.commit()
         item = Item.query.get(review.item_id).to_dict()
         # normalized_rev = deleted_review.to_dict()
         # normalized_rev["seller_id"] = item.seller_id

@@ -7,13 +7,27 @@ const { DeleteReviewButton } = Buttons;
 
 const EditReviewForm = ({review, itemId}) => {
     const dispatch = useDispatch();
-
+    const stateReview = useSelector(state=>state.reviews?.singleReview?.review)
     const [reviewBody, setReviewBody] = useState(review?.review_body);
     const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState([]);
     const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
+    console.log(stateReview, stateReview?.review_body, stateReview?.stars, "STATE")
+
+useEffect(()=>{
+    if (!stateReview?.id){
+
+        setReviewBody("")
+        setStars(stateReview?.stars)
+    }
+}, [review, stateReview])
+    console.log(reviewBody, stars, "reviews")
 
 
+
+    const onClick = ()=>{
+        console.log("COMING IN")
+    }
     const onSubmit = async (e) => {
         e.preventDefault();
         const formErrors = [];
@@ -61,7 +75,7 @@ const EditReviewForm = ({review, itemId}) => {
                     type='textarea'
                     name='review'
                     onChange={(e) => setReviewBody(e.target.value)}
-                    value={review?.review_body}
+                    value={reviewBody}
                 ></textarea>
             </div>
             <div>
@@ -70,11 +84,11 @@ const EditReviewForm = ({review, itemId}) => {
                     type='number'
                     name='stars'
                     onChange={(e) => setStars(e.target.value)}
-                    value={review?.stars}
+                    value={stars}
                 ></input>
             </div>
             <button type='submit'>{submitText}</button>
-            <DeleteReviewButton/>
+            <DeleteReviewButton reviewId={review?.id}/>
         </form>
     )
 }

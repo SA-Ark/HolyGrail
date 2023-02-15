@@ -106,8 +106,8 @@
     content: "";
     width: 20px;
     height: 20px;
-    border-top: 2px solid black;
-    border-right: 2px solid black;
+    border-top: 2px solid #a1a1a1;
+    border-right: 2px solid #a1a1a1;
     transform: rotate(225deg);
     display: inline-block;
     transition: all 0.3s ease-in-out;
@@ -119,12 +119,12 @@
 
 .back-arrow:hover,
 .next-arrow:hover {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(240, 240, 240);
 }
 
 .back-arrow:hover:before,
 .next-arrow:hover:before {
-    border-color: white;
+    border-color: rgb(109, 109, 109);
 }
 
 

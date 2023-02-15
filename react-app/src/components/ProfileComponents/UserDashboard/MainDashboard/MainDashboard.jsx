@@ -35,7 +35,7 @@ const MainDashboard = () => {
             <div className="profile-header">
                 <div className='prof-icon-container'>
                     <div>{user.username}</div>
-                    <i class="fa-solid fa-circle-user"></i>
+                    <i className="fa-solid fa-circle-user"></i>
                 </div>
                 <div className='joined-in-container'>
                     <span>Joined on </span>

@@ -4,25 +4,35 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkDeleteReview, thunkLoadSingleReview } from '../../store/reviews';
 
-const DeleteReviewButton = () => {
+const DeleteReviewButton = ({reviewId}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
-    let review = useState(store => store?.reviews?.singleReview)
-    let user = useState(store => store?.session?.user)
+    let [review, setReview] = useState(store => store?.reviews?.singleReview)
+    let [user, setUser] = useState(store => store?.session?.user)
     let userId = user?.id
-    const { reviewId } = useParams();
+
+
 
     useEffect(() => {
-        dispatch(thunkLoadSingleReview(reviewId))
-    }, [reviewId, userId, dispatch])
+        if (reviewId){
 
-    const deleteItem = (e) => {
+            dispatch(thunkLoadSingleReview(reviewId))
+        }
+    }, [review, userId, dispatch])
+
+    const deleteItem = async (e) => {
         e.preventDefault();
         setErrors([])
-        const res = dispatch(thunkDeleteReview(reviewId))
-        if (res.ok) {
-            history.push('/reviews')
+        if (reviewId){
+
+            const res = await dispatch(thunkDeleteReview(reviewId))
+            if (res?.ok) {
+                history.push('/reviews')
+
+
+
+            }
         }
     }
 

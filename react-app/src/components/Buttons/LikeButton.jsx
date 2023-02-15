@@ -26,7 +26,7 @@ const LikeButton = ({itemId, liked}) => {
         setLike(!like)
         if (like) await dispatch(thunkDeleteFavorite(itemId))
         else await dispatch(thunkCreateFavorite(itemId))
-
+        dispatch(thunkLoadItems(userId))
 
     }
 
@@ -36,7 +36,7 @@ const LikeButton = ({itemId, liked}) => {
                 {
                     liked
                         ? "❤️"
-                        : "💔"
+                        : "FUCKIN A"
                 }
             </button>
         </>

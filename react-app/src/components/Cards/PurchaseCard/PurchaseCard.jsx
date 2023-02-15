@@ -1,8 +1,9 @@
-import EditReviewForm from "../../Forms/EditReviewForm";
+import CreateReviewModal from "../../CreateReviewModal";
+import EditReviewModal from "../../EditReviewModal";
 
-const PurchaseCard = ({purchase}) => {
+const PurchaseCard = ({ purchase }) => {
     let reviewId = null
-    if (purchase?.order?.review_id){
+    if (purchase?.order?.review_id) {
         reviewId = purchase.order.review_id
     }
     console.log(purchase, "purchase")
@@ -35,13 +36,17 @@ const PurchaseCard = ({purchase}) => {
                     <span>{purchase.item.size}</span>
 
                 </div>
-
             </div>
             <div className="buttons-container">
                 {/* !@#$ Add buttons here */}
                 {/* !@#$ Add conditional rendering for leave feedback or edit/delete feedback
                     depending on if feedback has already been left  */}
-                    <EditReviewForm review={purchase.order.review} itemId={purchase.item.id}/>
+                {purchase.order.review
+                    ?
+                    <EditReviewModal review={purchase.order.review} itemId={purchase.item.id} />
+                    :
+                    <CreateReviewModal review={purchase.order.review} itemId={purchase.item.id} />
+                }
             </div>
         </div>
 

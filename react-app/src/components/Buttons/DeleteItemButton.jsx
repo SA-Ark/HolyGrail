@@ -22,7 +22,7 @@ const DeleteItemButton = () => {
         setErrors([])
         const res = dispatch(thunkDeleteItem(itemId))
         if (res.ok) {
-            history.push('/items')
+            history.push(`/dashboard/${userId}`)
         }
     }
 

@@ -2,13 +2,14 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
-import { thunkDeleteFavorite, thunkLoadFavorites } from '../../store/favorites';
+import { thunkCreateFavorite, thunkLoadFavorites } from '../../store/favorites';
 import { thunkLoadItems } from '../../store/items';
 
-const DeleteLikeButton = ({itemId}) => {
+const CreateLikeButton = ({itemId, liked}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
+    const [like, setLike] = useState(liked)
     let favorites = useState(store => store?.favorites?.allFavorites)
     let user = useState(store => store?.session?.user)
     let userId = user?.id
@@ -16,15 +17,16 @@ const DeleteLikeButton = ({itemId}) => {
 
     // useEffect(() => {
     //     dispatch(thunkLoadFavorites())
-    // }, [userId, dispatch])
 
+    // }, [favorites])
 
-    const deleteItem = async (e) => {
+    const likeFunc = async (e) => {
         e.preventDefault();
         setErrors([])
-        await dispatch(thunkDeleteFavorite(itemId)).then(() => dispatch(thunkLoadItems()))
+        setLike(!like)
+        if (like)
+        await dispatch(thunkCreateFavorite(itemId))
 
-        // dispatch(thunkLoadFavorites())
         // if (res.ok) {
         //     history.push('/favorites')
         // }
@@ -32,9 +34,15 @@ const DeleteLikeButton = ({itemId}) => {
 
     return (
         <>
-            <button type='button' onClick={deleteItem}>❤️</button>
+            <button type='button' onClick={createLike}>
+                {
+                    liked
+                        ? "💔"
+                        : "❤️"
+                }
+            </button>
         </>
     )
 };
 
-export default DeleteLikeButton
+export default CreateLikeButton

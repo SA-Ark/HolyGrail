@@ -4,19 +4,22 @@ import { thunkLoadItems } from '../../../store/items'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import * as utils from '../../../store/utils'
+import { thunkLoadFavorites } from '../../../store/favorites'
 
 const MainListingsPage = () => {
     const dispatch = useDispatch()
     const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store=> store.session?.user)
+
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
-    }, [dispatch, user])
+        dispatch(thunkLoadFavorites())
+    }, [dispatch])
 
     return (
         <div className="items-display-container">
             {
-                items.length
+                items?.length
                     ? items.map(item => <ItemCard item={item} key={item.id} />)
                     : null
             }

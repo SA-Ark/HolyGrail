@@ -8,7 +8,7 @@ import {useState} from "react"
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
 import './ItemCard.css'
-const { DeleteLikeButton, CreateLikeButton } = Buttons;
+const { DeleteLikeButton, LikeButton } = Buttons;
 
 const ItemCard = ({ item }) => {
     const history = useHistory()
@@ -47,7 +47,7 @@ const ItemCard = ({ item }) => {
                         {
                             // liked
                                 // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                                <CreateLikeButton itemId={item.id} liked ={item.liked}/>
+                            <LikeButton itemId={item.id} liked ={item.liked}/>
                         }
                     </span>
                     <br />

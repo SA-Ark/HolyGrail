@@ -2,10 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
-import { thunkCreateFavorite, thunkLoadFavorites } from '../../store/favorites';
+import { thunkCreateFavorite, thunkLoadFavorites, thunkDeleteFavorite } from '../../store/favorites';
 import { thunkLoadItems } from '../../store/items';
 
-const CreateLikeButton = ({itemId, liked}) => {
+const LikeButton = ({itemId, liked}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -24,25 +24,23 @@ const CreateLikeButton = ({itemId, liked}) => {
         e.preventDefault();
         setErrors([])
         setLike(!like)
-        if (like)
-        await dispatch(thunkCreateFavorite(itemId))
+        if (like) await dispatch(thunkDeleteFavorite(itemId))
+        else await dispatch(thunkCreateFavorite(itemId))
 
-        // if (res.ok) {
-        //     history.push('/favorites')
-        // }
+
     }
 
     return (
         <>
-            <button type='button' onClick={createLike}>
+            <button type='button' onClick={likeFunc}>
                 {
                     liked
-                        ? "💔"
-                        : "❤️"
+                        ? "❤️"
+                        : "💔"
                 }
             </button>
         </>
     )
 };
 
-export default CreateLikeButton
+export default LikeButton

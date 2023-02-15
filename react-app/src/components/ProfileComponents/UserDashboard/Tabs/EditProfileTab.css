@@ -1,0 +1,81 @@
+.edit-prof-container {
+display: flex;
+flex-direction: row;
+padding-bottom: 70px;
+    /* border-radius: 10px; */
+    /* box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3); */
+}
+
+.edit-prof-form-container {
+    height: 600px;
+    width: 420px;
+    background-color: white;
+    margin-bottom: 100px;
+}
+
+.edit-prof-img-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    padding-left: 70px;
+
+}
+.edit-prof-img {
+    display: flex;
+    flex-direction: row;
+    object-fit: cover;
+    width: 800px;
+    height: 600px;
+}
+
+.edit-prof-title {
+    font-size: 34px;
+    padding-top: 30px;
+    margin-left: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.edit-prof-form {
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-prof-label {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.edit-prof-input {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 20px;
+    padding-bottom: 15px;
+    border: 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+}
+
+.edit-prof-textarea {
+    padding: 20px;
+}
+
+.edit-prof-button {
+    background-color: black;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    height: 48px;
+    margin-top: 25px;
+    touch-action: manipulation;
+}
+
+.edit-prof-button:hover {
+    background-color: rgb(26, 26, 26);
+}

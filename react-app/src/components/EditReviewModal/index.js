@@ -1,27 +1,24 @@
 import React from 'react';
-import { useModal } from '../../context/Modal';
-import LoginFormModal from '../LoginFormModal';
+import { useModal } from '../../../context/Modal';
+import EditReviewForm from '../Forms/EditReviewForm'
 
-
-function RedirectToLoginModal({
+function CreateModalButton({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onRedirectClick = () => {
+  const onReviewClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<LoginFormModal />);
+    setModalContent(<EditReviewForm />);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-      <button className='like-button' onClick={onRedirectClick}>
-        <i class="fa-regular fa-heart like-icon"></i>
-      </button>
+      <button onClick={onReviewClick} className='sell-button'>Edit Feedback</button>
     </>
   );
 }
 
-export default RedirectToLoginModal;
+export default CreateModalButton;

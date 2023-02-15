@@ -6,6 +6,8 @@ body {
 
 button {
     font-family: "Video",monospace;
+    border: none;
+    background-color: rgba(255,255,255,0);
 }
 
 select {
@@ -18,21 +20,21 @@ select {
     color: #333;
     cursor: pointer;
   }
-  
+
   select:hover {
     border-color: #aaa;
   }
-  
+
   select:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
-  
+
   select option {
     background-color: #fff;
     color: #333;
   }
-  
-  
-  
-  
+
+  .like-icon {
+    justify-self: flex-end;
+  }

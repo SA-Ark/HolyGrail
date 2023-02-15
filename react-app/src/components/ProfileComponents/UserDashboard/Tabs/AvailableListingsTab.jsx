@@ -4,9 +4,7 @@ import MultiSelect from "multiselect-react-dropdown";
 import ItemCard from '../../../ItemsDisplayComponents/ItemCard';
 import { deNormalize, getUserItems } from "../../../../store/utils";
 
-
 const AvailableListingsTab = ({ items }) => {
-
     const {userId} = useParams()
     const [department, setDepartment] = useState(["Menswear", "Womenswear"]);
     const [category, setCategory] = useState(["Tops", "Bottoms", "Outerwear", "Footwear"]);
@@ -20,9 +18,7 @@ const AvailableListingsTab = ({ items }) => {
 
     return (
         <div className="listings-tab-container">
-            <h1>Hello From listings tab</h1>
             <div className="filters">
-
                 <MultiSelect
                     placeholder="Search Filters"
                     displayValue="key"
@@ -94,72 +90,6 @@ const AvailableListingsTab = ({ items }) => {
                     ]}
                     showCheckbox
                 ></MultiSelect>
-
-                <br />
-                <br />
-                <br />
-
-                {/*
-
-                <label for="department-filter">Department:</label>
-                <MultiSelect
-                    name="department-filter"
-                    isObject={false}
-                    onRemove={(e) => {console.log(e)} }
-                    onSelect={(e) => {console.log(e)} }
-                    options={department}
-                    showCheckbox
-                />
-
-                <br />
-
-                <label for="category-filter">Category:</label>
-                <MultiSelect
-                    name="category-filter"
-                    isObject={false}
-                    onRemove={(e) => {console.log(e)} }
-                    onSelect={(e) => {console.log(e)} }
-                    options={category}
-                    showCheckbox
-                />
-
-                <br />
-
-                <label for="size-filter">Size:</label>
-                <MultiSelect
-                    name="size-filter"
-                    isObject={false}
-                    onRemove={(e) => {console.log(e)} }
-                    onSelect={(e) => {console.log(e)} }
-                    options={size}
-                    showCheckbox
-                />
-
-                <br />
-
-                <label for="price-filter">Price:</label>
-                <MultiSelect
-                    name="price-filter"
-                    isObject={false}
-                    onRemove={(e) => {console.log(e)} }
-                    onSelect={(e) => {console.log(e)} }
-                    options={price}
-                    showCheckbox
-                />
-
-                <br />
-
-                <label for="condition-filter">Condition:</label>
-                <MultiSelect
-                    name="condition-filter"
-                    isObject={false}
-                    onRemove={(e) => {console.log(e)} }
-                    onSelect={(e) => {console.log(e)} }
-                    options={condition}
-                    showCheckbox
-                />
-
-                */}
             </div>
             <div className="listings-container">
                 {

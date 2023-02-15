@@ -5,6 +5,7 @@ import { thunkLoadItems } from '../../../../store/items'
 import { thunkLoadOrders } from '../../../../store/payments'
 import { thunkLoadReviews } from '../../../../store/reviews'
 import Tabs from '../Tabs'
+import './MainDashboard.css'
 import { getUserFavoriteItems, getUserPurchases, switchTab } from '../../../../store/utils'
 const { PurchasesTab, EditProfileTab, FavoritesTab, AvailableListingsTab, FeedbackTab } = Tabs
 
@@ -32,12 +33,22 @@ const MainDashboard = () => {
     return (
         <div className='user-dashboard-container'>
             <div className="profile-header">
-                <img src="" alt="" />
-                <div>{user.username}</div>
-                <div className="profile-joined-in">Joined on {user.created_at}</div>
-                <div className="profile-stars">★{rating}</div>
-                <div className="profile-transactions-count">{reviews.total_transactions}</div>
-                <div className="profile-followers"></div>
+                <div className='prof-icon-container'>
+                    <div>{user.username}</div>
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+                <div className='joined-in-container'>
+                    <span>Joined on </span>
+                    <div className="profile-joined-in">{user.created_at}</div>
+                </div>
+                <div className='stars-transaction-container'>
+                    <div className="profile-stars">★{rating}</div>
+                    <div className="profile-transactions-count">{reviews.total_transactions}</div>
+                </div>
+                <div className='prof-followrs-container'>
+                    <div className="profile-followers"></div>
+                    <span className='profile-followers-text'>Followers</span>
+                </div>
                 <button className='edit-profile-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button>
             </div>
             <div className="tab-container">

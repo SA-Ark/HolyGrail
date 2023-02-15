@@ -1,10 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100);
 
-
+/* 
 h1 {
     font: 2em 'Roboto', sans-serif;
     margin-bottom: 40px;
-}
+} */
 
 .loading {
     display: inline-block;
@@ -28,3 +28,19 @@ h1 {
         -webkit-transform: rotate(360deg);
     }
 }
+
+.profile-header {
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    /* flex-direction: column; */
+    /* flex-direction: row; */
+}
+
+.prof-icon-container {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+    border: 1px sold black;
+}
+

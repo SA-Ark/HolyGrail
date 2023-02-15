@@ -11,14 +11,15 @@ const EditReviewForm = ({review, itemId}) => {
     const [reviewBody, setReviewBody] = useState(review?.review_body);
     const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState([]);
+    // const [deleted, setDeleted] = useState(false)
     const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
     console.log(stateReview, stateReview?.review_body, stateReview?.stars, "STATE")
 
 useEffect(()=>{
     if (!stateReview?.id){
 
-        setReviewBody("")
-        setStars(stateReview?.stars)
+        // setReviewBody("")
+        // setStars(stateReview?.stars)
     }
 }, [review, stateReview])
     console.log(reviewBody, stars, "reviews")
@@ -88,7 +89,7 @@ useEffect(()=>{
                 ></input>
             </div>
             <button type='submit'>{submitText}</button>
-            <DeleteReviewButton reviewId={review?.id}/>
+            <DeleteReviewButton revBod={setReviewBody} star={setStars} reviewId={review?.id}/>
         </form>
     )
 }

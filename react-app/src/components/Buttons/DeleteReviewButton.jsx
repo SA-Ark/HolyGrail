@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkDeleteReview, thunkLoadSingleReview } from '../../store/reviews';
 
-const DeleteReviewButton = ({reviewId}) => {
+const DeleteReviewButton = ({reviewId, revBod, star}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -28,6 +28,8 @@ const DeleteReviewButton = ({reviewId}) => {
 
             const res = await dispatch(thunkDeleteReview(reviewId))
             if (res?.ok) {
+                revBod("")
+                star("")
                 history.push('/reviews')
 
 

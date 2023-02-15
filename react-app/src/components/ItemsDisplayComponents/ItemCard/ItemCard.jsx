@@ -28,12 +28,12 @@ const ItemCard = ({ item }) => {
                     </span>
                     <br />
                     <span className='listing-size'>
-                        size: {item.size}
+                        {item.size}
                     </span>
                 </div>
                 <br />
                 <span className='listing-description'>
-                    Description: {item.description}
+                    {item.description}
                 </span>
                 <br />
                 <div className='price-like-container'>
@@ -43,7 +43,7 @@ const ItemCard = ({ item }) => {
                     <br />
                     <span className='listing-liked' onClick={e=> setLiked(!liked)}>
                         {/* !@#$ should be item.liked once we finish route to create liked */}
-                        {liked ? "❤️" : "💔"}
+                        {liked ? "❤️" : "♡"}
                     </span>
                     <br />
                 </div>

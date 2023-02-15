@@ -36,7 +36,7 @@ const MainDashboard = () => {
                 <div>{user.username}</div>
                 <div className="profile-joined-in">Joined on {user.created_at}</div>
                 <div className="profile-stars">★{rating}</div>
-                <div className="profile-transactions-count">{reviews.num_sold}</div>
+                <div className="profile-transactions-count">{reviews.total_transactions}</div>
                 <div className="profile-followers"></div>
                 <button className='edit-profile-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button>
             </div>

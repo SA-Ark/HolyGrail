@@ -4,7 +4,7 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import * as utils from '../../../store/utils'
 import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
-import ProfileCard  from "../../Cards/ProfileCard";
+import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
 
 const SingleItemPage = () => {
@@ -56,12 +56,13 @@ const SingleItemPage = () => {
         <button className='purchase-button'>Purchase</button>
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
+        <div><ProfileCard /></div>
+
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item.description}</span>
         {/* <span className='tags'>Tags</span> */}
         {/* <span className='item-post-date'>Posted on {item.created_at}</span> */}
 
-<div><ProfileCard/></div>
 
       </div>
     </div>

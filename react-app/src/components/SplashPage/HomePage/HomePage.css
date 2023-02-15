@@ -53,25 +53,26 @@
 .splash-carousel-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     /* width: 100%; */
-    padding-left: 2rem;
-    padding-right: 2rem;
+    /* padding-left: 2rem; */
+    /* padding-right: 2rem; */
 }
 
 .splash-carousel-container {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     flex-direction: column;
     margin-top: 3rem;
-    /* width: 100%; */
+    width: 100%;
 }
 
 .staff-picks {
+    padding-top: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 100%; */
+    width: 100%;
 }
 
 .deals {
@@ -79,18 +80,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 100%; */
+    width: 100%;
 }
 
 .deals-text {
     display: flex;
     flex-direction: column;
-    justify-content: end;
     font-size: 21px;
 
 }
 
 .carousel-item-container {
+    z-index: -1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,22 +117,34 @@
 }
 
 .prev {
-    position: absolute;
-    transform: translate(-985%, -50%);
+    display: flex; 
+    align-items: center;
+    
+    /* position: absolute;
+    transform: translate(-1120%, -50%); */
 }
 
 .prev::before {
+    /* border: 1px solid black; */
+    border-radius: 40px;
+    padding: 30px;
     content: '<';
+    background-color: white;
     margin-left: 25px;
 }
 
 .next {
-    position: absolute;
-    transform: translate(985%, -50%);
+    display: flex; 
+    align-items: center;
+    /* position: absolute;
+    transform: translate(985%, -50%); */
 }
 
 .next::after {
+    border-radius: 40px;
+    padding: 30px;
     content: '>';
+    background-color: white;
     margin-right: 25px;
 }
 

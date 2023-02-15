@@ -20,6 +20,7 @@
 
 /* item info */
 .item-info-buttons-container{
+    width: 30%;
     margin-top: 4.6rem;
     display: flex;
     flex-direction: column;
@@ -80,6 +81,8 @@
 } 
 
 .item-desc-title {
+    border-top: 1px solid #d0d0d0;
+    margin-top: 15px;
     padding-top: 15px;
     font-weight: bold;
 }

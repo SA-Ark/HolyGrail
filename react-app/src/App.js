@@ -17,7 +17,7 @@ import EditReviewForm from "./components/Forms/EditReviewForm";
 
 
 const { DeleteItemButton } = Buttons
-const { ItemEditForm, ReviewForm, EditProfileForm } = Forms
+const { ItemEditForm, ReviewForm, EditProfileForm, PurchaseForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -31,9 +31,8 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/component-test/:userId">
+          <Route path='/orderformtest'>
             <h1>Component Tester</h1>
-            <MainDashboard/>
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}

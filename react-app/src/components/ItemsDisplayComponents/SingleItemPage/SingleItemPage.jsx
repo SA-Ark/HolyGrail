@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { thunkLoadSingleItem } from '../../../store/items'
+import { useHistory } from 'react-router-dom'
 import * as utils from '../../../store/utils'
 import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
@@ -8,6 +9,7 @@ import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
 
 const SingleItemPage = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const item = useSelector((state) => state.items.singleItem)
   const user = useSelector(store => store.session?.user)
@@ -53,7 +55,7 @@ const SingleItemPage = () => {
         <span className='condition'>Condition {item.condition}</span>
         <span className='price'>${item.price}</span>
         <span className='shipping'>+${item.shipping_cost} Shipping - Europe to United States</span>
-        <button className='purchase-button'>Purchase</button>
+        <button className='purchase-button' onClick={e=> history.push('/orderformtest')}>Purchase</button>
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
         <div><ProfileCard /></div>

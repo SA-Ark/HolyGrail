@@ -194,38 +194,39 @@ export const thunkDeleteItem = (itemId) => async (dispatch) => {
 const initialState = { allItems: {}, singleItem: {} }
 
 const itemsReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case LOAD_ITEMS: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.allItems = {...action.payload.items}
             return newState
         }
 
         case LOAD_SINGLE_ITEM: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleItem = action.payload
             return newState
         }
 
         case CREATE_ITEM: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleItem = action.payload
             return newState
         }
 
         case EDIT_ITEM: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleItem = action.payload
             return newState
         }
 
         case DELETE_ITEM: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             delete newState.singleItem
             return newState
         }

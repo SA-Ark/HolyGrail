@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkCreateFavorite, thunkLoadFavorites, thunkDeleteFavorite } from '../../store/favorites';
-import { thunkLoadItems } from '../../store/items';
+import { thunkLoadItems, thunkLoadSingleItem } from '../../store/items';
 
 const LikeButton = ({itemId, liked}) => {
     const dispatch = useDispatch()
@@ -23,24 +23,44 @@ const LikeButton = ({itemId, liked}) => {
     const likeFunc = async (e) => {
         e.preventDefault();
         setErrors([])
-        setLike(!like)
         if (like) await dispatch(thunkDeleteFavorite(itemId))
         else await dispatch(thunkCreateFavorite(itemId))
-        dispatch(thunkLoadItems(userId))
+        // dispatch(thunkLoadItems(userId))
+        setLike(!like)
+        await dispatch(thunkLoadSingleItem(1))
 
     }
 
+    // return (
+        // <>
+        //     <button type='button' onClick={likeFunc}>
+        //         {
+        //             liked
+        //                 ? "❤️Unlike❤️"
+        //                 : "Like"
+        //         }
+        //     </button>
+        // </>
+
+    // )
+    if (like){
+
     return (
         <>
-            <button type='button' onClick={likeFunc}>
-                {
-                    liked
-                        ? "❤️"
-                        : "FUCKIN A"
-                }
-            </button>
-        </>
+        <button type='button' onClick={likeFunc}>
+        ❤️Unlike❤️
+        </button>
+    </>
     )
+}else{
+    return (
+        <>
+        <button type='button' onClick={likeFunc}>
+        Like
+        </button>
+    </>
+    )
+}
 };
 
 export default LikeButton

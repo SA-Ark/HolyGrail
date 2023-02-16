@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import { thunkCreateReview, thunkEditReview, thunkLoadCurrReviews, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
 const { DeleteReviewButton } = Buttons;
 
@@ -15,6 +15,8 @@ const EditReviewForm = ({review, itemId}) => {
     // const [deleted, setDeleted] = useState(false)
     const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
     // console.log(stateReview, stateReview?.review_body, stateReview?.stars, "STATE")
+    const user = useSelector( state => state?.session?.user)
+    // console.log(user, "uzerandgfkjnjkansdkjn")
 
 useEffect(()=>{
     if (!stateReview?.id){
@@ -93,6 +95,7 @@ useEffect(()=>{
             console.log(data, "THIS DATA")
             if (data && data.errors) setErrors(data.errors)
         }
+        await dispatch(thunkLoadCurrReviews(user?.id))
     }
 
 

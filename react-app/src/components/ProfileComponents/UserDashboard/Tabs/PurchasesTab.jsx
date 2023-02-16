@@ -14,7 +14,7 @@ const PurchasesTab = ({purchases}) => {
                 {
                     purchaseList?.length
                         ? purchaseList.map(purchase => {
-                            return <PurchaseCard purchase={purchase}/>
+                            return <PurchaseCard key={purchase?.id}purchase={purchase}/>
                         })
                         : null
                 }

@@ -45,11 +45,11 @@ useEffect(()=>{
         }
 
             if(currReview){
-                setStars(currReview.stars)
-                setReviewBody(currReview.review_body)
+                // setStars(currReview.stars)
+                // setReviewBody(currReview.review_body)
                 const editReview = {
-                    reviewBody: currReview.review_body,
-                    stars: currReview.stars
+                    reviewBody: reviewBody,
+                    stars
                 }
                 res = await dispatch(thunkEditReview(editReview, currReview?.id));
 

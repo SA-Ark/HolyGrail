@@ -64,14 +64,8 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
                 stars: data?.review?.stars
             })
             closeModal()
-            history.push("/dashboard/1")
         }
-
-
     }
-
-
-
 
     return (
         <form className="edit-review-form" onSubmit={onSubmit}>

@@ -103,7 +103,7 @@ def upgrade():
     sa.Column('buyer_id', sa.Integer(), nullable=False),
     sa.Column('item_id', sa.Integer(), nullable=False),
     sa.Column('seller_id', sa.Integer(), nullable=False),
-    sa.Column('transaction_id', sa.Integer(), nullable=False),
+    # sa.Column('transaction_id', sa.Integer(), nullable=True),
     sa.Column('order_total', sa.Integer(), nullable=False),
     sa.Column('card_number', sa.String(), nullable=False),
     sa.Column('expiry', sa.Date(), nullable=False),
@@ -116,7 +116,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['buyer_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['item_id'], ['items.id'], ),
     sa.PrimaryKeyConstraint('buyer_id', 'item_id'),
-    sa.UniqueConstraint('transaction_id')
+    # sa.UniqueConstraint('transaction_id')
     )
 
     if environment == "production":

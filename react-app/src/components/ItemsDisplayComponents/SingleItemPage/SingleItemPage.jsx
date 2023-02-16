@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
+import PurchaseForm from '../../Forms/PurchaseForm'
+import PurchaseModal from '../../PurchaseModal'
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -19,6 +21,7 @@ const SingleItemPage = () => {
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id))
   }, [dispatch])
+  console.log(item, 'item in single item page')
 
   return (
     <div className="single-item-page-container">
@@ -53,7 +56,11 @@ const SingleItemPage = () => {
         <span className='condition'>Condition {item.condition}</span>
         <span className='price'>${item.price}</span>
         <span className='shipping'>+${item.shipping_cost} Shipping - Europe to United States</span>
-        <button className='purchase-button'>Purchase</button>
+
+        <>
+          <PurchaseModal item={item} />
+        </>
+
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
         <div><ProfileCard /></div>

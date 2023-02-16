@@ -26,6 +26,7 @@ padding-bottom: 70px;
     object-fit: cover;
     width: 800px;
     height: 600px;
+    cursor: pointer;
 }
 
 .edit-prof-title {

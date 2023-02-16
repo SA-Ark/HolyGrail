@@ -1,25 +1,26 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import EditReviewForm from '../Forms/EditReviewForm';
+import ItemCreateModal from '../Forms/ItemCreateModal';
+import PurchaseForm from '../Forms/PurchaseForm';
 
-function EditReviewModal({
-  review, itemId,
+function PurchaseModal({
+  item,
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onReviewClick = () => {
+  const onPurchaseClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<EditReviewForm review={review} itemId={itemId}/>);
+    setModalContent(<PurchaseForm item={item}/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-      <button onClick={onReviewClick} className='sell-button'>Edit Feedback</button>
+      <button onClick={onPurchaseClick} className='purchase-button'>PURCHASE</button>
     </>
   );
 }
 
-export default EditReviewModal;
+export default PurchaseModal;

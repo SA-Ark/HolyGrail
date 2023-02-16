@@ -1,32 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { useModal } from '../../context/Modal';
 import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
 const { DeleteReviewButton } = Buttons;
-
+let prevReview = {}
 const EditReviewForm = ({review, itemId}) => {
+    const closeModal = useModal()
     const dispatch = useDispatch();
     const stateReview = useSelector(state=>state.reviews?.singleReview)
-    const [reviewBody, setReviewBody] = useState(review?.review_body);
-    const [stars, setStars] = useState(review?.stars);
+    const [reviewBody, setReviewBody] = useState("");
+    const [stars, setStars] = useState("");
     const [errors, setErrors] = useState([]);
-    let [currReview, setCurrReview] = useState(review)
+    let [currReview, setCurrReview] = useState("")
+    const history = useHistory()
     // const [deleted, setDeleted] = useState(false)
     const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
     // console.log(stateReview, stateReview?.review_body, stateReview?.stars, "STATE")
+    // let starVal = review?.stars
+    // let bodVal = review?.review_body
+    console.log(reviewBody, "BOD")
 
 useEffect(()=>{
-    if (!stateReview?.id){
+    if(Object.keys(prevReview).length){
+        setCurrReview(prevReview)
+    }else{
 
-        // setReviewBody("")
-        // setStars(stateReview?.stars)
+        setCurrReview(review)
     }
-}, [review, stateReview])
+            if (Object.keys(currReview).length){
+                review = {...currReview}
+                prevReview = {...currReview}
+
+                setReviewBody(currReview?.review_body)
+                setStars(currReview?.stars)
+            }else{
+                setReviewBody(review?.review_body)
+                setStars(review?.stars)
+
+            }
+
+            if (Object.keys(prevReview).length){
+
+                setReviewBody(prevReview?.review_body)
+                setStars(prevReview?.stars)
+
+            }
+
+    }, [])
+
+useEffect(()=>{
+
+    // const body = document.getElementById("body");
+    // const star = document.getElementById("stars")
+    // body.value = reviewBody
+    // star.value = stars
+    // starVal = stars
+    // bodVal = reviewBody
+    console.log(prevReview, currReview, "REVS")
+    console.log(reviewBody, "REVIEW")
+    console.log("changed")
+
+
+
+}, [reviewBody, stars])
     // console.log(reviewBody, stars, "reviews")
 
 
+    const updateBody = (e)=>{
 
+        setReviewBody(e.target.value)
+        console.log(reviewBody, "REVIEWBODY")
+        // bodVal = reviewBody
+
+    }
+    const updateStars = (e)=>{
+
+        setStars(e.target.value)
+        console.log(stars, "STARS")
+        // starVal = stars
+
+
+    }
     const onClick = ()=>{
         console.log("COMING IN")
     }
@@ -44,24 +100,39 @@ useEffect(()=>{
             stars
         }
 
-            if(currReview){
+            if(Object.keys(currReview).length){
                 // setStars(currReview.stars)
                 // setReviewBody(currReview.review_body)
                 const editReview = {
                     reviewBody: reviewBody,
                     stars
                 }
-                res = await dispatch(thunkEditReview(editReview, currReview?.id));
+                const data = await dispatch(thunkEditReview(editReview, currReview?.id));
 
+                console.log(data?.review, "res")
 
-                    setStars(editReview.stars)
-                    setReviewBody(editReview.reviewBody)
+                    setStars(data?.review.stars)
+                    setReviewBody(data?.review.review_body)
                     setCurrReview( {
                         id: currReview?.id,
-                        review_body: newReview?.reviewBody,
-                        stars
+                        review_body: data?.review?.review_body,
+                        stars: data?.review?.stars
                     })
+                    review = {
+                        id: currReview?.id,
+                        review_body: data?.review?.review_body,
+                        stars: data?.review?.stars
+                    }
+                    prevReview ={
+                        id: currReview?.id,
+                        review_body: data?.review?.review_body,
+                        stars: data?.review?.stars
+                    }
+                    console.log(prevReview, "PREV")
 
+                    history.push("/dashboard/1")
+                    // closeModal()
+                    console.log(history, "HISTORY")
                 }
                 else {
                 console.log(currReview, "CURR REVIEW")
@@ -82,6 +153,16 @@ useEffect(()=>{
                     review_body: reviewBody,
                     stars
                 })
+                review = {
+                    id: currReview?.id,
+                    review_body: data.review?.review_body,
+                    stars: data.review?.stars
+                }
+                prevReview = {
+                    id: currReview?.id,
+                    review_body: data.review?.review_body,
+                    stars: data.review?.stars
+                }
 
             }
 
@@ -108,8 +189,9 @@ useEffect(()=>{
                 <textarea
                     type='textarea'
                     name='review'
-                    onChange={(e) => setReviewBody(e.target.value)}
+                    onChange={updateBody}
                     value={reviewBody}
+                    id="body"
                 ></textarea>
             </div>
             <div>
@@ -117,8 +199,9 @@ useEffect(()=>{
                 <input
                     type='number'
                     name='stars'
-                    onChange={(e) => setStars(e.target.value)}
+                    onChange={updateStars}
                     value={stars}
+                    id="stars"
                 ></input>
             </div>
             <button type='submit'>{submitText}</button>

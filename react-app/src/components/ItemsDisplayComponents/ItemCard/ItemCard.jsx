@@ -10,7 +10,7 @@ import Buttons from '../../Buttons'
 import './ItemCard.css'
 const { LikeButton } = Buttons;
 
-const ItemCard = ({ item }) => {
+const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
     // !@#$ need to dispatch an update to create an item like as well
     const clickHandler = (e) => {
@@ -20,28 +20,24 @@ const ItemCard = ({ item }) => {
     if (!item) return null
 
     return (
-        <div className="item-card-container">
+        <div className={classProp}>
             <img onClick={clickHandler} src={item.preview_url} alt="a product image" className="spot-card-img" />
             <div className="item-info-container">
                 <div className='name-size-container'>
                     <span className='listing-name'>
                         {item.name}
                     </span>
-                    <br />
                     <span className='listing-size'>
                         {item.size}
                     </span>
                 </div>
-                <br />
                 <span className='listing-description'>
                     {item.description}
                 </span>
-                <br />
                 <div className='price-like-container'>
                     <span className='listing-price'>
                         ${item.price}
                     </span>
-                    <br />
                     <span className='listing-liked'>
                         {/* !@#$ should be item.liked once we finish route to create liked */}
                         {
@@ -50,7 +46,6 @@ const ItemCard = ({ item }) => {
                             <LikeButton itemId={item.id} liked ={item.liked}/>
                         }
                     </span>
-                    <br />
                 </div>
             </div>
         </div>

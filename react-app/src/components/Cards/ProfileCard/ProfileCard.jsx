@@ -8,6 +8,7 @@ const ProfileCard = () => {
     const user = useSelector(state => state.session.user);
     const reviews = useSelector(state => state?.reviews?.allReviews);
 console.log('user', user)
+console.log("REVIEWS ===>", reviews);
 
     const avg_star_rating = () => {
         if (reviews.avg_star_rating === 5) return "★★★★★";

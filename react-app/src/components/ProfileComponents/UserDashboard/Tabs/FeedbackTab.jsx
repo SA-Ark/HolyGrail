@@ -6,6 +6,7 @@ import { thunkLoadCurrReviews } from '../../../../store/reviews';
 import { thunkLoadReviews } from '../../../../store/reviews';
 import { thunkLoadItems } from '../../../../store/items';
 import { deNormalize, getUserItems, getUserReviews } from '../../../../store/utils';
+import './FeedbackTab.css';
 
 
 
@@ -15,11 +16,11 @@ const FeedbackTab = ({ reviews }) => {
     console.log('REVIEW --->', reviews)
 
     const avg_star_rating = () => {
-        if (reviews.avg_star_rating === 5) return "⭐️⭐️⭐️⭐️⭐️";
-        if (reviews.avg_star_rating === 4) return "⭐️⭐️⭐️⭐️";
-        if (reviews.avg_star_rating === 3) return "⭐️⭐️⭐️";
-        if (reviews.avg_star_rating === 2) return "⭐️⭐️";
-        else return "⭐️";
+        if (reviews.avg_star_rating > 4.5) return "★★★★★";
+        if (reviews.avg_star_rating > 3.5) return "★★★★";
+        if (reviews.avg_star_rating > 2.5) return "★★★";
+        if (reviews.avg_star_rating > 1.5) return "★★";
+        else return "★";
     }
 
     useEffect(() => {
@@ -28,22 +29,14 @@ const FeedbackTab = ({ reviews }) => {
 
     return (
         <div className="feedback-container">
-            <h2>Hello From feedback tab</h2>
             <div className="feedback-header">
                 <h3>Seller Score</h3>
                 <span className="avg-stars">
-                    {/* Put average total star rating here */}
                     {avg_star_rating()}
                 </span>
-                <br />
                 <span className="review-count">
-                    {/* Put total num reviews here */}
                     {reviews.num_reviews} Feedback
                 </span>
-
-                {/* <span className="badges">
-                    Put badges here
-                </span> */}
             </div>
             {
                 reviews?.reviews?.length

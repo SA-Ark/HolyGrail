@@ -99,7 +99,7 @@ const MainListingsPage = () => {
             <div className="items-display-container">
                 {
                     items.length
-                        ? items.map(item => <ItemCard item={item} key={item.id} />)
+                        ? items.map(item => <ItemCard classProp="home-item-card" item={item} key={item.id} />)
                         : null
                 }
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
-import { thunkDeleteReview, thunkLoadSingleReview } from '../../store/reviews';
+import { thunkDeleteReview, thunkLoadCurrReviews, thunkLoadSingleReview } from '../../store/reviews';
 
 const DeleteReviewButton = ({reviewId, revBod, star, setRev, setText}) => {
     const dispatch = useDispatch()
@@ -40,11 +40,14 @@ const DeleteReviewButton = ({reviewId, revBod, star, setRev, setText}) => {
 
 
         }
+        // await dispatch(thunkLoadCurrReviews(userId))
+        // history.push(`/dashboard/${userId}`)
     }
 
     return (
         <>
-            <button type='button' onClick={deleteItem}>Delete</button>
+
+            <button type='button' onClick={deleteItem} >Delete</button>
         </>
     )
 };

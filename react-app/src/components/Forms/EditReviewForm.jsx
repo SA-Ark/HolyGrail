@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import { thunkCreateReview, thunkEditReview, thunkLoadCurrReviews, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
-const { DeleteReviewButton } = Buttons;
+import { useModal } from '../../context/Modal';
+const { DeleteReviewButton, ReviewButton } = Buttons;
 
-const EditReviewForm = ({review, itemId}) => {
+
+const EditReviewForm = ({ review, itemId }) => {
     const dispatch = useDispatch();
-    const stateReview = useSelector(state=>state.reviews?.singleReview)
+    const stateReview = useSelector(state => state.reviews?.singleReview)
     const [reviewBody, setReviewBody] = useState(review?.review_body);
     const [stars, setStars] = useState(review?.stars);
     const [errors, setErrors] = useState([]);
     let [currReview, setCurrReview] = useState(review)
     // const [deleted, setDeleted] = useState(false)
-    const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback": "Leave Feedback")
+    const [submitText, setSubmitText] = useState(review?.id ? "Edit Feedback" : "Leave Feedback")
     // console.log(stateReview, stateReview?.review_body, stateReview?.stars, "STATE")
+	const sessionUser = useSelector(state => state.session.user);
+    const { closeModal } = useModal()
+    useEffect(() => {
+        if (!stateReview?.id) {
 
-useEffect(()=>{
-    if (!stateReview?.id){
-
-        // setReviewBody("")
-        // setStars(stateReview?.stars)
-    }
-}, [review, stateReview])
+            // setReviewBody("")
+            // setStars(stateReview?.stars)
+        }
+    }, [review, stateReview])
     // console.log(reviewBody, stars, "reviews")
 
 
 
-    const onClick = ()=>{
+    const onClick = () => {
         console.log("COMING IN")
     }
     const onSubmit = async (e) => {
@@ -44,55 +47,49 @@ useEffect(()=>{
             stars
         }
 
-            if(currReview){
-                setStars(currReview.stars)
-                setReviewBody(currReview.review_body)
-                const editReview = {
-                    reviewBody: currReview.review_body,
-                    stars: currReview.stars
-                }
-                res = await dispatch(thunkEditReview(editReview, currReview?.id));
-
-
-                    setStars(editReview.stars)
-                    setReviewBody(editReview.reviewBody)
-                    setCurrReview( {
-                        id: currReview?.id,
-                        review_body: newReview?.reviewBody,
-                        stars
-                    })
-
-                }
-                else {
-                console.log(currReview, "CURR REVIEW")
-               const data = await dispatch(thunkCreateReview(newReview, itemId))
-                console.log(data, "DATA")
-
-                // if (res?.ok){
-                //     const data = await res?.json()
-
-                //     console.log(data, "CREATE DATA")
-                // }
-                console.log(stateReview)
-                setSubmitText("Edit Feedback")
-                setStars(data?.stars)
-                setReviewBody(data?.review_body)
-                setCurrReview( {
-                    id: data?.id,
-                    review_body: reviewBody,
-                    stars
-                })
-
+        if (currReview) {
+            // setStars(currReview.stars)
+            // setReviewBody(currReview.review_body)
+            const editReview = {
+                reviewBody: reviewBody,
+                stars
             }
+            res = await dispatch(thunkEditReview(editReview, currReview?.id));
+            setStars(editReview.stars)
+            setReviewBody(editReview.reviewBody)
+            setCurrReview({
+                id: currReview?.id,
+                review_body: newReview?.reviewBody,
+                stars
+            })
 
+        }
+        else {
+            console.log(currReview, "CURR REVIEW")
+            const data = await dispatch(thunkCreateReview(newReview, itemId))
+            console.log(data, "DATA")
 
+            // if (res?.ok){
+            //     const data = await res?.json()
 
-
+            //     console.log(data, "CREATE DATA")
+            // }
+            console.log(stateReview)
+            setSubmitText("Edit Feedback")
+            setStars(data?.stars)
+            setReviewBody(data?.review_body)
+            setCurrReview({
+                id: data?.id,
+                review_body: reviewBody,
+                stars
+            })
+        }
         if (res?.ok) {
             const data = await res.json();
             console.log(data, "THIS DATA")
             if (data && data.errors) setErrors(data.errors)
         }
+        dispatch(thunkLoadCurrReviews(sessionUser.id))
     }
 
 
@@ -121,8 +118,10 @@ useEffect(()=>{
                     value={stars}
                 ></input>
             </div>
+
             <button type='submit'>{submitText}</button>
-            <DeleteReviewButton setText={setSubmitText} setRev={setCurrReview} revBod={setReviewBody} star={setStars} reviewId={review?.id}/>
+            {/* <ReviewButton submitText={setSubmitText(submitText)}/> */}
+            <DeleteReviewButton setText={setSubmitText} setRev={setCurrReview} revBod={setReviewBody} star={setStars} reviewId={review?.id} />
         </form>
     )
 }

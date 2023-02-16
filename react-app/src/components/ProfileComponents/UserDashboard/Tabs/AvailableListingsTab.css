@@ -1,0 +1,28 @@
+.listings-tab-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.listings-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 5%;
+    margin-left: 20px;
+}
+
+.listings-container .listing-liked {
+    justify-self: flex-end;
+}
+
+.listings-container img {
+    width: 100%;
+}
+
+.item-card-listings {
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+}

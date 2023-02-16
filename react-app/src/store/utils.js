@@ -18,31 +18,16 @@ export const deNormalize = (object) => {
     return array;
 }
 
-export const dateToParts = (string) => {
-
-    const months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'Septembr',
-        'November',
-        'December'
-    ];
-
-    const stringArray = string.split('-');
-    stringArray[2] = stringArray[2].split('T')[0];
-    stringArray[1] = months[+stringArray[1]];
-    const year = stringArray[0];
-    const month = stringArray[1];
-    const day = stringArray[2];
-
-    return [day, month, year];
+// Wed, 15 Feb 2023 00:00:00 GMT
+export const dbDateToMonthYear = (date) => {
+    date = date.split(' ');
+    return "" + date[2] + " " + date[3]
 };
+
+export const dayMonthYear = (date) => {
+    date = date.split(' ');
+    return "" + date[2] + " " + date[1] + ", " + date[3]
+}
 
 export const switchCarousel = (images, nonSequitur=false) => {
 

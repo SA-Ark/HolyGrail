@@ -15,7 +15,7 @@ const FavoritesTab = ({favoriteItems}) => {
                 {
                     favoritesList?.length
                         ? favoritesList.map((favoriteItem) => {
-                            return <ItemCard classProp="fav-item-card container" item={favoriteItem.item} key={favoriteItem.item.id}/>
+                            return <ItemCard classProp="fav-item-card" item={favoriteItem.item} key={favoriteItem.item.id}/>
                         })
                         : null
                 }

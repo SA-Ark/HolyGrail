@@ -23,7 +23,7 @@ const ReviewCard = ({ review }) => {
             <div className="review-card-container">
                 <div className="review-body">
                     <span className="review-date">
-                        {review.review.created_at}
+                        {utils.dayMonthYear(review.review.created_at)}
                     </span>
                     <span className="stars">
                         {stars()}

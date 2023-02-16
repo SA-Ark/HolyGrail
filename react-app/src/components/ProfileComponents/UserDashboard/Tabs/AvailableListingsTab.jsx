@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MultiSelect from "multiselect-react-dropdown";
 import ItemCard from '../../../ItemsDisplayComponents/ItemCard';
 import { deNormalize, getUserItems } from "../../../../store/utils";
+import './AvailableListingsTab.css';
 
 const AvailableListingsTab = ({ items }) => {
     const {userId} = useParams()

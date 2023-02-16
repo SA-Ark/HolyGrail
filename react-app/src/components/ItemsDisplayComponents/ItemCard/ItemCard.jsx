@@ -38,9 +38,6 @@ const ItemCard = ({ item, classProp }) => {
                     <span className='listing-price'>
                         ${item.price}
                     </span>
-                    <br />
-                    <br />
-                    <br />
                     <span className='listing-liked'>
                         {/* !@#$ should be item.liked once we finish route to create liked */}
                         {
@@ -49,7 +46,6 @@ const ItemCard = ({ item, classProp }) => {
                             <LikeButton itemId={item.id} liked ={item.liked}/>
                         }
                     </span>
-                    <br />
                 </div>
             </div>
         </div>

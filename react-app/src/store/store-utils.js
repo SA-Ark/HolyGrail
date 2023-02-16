@@ -1,3 +1,4 @@
-export const spreadPurchases = (purchases) => {
+export const spreadPayments = (purchases) => {
+    console.log(purchases, "PURCHASES!!!!!")
 
 }

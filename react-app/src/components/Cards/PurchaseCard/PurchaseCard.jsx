@@ -6,7 +6,7 @@ const PurchaseCard = ({ purchase }) => {
     if (purchase?.order?.review_id) {
         reviewId = purchase.order.review_id
     }
-    console.log(purchase, "purchase")
+
     return (
 
         <div className="purchase-container">

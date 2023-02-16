@@ -1,3 +1,5 @@
+import { spreadPayments } from "./store-utils"
+
 const CREATE_ORDER = 'CREATE_ORDER'
 const LOAD_ORDERS = 'LOAD_ORDERS'
 
@@ -37,10 +39,7 @@ export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) =>
         card_country, card_zip, shipping_address
 
     } = orderAttributes
-    console.log('order attributes --->',
-        order_total, card_number, expiry, cvc,
-        card_country, card_zip, shipping_address
-    )
+
     const res = await fetch(`/api/payments/${itemId}`, {
         method: 'POST',
         headers: {
@@ -71,9 +70,11 @@ const paymentsReducer = (state = initialState, action) => {
         case LOAD_ORDERS: {
 
             const newState = { ...state }
+            spreadPayments(action.payload)
             newState.allOrders = { ...action.payload }
             return newState
         }
+
         case CREATE_ORDER: {
 
             const newState = { ...state }

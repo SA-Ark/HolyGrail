@@ -21,7 +21,6 @@ const SingleItemPage = () => {
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id))
   }, [dispatch])
-  console.log(item, 'item in single item page')
 
   return (
     <div className="single-item-page-container">

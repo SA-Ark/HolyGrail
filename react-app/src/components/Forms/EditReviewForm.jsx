@@ -66,16 +66,13 @@ useEffect(()=>{
 
                 }
                 else {
-                console.log(currReview, "CURR REVIEW")
                const data = await dispatch(thunkCreateReview(newReview, itemId))
-                console.log(data, "DATA")
 
                 // if (res?.ok){
                 //     const data = await res?.json()
 
                 //     console.log(data, "CREATE DATA")
                 // }
-                console.log(stateReview)
                 setSubmitText("Edit Feedback")
                 setStars(data?.stars)
                 setReviewBody(data?.review_body)
@@ -95,7 +92,7 @@ useEffect(()=>{
             console.log(data, "THIS DATA")
             if (data && data.errors) setErrors(data.errors)
         }
-        await dispatch(thunkLoadCurrReviews(user?.id))
+        // await dispatch(thunkLoadCurrReviews(user?.id))
     }
 
 

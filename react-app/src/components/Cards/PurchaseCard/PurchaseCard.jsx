@@ -1,12 +1,17 @@
 import EditReviewForm from "../../Forms/EditReviewForm";
 import EditReviewModal from "../../EditReviewModal";
+import CreateReviewModal from "../../CreateReviewModal";
+import { useState } from "react";
 
 const PurchaseCard = ({purchase}) => {
+    let [prevReview, setPrevReview] = useState(purchase?.order?.review)
     let reviewId = null
     if (purchase?.order?.review_id){
         reviewId = purchase.order.review_id
     }
     console.log(purchase, "purchase")
+    console.log(prevReview, "REV FROM PURCH")
+    // setPrevReview(purchase?.order?.review)
     return (
 
         <div className="purchase-container">
@@ -43,7 +48,15 @@ const PurchaseCard = ({purchase}) => {
                 {/* !@#$ Add conditional rendering for leave feedback or edit/delete feedback
                     depending on if feedback has already been left  */}
                     {/* <EditReviewForm review={purchase.order.review} itemId={purchase.item.id}/> */}
-                    <EditReviewModal review={purchase.order.review} itemId={purchase.item.id}/>
+
+                    {prevReview?.id &&
+
+                    <EditReviewModal prevReview={prevReview} setPrevReview={setPrevReview}/>
+                    }
+                    {
+                     !prevReview?.id &&
+                    <CreateReviewModal prevReview={prevReview} setPrevReview={setPrevReview} itemId={purchase.item.id}/>
+                    }
             </div>
         </div>
 

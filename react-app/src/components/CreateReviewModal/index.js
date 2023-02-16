@@ -1,9 +1,12 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 import ItemCreateModal from '../Forms/ItemCreateModal';
-import ReviewForm from '../Forms/ReviewForm';
+import CreateReviewForm from '../Forms/CreateReviewForm';
 
-function CreateModalButton({
+function CreateReviewModal({
+  prevReview,
+  setPrevReview,
+  itemId,
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
@@ -11,7 +14,7 @@ function CreateModalButton({
 
   const onReviewClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<ReviewForm />);
+    setModalContent(<CreateReviewForm prevReview={prevReview} setPrevReview={setPrevReview} itemId={itemId} />);
     if (onButtonClick) onButtonClick();
   };
 
@@ -22,4 +25,4 @@ function CreateModalButton({
   );
 }
 
-export default CreateModalButton;
+export default CreateReviewModal;

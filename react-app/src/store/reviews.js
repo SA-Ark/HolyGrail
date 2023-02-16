@@ -106,7 +106,8 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
     if (res.ok) {
         const data = await res.json();
         dispatch(actionCreateReview(data))
-        return data
+        console.log("CREATED REVIEW", data.review)
+        return data.review
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -117,8 +118,9 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
 
 
 export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) => {
+    console.log("ENTER")
     const {reviewBody, stars} = reviewAttributes
-
+    console.log(reviewBody, stars)
     const res = await fetch(`/api/reviews/edit/${reviewId}`, {
         method: 'PUT',
         headers: {
@@ -142,7 +144,7 @@ export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) 
 }
 
 export const thunkDeleteReview = (reviewId) => async (dispatch) => {
-    console.log("Enter")
+
     const res = await fetch(`/api/reviews/delete/${reviewId}`, {
         method: 'DELETE',
         headers: {
@@ -150,14 +152,16 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
         }
     })
 
-    if (res.ok) {
+    if (res?.ok) {
 
         const data = await res.json();
-        console.log(data, "data")
+
         dispatch(actionDeleteReview(data))
+        return data
     }  else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
+
             return data;
         }
     }

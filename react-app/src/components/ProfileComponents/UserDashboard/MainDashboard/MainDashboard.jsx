@@ -28,7 +28,7 @@ const MainDashboard = () => {
 
     }, [dispatch, user]);
 
-    const rating = parseFloat(reviews.avg_star_rating).toFixed(1)
+    const rating = parseFloat(reviews?.avg_star_rating).toFixed(1)
 
     return (
         <>
@@ -40,8 +40,8 @@ const MainDashboard = () => {
                     <div className='prof-icon-container'>
                         <i className="fa-solid fa-circle-user"></i>
                         <div className='joined-in-container'>
-                            <div className='profile-username'>{user.username}</div>
-                            <span className='joined-on'>Joined on {user.created_at}</span>
+                            <div className='profile-username'>{user?.username}</div>
+                            <span className='joined-on'>Joined on {user?.created_at}</span>
                         </div>
                     </div>
                     <div className='stars-container'>
@@ -49,11 +49,11 @@ const MainDashboard = () => {
                             {!rating ? null : `★${rating}`}
                         </div>
                         <div className='total-reviews'>
-                            {reviews.num_reviews} {reviews.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
+                            {reviews?.num_reviews} {reviews?.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
                     </div>
                     <div className='transaction-container'>
                         <div className="profile-transactions-count">
-                            {!reviews.total_transactions ? 'No transactions' : reviews.total_transactions}
+                            {!reviews?.total_transactions ? 'No transactions' : reviews?.total_transactions}
                         </div>
                         <span className='transactions'>Transsactions</span>
                     </div>

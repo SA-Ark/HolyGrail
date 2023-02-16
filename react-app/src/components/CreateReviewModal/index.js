@@ -11,8 +11,6 @@ function CreateReviewModal({
   
 }) {
   const { setModalContent, setOnModalClose } = useModal();
-console.log('review',review)
-console.log('itemId', itemId)
   const onReviewClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(<CreateReviewForm prevReview={prevReview} setPrevReview={setPrevReview} itemId={itemId} />);

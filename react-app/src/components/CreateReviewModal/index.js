@@ -1,6 +1,7 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
 import CreateReviewForm from '../Forms/CreateReviewForm';
+import "./CreateReviewModal.css";
 
 function CreateReviewModal({
   prevReview,
@@ -19,7 +20,7 @@ function CreateReviewModal({
 
   return (
     <>
-      <button onClick={onReviewClick} className='sell-button'>Leave Feedback</button>
+      <button onClick={onReviewClick} className='feedback-button'>Leave Feedback</button>
     </>
   );
 }

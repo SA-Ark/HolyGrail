@@ -20,9 +20,6 @@ const PurchasesTab = ({purchases}) => {
                         })
                         : null
                 }
-
-
-
             </div>
         </div>
     )

@@ -18,7 +18,7 @@ function EditReviewModal({
 
   return (
     <>
-      <button onClick={onReviewClick} className='sell-button'>Edit Feedback</button>
+      <button onClick={onReviewClick} className='feedback-button'>Edit Feedback</button>
     </>
   );
 }

@@ -106,7 +106,7 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
                     id="stars"
                 ></input>
             </div>
-            <button type='submit'>Edit Feedback</button>
+            <button className="feedback-button" type='submit'>{"Edit Feedback"}</button>
             <DeleteReviewButton onDel={onDel} reviewId={prevReview?.id} />
         </form>
     )

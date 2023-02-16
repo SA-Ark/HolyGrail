@@ -89,8 +89,7 @@ return (
                 id="stars"
             ></input>
         </div>
-        <button type='submit'>Leave Review</button>
-
+        <button className="feedback-button" type='submit'>Leave Review</button>
     </form>
 )
 

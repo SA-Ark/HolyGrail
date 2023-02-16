@@ -3,16 +3,17 @@
 // Verify how liked is coming into component and make sure it is implemented properly
 
 // ------------------------------------------------------
-
 import {useState} from "react"
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
+import { truncateName } from "../../../store/utils";
 import './ItemCard.css'
 const { LikeButton } = Buttons;
 
 const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
     // !@#$ need to dispatch an update to create an item like as well
+    const newName = truncateName(item?.name);
     const clickHandler = (e) => {
         history.push(`/items/${item.id}`)
     }
@@ -25,7 +26,7 @@ const ItemCard = ({ item, classProp }) => {
             <div className="item-info-container">
                 <div className='name-size-container'>
                     <span className='listing-name'>
-                        {item.name}
+                        {newName}
                     </span>
                     <span className='listing-size'>
                         {item.size}

@@ -36,3 +36,7 @@
     font-weight: bold;
     text-decoration: underline;
 }
+
+.review-card-stars-container {
+    color: green;
+}

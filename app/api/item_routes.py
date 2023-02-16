@@ -17,7 +17,7 @@ def logged_in_items():
     Adds if the logged in user likes the item if curr user is logged in.
     """
     items = Item.query.all()
-    items_normalized = [item.to_dict() for item in items]
+    items_normalized = [item.to_dict() for item in items if item.sold == False]
 
     if current_user:
         for nitem in items_normalized:
@@ -74,7 +74,7 @@ def items():
     Has number of likes 'num_likes' for the item.
     """
     items = Item.query.all()
-    items_normalized = [item.to_dict() for item in items]
+    items_normalized = [item.to_dict() for item in items if item.sold == False]
     return {"items": items_normalized}, 200
 
 

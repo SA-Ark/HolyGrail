@@ -1,3 +1,5 @@
+import { spreadPayments } from "./store-utils"
+
 const CREATE_ORDER = 'CREATE_ORDER'
 const LOAD_ORDERS = 'LOAD_ORDERS'
 
@@ -71,13 +73,16 @@ const paymentsReducer = (state = initialState, action) => {
         case LOAD_ORDERS: {
 
             const newState = { ...state }
-            newState.allOrders = { ...action.payload }
+
+            newState.allOrders = spreadPayments(action.payload)
+            console.log(newState, "PAYMENT STATE")
             return newState
         }
         case CREATE_ORDER: {
 
             const newState = { ...state }
-            newState.singleOrder = action.payload
+            newState.singleOrder = {...action.payload}
+
             return newState
         }
         default:

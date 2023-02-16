@@ -119,9 +119,10 @@ const EditReviewForm = ({ review, itemId }) => {
                 ></input>
             </div>
 
-            <button type='submit'>{submitText}</button>
-            {/* <ReviewButton submitText={setSubmitText(submitText)}/> */}
-            <DeleteReviewButton setText={setSubmitText} setRev={setCurrReview} revBod={setReviewBody} star={setStars} reviewId={review?.id} />
+            {/* <button type='submit'>{submitText}</button> */}
+            <ReviewButton stars={stars} reviewBody={reviewBody} setRev={setCurrReview} setReviewBody={setReviewBody} 
+            star={setStars} onSubmit={onSubmit} reviewId={review?.id} closeModal={closeModal} setSubmitText={setSubmitText} submitText={submitText}/>
+            <DeleteReviewButton setText={setSubmitText} setRev={setCurrReview} revBod={setReviewBody} star={setStars} />
         </form>
     )
 }

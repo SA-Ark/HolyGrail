@@ -1,4 +1,5 @@
 export const normalize = (array) => {
+    //pure function
     if (!array) return null
     const object = {};
     for (let ele of array) {
@@ -8,6 +9,7 @@ export const normalize = (array) => {
 }
 
 export const deNormalize = (object) => {
+    //pure fucntion
     if (!object) return null
     const array = [];
 
@@ -62,32 +64,8 @@ export const getUserItems = (items, userId) => {
     return userItems
 }
 
-export const getUserReviews = (reviews, userId) => {
-    let userReviews = [];
-    for (let review in reviews) {
-        if (review.seller_id === userId )
-        userReviews.push(review)
-    }
-    return userReviews
-}
 
-export const getUserFavoriteItems = (favorites, items) => {
-    const favoriteIds = []
-    const favoriteItems = []
-    if (!Object.values(items).length || !Object.values(favorites).length) return null
-    for (let favorite of deNormalize(favorites)) {
-        favoriteIds.push(favorite.item_id)
-    }
-
-    console.log(items, "ITEMSSSSSS")
-    console.log(items, favoriteIds, favorites, "itemsidsfavorites")
-    for (let id of favoriteIds) {
-        console.log(items[id])
-        favoriteItems.push(items[id])
-    }
-    return favoriteItems
-}
 
 export const switchTab = (tab) => {
-    console.log(tab)
+    return null
 }

@@ -16,7 +16,7 @@ function CreateModalButton({
 
   return (
     <>
-    <button onClick={onSellClick} className='nav-sell-button'>SELL</button>
+    <button onClick={onSellClick} className='sell-button'>SELL</button>
     </>
   );
 }

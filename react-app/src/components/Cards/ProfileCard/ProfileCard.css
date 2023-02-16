@@ -1,0 +1,22 @@
+.prof-card-container {
+    padding-top: 13px;
+    line-height: 1.4;
+}
+
+.prof-card-user {
+    font-weight: 200;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.prof-card-rating {
+    padding-top: 2px;
+    font-size: 14px;
+}
+
+.prof-card-transaction, .prof-card-items {
+    padding-top: 2px;
+    font-weight: 200;
+    font-size: 14px;
+    /* line-height: 1.5; */
+}

@@ -10,21 +10,14 @@ import MainListingsPage from "./components/ItemsDisplayComponents/MainListingsPa
 import Forms from './components/Forms'
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
-import PublicProfile from './components/ProfileComponents/PublicProfile'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
 import ItemCreateModal from "./components/Forms/ItemCreateModal";
 import EditReviewForm from "./components/Forms/EditReviewForm";
 
-//Temporary components imports for testing go here:
-import AvailableListings from "./components/ProfileComponents/PublicProfile/AvailableListings";
-import Tabs from "./components/ProfileComponents/UserDashboard/Tabs";
-const { AddressesTab, MessagesTab, NotificationsTab, PurchasesTab, EditProfileTab, SizesTab } = Tabs
 
-// End of temporary components
-
-const { DeleteButton } = Buttons
-const { ItemEditForm, ReviewForm, EditProfileForm } = Forms
+const { DeleteItemButton } = Buttons
+const { ItemEditForm, ReviewForm, EditProfileForm, PurchaseForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -38,9 +31,8 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/component-test/:userId">
+          <Route path='/orderformtest'>
             <h1>Component Tester</h1>
-            <MainDashboard/>
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
             {/* <h2>_____________________________________</h2> */}
@@ -55,7 +47,7 @@ function App() {
             <ItemEditForm />
           </ProtectedRoute>
           <ProtectedRoute path='/items/delete/:itemId'>
-            <DeleteButton />
+            <DeleteItemButton />
           </ProtectedRoute>
           <ProtectedRoute path='/items/current' exact={true} >
             <MainListingsPage />
@@ -69,18 +61,9 @@ function App() {
           <Route path='/items' exact={true} >
             <MainListingsPage />
           </Route>
-
-          <Route path='/users/profile/:userId'>
-            <PublicProfile />
-          </Route>
-          {/* !@#$ misc need to add conditional logic somewhere to only render if
-          the dashboard belongs to current user  */}
           <Route path="/dashboard/:userId">
             <MainDashboard/>
-            {/* <PurchasesTab/> */}
           </Route>
-          {/* <Route path='/reviews/:userId'>
-          </Route> */}
           <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
             <EditReviewForm />
           </ProtectedRoute>

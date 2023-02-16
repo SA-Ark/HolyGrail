@@ -17,11 +17,14 @@ def get_favorites():
     favorites_normalized = []
     for favorite in favorites:
         item = Item.query.get(favorite.item_id).to_dict()
-        normalized_fav = favorite.to_dict()
-        normalized_fav["seller_id"] = item["seller_id"]
-        normalized_fav["preview_url"] = item["preview_url"]
-        normalized_fav["item_name"] = item["name"]
-        normalized_fav["item_description"] = item["description"]
+        liked = Like.query.filter(Like.item_id == item["id"])
+        normalized_fav = {"favorite": favorite.to_dict()}
+        normalized_fav["item"] = item
+        if liked:
+            normalized_fav["item"]["liked"] = True
+        else:
+            normalized_fav["item"]["liked"] = False
+
         favorites_normalized.append(normalized_fav)
     return favorites_normalized, 200
 
@@ -40,13 +43,16 @@ def create_favorite(item_id):
             user_id = current_user.id,
             item_id = item_id,
         )
+        # print(favorite.to_dict(), "<--- favorite!!!!!!")
         db.session.add(favorite)
         db.session.commit()
-        normalized_fav = favorite.to_dict()
-        normalized_fav["seller_id"] = item["seller_id"]
-        normalized_fav["preview_url"] = item["preview_url"]
-        normalized_fav["item_name"] = item["name"]
-        normalized_fav["item_description"] = item["description"]
+        # normalized_fav = favorite.to_dict()
+        # normalized_fav["seller_id"] = item["seller_id"]
+        # normalized_fav["preview_url"] = item["preview_url"]
+        # normalized_fav["item_name"] = item["name"]
+        # normalized_fav["item_description"] = item["description"]
+        normalized_fav = {"favorite": favorite.to_dict()}
+        normalized_fav["item"] = item.to_dict()
 
         return normalized_fav, 200
     else:
@@ -61,14 +67,17 @@ def delete_favorite(item_id):
     additional attributes.
     """
     likes = Like.query.filter(Like.item_id == item_id).all()
+    item = Item.query.get(item_id).to_dict()
     liked = None
     for like in likes:
         if like.user_id == current_user.id:
             liked = like
     if liked:
-        liked_norm = liked.to_dict()
+        normalized_fav = {"favorite": liked.to_dict()}
+        normalized_fav["item"] = item
         db.session.delete(liked)
         db.session.commit()
-        return liked_norm, 200
+
+        return normalized_fav, 200
     else:
         return {"errors": "This item is not favorited"}

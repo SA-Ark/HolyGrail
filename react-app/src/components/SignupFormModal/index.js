@@ -267,36 +267,58 @@ function SignupFormModal() {
 							</label>
 
 							<label className="login-signup-label">
-								<input
+								<select
 									className="signup-input"
 									type='text'
 									placeholder="Shirt Size"
 									onChange={updateShirtSize}
 									value={shirtSize}
-								></input>
+									required
+								>
+									<option value=''>Shirt Size</option>
+									<option>XS</option>
+									<option>S</option>
+									<option>M</option>
+									<option>L</option>
+									<option>XL</option>
+								</select>
 
 							</label>
 							<label className="login-signup-label">
-								<input
+								<select
 									className="signup-input"
 									type='text'
 									placeholder="Pant Size"
 									onChange={updatePantSize}
 									value={pantSize}
-								></input>
+								>
+									<option value=''>Pant Size</option>
+									<option>XS</option>
+									<option>S</option>
+									<option>M</option>
+									<option>L</option>
+									<option>XL</option>
+								</select>
 
 							</label>
 							<label className="login-signup-label">
-								<input
+								<select
 									className="signup-input"
 									type='text'
 									placeholder="Shoe Size"
 									onChange={updateShoeSize}
 									value={shoeSize}
-								></input>
+								>
+									<option value=''>Shoe Size</option>
+									<option>XS</option>
+									<option>S</option>
+									<option>M</option>
+									<option>L</option>
+									<option>XL</option>
+								</select>
 							</label>
 						</div>
-						<button className="login-signup-button"  type='submit'>Sign Up</button>
+						<button className="login-signup-button" type='submit'>Sign Up</button>
 					</form>
 				</div>
 			</div>

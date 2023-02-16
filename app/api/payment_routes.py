@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Item, Like, User, ItemImage, Order, db
+from app.models import Item, Like, Review, ItemImage, Order, db
 from flask_login import login_required, login_user, current_user
 from app.forms import PaymentForm
 from datetime import datetime
@@ -37,12 +37,15 @@ def purchase(item_id):
             item.sold = True
             db.session.add(order)
             db.session.commit()
-            normalized_order = order.to_dict()
-            normalized_order["preview_url"] = item["preview_url"]
-            normalized_order["item_name"] = item["name"]
-            normalized_order["item_description"] = item["description"]
+            # normalized_order = order.to_dict()
+            # normalized_order["preview_url"] = item["preview_url"]
+            # normalized_order["item_name"] = item["name"]
+            # normalized_order["item_description"] = item["description"]
+            # normalized_order["item_size"] = item["size"]
+            normalized_ord = {"order": order.to_dict()}
+            normalized_ord["item"] = item.to_dict()
 
-            return normalized_order, 200
+            return normalized_ord, 200
         else:
             return form.errors, 400
     else:
@@ -59,12 +62,23 @@ def get_purchases():
     purchases = Order.query.filter(Order.buyer_id == current_user.id)
     purchases_normalized = []
     for purchase in purchases:
+
         purchase = purchase.to_dict()
         item = Item.query.get(purchase['item_id']).to_dict()
-        purchase["preview_url"] = item["preview_url"]
-        purchase["item_name"] = item["name"]
-        purchase["item_description"] = item["description"]
-        purchases_normalized.append(purchase)
+        review = Review.query.filter(purchase["item_id"] == Review.item_id).first()
+        if review:
+            purchase["review"] = review.to_dict()
+        else:
+            purchase["review"] = None
+
+
+        # purchase["preview_url"] = item["preview_url"]
+        # purchase["item_name"] = item["name"]
+        # purchase["item_description"] = item["description"]
+        # purchase["item_size"] = item["size"]
+        normalized_ord = {"order": purchase}
+        normalized_ord["item"] = item
+        purchases_normalized.append(normalized_ord)
     return purchases_normalized, 200
 
 

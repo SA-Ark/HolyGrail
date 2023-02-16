@@ -1,18 +1,29 @@
-.item-card-container {}
+.item-card-container {
+    margin-bottom: 20px;
+    /* border: 1px solid black; */
+}
 
 .spot-card-img {
     object-fit: cover;
     width: 11.6rem;
     height: 14.8rem;
+    align-items: center;
+    /* border: 1px solid black; */
 }
 
 .item-info-container {
     display: flex;
     flex-direction: column;
+    /* border: 1px solid black; */
 }
 
 .name-size-container {
-    padding-bottom: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /* border: 1px solid black; */
 }
 
 .listing-name {
@@ -21,6 +32,8 @@
 }
 
 .listing-size {
+    display: flex;
+    flex-direction: column;
     font-weight: bold;
     font-size: 14px;
 }
@@ -28,21 +41,21 @@
 .listing-description {
     font-size: 14px;
     font-weight: 200;
-    padding-bottom: 6px;
+    margin-bottom: 0px;
+    /* border: 1px solid black; */
 }
 
 .price-like-container {
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: row;
     justify-content: space-between;
+    margin-top: 0px;
+    width: 100%;
+    /* border: 1px solid black; */
 }
 
 .listing-price {
     font-family: "Video", monospace;
     font-weight: bold;
+    /* border: 1px solid black; */
 }
-
-.listing-liked {
-    color: black;
-}
-

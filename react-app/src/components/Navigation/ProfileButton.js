@@ -5,11 +5,12 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './ProfileButton.css'
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const ulRef = useRef();
+  const history = useHistory()
 
   const sessionUser = useSelector(state => state.session.user);
 
@@ -37,7 +38,9 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push('/')
   };
+
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
@@ -46,16 +49,17 @@ function ProfileButton({ user }) {
     <>
       <div className="profile-wrapper">
         <div className="profile-container">
-          <button className="profile-button" onClick={openMenu}>
-            <i className="fas fa-user-circle" />
+          <button className="profile-button" onClick={openMenu} type="button">
+            <i className="fa-solid fa-user"></i>
           </button>
+
           <ul className={ulClassName} ref={ulRef}>
             {user ? (
               <>
                 <div className="dropdown-menu-container">
                   <div>
                     {sessionUser ?
-                      <NavLink className='dropdown-username' to={`users/profile/${sessionUser.id}`}>{user.username}</NavLink>
+                      <NavLink to={`/dashboard/${sessionUser.id}`} className='dropdown-username'>{user.username}</NavLink>
                       : null}
                   </div>
                   <div className="drop-down-border"></div>
@@ -68,7 +72,7 @@ function ProfileButton({ user }) {
 
                   <div className="drop-down-border"></div>
                   <div>
-                    <Link className='dropdown-logout' onClick={handleLogout}>Sign Out</Link>
+                    <button className='dropdown-logout' onClick={handleLogout}>Sign Out</button>
                   </div>
                 </div>
 

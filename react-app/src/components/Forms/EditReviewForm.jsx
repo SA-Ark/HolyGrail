@@ -1,46 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import { useParams, useHistory } from 'react-router-dom';
+import { useModal } from '../../context/Modal';
+import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import Buttons from '../Buttons';
+const { DeleteReviewButton } = Buttons;
 
-const EditReviewForm = () => {
+const EditReviewForm = ({ prevReview, setPrevReview}) => {
+    const { closeModal } = useModal()
     const dispatch = useDispatch();
-    const { reviewId } = useParams();
-
-    const oldReview = useSelector(state => state?.reviews?.singleReview?.review);
-    // console.log("OLD --->", oldReview);
-
-    const [review, setReview] = useState(oldReview?.review_body);
-    const [stars, setStars] = useState(oldReview?.stars);
+    const [reviewBody, setReviewBody] = useState("");
+    const [stars, setStars] = useState("");
     const [errors, setErrors] = useState([]);
+    const history = useHistory()
+    console.log(prevReview, "this one?")
 
-    useEffect(() => {
-        dispatch(thunkLoadSingleReview(reviewId))
-            setReview(oldReview?.review_body);
-            setStars(oldReview?.stars);
-            // console.log("XXXXXXXXX", stars, review)
-    }, [dispatch, reviewId])
+     const onDel = ()=>{
+        if (Object.keys(prevReview)){
 
+            setPrevReview({})
+        }
+        setReviewBody("")
+        setStars("")
+
+    }
+
+    useEffect(()=>{
+        setReviewBody(prevReview?.review_body)
+        setStars(prevReview?.stars)
+    }, [prevReview])
+
+    const updateBody = (e) => {
+
+        setReviewBody(e.target.value)
+        console.log(reviewBody, "REVIEWBODY")
+        // bodVal = reviewBody
+
+    }
+    const updateStars = (e) => {
+
+        setStars(e.target.value)
+        console.log(stars, "STARS")
+        // starVal = stars
+
+
+    }
+    console.log(prevReview)
+    console.log(reviewBody, stars, "BOD")
 
     const onSubmit = async (e) => {
-        const formErrors = [];
-        if (!review) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
         e.preventDefault();
+        const formErrors = [];
+        if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
+        if (!stars) formErrors.push('A star rating is required!');
         setErrors([formErrors])
 
-        const newReview = {
-            reviewBody: review,
-            stars
+            const editReview = {
+                reviewBody: reviewBody,
+                stars
+            }
+            const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
+
+            console.log(data?.review, "data edit rev")
+
+            setPrevReview({
+                id: prevReview?.id,
+                review_body: data?.review?.review_body,
+                stars: data?.review?.stars
+            })
+
+            console.log(prevReview, "PREV")
+
+            closeModal()
+            history.push("/dashboard/1")
+
         }
 
-        const res = await dispatch(thunkEditReview(newReview, reviewId));
 
-        if (res?.ok) {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors)
-        }
-    }
+
 
     return (
         <form className="edit-review-form" onSubmit={onSubmit}>
@@ -54,8 +91,9 @@ const EditReviewForm = () => {
                 <textarea
                     type='textarea'
                     name='review'
-                    onChange={(e) => setReview(e.target.value)}
-                    value={review}
+                    onChange={updateBody}
+                    value={reviewBody}
+                    id="body"
                 ></textarea>
             </div>
             <div>
@@ -63,11 +101,13 @@ const EditReviewForm = () => {
                 <input
                     type='number'
                     name='stars'
-                    onChange={(e) => setStars(e.target.value)}
+                    onChange={updateStars}
                     value={stars}
+                    id="stars"
                 ></input>
             </div>
-            <button type='submit'>Submit Review</button>
+            <button type='submit'>Edit Feedback</button>
+            <DeleteReviewButton onDel={onDel} reviewId={prevReview?.id} />
         </form>
     )
 }

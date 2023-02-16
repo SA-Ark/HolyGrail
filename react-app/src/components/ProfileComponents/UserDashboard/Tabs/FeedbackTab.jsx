@@ -1,0 +1,59 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import ReviewCard from '../../../Cards/ReviewCard';
+import { thunkLoadCurrReviews } from '../../../../store/reviews';
+import { thunkLoadReviews } from '../../../../store/reviews';
+import { thunkLoadItems } from '../../../../store/items';
+import { deNormalize, getUserItems, getUserReviews } from '../../../../store/utils';
+
+
+
+const FeedbackTab = ({ reviews }) => {
+    const dispatch = useDispatch();
+    const user = useSelector(state => state?.session?.user);
+    console.log('REVIEW --->', reviews)
+
+    const avg_star_rating = () => {
+        if (reviews.avg_star_rating === 5) return "⭐️⭐️⭐️⭐️⭐️";
+        if (reviews.avg_star_rating === 4) return "⭐️⭐️⭐️⭐️";
+        if (reviews.avg_star_rating === 3) return "⭐️⭐️⭐️";
+        if (reviews.avg_star_rating === 2) return "⭐️⭐️";
+        else return "⭐️";
+    }
+
+    useEffect(() => {
+        dispatch(thunkLoadCurrReviews(user.id));
+    }, [dispatch, user.id])
+
+    return (
+        <div className="feedback-container">
+            <h2>Hello From feedback tab</h2>
+            <div className="feedback-header">
+                <h3>Seller Score</h3>
+                <span className="avg-stars">
+                    {/* Put average total star rating here */}
+                    {avg_star_rating()}
+                </span>
+                <br />
+                <span className="review-count">
+                    {/* Put total num reviews here */}
+                    {reviews.num_reviews} Feedback
+                </span>
+
+                {/* <span className="badges">
+                    Put badges here
+                </span> */}
+            </div>
+            {
+                reviews?.reviews?.length
+                    ? reviews.reviews.map(review => {
+                        return <ReviewCard review={review} key={review.review.id} />
+                    })
+                    : null
+            }
+        </div>
+    )
+}
+
+export default FeedbackTab;

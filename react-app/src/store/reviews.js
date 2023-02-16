@@ -57,11 +57,9 @@ export const thunkLoadReviews = (userId) => async (dispatch) => {
         }
     })
     if (res.ok) {
-        console.log("RES IS OK")
         const data = await res.json();
         console.log(data, '<----review data')
         dispatch(actionLoadReviews(data))
-        console.log(data, "thunk review data")
     }
 }
 
@@ -95,7 +93,6 @@ export const thunkLoadSingleReview = (reviewId) => async (dispatch) => {
 export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) => {
     const {reviewBody, stars} = reviewAttributes
 
-    console.log(reviewBody, stars, "THUNK LOG")
     const res = await fetch(`/api/reviews/create/${itemId}`, {
         method: 'POST',
         headers: {
@@ -109,7 +106,8 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
     if (res.ok) {
         const data = await res.json();
         dispatch(actionCreateReview(data))
-        return data
+        console.log("CREATED REVIEW", data.review)
+        return data.review
     } else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
@@ -120,8 +118,9 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
 
 
 export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) => {
+    console.log("ENTER")
     const {reviewBody, stars} = reviewAttributes
-
+    console.log(reviewBody, stars)
     const res = await fetch(`/api/reviews/edit/${reviewId}`, {
         method: 'PUT',
         headers: {
@@ -145,73 +144,115 @@ export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) 
 }
 
 export const thunkDeleteReview = (reviewId) => async (dispatch) => {
-    const res = await fetch(`/api/reviews/${reviewId}`, {
+
+    const res = await fetch(`/api/reviews/delete/${reviewId}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json"
         }
     })
-    if (res.ok) {
+
+    if (res?.ok) {
+
         const data = await res.json();
+
         dispatch(actionDeleteReview(data))
+        return data
     }  else if (res.status < 500) {
         const data = await res.json();
         if (data.errors) {
+
             return data;
         }
     }
 }
 
 //! reducer
-const initialState = { allReviews: {}, singleReview: {} }
+// const initialState = { allReviews: {}, singleReview: {} }
+
+// const reviewsReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case LOAD_REVIEWS: {
+
+//             const newState = { ...state }
+//             newState.allReviews = action.payload
+//             return newState
+//         }
+
+//         case LOAD_CURR_REVIEWS: {
+
+//             const newState = { ...state }
+//             newState.allReviews = action.payload
+//             return newState
+//         }
+
+//         case LOAD_SINGLE_REVIEW: {
+
+//             const newState = { ...state }
+
+//             newState.singleReview = action.payload.review
+//             return newState
+//         }
+
+//         case CREATE_REVIEW: {
+
+//             const newState = { ...state }
+//             newState.singleReview = action.payload
+//             return newState
+//         }
+
+//         case EDIT_REVIEW: {
+
+//             const newState = { ...state }
+//             newState.singleReview = action.payload
+//             return newState
+//         }
+
+//         case DELETE_REVIEW: {
+
+//             const newState = { ...state }
+//             delete newState.singleReview
+//             return newState
+//         }
+
+//         default:
+//             return state;
+//     }
+// }
+
+const initialState = { allReviews: {}, singleReview: {} };
 
 const reviewsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOAD_REVIEWS: {
-
-            const newState = { ...initialState }
-            newState.allReviews = action.payload
-            return newState
-        }
-
-        case LOAD_CURR_REVIEWS: {
-
-            const newState = { ...initialState }
-            newState.allReviews = action.payload
-            return newState
-        }
-
-        case LOAD_SINGLE_REVIEW: {
-
-            const newState = { ...initialState }
-            newState.singleReview = action.payload
-            return newState
-        }
-
-        case CREATE_REVIEW: {
-
-            const newState = { ...initialState }
-            newState.singleReview = action.payload
-            return newState
-        }
-
-        case EDIT_REVIEW: {
-
-            const newState = { ...initialState }
-            newState.singleReview = action.payload
-            return newState
-        }
-
-        case DELETE_REVIEW: {
-
-            const newState = { ...initialState }
-            delete newState.singleReview
-            return newState
-        }
-
-        default:
-            return state;
+  switch (action.type) {
+    case LOAD_REVIEWS: {
+      const newState = { ...state, allReviews: { ...action.payload } };
+      return newState;
     }
-}
+    case LOAD_CURR_REVIEWS: {
+      const newState = { ...state, allReviews: { ...action.payload } };
+      return newState;
+    }
+    case LOAD_SINGLE_REVIEW: {
+      const newState = { ...state, singleReview: { ...action.payload.review } };
+      return newState;
+    }
+    case CREATE_REVIEW: {
+      const newState = { ...state, singleReview: { ...action.payload } };
+      return newState;
+    }
+    case EDIT_REVIEW: {
+      const newState = { ...state, singleReview: { ...action.payload } };
+      return newState;
+    }
+    case DELETE_REVIEW: {
+      const newState = { ...state };
+      delete newState.singleReview;
+      return newState;
+    }
+    default:
+      return state;
+  }
+};
+
 
 export default reviewsReducer;

@@ -37,7 +37,6 @@ export const thunkLoadFavorites = () => async (dispatch) => {
     })
 
 
-    console.log(res, "<------ RES!!")
     if (res.ok) {
         const favorites = await res.json()
         dispatch(actionLoadFavorites(favorites))
@@ -73,6 +72,7 @@ export const thunkDeleteFavorite = (itemId) => async (dispatch) => {
             'Content-Type': 'application/json',
         }
     })
+
     if (res.ok) {
         const data = await res.json();
         dispatch(actionDeleteFavorite(data))
@@ -93,21 +93,21 @@ const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_FAVORITES: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.allFavorites = {...action.payload}
             return newState
         }
 
         case CREATE_FAVORITE: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             newState.singleFavorite = action.payload
             return newState
         }
 
         case DELETE_FAVORITE: {
 
-            const newState = { ...initialState }
+            const newState = { ...state }
             delete newState.singleFavorite
             return newState
         }

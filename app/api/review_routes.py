@@ -138,7 +138,7 @@ def post_review(item_id):
             # return new_review.to_dict(), 200
             return normalized_rev, 200
         else:
-            return form.errors, 401
+            return {'errors': form.errors}, 401
     return  { 'errors': "You cannot review items that you have not purchased."}, 401
 
 
@@ -171,7 +171,7 @@ def edit_review(review_id):
             normalized_rev["item"] = item
             return normalized_rev, 200
         else:
-            return form.errors, 401
+            return {'errors': form.errors}, 401
     return  {'errors': "You can only edit reviews that you posted."}, 401
 
 @review_routes.route('/delete/<int:review_id>', methods=['GET', 'DELETE'])

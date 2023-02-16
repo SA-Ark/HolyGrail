@@ -4,10 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkLoadSingleItem } from '../../store/items';
 import { thunkCreateReview } from '../../store/reviews';
+import { useModal } from '../../context/Modal';
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
     const { itemId } = useParams()
+    const { closeModal } = useModal()
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
@@ -19,21 +21,19 @@ const ReviewForm = () => {
     }, [dispatch])
 
     const onSubmit = async (e) => {
-        const formErrors = [];
-        if (!review) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
         e.preventDefault();
-        setErrors([formErrors])
-
+        setErrors([])
         const submission = {
             reviewBody: review,
             stars
         }
 
-        const res = await dispatch(thunkCreateReview(submission, itemId))
-        if (res?.ok) {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
+        const data = await dispatch(thunkCreateReview(submission, itemId))
+        console.log('data in form -->', data)
+        if (data) {
+            setErrors(data.review)
+        } else {
+            // closeModal()
         }
     }
 
@@ -41,6 +41,7 @@ const ReviewForm = () => {
         <form className="general-form" onSubmit={onSubmit}>
             <h2>Leave A Review For Your Transaction</h2>
             <div>
+            {console.log('errors before mapping -->',errors)}
                 {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
@@ -48,6 +49,7 @@ const ReviewForm = () => {
             <div>
                 <label>Leave a Review</label>
                 <textarea
+                    required
                     type='textarea'
                     name='review'
                     onChange={(e) => setReview(e.target.value)}
@@ -58,6 +60,7 @@ const ReviewForm = () => {
             <div>
                 <label>Stars</label>
                 <input
+                    required
                     type='number'
                     name='stars'
                     onChange={(e) => setStars(e.target.value)}

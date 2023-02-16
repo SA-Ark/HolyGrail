@@ -20,59 +20,6 @@ const PurchaseForm = ({ item }) => {
     const [cvc, setCvc] = useState("")
     const [hasSubmitted, setHasSubmitted] = useState("")
 
-    // if (sessionUser) return <Redirect to="/" />;
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     const order = {
-    //         order_total: item?.price,
-    //         card_number: cardNumber,
-    //         shipping_address: shippingAddress,
-    //         card_zip: cardZip,
-    //         card_country: cardCountry,
-    //         expiry,
-    //         cvc,
-    //     }
-    //     const res = await dispatch(thunkCreateOrder(order, item?.id))
-    //     if (res?.ok) {
-    //         const data = await res.json()
-    //         if (data && data.errors) setErrors(data.errors)
-    //         else history.push('/items')
-    //     }
-    // };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     setValidationErrors([]);
-    //     // const formErrors = []
-    //     // if (cardNumber > 10) formErrors.push('ERORRRR')
-    //     // setErrors([formErrors])
-    //     const order = {
-    //         order_total: item?.price,
-    //         card_number: cardNumber,
-    //         shipping_address: shippingAddress,
-    //         card_zip: cardZip,
-    //         card_country: cardCountry,
-    //         expiry,
-    //         cvc,
-    //     };
-    //     return dispatch(thunkCreateOrder(order, item?.id))
-    //         // .then(() => {
-    //         //     // setHasSubmitted(!hasSubmitted);
-    //         //     // if (!formErrors.length) {
-    //         //     // closeModal();
-    //         //     // history.push(`/dashboard/${sessionUser.id}`);
-    //         //     // }
-    //         // })
-    //         .catch(async (res) => {
-    //             const data = await res.json();
-    //             console.log('data --->', data, 'data')
-    //             if (data && data.errors) setValidationErrors(data.errors);
-    //         });
-    // }
-
-
-
     const onSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
@@ -90,17 +37,9 @@ const PurchaseForm = ({ item }) => {
         if (data) {
             setErrors(data)
         } else {
+            history.push(`/dashboard/${sessionUser.id}`)
             closeModal()
         }
-        // .then(() => {
-        //     history.push(history.push(`/dashboard/${sessionUser.id}`));
-        // })
-        // .catch(async (res) => {
-        //     console.log('res', res)
-        //     const data = await res.json();
-        //     console.log('data', data)
-        //     if (data && data.errors) setValidationErrors(data.errors);
-        // });
     };
 
     return (

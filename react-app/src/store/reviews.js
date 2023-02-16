@@ -168,56 +168,91 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
 }
 
 //! reducer
-const initialState = { allReviews: {}, singleReview: {} }
+// const initialState = { allReviews: {}, singleReview: {} }
+
+// const reviewsReducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case LOAD_REVIEWS: {
+
+//             const newState = { ...state }
+//             newState.allReviews = action.payload
+//             return newState
+//         }
+
+//         case LOAD_CURR_REVIEWS: {
+
+//             const newState = { ...state }
+//             newState.allReviews = action.payload
+//             return newState
+//         }
+
+//         case LOAD_SINGLE_REVIEW: {
+
+//             const newState = { ...state }
+
+//             newState.singleReview = action.payload.review
+//             return newState
+//         }
+
+//         case CREATE_REVIEW: {
+
+//             const newState = { ...state }
+//             newState.singleReview = action.payload
+//             return newState
+//         }
+
+//         case EDIT_REVIEW: {
+
+//             const newState = { ...state }
+//             newState.singleReview = action.payload
+//             return newState
+//         }
+
+//         case DELETE_REVIEW: {
+
+//             const newState = { ...state }
+//             delete newState.singleReview
+//             return newState
+//         }
+
+//         default:
+//             return state;
+//     }
+// }
+
+const initialState = { allReviews: {}, singleReview: {} };
 
 const reviewsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case LOAD_REVIEWS: {
-
-            const newState = { ...state }
-            newState.allReviews = action.payload
-            return newState
-        }
-
-        case LOAD_CURR_REVIEWS: {
-
-            const newState = { ...state }
-            newState.allReviews = action.payload
-            return newState
-        }
-
-        case LOAD_SINGLE_REVIEW: {
-
-            const newState = { ...state }
-
-            newState.singleReview = action.payload.review
-            return newState
-        }
-
-        case CREATE_REVIEW: {
-
-            const newState = { ...state }
-            newState.singleReview = action.payload
-            return newState
-        }
-
-        case EDIT_REVIEW: {
-
-            const newState = { ...state }
-            newState.singleReview = action.payload
-            return newState
-        }
-
-        case DELETE_REVIEW: {
-
-            const newState = { ...state }
-            delete newState.singleReview
-            return newState
-        }
-
-        default:
-            return state;
+  switch (action.type) {
+    case LOAD_REVIEWS: {
+      const newState = { ...state, allReviews: { ...action.payload } };
+      return newState;
     }
-}
+    case LOAD_CURR_REVIEWS: {
+      const newState = { ...state, allReviews: { ...action.payload } };
+      return newState;
+    }
+    case LOAD_SINGLE_REVIEW: {
+      const newState = { ...state, singleReview: { ...action.payload.review } };
+      return newState;
+    }
+    case CREATE_REVIEW: {
+      const newState = { ...state, singleReview: { ...action.payload } };
+      return newState;
+    }
+    case EDIT_REVIEW: {
+      const newState = { ...state, singleReview: { ...action.payload } };
+      return newState;
+    }
+    case DELETE_REVIEW: {
+      const newState = { ...state };
+      delete newState.singleReview;
+      return newState;
+    }
+    default:
+      return state;
+  }
+};
+
 
 export default reviewsReducer;

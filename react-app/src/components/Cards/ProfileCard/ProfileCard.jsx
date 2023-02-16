@@ -34,7 +34,6 @@ console.log("REVIEWS ===>", reviews);
                     {reviews?.total_transactions} Transactions • {reviews?.items_listed} items for sale
                 </div>
                 <div className="prof-card-items">
-                {/* <i class="fa-solid fa-boxes-packing"></i> */}
                 </div>
                 {/* <div>
                     SELLER BADGES HERE

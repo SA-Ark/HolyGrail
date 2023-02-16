@@ -55,7 +55,7 @@ const MainDashboard = () => {
                         <div className="profile-transactions-count">
                             {!reviews?.total_transactions ? 'No transactions' : reviews?.total_transactions}
                         </div>
-                        <span className='transactions'>Transsactions</span>
+                        <span className='transactions'>Transactions</span>
                     </div>
 
                 </div>

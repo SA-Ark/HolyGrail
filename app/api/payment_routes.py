@@ -48,7 +48,7 @@ def purchase(item_id):
 
             return normalized_ord, 200
         else:
-            return form.errors, 400
+            return {'errors': form.errors}, 400
     else:
         return {"errors": "Item does not exist"}, 401
 

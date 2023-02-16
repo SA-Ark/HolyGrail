@@ -1,5 +1,7 @@
 import CreateReviewModal from "../../CreateReviewModal";
 import EditReviewModal from "../../EditReviewModal";
+import { dayMonthYear } from "../../../store/utils";
+import "../../ProfileComponents/UserDashboard/Tabs/PurchasesTab.css";
 
 const PurchaseCard = ({ purchase }) => {
     let reviewId = null
@@ -8,7 +10,6 @@ const PurchaseCard = ({ purchase }) => {
     }
     console.log(purchase, "purchase")
     return (
-
         <div className="purchase-container">
             <div className="purchase-img-container">
                 <img src={purchase.item.preview_url} alt="" className="purchase-image" />
@@ -16,8 +17,8 @@ const PurchaseCard = ({ purchase }) => {
             <div className="purchase-info-container">
                 <div className="purchase-info">
                     <div className="purchase-date">
-                        <span>Purchased On: </span>
-                        <span>{purchase.order.created_at}</span>
+                        <span>Purchased</span>
+                        <span>{dayMonthYear(purchase.order.created_at)}</span>
                     </div>
                     <div className="sale-price">
                         <span>Sale Price: </span>
@@ -26,7 +27,7 @@ const PurchaseCard = ({ purchase }) => {
 
                     <div className="payment-type">
                         <span>Payment Type: </span>
-                        <span>Credit Card (- this is currently hard coded) </span>
+                        <span>Credit Card</span>
                     </div>
 
                 </div>

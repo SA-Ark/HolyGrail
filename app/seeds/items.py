@@ -10,7 +10,8 @@ def seed_items():
     users = User.query.all()
     cat = categories[0]
     con = condition[0]
-    name = "Adidas footwear"
+    # name = "Adidas footwear"
+    name = categories[0]
     for u in users:
         for i in range(randint(3,9)):
             if i % 3 == 0:
@@ -33,25 +34,30 @@ def seed_items():
             elif i % 6==0:
                 cat = categories[4]
                 con = condition[0]
-                name = f"{brands[0]} {categories[0]}"
+                # name = f"{brands[0]} {categories[0]}"
+                name = f"{categories[0]}"
             elif i % 5==0:
                 cat = categories[3]
                 con = condition[1]
-                name = f"{brands[4]} {categories[4]}"
+                # name = f"{brands[4]} {categories[4]}"
+                name = f"{categories[1]}"
             elif i % 4==0:
                 cat = categories[2]
                 con = condition[2]
-                name = f"{brands[3]} {categories[3]}"
+                # name = f"{brands[3]} {categories[3]}"
+                name = f"{categories[2]}"
             elif i % 3==0:
                 cat = categories[1]
                 con = condition[3]
-                name = f"{brands[2]} {categories[2]}"
+                # name = f"{brands[2]} {categories[2]}"
+                name = f"{categories[3]}"
             else:
                 cat = categories[0]
                 con = condition[4]
-                name = f"{brands[1]} {categories[1]}"
+                # name = f"{brands[1]} {categories[1]}"
+                name = f"{categories[4]}"
             item = Item( seller_id = u.id,
-                        name = name,
+                        name = cat,
                         description = f"generic description {i}",
                         size = size,
                         gender_style = g,

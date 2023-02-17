@@ -89,7 +89,8 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
                         ></input>
                     </label>
                 </div>
-                <button className="feedback-button" type='submit'>Leave Review</button>
+                <button className="feedback-form-button" type='submit'>Leave Review</button>
+
             </form>
         </div>
     )

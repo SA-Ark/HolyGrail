@@ -44,7 +44,7 @@ def item(item_id):
         return item.to_dict(), 200
     return  { 'errors': "Item does not exist."}, 401
 
-@item_routes.route('/<int:item_id>')
+@item_routes.route('/current/<int:item_id>')
 @login_required
 def logged_in_item(item_id):
     """
@@ -53,7 +53,7 @@ def logged_in_item(item_id):
     Has number of likes 'num_likes' for the item.
     Adds whether the current user likes the item if curr user is logged in.
     """
-    item = Item.query.get(id)
+    item = Item.query.get(item_id)
     item_normalized = item.to_dict()
     if item and current_user:
 
@@ -208,6 +208,7 @@ def edit_item(item_id):
 
         if form.validate_on_submit():
             edited_item = Item.query.get(item_id)
+            preview_image = edited_item.to_dict()["preview_image"]
             print('python route validates')
             edited_item.name = form.data["name"]
             edited_item.description = form.data["description"]
@@ -223,14 +224,15 @@ def edit_item(item_id):
             db.session.add(edited_item)
             db.session.commit()
 
-            preview_image = edited_item.to_dict()["preview_image"]
+            print(preview_image["url"])
+
             prev_url = preview_image['url']
             preview_image['url'] = form.data["preview_url"]
             if prev_url != preview_image["url"]:
                 preview_image['updated_at'] = datetime.now()
 
-
-            # db.session.add(preview_image)
+            print(preview_image["url"])
+            db.session.add(preview_image)
 
             image_1 = ItemImage.query.filter(ItemImage.image_num == 1).first()
             image_2 = ItemImage.query.filter(ItemImage.image_num == 2).first()

@@ -8,6 +8,7 @@ const ItemEditForm = () => {
     const { closeModal } = useModal()
 
     const dispatch = useDispatch();
+    const { itemId } = useParams();
 
     const item = useSelector(state => state.items?.singleItem)
     const user = useSelector(state => state.session?.user)
@@ -47,8 +48,8 @@ const ItemEditForm = () => {
     // const [imageUrl4, setImageUrl4] = useState(item?.image_url_4);
     console.log('itemmmmmmmmm', item)
     useEffect(() => {
-        dispatch(thunkLoadSingleItem(item.id, userId))
-    }, [dispatch, item.id, userId])
+        dispatch(thunkLoadSingleItem(itemId, userId))
+    }, [dispatch, userId])
 
     // const item = useSelector((state) => state.items.singleItem)
     //! NEED TO MAKE WE REDIRECT TO ITEM.ID <-----------------
@@ -94,7 +95,7 @@ const ItemEditForm = () => {
     const onSubmit = async (e) => {
 
         e.preventDefault();
-        const itemsAttributes = [
+        const itemsAttributes = {
             genderStyle,
             size,
             color,
@@ -109,9 +110,9 @@ const ItemEditForm = () => {
             imageUrl2,
             imageUrl3,
             imageUrl4,
-            item.id,
+            itemId: item.id,
             userId
-        ]
+        }
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
         if (data && data.errors) {

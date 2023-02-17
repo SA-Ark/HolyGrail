@@ -7,7 +7,7 @@ import stripe
 import os
 
 payment_routes = Blueprint('payments', __name__)
-stripe.api_key = os.environ.get("STIPE_PUBLIC_KEY")
+stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 
 
 @payment_routes.route('/<int:item_id>', methods=["GET", "POST"])
@@ -113,14 +113,14 @@ def create_checkout_session():
             'price_data': {
             'currency': 'usd',
             'product_data': {
-            'name': 'T-shirt',
+            'name': 'Clothing/Accessories',
             },
             'unit_amount': 2000,
         },
         'quantity': 1,
         }],
         mode='payment',
-        success_url='http://localhost:5000/success',
+        success_url='http://localhost:3000/items',
         cancel_url='http://localhost:5000/cancel',
     )
 

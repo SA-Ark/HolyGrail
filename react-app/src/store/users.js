@@ -18,7 +18,7 @@ export const thunkGetUser = (userId) => async (dispatch) => {
     const data = await response.json();
     dispatch(getUser(data));
 }
-    console.log("DATA --->", response.json());
+    // console.log("DATA --->", response.json());
 };
 
 const initialState = { singleUser: null };

@@ -1,16 +1,26 @@
-import ItemCard from '../ItemCard'
-import './MainListingsPage.css'
-import { thunkLoadItems } from '../../../store/items'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import ItemCard from '../ItemCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import MultiSelect from "multiselect-react-dropdown";
-import * as utils from '../../../store/utils'
-import { thunkLoadFavorites } from '../../../store/favorites'
+import * as utils from '../../../store/utils';
+import { thunkLoadItems } from '../../../store/items';
+import { thunkLoadFavorites } from '../../../store/favorites';
+import FilterButtons from './FilterButtons';
+import './MainListingsPage.css';
 
 const MainListingsPage = () => {
-    const dispatch = useDispatch()
-    const items = utils.deNormalize(useSelector(store => store.items.allItems))
-    const user = useSelector(store=> store.session?.user)
+    const dispatch = useDispatch();
+    const items = utils.deNormalize(useSelector(store => store.items.allItems));
+    const user = useSelector(store=> store.session?.user);
+
+    const [item, setItem] = useState(items);
+
+
+    // spread operator displays all values from item categories
+    // set only allows the single value of each kind to be displayed
+    const filters = [ ...new Set(items.map((Val) => Val.category_tags))];
+    console.log("FILTERS ===>", filters);
+    console.log("ITEMS ===>", items);
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
@@ -20,77 +30,7 @@ const MainListingsPage = () => {
     return (
         <div className="main-listings-container">
             <div className="filters">
-                <MultiSelect
-                    placeholder="Search Filters"
-                    displayValue="key"
-                    groupBy="cat"
-                    onRemove={(e) => {console.log(e)} }
-                    onSelect={(e) => {console.log(e)} }
-                    options={[
-                        {
-                            cat: "Department",
-                            key: "Menswear"
-                        },
-                        {
-                            cat: "Department",
-                            key: "Womenswear"
-                        },
-                        {
-                            cat: "Category",
-                            key: "Tops"
-                        },
-                        {
-                            cat: "Category",
-                            key: "Bottoms"
-                        },
-                        {
-                            cat: "Category",
-                            key: "Outerwear"
-                        },
-                        {
-                            cat: "Category",
-                            key: "Footwear"
-                        },
-                        {
-                            cat: "Size",
-                            key: "XS"
-                        },
-                        {
-                            cat: "Size",
-                            key: "S"
-                        },
-                        {
-                            cat: "Size",
-                            key: "M"
-                        },
-                        {
-                            cat: "Size",
-                            key: "L"
-                        },
-                        {
-                            cat: "Size",
-                            key: "XL"
-                        },
-                        // INSERT PRICE HERE
-                        {
-                            cat: "Condition",
-                            key: "Worn"
-                        },
-                        {
-                            cat: "Condition",
-                            key: "Used"
-                        },
-                        {
-                            cat: "Condition",
-                            key: "Gently Used"
-                        },
-                        {
-                            cat: "Condition",
-                            key: "New/Never Worn"
-                        },
-                    ]}
-                    showCheckbox
-                ></MultiSelect>
+                
             </div>
 
             <br />
@@ -102,9 +42,8 @@ const MainListingsPage = () => {
                         : null
                 }
             </div>
-
         </div>
     )
 }
 
-export default MainListingsPage
+export default MainListingsPage;

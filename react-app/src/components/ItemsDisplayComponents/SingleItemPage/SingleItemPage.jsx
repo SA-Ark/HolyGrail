@@ -3,14 +3,16 @@ import { useState, useEffect } from 'react'
 import { thunkLoadSingleItem } from '../../../store/items'
 import { useParams } from 'react-router-dom'
 import ProfileCard from "../../Cards/ProfileCard";
-import PurchaseModal from '../../PurchaseModal'
-import LikeButton from '../../Buttons/LikeButton';
 import './SingleItemPage.css'
+import PurchaseModal from '../../PurchaseModal'
+import EditModalButton from '../../EditModalButton'
+import DeleteItemButton from '../../Buttons/DeleteItemButton'
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
   const item = useSelector((state) => state.items.singleItem)
   const user = useSelector(store => store.session?.user)
+  console.log(item, 'itemmmmmm')
 
   const { itemId } = useParams()
 
@@ -42,6 +44,7 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
+<<<<<<< HEAD
           <span id="item-name">{item.name}</span>
           <div className='item-favorites'>
           {/* <LikeButton /> */}
@@ -56,13 +59,33 @@ const SingleItemPage = () => {
         <div className='purchase-button-container'>
           <PurchaseModal item={item} />
         </div>
+=======
+          <span id="item-name">{item?.name}</span>
+          <div
+            className='item-favorites'
+          >♡
+          </div>
+        </div>
+        <span className='size'>Size {item?.size}</span>
+        <span className='color'>Color {item?.color}</span>
+        <span className='condition'>Condition {item?.condition}</span>
+        <span className='price'>${item?.price}</span>
+        <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
+>>>>>>> acede19ca5ea14695eb949d85a2cb71b9b985af5
 
+        <PurchaseModal item={item} />
+        {item && (
+          <>
+            {user?.id === item?.seller_id && <EditModalButton />}
+            {user?.id === item?.seller_id && <DeleteItemButton />}
+          </>
+        )}
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
         <div><ProfileCard /></div>
 
         <span className='item-desc-title'>Description</span>
-        <span className='item-desc'>{item.description}</span>
+        <span className='item-desc'>{item?.description}</span>
         {/* <span className='tags'>Tags</span> */}
         {/* <span className='item-post-date'>Posted on {item.created_at}</span> */}
 

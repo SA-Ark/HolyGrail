@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Redirect, useParams } from 'react-router-dom';
-import { thunkCreateItem } from '../../store/items';
+import { thunkCreateItem, thunkLoadItems } from '../../store/items';
 import './ItemCreateModal.css'
 
 const ItemCreateModal = () => {
@@ -28,11 +28,15 @@ const ItemCreateModal = () => {
     const history = useHistory()
 
     const user = useSelector(state => state.session?.user);
-    const user_id = user?.id;
-    // const item = useSelector((state) => state.items.singleItem)
+    const userId = user?.id;
+    const item = useSelector((state) => state.items?.singleItem)
+
+
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        const user_id = userId;
         const itemsAttributes = [
             genderStyle,
             size,
@@ -60,6 +64,8 @@ const ItemCreateModal = () => {
             setErrors(data.errors)
         } else {
             closeModal()
+            history.push(`/dashboard/${userId}`)
+            await dispatch(thunkLoadItems(userId))
         }
     }
 

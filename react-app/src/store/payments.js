@@ -76,6 +76,7 @@ const paymentsReducer = (state = initialState, action) => {
             console.log(newState, "PAYMENT STATE")
             return newState
         }
+
         case CREATE_ORDER: {
 
             const newState = { ...state }

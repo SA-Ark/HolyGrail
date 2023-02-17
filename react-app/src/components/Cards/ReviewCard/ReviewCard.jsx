@@ -6,7 +6,6 @@ const ReviewCard = ({ review }) => {
     // !@#$ Take note about what is coming into this card. Each review is an object containing a review and its corresponding item
     // review.review and review.item
 
-    console.log("REVIEW -->", review);
 
 
     // const [day, month, year] = utils.dateToParts(review.created_at);

@@ -26,4 +26,16 @@
 .item-card-listings {
     display: flex;
     flex-direction: column;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.item-card-listings img {
+    padding-bottom: 0.5em;
+}
+
+.item-info-container {
+    border-top: 1px solid lightgrey;
+    margin-top: 5px;
+    padding-top: 5px;
 }

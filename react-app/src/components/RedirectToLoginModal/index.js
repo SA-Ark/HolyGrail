@@ -18,7 +18,7 @@ function RedirectToLoginModal({
   return (
     <>
       <button className='like-button icon-button' onClick={onRedirectClick}>
-        <i class="fa-regular fa-heart like-icon"></i>
+        <i className="fa-regular fa-heart like-icon"></i>
       </button>
     </>
   );

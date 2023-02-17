@@ -10,8 +10,7 @@ const PurchaseCard = ({purchase}) => {
     if (purchase?.order?.review_id) {
         reviewId = purchase.order.review_id
     }
-    console.log(purchase, "purchase")
-    console.log(prevReview, "REV FROM PURCH")
+
     // setPrevReview(purchase?.order?.review)
     return (
         <div className="purchase-container">

@@ -97,7 +97,6 @@ const AvailableListingsTab = ({ items }) => {
                 {
                     userItems?.length
                     ? userItems.map(item => {
-                        console.log(item);
                         return <ItemCard classProp="item-card-listings" item={item} key={item.id}/>
                     })
                     : null

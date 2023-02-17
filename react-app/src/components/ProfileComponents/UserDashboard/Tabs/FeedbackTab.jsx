@@ -13,7 +13,6 @@ import './FeedbackTab.css';
 const FeedbackTab = ({ reviews }) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state?.session?.user);
-    console.log('REVIEW --->', reviews)
 
     const avg_star_rating = () => {
         if (reviews.avg_star_rating > 4.5) return "★★★★★";

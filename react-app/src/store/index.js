@@ -5,13 +5,15 @@ import itemsReducer from './items';
 import reviewsReducer from './reviews';
 import favoritesReducer from './favorites';
 import paymentsReducer from './payments';
+import usersReducer from './users';
 
 const rootReducer = combineReducers({
   session,
   items: itemsReducer,
   reviews: reviewsReducer,
   favorites: favoritesReducer,
-  payments: paymentsReducer
+  payments: paymentsReducer,
+  users: usersReducer
 });
 
 let enhancer;

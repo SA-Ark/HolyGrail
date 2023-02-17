@@ -30,7 +30,8 @@ const MainDashboard = ({tabOverride}) => {
     }, [dispatch, user]);
 
     const rating = parseFloat(reviews?.avg_star_rating).toFixed(1)
-
+    console.log('reviews -->', reviews)
+    console.log('rating -->', rating)
     return (
         <>
             <div className='user-dash-container'>
@@ -45,7 +46,7 @@ const MainDashboard = ({tabOverride}) => {
                         </div>
                         <div className='stars-container'>
                             <div className="profile-stars">
-                                {!rating ? null : `★${rating}`}
+                                { isNaN(rating) ? 'No reviews' : `★${rating}`}
                             </div>
                             <div className='total-reviews'>
                                 {reviews?.num_reviews} {reviews?.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>

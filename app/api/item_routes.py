@@ -44,7 +44,7 @@ def item(item_id):
         return item.to_dict(), 200
     return  { 'errors': "Item does not exist."}, 401
 
-@item_routes.route('/<int:item_id>')
+@item_routes.route('/current/<int:item_id>')
 @login_required
 def logged_in_item(item_id):
     """
@@ -53,7 +53,7 @@ def logged_in_item(item_id):
     Has number of likes 'num_likes' for the item.
     Adds whether the current user likes the item if curr user is logged in.
     """
-    item = Item.query.get(id)
+    item = Item.query.get(item_id)
     item_normalized = item.to_dict()
     if item and current_user:
 
@@ -197,7 +197,7 @@ def edit_item(item_id):
     userItems = Item.query.filter(Item.seller_id == current_user.id).all()
     userItem = [item for item in userItems if item.id == item_id]
     for item in userItems:
-        print(item.id, 'item idddddddddddd')    
+        print(item.id, 'item idddddddddddd')
     print(item_id, 'item id')
     print(userItems, 'userItems')
     if userItem:
@@ -315,7 +315,7 @@ def delete_item(item_id):
     print('route pls work')
     item = Item.query.get(item_id)
     if item.sold == True:
-    
+
         return {"errors": "You cannot edit a sold item."}, 401
     if item.seller_id ==current_user.id:
         ans = item.to_dict()

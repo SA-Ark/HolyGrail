@@ -70,7 +70,7 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     console.log(itemId, userId, " <------ITEMID")
     let res = null
     if (userId) {
-        res = await fetch(`/api/items/${itemId}`, {
+        res = await fetch(`/api/items/current/${itemId}`, {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -87,6 +87,8 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     if (res.ok) {
         const item = await res.json()
         dispatch(actionLoadSingleItem(item))
+        console.log(item, "ITEM in thunk")
+        return item
     }
 }
 

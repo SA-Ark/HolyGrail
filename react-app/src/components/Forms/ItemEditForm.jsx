@@ -23,7 +23,7 @@ const ItemEditForm = () => {
     const [condition, setCondition] = useState('');
     const [categoryTags, setCategoryTags] = useState('');
     const [price, setPrice] = useState('');
-    const [shippingCost, setShippingCost] = useState(10);
+    const [shippingCost, setShippingCost] = useState('');
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
     const [previewUrl, setPreviewUrl] = useState('');
@@ -120,7 +120,7 @@ const ItemEditForm = () => {
             setErrors(data.errors)
         } else {
             history.push(`/dashboard/${user.id}`)
-            // closeModal()
+            closeModal()
         }
 
     }

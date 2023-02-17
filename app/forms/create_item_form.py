@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, InputRequired, ValidationError, Length
+from wtforms.validators import DataRequired, InputRequired, ValidationError, Length, NumberRange
 
 
 class CreateItemForm(FlaskForm):
@@ -31,11 +31,12 @@ class CreateItemForm(FlaskForm):
         Length(max=100, message="Category tags must be no longer than 100 characters.")
         ])
     
-    price = IntegerField("Price", validators=[InputRequired("Please enter the price of the item.")
-    ])
-    
-    shipping_cost = IntegerField("Shipping Cost", validators=[DataRequired("Please enter the shipping cost of the item."),
-    ])                                                             
+    price = IntegerField("Price", validators=[InputRequired("Please enter the price of the item."), 
+        DataRequired("Price cannot be 0."), NumberRange(min=1)])
+
+    shipping_cost = IntegerField("Shipping Cost", validators=[DataRequired("Please enter the shipping cost of the item."), 
+        NumberRange(min=0, message="Must apply a shipping cost.")])
+                                                     
     
     preview_url = StringField("Preview Image", validators=[DataRequired("Please enter a preview image URL for the item.")])
     

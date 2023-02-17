@@ -57,7 +57,6 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
         const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
         console.log('data', data)
         if (data && data.errors) {
-            console.log('editform data', data)
             setErrors(data.errors)
         } else {
             setPrevReview({
@@ -65,7 +64,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
                 review_body: data?.review?.review_body,
                 stars: data?.review?.stars
             })
-            // closeModal()
+            closeModal()
         }
     }
 

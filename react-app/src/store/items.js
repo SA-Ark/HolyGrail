@@ -166,15 +166,19 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
             image_url_4: imageUrl4
         })
     })
+    console.log('HEY FROM UNDER DICTIONARY',)
     if (res.ok) {
         const data = await res.json();
+        console.log('data in thunk', data)
         dispatch(actionEditItem(data))
         return null;
     } else if (res.status < 500) {
+        console.log('hi from below')
         const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
+        console.log('data in thunk', data)
+        // if (data.errors) {
+        return data;
+        // }
       }
 }
 

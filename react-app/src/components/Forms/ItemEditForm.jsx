@@ -93,8 +93,8 @@ const ItemEditForm = () => {
     }
 
     const onSubmit = async (e) => {
-
         e.preventDefault();
+        setErrors([])
         const itemsAttributes = {
             genderStyle,
             size,
@@ -116,10 +116,11 @@ const ItemEditForm = () => {
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
         if (data && data.errors) {
+            console.log('editform data', data)
             setErrors(data.errors)
         } else {
             history.push(`/dashboard/${user.id}`)
-            closeModal()
+            // closeModal()
         }
 
     }

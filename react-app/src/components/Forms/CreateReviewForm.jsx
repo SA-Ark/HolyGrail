@@ -18,7 +18,6 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        console.log(reviewBody, "REVIEWBODY")
         // bodVal = reviewBody
 
     }

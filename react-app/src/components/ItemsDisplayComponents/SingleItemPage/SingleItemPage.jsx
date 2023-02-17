@@ -15,8 +15,7 @@ const SingleItemPage = () => {
   const item = useSelector((state) => state.items.singleItem)
   const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
-  console.log(item, 'itemmmmmm ------>')
-  console.log("ITEM OWNER --->", itemOwner)
+
 
   const { itemId } = useParams()
 
@@ -28,7 +27,7 @@ const SingleItemPage = () => {
 
       dispatch(thunkGetUser(item?.seller_id));
     }
-    console.log(item?.seller_id, "SELLET ID", item)
+    console.log(item?.seller_id, "SELLER ID", item)
   }, [dispatch, item?.seller_id])
 
      return (

@@ -1,3 +1,4 @@
+import { spreadItems } from './store-utils';
 import * as utils from './utils';
 
 const LOAD_ITEMS = 'LOAD_ITEMS'
@@ -203,8 +204,9 @@ const itemsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ITEMS: {
 
-            const newState = { ...state }
-            newState.allItems = {...action.payload.items}
+
+            const newState = { allItems: {...state.allItems}, singleItem: {...state.singleItem} }
+            newState.allItems = {...spreadItems(action.payload.items)}
             return newState
         }
 

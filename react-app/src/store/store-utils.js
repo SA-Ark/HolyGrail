@@ -35,3 +35,17 @@ export const spreadFavorites = (favorites)=>{
     }
     return newState
 }
+
+export const spreadItems = (items)=>{
+   
+    const newState = {}
+    let count = 0
+    for (let item of Object.values(items)){
+
+
+
+        newState[count] = {...item}
+        count++
+    }
+    return newState
+}

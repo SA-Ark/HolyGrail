@@ -1,3 +1,7 @@
+/* * {
+    border: 1px solid red;
+} */
+
 .splash-page-container {
     display: flex;
     justify-content: center;
@@ -49,15 +53,20 @@
     margin-top: 1rem;
 }
 
-.splash-carousel-wrapper {
+.splash-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    height: fit-content;
+    margin-bottom: 2em;
+}
+
+.splash-carousels-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* width: 100%; */
-    /* padding-left: 2rem; */
-    /* padding-right: 2rem; */
 }
-
 
 .staff-picks {
     padding-top: 9px;
@@ -79,55 +88,21 @@
     display: flex;
     flex-direction: column;
     font-size: 21px;
-
+    padding-left: 3em;
 }
 
-
 .splash-carousel-container {
+    display: flex;
+    flex-direction: row;
     position: relative;
     width: 100%;
+    margin-bottom: 2em;
 }
 
 .back-arrow,
 .next-arrow {
-    cursor: pointer;
-    border: 1px solid #ccc;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    margin: 20px;
-    background-color: white;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    padding-bottom: 6em;
 }
-
-.back-arrow:before,
-.next-arrow:before {
-    content: "";
-    width: 20px;
-    height: 20px;
-    border-top: 2px solid #a1a1a1;
-    border-right: 2px solid #a1a1a1;
-    transform: rotate(225deg);
-    display: inline-block;
-    transition: all 0.3s ease-in-out;
-}
-
-.next-arrow:before {
-    transform: rotate(45deg);
-}
-
-.back-arrow:hover,
-.next-arrow:hover {
-    background-color: rgb(240, 240, 240);
-}
-
-.back-arrow:hover:before,
-.next-arrow:hover:before {
-    border-color: rgb(109, 109, 109);
-}
-
-
 
 .carousel-item-container {
     display: flex;
@@ -138,8 +113,6 @@
     position: relative;
     z-index: 0;
 }
-
-
 
 .splash-bottom-container {
     display: flex;

@@ -3,23 +3,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkDeleteReview, thunkLoadSingleReview } from '../../store/reviews';
-
-const DeleteReviewButton = ({reviewId, revBod, star, setRev, setText}) => {
+import { useModal } from '../../context/Modal';
+const DeleteReviewButton = ({onDel, reviewId}) => {
+    const {closeModal} = useModal()
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
-    let [review, setReview] = useState(store => store?.reviews?.singleReview)
-    let [user, setUser] = useState(store => store?.session?.user)
-    let userId = user?.id
-
-
-
-    useEffect(() => {
-        if (reviewId){
-
-            dispatch(thunkLoadSingleReview(reviewId))
-        }
-    }, [review, userId, dispatch])
 
     const deleteItem = async (e) => {
         e.preventDefault();
@@ -28,23 +17,18 @@ const DeleteReviewButton = ({reviewId, revBod, star, setRev, setText}) => {
 
             const res = await dispatch(thunkDeleteReview(reviewId))
 
-
-
-                revBod("")
-                star("")
-                setRev("")
-                setText("Leave Feedback")
+                onDel()
+                closeModal()
                 history.push('/dashboard/1')
 
-
-
-
         }
+        // await dispatch(thunkLoadCurrReviews(userId))
+        // history.push(`/dashboard/${userId}`)
     }
 
     return (
         <>
-            <button type='button' onClick={deleteItem}>Delete</button>
+            <button className="feedback-button" type='button' onClick={deleteItem}>Delete</button>
         </>
     )
 };

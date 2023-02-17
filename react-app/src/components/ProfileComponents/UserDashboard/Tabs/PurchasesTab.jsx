@@ -1,5 +1,6 @@
 import PurchaseCard from "../../../Cards/PurchaseCard";
 import { deNormalize } from "../../../../store/utils";
+import "./PurchasesTab.css";
 
 
 const PurchasesTab = ({purchases}) => {
@@ -8,16 +9,16 @@ const PurchasesTab = ({purchases}) => {
     return (
         <div className="purchases-container">
             {/* PURCHASES TAB */}
+            {/* <h3>Purchases</h3> */}
             <div className="title">
 
                 {
                     purchaseList?.length
                         ? purchaseList.map(purchase => {
-                            return <PurchaseCard key={purchase?.item?.id}purchase={purchase}/>
+                            return <PurchaseCard purchase={purchase} key={purchase.item.id} />
                         })
                         : null
                 }
-
             </div>
         </div>
     )

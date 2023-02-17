@@ -28,3 +28,7 @@
 .feedback-header .review-count {
     margin-bottom: 10px;
 }
+
+.avg-stars {
+    color: green;
+}

@@ -35,15 +35,14 @@ export const thunkLoadOrders = (userId) => async (dispatch) => {
 
 
 export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) => {
-    const { order_total, card_number, expiry, cvc,
+    const {order_total, card_number, expiry, cvc,
         card_country, card_zip, shipping_address
 
     } = orderAttributes
-
     const res = await fetch(`/api/payments/${itemId}`, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             order_total, card_number, expiry, cvc,
@@ -53,11 +52,13 @@ export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) =>
     if (res.ok) {
         const data = await res.json();
         dispatch(actionCreateOrder(data))
-        return data
+        return null;
     } else if (res.status < 500) {
         const data = await res.json();
+        console.log('data in thunk', data)
         if (data.errors) {
-            return data;
+        console.log('data errors in thunk', data.errors)
+            return data.errors;
         }
     }
 }
@@ -70,15 +71,17 @@ const paymentsReducer = (state = initialState, action) => {
         case LOAD_ORDERS: {
 
             const newState = { ...state }
-            spreadPayments(action.payload)
-            newState.allOrders = { ...action.payload }
+
+            newState.allOrders = spreadPayments(action.payload)
+            console.log(newState, "PAYMENT STATE")
             return newState
         }
 
         case CREATE_ORDER: {
 
             const newState = { ...state }
-            newState.singleOrder = action.payload
+            newState.singleOrder = {...action.payload}
+
             return newState
         }
         default:

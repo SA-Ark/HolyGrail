@@ -18,7 +18,7 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
-    const [selectedTab, setSelectedTab] = useState('AvailableListingsTab');
+    const [selectedTab, setSelectedTab] = useState('PurchasesTab');
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
@@ -33,31 +33,32 @@ const MainDashboard = () => {
     return (
         <>
             <div className='user-dash-container'>
-                <div className='edit-button-container'>
-                    <button className='profile-edit' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button>
-                </div>
-                <div className="profile-header">
-                    <div className='prof-icon-container'>
-                        <i className="fa-solid fa-circle-user"></i>
-                        <div className='joined-in-container'>
-                            <div className='profile-username'>{user.username}</div>
-                            <span className='joined-on'>Joined on {dbDateToMonthYear(user.created_at)}</span>
+                <div className="dashboard-banner">
+                    <div className="profile-header">
+                        <div className='prof-icon-container'>
+                            <i className="fa-solid fa-circle-user"></i>
+                            <div className='joined-in-container'>
+                                <div className='profile-username'>{user.username}</div>
+                                <span className='joined-on'>Joined on {dbDateToMonthYear(user.created_at)}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className='stars-container'>
-                        <div className="profile-stars">
-                            {!rating ? null : `★${rating}`}
+                        <div className='stars-container'>
+                            <div className="profile-stars">
+                                {!rating ? null : `★${rating}`}
+                            </div>
+                            <div className='total-reviews'>
+                                {reviews?.num_reviews} {reviews?.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
                         </div>
-                        <div className='total-reviews'>
-                            {reviews?.num_reviews} {reviews?.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
-                    </div>
-                    <div className='transaction-container'>
-                        <div className="profile-transactions-count">
-                            {!reviews?.total_transactions ? 'No transactions' : reviews?.total_transactions}
+                        <div className='transaction-container'>
+                            <div className="profile-transactions-count">
+                                {!reviews?.total_transactions ? 'No transactions' : reviews?.total_transactions}
+                            </div>
+                            <span className='transactions'>Transactions</span>
                         </div>
-                        <span className='transactions'>Transsactions</span>
+                    <div className='edit-button-container'>
+                        <button className='profile-edit feedback-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button>
                     </div>
-
+                    </div>
                 </div>
                 <div className="tab-container">
                     <div className='purchases-tab' onClick={() => setSelectedTab('PurchasesTab')}>Purchases</div>

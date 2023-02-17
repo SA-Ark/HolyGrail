@@ -23,20 +23,23 @@ const ProfileCard = () => {
     return (
         <>
             <div className="prof-card-container">
-
-                <div className="prof-card-user">{user?.username}</div>
-                <div className="prof-card-rating">
-                    {avg_star_rating()}  {reviews?.num_reviews} reviews
+                <div className="profile-image">
+                    <i class="fa-solid fa-circle-user"></i>
                 </div>
-                <div className="prof-card-transaction">
-                    {reviews?.total_transactions} Transactions • {reviews?.items_listed} items for sale
+                <div className="user-info-container">
+                    <div className="prof-card-user">{user?.username}</div>
+                    <div className="prof-card-rating">
+                        {avg_star_rating()}  {reviews?.num_reviews} reviews
+                    </div>
+                    <div className="prof-card-transaction">
+                        {reviews?.total_transactions} Transactions • {reviews?.items_listed} items for sale
+                    </div>
+                    <div className="prof-card-items">
+                    </div>
+                    {/* <div>
+                        SELLER BADGES HERE
+                    </div> */}
                 </div>
-                <div className="prof-card-items">
-                {/* <i class="fa-solid fa-boxes-packing"></i> */}
-                </div>
-                {/* <div>
-                    SELLER BADGES HERE
-                </div> */}
             </div>
         </>
     )

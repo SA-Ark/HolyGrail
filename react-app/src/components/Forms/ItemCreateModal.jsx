@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkCreateItem } from '../../store/items';
 import './ItemCreateModal.css'
@@ -24,57 +25,14 @@ const ItemCreateModal = () => {
     const [imageUrl4, setImageUrl4] = useState('');
 
     const { closeModal } = useModal()
+    const history = useHistory()
 
     const user = useSelector(state => state.session?.user);
     const user_id = user?.id;
     // const item = useSelector((state) => state.items.singleItem)
-    //! NEED TO MAKE WE REDIRECT TO ITEM.ID <-----------------
-
-    useEffect(() => {
-        const formErrors = [];
-        // if (!genderStyle) formErrors.push('Gender is required!');
-        // if (!size) formErrors.push('Size is required!');
-        // if (!color) formErrors.push('Color is required!');
-        // if (!condition) formErrors.push('Condition is required!');
-        // if (!categoryTags) formErrors.push('Categories is required!');
-        // if (!price) formErrors.push('price is required!');
-        // if (!shippingCost) formErrors.push('Shipping cost is required!');
-        // if (!description) formErrors.push('Description is required!');
-        // if (!name) formErrors.push('Name is required!');
-        // if (!previewUrl) formErrors.push('Please enter a preview image for your item!');
-        // setErrors(formErrors);
-    }, [genderStyle,
-        size,
-        color,
-        condition,
-        categoryTags,
-        price,
-        shippingCost,
-        description,
-        name,
-        previewUrl,
-        imageUrl1,
-        imageUrl2,
-        imageUrl3,
-        imageUrl4,
-        user_id]);
-
 
     const onSubmit = async (e) => {
-        const formErrors = [];
-        if (!genderStyle) formErrors.push('Gender is required!');
-        if (!size) formErrors.push('Size is required!');
-        if (!color) formErrors.push('Color is required!');
-        if (!condition) formErrors.push('Condition is required!');
-        if (!categoryTags) formErrors.push('Categories is required!');
-        if (!price) formErrors.push('price is required!');
-        if (!shippingCost) formErrors.push('Shipping cost is required!');
-        if (!description) formErrors.push('Description is required!');
-        if (!name) formErrors.push('Name is required!');
-        if (!previewUrl) formErrors.push('Please enter a preview image for your item!');
-
         e.preventDefault();
-        setErrors([formErrors])
         const itemsAttributes = [
             genderStyle,
             size,
@@ -97,21 +55,12 @@ const ItemCreateModal = () => {
 
         //! needs validation for when price is 0
 
-        const res = await dispatch(thunkCreateItem(itemsAttributes))
-        closeModal()
-        if (res?.ok) {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
+        const data = await dispatch(thunkCreateItem(itemsAttributes))
+        if (data && data.errors) {
+            setErrors(data.errors)
+        } else {
+            closeModal()
         }
-
-        // //   .then(() => {
-        // //     // history.push(`/items/${itemId}`)
-        // // })
-        // .catch(async (response) => {
-        //   const data = await response.json()
-        //   if (data.errors) setErrors([...data])
-        // });
-
     }
 
     const categorySizes = {
@@ -130,7 +79,7 @@ const ItemCreateModal = () => {
                 <div className='create-edit-item-container'>
                     <form onSubmit={onSubmit} className="listing-edit-form">
                         <div>
-                            {errors.map((error, ind) => (
+                            {Object.values(errors).map((error, ind) => (
                                 <div key={ind}>{error}</div>
                             ))}
                         </div>
@@ -203,6 +152,7 @@ const ItemCreateModal = () => {
                                     onChange={(e) => setCondition(e.target.value)}
                                     value={condition}
                                     className="create-edit-item-input">
+                                    <option value=''>Select a condition</option>
                                     <option >New/Never Worn </option>
                                     <option >Gently Used</option>
                                     <option >Used</option>
@@ -243,6 +193,7 @@ const ItemCreateModal = () => {
                             <label className='create-edit-item-label'>Gender Style
                                 <input
                                     required
+                                    placeholder='Gender Style'
                                     type='text'
                                     name='gender_style'
                                     onChange={(e) => setGenderStyle(e.target.value)}
@@ -253,6 +204,7 @@ const ItemCreateModal = () => {
                             <label className='create-edit-item-label'>Preview Image
                                 <input
                                     required
+                                    placeholder='Preview Image'
                                     type='text'
                                     name='preview_url'
                                     onChange={(e) => setPreviewUrl(e.target.value)}
@@ -262,6 +214,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Image Url 1
                                 <input
+                                    placeholder='Optional Image'
                                     type='text'
                                     name='image_url_1'
                                     onChange={(e) => setImageUrl1(e.target.value)}
@@ -271,6 +224,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Image Url 2
                                 <input
+                                    placeholder='Optional Image'
                                     type='text'
                                     name='image_url_2'
                                     onChange={(e) => setImageUrl2(e.target.value)}
@@ -280,6 +234,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Image Url 3
                                 <input
+                                    placeholder='Optional Image'
                                     type='text'
                                     name='image_url_3'
                                     onChange={(e) => setImageUrl3(e.target.value)}
@@ -289,6 +244,7 @@ const ItemCreateModal = () => {
                             </label>
                             <label className='create-edit-item-label'>Image Url 4
                                 <input
+                                    placeholder='Optional Image'
                                     type='text'
                                     name='image_url_4'
                                     onChange={(e) => setImageUrl4(e.target.value)}

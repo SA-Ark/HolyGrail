@@ -24,7 +24,7 @@ const ReviewCard = ({ review }) => {
                     <span className="review-date">
                         {utils.dayMonthYear(review.review.created_at)}
                     </span>
-                    <span className="stars">
+                    <span className="review-card-stars-container">
                         {stars()}
                     </span>
                     <span className="review-text">

@@ -49,8 +49,11 @@ export const getUserItems = (items, userId) => {
     return userItems
 }
 
-
-
 export const switchTab = (tab) => {
     return null
+}
+
+export const truncateName = (name) => {
+    const shortName = name.slice(0, 12);
+    return shortName + "...";
 }

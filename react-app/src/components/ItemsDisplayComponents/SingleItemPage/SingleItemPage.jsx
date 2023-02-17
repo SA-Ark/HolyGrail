@@ -6,13 +6,15 @@ import { useParams } from 'react-router-dom'
 import ImageCarousel from './ImageCarousel'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
-import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
+import EditModalButton from '../../EditModalButton'
+import DeleteItemButton from '../../Buttons/DeleteItemButton'
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
   const item = useSelector((state) => state.items.singleItem)
   const user = useSelector(store => store.session?.user)
+  console.log(item, 'itemmmmmm')
 
   const { itemId } = useParams()
 
@@ -45,28 +47,31 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-          <span id="item-name">{item.name}</span>
+          <span id="item-name">{item?.name}</span>
           <div
             className='item-favorites'
           >♡
           </div>
         </div>
-        <span className='size'>Size {item.size}</span>
-        <span className='color'>Color {item.color}</span>
-        <span className='condition'>Condition {item.condition}</span>
-        <span className='price'>${item.price}</span>
-        <span className='shipping'>+${item.shipping_cost} Shipping - Europe to United States</span>
+        <span className='size'>Size {item?.size}</span>
+        <span className='color'>Color {item?.color}</span>
+        <span className='condition'>Condition {item?.condition}</span>
+        <span className='price'>${item?.price}</span>
+        <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-        <>
-          <PurchaseModal item={item} />
-        </>
-
+        <PurchaseModal item={item} />
+        {item && (
+          <>
+            {user?.id === item?.seller_id && <EditModalButton />}
+            {user?.id === item?.seller_id && <DeleteItemButton />}
+          </>
+        )}
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
         <div><ProfileCard /></div>
 
         <span className='item-desc-title'>Description</span>
-        <span className='item-desc'>{item.description}</span>
+        <span className='item-desc'>{item?.description}</span>
         {/* <span className='tags'>Tags</span> */}
         {/* <span className='item-post-date'>Posted on {item.created_at}</span> */}
 

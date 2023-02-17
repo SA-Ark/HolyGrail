@@ -152,6 +152,7 @@ const ItemCreateModal = () => {
                                     onChange={(e) => setCondition(e.target.value)}
                                     value={condition}
                                     className="create-edit-item-input">
+                                    <option value=''>Select a condition</option>
                                     <option >New/Never Worn </option>
                                     <option >Gently Used</option>
                                     <option >Used</option>

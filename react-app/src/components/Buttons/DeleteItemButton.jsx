@@ -12,7 +12,7 @@ const DeleteItemButton = () => {
     let user = useState(store => store?.session?.user)
     let userId = user?.id
     const { itemId } = useParams();
-
+    let id = userId +1
     useEffect(() => {
         dispatch(thunkLoadSingleItem(itemId, userId))
     }, [itemId, userId, dispatch])
@@ -23,7 +23,7 @@ const DeleteItemButton = () => {
         const res = await dispatch(thunkDeleteItem(itemId))
         if (res?.ok) {
         }
-        history.push(`/dashboard/${userId}`)
+        history.push(`/dashboard/2`)
     }
 
     return (

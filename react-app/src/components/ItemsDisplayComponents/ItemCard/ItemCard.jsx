@@ -3,19 +3,19 @@
 // Verify how liked is coming into component and make sure it is implemented properly
 
 // ------------------------------------------------------
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
 import { truncateName } from "../../../store/utils";
 import { thunkLoadSingleItem } from "../../../store/items";
 import './ItemCard.css'
-const { LikeButton } = Buttons;
+const { LikeButton, UnlikeButton } = Buttons;
 
 const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
     // !@#$ need to dispatch an update to create an item like as well
-    const [liked, setLiked] = useState(item.liked)
+    const [liked, setLiked] = useState(item?.liked)
     const newName = truncateName(item?.name);
 
     const clickHandler = (e) => {
@@ -27,9 +27,16 @@ const ItemCard = ({ item, classProp }) => {
         console.log(data, "DATA IN ITEM CARD")
         item.liked = data.liked
         setLiked(data.liked)
-        
+
 
     }
+
+    // useEffect(() => {
+    //     console.log('STATEUPDATE')
+
+    // }, [liked])
+
+
 
     if (!item) return null
 
@@ -57,7 +64,13 @@ const ItemCard = ({ item, classProp }) => {
                         {
                             // liked
                                 // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                            <LikeButton itemId={item.id} liked={liked}
+                            !liked &&
+                        <LikeButton itemId={item.id} liked={liked}
+                            changeLike={changeLike}
+                            />}
+
+                            {liked &&
+                            <UnlikeButton itemId={item.id} liked={liked}
                             changeLike={changeLike}
                             />
                         }

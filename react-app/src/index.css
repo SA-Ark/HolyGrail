@@ -86,3 +86,13 @@ i {
   height: fit-content;
   width: fit-content;
 }
+
+input {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+textarea {
+  font-size: 16px;
+  font-weight: 200;
+}

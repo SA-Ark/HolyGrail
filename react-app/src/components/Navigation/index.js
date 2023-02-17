@@ -97,9 +97,15 @@ function Navigation({ isLoaded }) {
 					</>
 				)}
 
+<<<<<<< HEAD
 				{sessionUser && (
 					<button onClick={favoriteClick} className='favorites-button'><i class="fa-solid fa-heart"></i></button>
 				)}
+=======
+				{/* {sessionUser && (
+					<button className='favorites-button'>♥</button>
+				)} */}
+>>>>>>> cfa8554ffcaa4bb0b634ba9b4f7885f48aaad582
 				{sessionUser && isLoaded && (
 					<div>
 						<ProfileButton user={sessionUser} className="profile-button" />

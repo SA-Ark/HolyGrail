@@ -4,10 +4,11 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import { useParams } from 'react-router-dom'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
-import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
 import { thunkGetUser } from '../../../store/users';
+import DeleteItemButton from '../../Buttons/DeleteItemButton';
+
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -60,10 +61,11 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-          {item.seller_id !== user.id
-            ? <PurchaseModal item={item} />
-            : <EditModalButton />
-          }
+        {item.seller_id !== user.id
+          ? <PurchaseModal item={item} />
+          : <EditModalButton />
+        }
+        {item.seller_id === user.id? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

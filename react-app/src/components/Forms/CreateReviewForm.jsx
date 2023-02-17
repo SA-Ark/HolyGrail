@@ -18,7 +18,6 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        console.log(reviewBody, "REVIEWBODY")
         // bodVal = reviewBody
 
     }
@@ -89,7 +88,8 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
                         ></input>
                     </label>
                 </div>
-                <button className="feedback-button" type='submit'>Leave Review</button>
+                <button className="feedback-form-button" type='submit'>Leave Review</button>
+
             </form>
         </div>
     )

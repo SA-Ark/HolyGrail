@@ -48,7 +48,7 @@ const ItemEditForm = () => {
     // const [imageUrl4, setImageUrl4] = useState(item?.image_url_4);
     console.log('itemmmmmmmmm', item)
     useEffect(() => {
-        dispatch(thunkLoadSingleItem(itemId, userId))
+        dispatch(thunkLoadSingleItem(item?.id, userId))
     }, [dispatch, userId])
 
     // const item = useSelector((state) => state.items.singleItem)
@@ -93,8 +93,8 @@ const ItemEditForm = () => {
     }
 
     const onSubmit = async (e) => {
-
         e.preventDefault();
+        setErrors([])
         const itemsAttributes = {
             genderStyle,
             size,
@@ -116,10 +116,11 @@ const ItemEditForm = () => {
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
         if (data && data.errors) {
+            console.log('editform data', data)
             setErrors(data.errors)
         } else {
             history.push(`/dashboard/${user.id}`)
-            closeModal()
+            // closeModal()
         }
 
     }

@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
+import './EditReviewForm.css'
 const { DeleteReviewButton, ReviewButton } = Buttons;
 
 const EditReviewForm = ({ prevReview, setPrevReview }) => {
@@ -54,7 +55,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
             stars
         }
         const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
-        
+        console.log('data', data)
         if (data && data.errors) {
             setErrors(data.errors)
         } else {
@@ -68,35 +69,44 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
     }
 
     return (
-        <form className="edit-review-form" onSubmit={onSubmit}>
-            <div>
-                {Object.values(errors).map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <div>
-                <label>Review</label>
-                <textarea
-                    type='textarea'
-                    name='review'
-                    onChange={updateBody}
-                    value={reviewBody}
-                    id="body"
-                ></textarea>
-            </div>
-            <div>
-                <label>Stars</label>
-                <input
-                    type='number'
-                    name='stars'
-                    onChange={updateStars}
-                    value={stars}
-                    id="stars"
-                ></input>
-            </div>
-            <button className="feedback-button" type='submit'>{"Edit Feedback"}</button>
-            <DeleteReviewButton onDel={onDel} reviewId={prevReview?.id} />
-        </form>
+
+        <div className='edit-feedback-container'>
+            <span className="feedback-title">Update your feedback</span>
+            <form className="feedback-form" onSubmit={onSubmit}>
+                <div>
+                    {Object.values(errors).map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <label className='feedback-label'>
+                    <textarea
+                        placeholder='How did you like your item?'
+                        className='feedback-text'
+                        type='textarea'
+                        name='review'
+                        onChange={updateBody}
+                        value={reviewBody}
+                        id="body"
+                    ></textarea>
+                </label>
+                <label className='feedback-label'>
+                    <input
+                        placeholder='Rate your item'
+                        className='feedback-input'
+                        type='number'
+                        name='stars'
+                        onChange={updateStars}
+                        value={stars}
+                        id="stars"
+                    ></input>
+                </label>
+                <button className="feedback-form-button" type='submit'>{"Edit Feedback"}</button>
+                <div className='or'>
+                    or
+                </div>
+                <DeleteReviewButton onDel={onDel} reviewId={prevReview?.id} />
+            </form>
+        </div>
     )
 }
 

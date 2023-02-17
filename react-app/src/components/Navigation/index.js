@@ -9,7 +9,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 import './Navigation.css';
-import ItemCreateModal from '../Forms/ItemCreateModal';
+import ItemCreateModal from '../Forms/ItemCreateForm';
 
 function Navigation({ isLoaded }) {
 	const history = useHistory()

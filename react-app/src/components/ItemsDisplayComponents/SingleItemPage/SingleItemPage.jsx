@@ -7,19 +7,23 @@ import './SingleItemPage.css'
 import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
+import { thunkGetUser } from '../../../store/users';
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
   const item = useSelector((state) => state.items.singleItem)
+  const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
-  console.log(item, 'itemmmmmm')
+  console.log(item, 'itemmmmmm ------>')
+  console.log("ITEM OWNER --->", itemOwner)
 
   const { itemId } = useParams()
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    dispatch(thunkLoadSingleItem(itemId, user?.id))
+    dispatch(thunkLoadSingleItem(itemId, user?.id));
+    if (item.seller_id) dispatch(thunkGetUser(item.seller_id));
   }, [dispatch])
 
   return (
@@ -63,7 +67,7 @@ const SingleItemPage = () => {
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
-        <div><ProfileCard /></div>
+        <div><ProfileCard user={item.owner_id}/></div>
 
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item?.description}</span>

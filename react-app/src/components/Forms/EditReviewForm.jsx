@@ -73,7 +73,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
         <div className='edit-feedback-container'>
             <span className="feedback-title">Update your feedback</span>
             <form className="feedback-form" onSubmit={onSubmit}>
-                <div>
+            <div className="error-messages">
                     {Object.values(errors).map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}

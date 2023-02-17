@@ -44,72 +44,77 @@ const PurchaseForm = ({ item }) => {
     };
 
     return (
-            <div className='purchase-form-container'>
-                <span className='purchase-title'>Payment</span>
-                <form className='purchase-form' onSubmit={onSubmit}>
-                    <div>
-                        {console.log('errors before mapping -->', errors)}
-                        {Object.values(errors).map((error, idx) => <div key={idx}>{error}</div>)}
+        <div className='purchase-form-container'>
+            <span className='purchase-title'>Payment</span>
+            <form className='purchase-form' onSubmit={onSubmit}>
+                {Object.values(errors).length > 0 && (
+                    <div className="error-messages">
+                        {Object.values(errors).map((error, ind) => (
+                            <div key={ind}>
+                                {error}
+                            </div>
+                        ))}
                     </div>
+                )}
 
 
-                    <label className='purchase-label'>Card Number
-                        <input
-                            className='purchase-input'
-                            type='text'
-                            onChange={e => setCardNumber(e.target.value)}
-                            value={cardNumber}
-                            required
-                        ></input>
-                    </label>
-                    <label className='purchase-label'>Shipping Address
-                        <input
-                            className='purchase-input'
-                            type='text'
-                            onChange={e => setShippingAddress(e.target.value)}
-                            value={shippingAddress}
-                            required
-                        ></input>
-                    </label>
-                    <label className='purchase-label'>Billing Zip
-                        <input
-                            className='purchase-input'
-                            type='text'
-                            onChange={e => setCardZip(e.target.value)}
-                            value={cardZip}
-                            required
-                        ></input>
-                    </label>
-                    <label className='purchase-label'>Country
-                        <input
-                            className='purchase-input'
-                            type='text'
-                            onChange={e => setCardCountry(e.target.value)}
-                            value={cardCountry}
-                            required
-                        ></input>
-                    </label>
-                    <label className='purchase-label'>Expiration Date
-                        <input
-                            className='purchase-input'
-                            required
-                            type='date'
-                            onChange={e => setExpiry(e.target.value)}
-                            value={expiry}
-                        ></input>
-                    </label>
-                    <label className='purchase-label'>CVC
-                        <input
-                            className='purchase-input'
-                            required
-                            type='text'
-                            onChange={e => setCvc(e.target.value)}
-                            value={cvc}
-                        ></input>
-                    </label>
-                    <button className='purchase-form-button' type='submit'>Purchase: ${item?.price}</button>
-                </form>
-            </div>
+                <label className='purchase-label'>Card Number
+                    <input
+                        className='purchase-input'
+                        type='text'
+                        onChange={e => setCardNumber(e.target.value)}
+                        value={cardNumber}
+                        required
+                    ></input>
+                </label>
+                <label className='purchase-label'>Shipping Address
+                    <input
+                        className='purchase-input'
+                        type='text'
+                        onChange={e => setShippingAddress(e.target.value)}
+                        value={shippingAddress}
+                        required
+                    ></input>
+                </label>
+                <label className='purchase-label'>Billing Zip
+                    <input
+                        className='purchase-input'
+                        type='text'
+                        onChange={e => setCardZip(e.target.value)}
+                        value={cardZip}
+                        required
+                    ></input>
+                </label>
+                <label className='purchase-label'>Country
+                    <input
+                        className='purchase-input'
+                        type='text'
+                        onChange={e => setCardCountry(e.target.value)}
+                        value={cardCountry}
+                        required
+                    ></input>
+                </label>
+                <label className='purchase-label'>Expiration Date
+                    <input
+                        className='purchase-input'
+                        required
+                        type='date'
+                        onChange={e => setExpiry(e.target.value)}
+                        value={expiry}
+                    ></input>
+                </label>
+                <label className='purchase-label'>CVC
+                    <input
+                        className='purchase-input'
+                        required
+                        type='text'
+                        onChange={e => setCvc(e.target.value)}
+                        value={cvc}
+                    ></input>
+                </label>
+                <button className='purchase-form-button' type='submit'>Purchase: ${item?.price}</button>
+            </form>
+        </div>
     );
 };
 

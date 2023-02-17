@@ -45,7 +45,7 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-          <span id="item-name">{item.name}</span>
+          <span id="item-name">{item?.name}</span>
           <div
             className='item-favorites'
           >♡
@@ -57,11 +57,11 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-        {item.seller_id !== user.id
+        {item?.seller_id !== user.id
           ? <PurchaseModal item={item} />
           : <EditModalButton />
         }
-        {item.seller_id === user.id? < DeleteItemButton /> : null}
+        {item?.seller_id === user.id? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

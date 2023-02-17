@@ -1,14 +1,25 @@
 .create-edit-feedback-container {
     padding-top: 20px;
-    height: 380px;
-    width: 320px;
+    height: 450px;
+    width: 400px;
     background-color: white;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
+    /* padding-bottom: 20px; */
+}
+
+.feedback-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #dbd6d6;
     padding-bottom: 20px;
+    margin-bottom: 27px;
+    font-weight: bold;
 }
 
 .feedback-form {
@@ -29,10 +40,9 @@
 .feedback-text {
     font-size: 16px;
     margin-bottom: 15px;
-    padding: 20px;
+    padding: 30px;
     padding-bottom: 45px;
     border: 1px solid rgb(220, 220, 220);
-    border-radius: 5px;
 }
 
 .feedback-input {
@@ -41,7 +51,6 @@
     padding: 20px;
     padding-bottom: 15px;
     border: 1px solid rgb(220, 220, 220);
-    border-radius: 5px;
 }
 
 .feedback-button {

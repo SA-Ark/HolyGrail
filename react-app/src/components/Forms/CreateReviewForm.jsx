@@ -68,6 +68,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
                 <div>
                     <label className='feedback-label'>
                         <textarea
+                            placeholder='How did you like your item?'
                             className='feedback-text'
                             type='textarea'
                             name='review'
@@ -76,9 +77,9 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
                             id="body"
                         ></textarea>
                     </label>
-                    <label className='feedback-label'>Stars
+                    <label className='feedback-label'>
                         <input
-                            placeholder='How did you like your item?'
+                        placeholder='Rate your item'
                             className='feedback-input'
                             type='number'
                             name='stars'

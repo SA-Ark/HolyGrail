@@ -11,4 +11,5 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
     SQLALCHEMY_ECHO = True
-    # Random comment
+    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBIC_KEY')
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')

@@ -1,10 +1,13 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from app.models import Item, Like, Review, ItemImage, Order, db
 from flask_login import login_required, login_user, current_user
 from app.forms import PaymentForm
 from datetime import datetime
+import stripe
+import os
 
 payment_routes = Blueprint('payments', __name__)
+stripe.api_key = os.environ.get("STIPE_PUBLIC_KEY")
 
 
 @payment_routes.route('/<int:item_id>', methods=["GET", "POST"])
@@ -99,3 +102,26 @@ def delete_payment_info():
     """
 
     pass
+
+
+
+@payment_routes.route('/create-checkout-session', methods=['GET', 'POST'])
+def create_checkout_session():
+
+    session = stripe.checkout.Session.create(
+        line_items=[{
+            'price_data': {
+            'currency': 'usd',
+            'product_data': {
+            'name': 'T-shirt',
+            },
+            'unit_amount': 2000,
+        },
+        'quantity': 1,
+        }],
+        mode='payment',
+        success_url='http://localhost:5000/success',
+        cancel_url='http://localhost:5000/cancel',
+    )
+
+    return redirect(session.url, code=303)

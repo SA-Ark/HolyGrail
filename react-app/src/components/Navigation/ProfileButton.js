@@ -49,7 +49,7 @@ function ProfileButton({ user }) {
     <>
       <div className="profile-wrapper">
         <div className="profile-container">
-          <button className="profile-button" onClick={openMenu} type="button">
+          <button className="profile-button icon-button" onClick={openMenu} type="button">
             <i className="fa-solid fa-user"></i>
           </button>
 

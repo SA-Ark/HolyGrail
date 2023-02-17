@@ -6,7 +6,7 @@ import './ProfileCard.css'
 const ProfileCard = ({user}) => {
     const dispatch = useDispatch();
     const reviews = useSelector(state => state?.reviews?.allReviews);
-console.log('user', user)
+console.log('user', user?.id)
 console.log("REVIEWS ===>", reviews);
 
     const avg_star_rating = () => {

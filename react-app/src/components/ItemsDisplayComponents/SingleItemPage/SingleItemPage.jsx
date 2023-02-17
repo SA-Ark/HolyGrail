@@ -24,8 +24,12 @@ const SingleItemPage = () => {
 
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id));
-    if (item.seller_id) dispatch(thunkGetUser(item.seller_id));
-  }, [dispatch])
+    if (item?.seller_id){
+
+      dispatch(thunkGetUser(item?.seller_id));
+    }
+    console.log(item?.seller_id, "SELLET ID", item)
+  }, [dispatch, item?.seller_id])
 
   return (
     <div className="single-item-page-container">
@@ -88,7 +92,7 @@ const SingleItemPage = () => {
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
-        <div><ProfileCard user={item.owner_id}/></div>
+        <div><ProfileCard user={itemOwner}/></div>
 
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item?.description}</span>
@@ -97,7 +101,7 @@ const SingleItemPage = () => {
 
 
       </div>
-    </div>
+
   )
 }
 

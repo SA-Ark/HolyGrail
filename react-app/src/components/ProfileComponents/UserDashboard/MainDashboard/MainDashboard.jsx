@@ -63,7 +63,7 @@ const MainDashboard = () => {
                 <div className="tab-container">
                     <div className='purchases-tab' onClick={() => setSelectedTab('PurchasesTab')}>Purchases</div>
                     <div className='favorites-tab' onClick={() => setSelectedTab('FavoritesTab')}>Favorites</div>
-                    <div className='available-listings-tab' onClick={() => setSelectedTab('AvailableListingsTab')}>Available Listings</div>
+                    <div className='available-listings-tab' onClick={() => setSelectedTab('AvailableListingsTab')}>Your Listings</div>
                     <div className='feedback-tab' onClick={() => setSelectedTab('FeedbackTab')}>Feedback</div>
                 </div>
                 <div>

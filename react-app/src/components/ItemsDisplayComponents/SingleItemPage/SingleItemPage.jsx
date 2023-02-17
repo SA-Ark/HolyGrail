@@ -6,6 +6,7 @@ import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
 import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
+import DeleteItemButton from '../../Buttons/DeleteItemButton';
 
 
 const SingleItemPage = () => {
@@ -56,10 +57,11 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-          {item.seller_id !== user.id
-            ? <PurchaseModal item={item} />
-            : <EditModalButton />
-          }
+        {item.seller_id !== user.id
+          ? <PurchaseModal item={item} />
+          : <EditModalButton />
+        }
+        {item.seller_id === user.id? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

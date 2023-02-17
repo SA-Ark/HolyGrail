@@ -9,6 +9,8 @@ import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
 import DeleteItemButton from '../../Buttons/DeleteItemButton'
 import { thunkGetUser } from '../../../store/users';
+import Buttons from '../../Buttons'
+const { LikeButton, UnlikeButton } = Buttons
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -20,6 +22,7 @@ const SingleItemPage = () => {
   const { itemId } = useParams()
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [like, setLike] = useState((item?.liked))
 
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id));
@@ -29,6 +32,13 @@ const SingleItemPage = () => {
     }
     console.log(item?.seller_id, "SELLER ID", item)
   }, [dispatch, item?.seller_id])
+
+
+  const changeLike = (data) => {
+    item.liked = data.liked
+    setLike(data.liked)
+
+  }
 
      return (
     <div className="single-item-page-container">
@@ -53,9 +63,16 @@ const SingleItemPage = () => {
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
           <span id="item-name">{item?.name}</span>
-          <div
-            className='item-favorites'
-          > ♡
+          <div className='item-favorite'>
+               {
+                 !item.liked &&
+                 <LikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
+                }
+
+               {
+                item.liked &&
+                 <UnlikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
+               }
           </div>
         </div>
         <span className='size'>Size {item?.size}</span>

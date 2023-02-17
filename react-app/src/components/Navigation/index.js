@@ -90,9 +90,9 @@ function Navigation({ isLoaded }) {
 					</>
 				)}
 
-				{sessionUser && (
+				{/* {sessionUser && (
 					<button className='favorites-button'>♥</button>
-				)}
+				)} */}
 				{sessionUser && isLoaded && (
 					<div>
 						<ProfileButton user={sessionUser} className="profile-button" />

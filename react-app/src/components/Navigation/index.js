@@ -53,7 +53,6 @@ function Navigation({ isLoaded }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(`Searching for: ${search}`);
 	};
 
 	const handleChange = (e) => {

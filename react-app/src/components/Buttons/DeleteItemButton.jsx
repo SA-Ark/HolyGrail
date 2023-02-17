@@ -17,13 +17,13 @@ const DeleteItemButton = () => {
         dispatch(thunkLoadSingleItem(itemId, userId))
     }, [itemId, userId, dispatch])
 
-    const deleteItem = (e) => {
+    const deleteItem = async (e) => {
         e.preventDefault();
         setErrors([])
-        const res = dispatch(thunkDeleteItem(itemId))
-        if (res.ok) {
-            history.push(`/`)
+        const res = await dispatch(thunkDeleteItem(itemId))
+        if (res?.ok) {
         }
+        history.push(`/dashboard/${userId}`)
     }
 
     return (

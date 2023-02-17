@@ -15,8 +15,7 @@ const SingleItemPage = () => {
   const item = useSelector((state) => state.items.singleItem)
   const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
-  console.log(item, 'itemmmmmm ------>')
-  console.log("ITEM OWNER --->", itemOwner)
+
 
   const { itemId } = useParams()
 
@@ -24,14 +23,18 @@ const SingleItemPage = () => {
 
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id));
-    if (item.seller_id) dispatch(thunkGetUser(item.seller_id));
-  }, [dispatch])
+    if (item?.seller_id){
 
-  return (
+      dispatch(thunkGetUser(item?.seller_id));
+    }
+    console.log(item?.seller_id, "SELLER ID", item)
+  }, [dispatch, item?.seller_id])
+
+     return (
     <div className="single-item-page-container">
       <div className="arrows-carousel-container">
         <div className='back icon-button'
-          onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item.images?.length - 1)}>
+          onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item?.images?.length - 1)}>
           <i class="fa-solid fa-angles-left fa-3x"></i>
         </div>
         <div className='single-item-carousel-container'>
@@ -49,10 +52,10 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-          <span id="item-name">{item.name}</span>
+          <span id="item-name">{item?.name}</span>
           <div
             className='item-favorites'
-          >♡
+          > ♡
           </div>
         </div>
         <span className='size'>Size {item?.size}</span>
@@ -61,15 +64,16 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-        {item.seller_id !== user.id
+
+        {item?.seller_id !== user?.id
           ? <PurchaseModal item={item} />
           : <EditModalButton />
         }
-        {item.seller_id === user.id? < DeleteItemButton /> : null}
+        {item?.seller_id === user?.id ? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
-        <div><ProfileCard user={item.owner_id}/></div>
+        <div><ProfileCard user={itemOwner} /></div>
 
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item?.description}</span>

@@ -37,12 +37,12 @@ const LikeButton = ({ itemId, liked, changeLike }) => {
             )}
             {like && user?.id && (
                 <button className='like-button icon-button' type='button' onClick={likeFunc}>
-                    <i class="fa-solid fa-heart like-icon"></i>
+                    <i className="fa-solid fa-heart like-icon"></i>
                 </button>
             )}
             {!like && user?.id && (
                 <button className='like-button icon-button' type='button' onClick={likeFunc}>
-                    <i class="fa-regular fa-heart like-icon"></i>
+                    <i className="fa-regular fa-heart icon-button"></i>
                 </button>
             )}
         </>

@@ -12,7 +12,7 @@ import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
-import ItemCreateModal from "./components/Forms/ItemCreateModal";
+import ItemCreateModal from "./components/Forms/ItemCreateForm";
 import EditReviewForm from "./components/Forms/EditReviewForm";
 
 
@@ -42,6 +42,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/favorites/:userId">
+            <MainDashboard tabOverride={"FavoritesTab"} />
           </Route>
           <ProtectedRoute path='/items/edit/:itemId'>
             <ItemEditForm />

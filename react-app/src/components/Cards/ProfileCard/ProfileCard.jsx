@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { thunkLoadCurrReviews } from "../../../store/reviews";
 import './ProfileCard.css'
 
-const ProfileCard = () => {
+const ProfileCard = ({user}) => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
     const reviews = useSelector(state => state?.reviews?.allReviews);
 
     const avg_star_rating = () => {

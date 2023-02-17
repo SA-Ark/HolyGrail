@@ -6,7 +6,7 @@ import { thunkCreateFavorite, thunkLoadFavorites, thunkDeleteFavorite } from '..
 import { thunkLoadItems, thunkLoadSingleItem } from '../../store/items';
 import RedirectToLoginModal from '../RedirectToLoginModal'
 
-const LikeButton = ({ itemId, liked }) => {
+const LikeButton = ({ itemId, liked, changeLike }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState([])
@@ -25,7 +25,9 @@ const LikeButton = ({ itemId, liked }) => {
         setLike(!like)
         //come back to this for flex
         await dispatch(thunkLoadFavorites())
-
+        const data = await dispatch(thunkLoadSingleItem(itemId, userId))
+        console.log(data, "SINGLE ITEM")
+        changeLike(data)
     }
 
     return (

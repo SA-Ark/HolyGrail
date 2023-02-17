@@ -9,7 +9,7 @@ import './MainDashboard.css'
 import { getUserFavoriteItems, getUserPurchases, switchTab, dbDateToMonthYear } from '../../../../store/utils'
 const { PurchasesTab, EditProfileTab, FavoritesTab, AvailableListingsTab, FeedbackTab } = Tabs
 
-const MainDashboard = () => {
+const MainDashboard = ({tabOverride}) => {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state?.session?.user)
@@ -18,7 +18,7 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
-    const [selectedTab, setSelectedTab] = useState('PurchasesTab');
+    const [selectedTab, setSelectedTab] = useState(tabOverride ? tabOverride : 'AvailableListingsTab');
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))

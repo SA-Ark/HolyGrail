@@ -4,18 +4,31 @@
 
 // ------------------------------------------------------
 import {useState} from "react"
+import { useSelector } from "react-redux";
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
 import { truncateName } from "../../../store/utils";
+import { thunkLoadSingleItem } from "../../../store/items";
 import './ItemCard.css'
 const { LikeButton } = Buttons;
 
 const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
     // !@#$ need to dispatch an update to create an item like as well
+    const [liked, setLiked] = useState(item.liked)
     const newName = truncateName(item?.name);
+
     const clickHandler = (e) => {
         history.push(`/items/${item.id}`)
+    }
+
+    const changeLike = (data)=>{
+        console.log(item)
+        console.log(data, "DATA IN ITEM CARD")
+        item.liked = data.liked
+        setLiked(data.liked)
+        
+
     }
 
     if (!item) return null
@@ -44,7 +57,9 @@ const ItemCard = ({ item, classProp }) => {
                         {
                             // liked
                                 // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                            <LikeButton itemId={item.id} liked ={item.liked}/>
+                            <LikeButton itemId={item.id} liked={liked}
+                            changeLike={changeLike}
+                            />
                         }
                     </span>
                 </div>

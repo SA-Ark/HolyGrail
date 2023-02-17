@@ -53,8 +53,10 @@ def logged_in_item(item_id):
     Has number of likes 'num_likes' for the item.
     Adds whether the current user likes the item if curr user is logged in.
     """
+    item_normalized = None
     item = Item.query.get(item_id)
-    item_normalized = item.to_dict()
+    if item:
+        item_normalized = item.to_dict()
     if item and current_user:
 
         like = Like.query.get((current_user.id, item_normalized["id"]))

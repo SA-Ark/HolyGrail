@@ -34,12 +34,12 @@ const LikeButton = ({ itemId, liked }) => {
                 <RedirectToLoginModal />
             )}
             {like && user?.id && (
-                <button className='like-button' type='button' onClick={likeFunc}>
+                <button className='like-button icon-button' type='button' onClick={likeFunc}>
                     <i class="fa-solid fa-heart like-icon"></i>
                 </button>
             )}
             {!like && user?.id && (
-                <button className='like-button' type='button' onClick={likeFunc}>
+                <button className='like-button icon-button' type='button' onClick={likeFunc}>
                     <i class="fa-regular fa-heart like-icon"></i>
                 </button>
             )}

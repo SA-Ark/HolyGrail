@@ -14,7 +14,7 @@ class Order(db.Model):
     buyer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key= True, nullable=False )
     item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("items.id")), primary_key= True, nullable=False )
     seller_id = db.Column(db.Integer, nullable=False)
-    transaction_id = db.Column(db.Integer, nullable=False, unique= True)
+    # transaction_id = db.Column(db.Integer, nullable=True, unique= True)
     order_total = db.Column(db.Integer, nullable=False)
     card_number = db.Column(db.String, nullable=False)
     expiry = db.Column(db.Date, nullable=False)
@@ -40,13 +40,12 @@ class Order(db.Model):
 
     def __init__(self,
                  buyer_id, item_id, seller_id,
-                 transaction_id,
                  order_total, card_number,
                  expiry, cvc, card_country,
                  card_zip, shipping_address,
                  created_at, updated_at
                  ):
-        self.transaction_id = Order.get_next_id()
+        # self.transaction_id = Order.get_next_id()
 
         self.buyer_id = buyer_id
         self.item_id = item_id
@@ -67,7 +66,7 @@ class Order(db.Model):
             'buyer_id': self.buyer_id,
             'item_id': self.item_id,
             'seller_id': self.seller_id,
-            "transaction_id": self.transaction_id,
+            # "transaction_id": self.transaction_id,
             'order_total': self.order_total,
             'card_number': self.card_number,
             'expiry': self.expiry,

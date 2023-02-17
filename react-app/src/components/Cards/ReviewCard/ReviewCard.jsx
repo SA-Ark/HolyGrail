@@ -1,4 +1,5 @@
 import * as utils from '../../../store/utils';
+import './ReviewCard.css';
 
 const ReviewCard = ({ review }) => {
 
@@ -10,49 +11,32 @@ const ReviewCard = ({ review }) => {
 
     // const [day, month, year] = utils.dateToParts(review.created_at);
     const stars = () => {
-        if (review.review.stars === 5) return "⭐️⭐️⭐️⭐️⭐️";
-        if (review.review.stars === 4) return "⭐️⭐️⭐️⭐️";
-        if (review.review.stars === 3) return "⭐️⭐️⭐️";
-        if (review.review.stars === 2) return "⭐️⭐️";
-        else return "⭐️";
+        if (review.review.stars === 5) return "★★★★★";
+        if (review.review.stars === 4) return "★★★★";
+        if (review.review.stars === 3) return "★★★";
+        if (review.review.stars === 2) return "★★";
+        else return "★";
     }
 
     return (
         <>
-            <hr />
             <div className="review-card-container">
-                <br />
                 <div className="review-body">
-                    <span className="date">
-                        {/* {month + " "}{day + ", "}{year} */}
-                        {review.review.created_at}
+                    <span className="review-date">
+                        {utils.dayMonthYear(review.review.created_at)}
                     </span>
-
-                    <br />
-
-                    <span className="stars">
-                        {/* {review.stars} */}
+                    <span className="review-card-stars-container">
                         {stars()}
                     </span>
-
-                    <br />
-
                     <span className="review-text">
                         {review.review.review_body}
                     </span>
-
-                    <br />
-
-                    <span className="description">
+                    <span className="review-description">
                         {review.item.name}
                     </span>
-
-                    <br />
-
+                </div>
+                <div className='review-img-container'>
                     <img src={review.item.preview_url} alt="" className="product-image" />
-
-                    <br />
-
                 </div>
 
 

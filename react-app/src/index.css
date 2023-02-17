@@ -1,40 +1,73 @@
 /* TODO Add site wide styles */
+* {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
 
 body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
-button {
-    font-family: "Video",monospace;
-    border: none;
-    background-color: rgba(255,255,255,0);
+select {
+  appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
 }
 
-select {
-    appearance: none;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #fff;
-    color: #333;
-    cursor: pointer;
-  }
+select:hover {
+  border-color: #aaa;
+}
 
-  select:hover {
-    border-color: #aaa;
-  }
+select:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 
-  select:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  }
+select option {
+  background-color: #fff;
+  color: #333;
+}
 
-  select option {
-    background-color: #fff;
-    color: #333;
-  }
+.like-icon {
+  justify-self: flex-end;
+}
 
-  .like-icon {
-    justify-self: flex-end;
-  }
+.feedback-button {
+  display: flex;
+  flex-direction: row;
+  width: 175px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  font-family: "Video",monospace;
+}
+
+.feedback-button:hover {
+  color: black;
+  background-color: white;
+}
+
+.feedback-button:active {
+  background-color: rgba(205, 205, 205, 0.5);
+  transform: translateY(0.5px);
+}
+
+.icon-button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}

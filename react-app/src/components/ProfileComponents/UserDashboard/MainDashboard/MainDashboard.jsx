@@ -6,7 +6,7 @@ import { thunkLoadOrders } from '../../../../store/payments'
 import { thunkLoadReviews } from '../../../../store/reviews'
 import Tabs from '../Tabs'
 import './MainDashboard.css'
-import { getUserFavoriteItems, getUserPurchases, switchTab } from '../../../../store/utils'
+import { getUserFavoriteItems, getUserPurchases, switchTab, dbDateToMonthYear } from '../../../../store/utils'
 const { PurchasesTab, EditProfileTab, FavoritesTab, AvailableListingsTab, FeedbackTab } = Tabs
 
 const MainDashboard = () => {
@@ -40,8 +40,8 @@ const MainDashboard = () => {
                     <div className='prof-icon-container'>
                         <i className="fa-solid fa-circle-user"></i>
                         <div className='joined-in-container'>
-                            <div className='profile-username'>{user?.username}</div>
-                            <span className='joined-on'>Joined on {user?.created_at}</span>
+                            <div className='profile-username'>{user.username}</div>
+                            <span className='joined-on'>Joined on {dbDateToMonthYear(user.created_at)}</span>
                         </div>
                     </div>
                     <div className='stars-container'>
@@ -55,7 +55,7 @@ const MainDashboard = () => {
                         <div className="profile-transactions-count">
                             {!reviews?.total_transactions ? 'No transactions' : reviews?.total_transactions}
                         </div>
-                        <span className='transactions'>Transsactions</span>
+                        <span className='transactions'>Transactions</span>
                     </div>
 
                 </div>

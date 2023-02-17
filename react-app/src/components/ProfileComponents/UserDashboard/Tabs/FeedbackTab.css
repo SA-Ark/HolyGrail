@@ -1,0 +1,34 @@
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 15px 20px;
+    margin-bottom: 66px;
+    border-bottom: 1px solid lightgrey;
+    background-color: #fcfcfc;;
+    /* border: 1px solid black; */
+}
+
+.feedback-header h3 {
+    margin-top: 0px;
+    /* border: 1px solid black; */
+}
+
+.feedback-header .avg-stars {
+    /* margin-top: 0px; */
+    margin-bottom: 10px;
+    /* border: 1px solid black; */
+}
+
+.feedback-header .review-count {
+    margin-bottom: 10px;
+}
+
+.avg-stars {
+    color: green;
+}

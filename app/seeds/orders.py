@@ -28,7 +28,7 @@ def seed_orders():
                     buyer_id=u.id,
                     item_id=items[item_idx].id,
                     seller_id=items[item_idx].seller_id,
-                    transaction_id=1,
+                    # transaction_id=1,
                     order_total=items[item_idx].price*1.1,
                     card_number=f'{i%9}567{i%9}5{i%9}68{i%9}303400',
                     expiry=date,

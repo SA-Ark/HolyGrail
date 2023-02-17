@@ -1,19 +1,19 @@
-import EditReviewForm from "../../Forms/EditReviewForm";
-import EditReviewModal from "../../EditReviewModal";
 import CreateReviewModal from "../../CreateReviewModal";
+import EditReviewModal from "../../EditReviewModal";
+import { dayMonthYear } from "../../../store/utils";
 import { useState } from "react";
+import "../../ProfileComponents/UserDashboard/Tabs/PurchasesTab.css";
 
 const PurchaseCard = ({purchase}) => {
     let [prevReview, setPrevReview] = useState(purchase?.order?.review)
     let reviewId = null
-    if (purchase?.order?.review_id){
+    if (purchase?.order?.review_id) {
         reviewId = purchase.order.review_id
     }
     console.log(purchase, "purchase")
     console.log(prevReview, "REV FROM PURCH")
     // setPrevReview(purchase?.order?.review)
     return (
-
         <div className="purchase-container">
             <div className="purchase-img-container">
                 <img src={purchase.item.preview_url} alt="" className="purchase-image" />
@@ -21,8 +21,8 @@ const PurchaseCard = ({purchase}) => {
             <div className="purchase-info-container">
                 <div className="purchase-info">
                     <div className="purchase-date">
-                        <span>Purchased On: </span>
-                        <span>{purchase.order.created_at}</span>
+                        <span>Purchased</span>
+                        <span>{dayMonthYear(purchase.order.created_at)}</span>
                     </div>
                     <div className="sale-price">
                         <span>Sale Price: </span>
@@ -31,7 +31,7 @@ const PurchaseCard = ({purchase}) => {
 
                     <div className="payment-type">
                         <span>Payment Type: </span>
-                        <span>Credit Card (- this is currently hard coded) </span>
+                        <span>Credit Card</span>
                     </div>
 
                 </div>
@@ -41,7 +41,6 @@ const PurchaseCard = ({purchase}) => {
                     <span>{purchase.item.size}</span>
 
                 </div>
-
             </div>
             <div className="buttons-container">
                 {/* !@#$ Add buttons here */}

@@ -46,6 +46,7 @@ class Item(db.Model):
             "num_likes": self.get_num_likes(),
             "images": self.get_images(),
             "preview_image": self.get_preview_image(),
+            "sold": self.sold,
             "created_at": self.created_at,
             "updated_at": self.updated_at
 

@@ -35,10 +35,14 @@ export const thunkLoadOrders = (userId) => async (dispatch) => {
 
 
 export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) => {
-    const {order_total, card_number, expiry, cvc,
+    const { order_total, card_number, expiry, cvc,
         card_country, card_zip, shipping_address
 
     } = orderAttributes
+    console.log('order attributes --->',
+        order_total, card_number, expiry, cvc,
+        card_country, card_zip, shipping_address
+    )
     const res = await fetch(`/api/payments/${itemId}`, {
         method: 'POST',
         headers: {
@@ -46,7 +50,7 @@ export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) =>
         },
         body: JSON.stringify({
             order_total, card_number, expiry, cvc,
-        card_country, card_zip, shipping_address
+            card_country, card_zip, shipping_address
         })
     })
     if (res.ok) {

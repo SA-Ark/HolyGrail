@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './EditProfileTab.css'
 
 const EditProfileTab = () => {
     const user = useSelector(state => state.session?.user);
-
+    const history = useHistory()
 
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
@@ -24,6 +25,10 @@ const EditProfileTab = () => {
             // weight,
             // bio
         ]
+    }
+
+    const clickHandler = () => {
+        history.push('/items')
     }
 
 
@@ -91,6 +96,7 @@ const EditProfileTab = () => {
                 </div>
             <div className='edit-prof-img-container'>
                 <img
+                onClick={clickHandler}
                 src='https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2022%2F10%2Fgoat-to-acquire-grailed-announcement-info-0.jpg?w=960&cbr=1&q=90&fit=max'
                     className='edit-prof-img'>
                 </img>

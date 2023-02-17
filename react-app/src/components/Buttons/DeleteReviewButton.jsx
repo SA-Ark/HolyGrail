@@ -26,7 +26,7 @@ const DeleteReviewButton = ({onDel, reviewId}) => {
 
     return (
         <>
-            <button type='button' onClick={deleteItem}>Delete</button>
+            <button className="feedback-button" type='button' onClick={deleteItem}>Delete</button>
         </>
     )
 };

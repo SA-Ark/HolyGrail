@@ -1,27 +1,26 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import LoginFormModal from '../LoginFormModal';
+import ItemCreateModal from '../Forms/ItemCreateModal';
+import PurchaseForm from '../Forms/PurchaseForm';
 
-
-function RedirectToLoginModal({
+function PurchaseModal({
+  item,
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onRedirectClick = () => {
+  const onPurchaseClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<LoginFormModal />);
+    setModalContent(<PurchaseForm item={item}/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-      <button className='like-button icon-button' onClick={onRedirectClick}>
-        <i class="fa-regular fa-heart like-icon"></i>
-      </button>
+      <button onClick={onPurchaseClick} className='purchase-button'>PURCHASE</button>
     </>
   );
 }
 
-export default RedirectToLoginModal;
+export default PurchaseModal;

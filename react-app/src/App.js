@@ -43,9 +43,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          {/* <ProtectedRoute path='/items/edit/:itemId'>
+          <ProtectedRoute path='/items/edit/:itemId'>
             <ItemEditForm />
-          </ProtectedRoute> */}
+          </ProtectedRoute>
           {/* <ProtectedRoute path='/items/delete/:itemId'>
             <DeleteItemButton />
           </ProtectedRoute> */}

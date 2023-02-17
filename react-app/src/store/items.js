@@ -135,11 +135,13 @@ export const thunkCreateItem = (itemsAttributes) => async (dispatch) => {
 }
 
 export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
-    const [
+    const {
         genderStyle, size, color, condition, categoryTags,
         price, shippingCost, description, name, previewUrl,
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, itemId, userId
-    ] = itemsAttributes
+     } = itemsAttributes
+
+    console.log("URLLLLLLLLLLLLLLLL", previewUrl)
     const res = await fetch(`/api/items/edit/${itemId}`, {
 
         method: 'PUT',

@@ -5,8 +5,7 @@ import { useParams } from 'react-router-dom'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
 import PurchaseModal from '../../PurchaseModal'
-import EditModalButton from '../../EditModalButton'
-import DeleteItemButton from '../../Buttons/DeleteItemButton'
+
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -44,7 +43,7 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-          <span id="item-name">{item?.name}</span>
+          <span id="item-name">{item.name}</span>
           <div
             className='item-favorites'
           >♡
@@ -56,13 +55,10 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-        <PurchaseModal item={item} />
-        {item && (
-          <>
-            {user?.id === item?.seller_id && <EditModalButton />}
-            {user?.id === item?.seller_id && <DeleteItemButton />}
-          </>
-        )}
+        <>
+          <PurchaseModal item={item} />
+        </>
+
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
         <div><ProfileCard /></div>

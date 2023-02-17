@@ -64,10 +64,25 @@ select option {
 
 .feedback-button:active {
   background-color: rgba(205, 205, 205, 0.5);
-  transform: translateY(0.5px);
+  transform: translateY(0.5px) translateX(0.5px);
 }
 
 .icon-button {
   border: none;
   background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  width: fit-content;
+}
+
+.icon-button:active {
+  transform: translateY(0.5px) translateX(0.5px);
+}
+
+.item-card {
+  cursor: pointer;
+}
+
+i {
+  height: fit-content;
+  width: fit-content;
 }

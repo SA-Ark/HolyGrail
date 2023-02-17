@@ -101,7 +101,7 @@ const favoritesReducer = (state = initialState, action) => {
         case CREATE_FAVORITE: {
 
             const newState = { ...state }
-            newState.singleFavorite = action.payload
+            newState.singleFavorite = {...action.payload}
             return newState
         }
 

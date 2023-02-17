@@ -18,9 +18,16 @@ const SplashPlage = () => {
 
     const items = useSelector((state) => state.items.allItems)
 
+    // const favorite = useSelector(state => state.favorites?.singleFavorite)
+
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
     }, [dispatch, user])
+
+    // useEffect(() => {
+    //     console.log('STATEUPDATE')
+
+    // }, [favorite])
 
     const handlePlay = () => {
         setVideoPlaying(true)
@@ -121,6 +128,3 @@ const SplashPlage = () => {
 }
 
 export default SplashPlage;
-
-
-

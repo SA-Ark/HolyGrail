@@ -3,7 +3,7 @@
 // Verify how liked is coming into component and make sure it is implemented properly
 
 // ------------------------------------------------------
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import { useSelector } from "react-redux";
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
@@ -31,6 +31,13 @@ const ItemCard = ({ item, classProp }) => {
 
     }
 
+    // useEffect(() => {
+    //     console.log('STATEUPDATE')
+
+    // }, [liked])
+
+
+
     if (!item) return null
 
     return (
@@ -57,12 +64,12 @@ const ItemCard = ({ item, classProp }) => {
                         {
                             // liked
                                 // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                            !item.liked &&
+                            !liked &&
                         <LikeButton itemId={item.id} liked={liked}
                             changeLike={changeLike}
                             />}
 
-                            {item.liked &&
+                            {liked &&
                             <UnlikeButton itemId={item.id} liked={liked}
                             changeLike={changeLike}
                             />

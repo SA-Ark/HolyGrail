@@ -10,7 +10,7 @@ import Buttons from '../../Buttons'
 import { truncateName } from "../../../store/utils";
 import { thunkLoadSingleItem } from "../../../store/items";
 import './ItemCard.css'
-const { LikeButton } = Buttons;
+const { LikeButton, UnlikeButton } = Buttons;
 
 const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
@@ -27,7 +27,7 @@ const ItemCard = ({ item, classProp }) => {
         console.log(data, "DATA IN ITEM CARD")
         item.liked = data.liked
         setLiked(data.liked)
-        
+
 
     }
 
@@ -57,7 +57,13 @@ const ItemCard = ({ item, classProp }) => {
                         {
                             // liked
                                 // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                            <LikeButton itemId={item.id} liked={liked}
+                            !item.liked &&
+                        <LikeButton itemId={item.id} liked={liked}
+                            changeLike={changeLike}
+                            />}
+
+                            {item.liked &&
+                            <UnlikeButton itemId={item.id} liked={liked}
                             changeLike={changeLike}
                             />
                         }

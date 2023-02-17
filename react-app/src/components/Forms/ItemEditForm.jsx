@@ -48,7 +48,7 @@ const ItemEditForm = () => {
     // const [imageUrl4, setImageUrl4] = useState(item?.image_url_4);
     console.log('itemmmmmmmmm', item)
     useEffect(() => {
-        dispatch(thunkLoadSingleItem(itemId, userId))
+        dispatch(thunkLoadSingleItem(item?.id, userId))
     }, [dispatch, userId])
 
     // const item = useSelector((state) => state.items.singleItem)

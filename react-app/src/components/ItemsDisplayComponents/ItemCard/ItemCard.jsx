@@ -16,7 +16,7 @@ const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
     const dispatch = useDispatch()
     // !@#$ need to dispatch an update to create an item like as well
-    const [liked, setLiked] = useState(item.liked)
+    const [liked, setLiked] = useState(item?.liked)
     const newName = truncateName(item?.name);
 
     const clickHandler = (e) => {

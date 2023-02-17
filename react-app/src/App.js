@@ -17,7 +17,7 @@ import EditReviewForm from "./components/Forms/EditReviewForm";
 
 
 const { DeleteItemButton } = Buttons
-const { ItemEditForm, ReviewForm, EditProfileForm, PurchaseForm } = Forms
+const { ItemEditForm, CreateReviewForm, EditProfileForm, PurchaseForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -73,7 +73,7 @@ function App() {
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>
-            <ReviewForm/>
+            <CreateReviewForm/>
           </ProtectedRoute>
           <Route path='/' exact={true} >
             <SplashPlage />

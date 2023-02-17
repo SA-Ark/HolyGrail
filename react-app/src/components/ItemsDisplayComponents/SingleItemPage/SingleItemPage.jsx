@@ -31,7 +31,7 @@ const SingleItemPage = () => {
     console.log(item?.seller_id, "SELLET ID", item)
   }, [dispatch, item?.seller_id])
 
-  return (
+     return (
     <div className="single-item-page-container">
       <div className="arrows-carousel-container">
         <div className='back icon-button'
@@ -53,42 +53,27 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-
           <span id="item-name">{item.name}</span>
-          <div className='item-favorites'>
-          {/* <LikeButton /> */}
-          </div>
-        </div>
-        <span className='size'>Size {item.size}</span>
-        <span className='color'>Color {item.color}</span>
-        <span className='condition'>Condition {item.condition}</span>
-        <span className='price'>${item.price}</span>
-        <span className='shipping'>+${item.shipping_cost} Shipping - Europe to United States</span>
-
-        <div className='purchase-button-container'>
-          <PurchaseModal item={item} />
-        </div>
-
-          <span id="item-name">{item?.name}</span>
-
-          <span id="item-name">{item.name}</span>
-
           <div
             className='item-favorites'
           >♡
           </div>
         </div>
+        <span className='size'>Size {item?.size}</span>
+        <span className='color'>Color {item?.color}</span>
+        <span className='condition'>Condition {item?.condition}</span>
+        <span className='price'>${item?.price}</span>
+        <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-
-
-          {item.seller_id !== user.id
-            ? <PurchaseModal item={item} />
-            : <EditModalButton />
-          }
+        {item.seller_id !== user.id
+          ? <PurchaseModal item={item} />
+          : <EditModalButton />
+        }
+        {item.seller_id === user.id ? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
-        <div><ProfileCard user={itemOwner}/></div>
+        <div><ProfileCard /></div>
 
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item?.description}</span>
@@ -97,7 +82,7 @@ const SingleItemPage = () => {
 
 
       </div>
-
+    </div>
   )
 }
 

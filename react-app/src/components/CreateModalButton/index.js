@@ -1,6 +1,6 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import ItemCreateModal from '../Forms/ItemCreateModal';
+import ItemCreateModal from '../Forms/ItemCreateForm';
 
 function CreateModalButton({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked

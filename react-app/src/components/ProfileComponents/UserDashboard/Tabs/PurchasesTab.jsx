@@ -5,7 +5,6 @@ import "./PurchasesTab.css";
 
 const PurchasesTab = ({purchases}) => {
     const purchaseList = deNormalize(purchases)
-    console.log(purchaseList, "purchaseList")
 
     return (
         <div className="purchases-container">
@@ -16,7 +15,7 @@ const PurchasesTab = ({purchases}) => {
                 {
                     purchaseList?.length
                         ? purchaseList.map(purchase => {
-                            return <PurchaseCard purchase={purchase}/>
+                            return <PurchaseCard purchase={purchase} key={purchase.item.id} />
                         })
                         : null
                 }
@@ -24,5 +23,6 @@ const PurchasesTab = ({purchases}) => {
         </div>
     )
 }
+
 
 export default PurchasesTab;

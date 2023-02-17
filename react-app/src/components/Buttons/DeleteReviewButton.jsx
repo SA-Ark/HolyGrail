@@ -22,11 +22,13 @@ const DeleteReviewButton = ({onDel, reviewId}) => {
                 history.push('/dashboard/1')
 
         }
+        // await dispatch(thunkLoadCurrReviews(userId))
+        // history.push(`/dashboard/${userId}`)
     }
 
     return (
         <>
-            <button className="feedback-button" type='button' onClick={deleteItem}>Delete</button>
+            <button className="delete-feedback-button" type='button' onClick={deleteItem}>Delete</button>
         </>
     )
 };

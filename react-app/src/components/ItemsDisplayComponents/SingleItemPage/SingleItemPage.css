@@ -2,15 +2,22 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
+    gap: 8em;
+}
+
+.arrows-carousel-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 /* item carousel */
 .single-item-carousel-container{
     display: flex;
     flex-direction: row;
-    margin-right: 120px;
     padding-top: 42px;
+    padding-right: 5em;
+    padding-left: 5em;
 }
 
 .single-item-image {
@@ -21,7 +28,7 @@
 
 /* item info */
 .item-info-buttons-container{
-    width: 30%;
+    width: 25%;
     margin-top: 4.6rem;
     display: flex;
     flex-direction: column;
@@ -36,10 +43,6 @@
 #item-name {
     font-weight: bold;
     font-size: 18px;
-}
-
-.item-favorites {
-
 }
 
 .size {
@@ -91,4 +94,8 @@
 .item-desc {
     padding-top: 10px;
     font-weight: 200;
+}
+
+.purchase-button-container {
+    padding-bottom: 2em;
 }

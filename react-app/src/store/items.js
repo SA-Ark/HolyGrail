@@ -1,3 +1,4 @@
+import { spreadItems } from './store-utils';
 import * as utils from './utils';
 
 const LOAD_ITEMS = 'LOAD_ITEMS'
@@ -20,6 +21,7 @@ export const actionLoadSingleItem = (item) => {
         payload: item
     }
 }
+
 
 export const actionCreateItem = (item) => {
     return {
@@ -70,7 +72,7 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     console.log(itemId, userId, " <------ITEMID")
     let res = null
     if (userId) {
-        res = await fetch(`/api/items/${itemId}`, {
+        res = await fetch(`/api/items/current/${itemId}`, {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -87,6 +89,8 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     if (res.ok) {
         const item = await res.json()
         dispatch(actionLoadSingleItem(item))
+        console.log(item, "ITEM in thunk")
+        return item
     }
 }
 
@@ -133,11 +137,13 @@ export const thunkCreateItem = (itemsAttributes) => async (dispatch) => {
 }
 
 export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
-    const [
+    const {
         genderStyle, size, color, condition, categoryTags,
         price, shippingCost, description, name, previewUrl,
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, itemId, userId
-    ] = itemsAttributes
+     } = itemsAttributes
+
+    console.log("URLLLLLLLLLLLLLLLL", previewUrl)
     const res = await fetch(`/api/items/edit/${itemId}`, {
 
         method: 'PUT',
@@ -161,15 +167,19 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
             image_url_4: imageUrl4
         })
     })
+    console.log('HEY FROM UNDER DICTIONARY',)
     if (res.ok) {
         const data = await res.json();
+        console.log('data in thunk', data)
         dispatch(actionEditItem(data))
         return null;
     } else if (res.status < 500) {
+        console.log('hi from below')
         const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
+        console.log('data in thunk', data)
+        // if (data.errors) {
+        return data;
+        // }
       }
 }
 
@@ -199,8 +209,9 @@ const itemsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ITEMS: {
 
-            const newState = { ...state }
-            newState.allItems = {...action.payload.items}
+
+            const newState = { allItems: {...state.allItems}, singleItem: {...state.singleItem} }
+            newState.allItems = {...spreadItems(action.payload.items)}
             return newState
         }
 

@@ -1,0 +1,11 @@
+#filters-label {
+    text-decoration: underline;
+}
+
+.cat-filter-btn:hover {
+    text-decoration: underline;
+}
+
+.all-filter-btn:hover {
+    text-decoration: underline;
+}

@@ -2,11 +2,13 @@
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+    padding: 20px;
 }
 
 .listings-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: flex-start;
     gap: 5%;
@@ -22,7 +24,18 @@
 }
 
 .item-card-listings {
-    /* width: 100%; */
     display: flex;
     flex-direction: column;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.item-card-listings img {
+    padding-bottom: 0.5em;
+}
+
+.item-info-container {
+    border-top: 1px solid lightgrey;
+    margin-top: 5px;
+    padding-top: 5px;
 }

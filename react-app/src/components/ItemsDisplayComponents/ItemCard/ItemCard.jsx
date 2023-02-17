@@ -4,24 +4,36 @@
 
 // ------------------------------------------------------
 import {useState} from "react"
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
 import { truncateName } from "../../../store/utils";
+import { thunkLoadItems, thunkLoadSingleItem } from "../../../store/items";
 import './ItemCard.css'
-const { LikeButton } = Buttons;
+const { LikeButton, UnlikeButton } = Buttons;
 
 const ItemCard = ({ item, classProp }) => {
     const history = useHistory()
+    const dispatch = useDispatch()
     // !@#$ need to dispatch an update to create an item like as well
+    const [liked, setLiked] = useState(item?.liked)
     const newName = truncateName(item?.name);
+
     const clickHandler = (e) => {
         history.push(`/items/${item.id}`)
+    }
+    const changeLike = (data)=>{
+        console.log(item)
+        console.log(data, "DATA IN ITEM CARD")
+        item.liked = data.liked
+        setLiked(data.liked)
+
     }
 
     if (!item) return null
 
     return (
-        <div className={classProp}>
+        <div className={classProp + " item-card"}>
             <img onClick={clickHandler} src={item.preview_url} alt="a product image" className="spot-card-img" />
             <div className="item-info-container">
                 <div className='name-size-container'>
@@ -44,7 +56,15 @@ const ItemCard = ({ item, classProp }) => {
                         {
                             // liked
                                 // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                            <LikeButton itemId={item.id} liked ={item.liked}/>
+                            !item.liked &&
+                        <LikeButton itemId={item.id} liked={liked}
+                            changeLike={changeLike}
+                            />}
+
+                            {item.liked &&
+                            <UnlikeButton itemId={item.id} liked={liked}
+                            changeLike={changeLike}
+                            />
                         }
                     </span>
                 </div>

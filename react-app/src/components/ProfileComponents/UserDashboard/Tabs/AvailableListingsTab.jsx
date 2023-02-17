@@ -20,8 +20,8 @@ const AvailableListingsTab = ({ items }) => {
 
     return (
         <div className="listings-tab-container">
-            <div className="filters">
-                <MultiSelect
+            {/* <div className="filters"> */}
+                {/* <MultiSelect
                     placeholder="Search Filters"
                     displayValue="key"
                     groupBy="cat"
@@ -91,13 +91,12 @@ const AvailableListingsTab = ({ items }) => {
                         },
                     ]}
                     showCheckbox
-                ></MultiSelect>
-            </div>
+                ></MultiSelect> */}
+            {/* </div> */}
             <div className="listings-container">
                 {
                     userItems?.length
                     ? userItems.map(item => {
-                        console.log(item);
                         return <ItemCard classProp="item-card-listings" item={item} key={item.id}/>
                     })
                     : null

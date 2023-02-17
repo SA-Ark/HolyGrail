@@ -1,5 +1,5 @@
 import * as utils from './utils';
-
+import { spreadFavorites } from './store-utils';
 const LOAD_FAVORITES = 'LOAD_FAVORITES'
 const CREATE_FAVORITE = "CREATE_FAVORITE"
 const DELETE_FAVORITE = "DELETE_FAVORITE"
@@ -93,7 +93,7 @@ const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_FAVORITES: {
 
-            const newState = { ...state }
+            const newState = { ...state, allFavorites:{...spreadFavorites(action.payload)}, singleFavorite: {...state.singleFavorite} }
             newState.allFavorites = {...action.payload}
             return newState
         }

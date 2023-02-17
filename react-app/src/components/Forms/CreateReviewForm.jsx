@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
+import './CreateReview.css'
 
-
-const CreateReviewForm = ({ itemId, setPrevReview, prevReview}) => {
+const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const { closeModal } = useModal()
     const dispatch = useDispatch();
 
@@ -18,7 +18,6 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview}) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        console.log(reviewBody, "REVIEWBODY")
         // bodVal = reviewBody
 
     }
@@ -33,10 +32,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formErrors = [];
-        if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
-        setErrors([formErrors])
+        setErrors([])
         let newReview;
 
         newReview = {
@@ -45,53 +41,58 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview}) => {
         }
 
         const data = await dispatch(thunkCreateReview(newReview, itemId))
-        console.log(data, "DATA")
-
-
-        setPrevReview({
-            id: data?.id,
-            review_body: reviewBody,
-            stars
-        })
-        closeModal()
-        // history.push("/dashboard/1")
-
-
+        console.log('data in form')
+        if (data && data.errors) {
+            setErrors(data.errors)
+        } else {
+            setPrevReview({
+                id: data?.id,
+                review_body: reviewBody,
+                stars
+            })
+            closeModal()
+        }
     }
 
 
+    return (
+        <div className='create-edit-feedback-container'>
+            <span className="feedback-title">Leave some feedback</span>
+            <form className="feedback-form" onSubmit={onSubmit}>
+            <div className="error-messages">
+                    {Object.values(errors).map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <div>
+                    <label className='feedback-label'>
+                        <textarea
+                            placeholder='How did you like your item?'
+                            className='feedback-text'
+                            type='textarea'
+                            name='review'
+                            onChange={updateBody}
+                            value={reviewBody}
+                            id="body"
+                        ></textarea>
+                    </label>
+                    <label className='feedback-label'>
+                        <input
+                        placeholder='Rate your item'
+                            className='feedback-input'
+                            type='number'
+                            name='stars'
+                            onChange={updateStars}
+                            value={stars}
+                            id="stars"
+                        ></input>
+                    </label>
+                </div>
+                <button className="feedback-form-button" type='submit'>Leave Review</button>
 
+            </form>
+        </div>
+    )
 
-return (
-    <form className="create-review-form" onSubmit={onSubmit}>
-        <div>
-            {errors.map((error, ind) => (
-                <div key={ind}>{error}</div>
-            ))}
-        </div>
-        <div>
-            <label>Review</label>
-            <textarea
-                type='textarea'
-                name='review'
-                onChange={updateBody}
-                value={reviewBody}
-                id="body"
-            ></textarea>
-        </div>
-        <div>
-            <label>Stars</label>
-            <input
-                type='number'
-                name='stars'
-                onChange={updateStars}
-                value={stars}
-                id="stars"
-            ></input>
-        </div>
-        <button className="feedback-button" type='submit'>Leave Review</button>
-    </form>
-)
-
-    }
+}
 export default CreateReviewForm;

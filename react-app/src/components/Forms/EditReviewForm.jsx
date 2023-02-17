@@ -4,9 +4,10 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
-const { DeleteReviewButton } = Buttons;
+import './EditReviewForm.css'
+const { DeleteReviewButton, ReviewButton } = Buttons;
 
-const EditReviewForm = ({ prevReview, setPrevReview}) => {
+const EditReviewForm = ({ prevReview, setPrevReview }) => {
     const { closeModal } = useModal()
     const dispatch = useDispatch();
     const [reviewBody, setReviewBody] = useState("");
@@ -15,8 +16,8 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
     const history = useHistory()
     console.log(prevReview, "this one?")
 
-     const onDel = ()=>{
-        if (Object.keys(prevReview)){
+    const onDel = () => {
+        if (Object.keys(prevReview)) {
 
             setPrevReview({})
         }
@@ -25,7 +26,7 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setReviewBody(prevReview?.review_body)
         setStars(prevReview?.stars)
     }, [prevReview])
@@ -45,70 +46,67 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
 
 
     }
-    console.log(prevReview)
-    console.log(reviewBody, stars, "BOD")
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formErrors = [];
-        if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
-        setErrors([formErrors])
-
-            const editReview = {
-                reviewBody: reviewBody,
-                stars
-            }
-            const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
-
-            console.log(data?.review, "data edit rev")
-
+        setErrors([])
+        const editReview = {
+            reviewBody: reviewBody,
+            stars
+        }
+        const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
+        if (data && data.errors) {
+            setErrors(data.errors)
+        } else {
             setPrevReview({
                 id: prevReview?.id,
                 review_body: data?.review?.review_body,
                 stars: data?.review?.stars
             })
-
-            console.log(prevReview, "PREV")
-
             closeModal()
-            history.push("/dashboard/1")
-
         }
-
-
-
+        // await dispatch(thunkLoadCurrReviews(user?.id))
+    }
 
     return (
-        <form className="edit-review-form" onSubmit={onSubmit}>
-            <div>
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <div>
-                <label>Review</label>
-                <textarea
-                    type='textarea'
-                    name='review'
-                    onChange={updateBody}
-                    value={reviewBody}
-                    id="body"
-                ></textarea>
-            </div>
-            <div>
-                <label>Stars</label>
-                <input
-                    type='number'
-                    name='stars'
-                    onChange={updateStars}
-                    value={stars}
-                    id="stars"
-                ></input>
-            </div>
-            <button className="feedback-button" type='submit'>{"Edit Feedback"}</button>
-            <DeleteReviewButton onDel={onDel} reviewId={prevReview?.id} />
-        </form>
+
+        <div className='edit-feedback-container'>
+            <span className="feedback-title">Update your feedback</span>
+            <form className="feedback-form" onSubmit={onSubmit}>
+            <div className="error-messages">
+                    {Object.values(errors).map((error, ind) => (
+                        <div key={ind}>{error}</div>
+                    ))}
+                </div>
+                <label className='feedback-label'>
+                    <textarea
+                        placeholder='How did you like your item?'
+                        className='feedback-text'
+                        type='textarea'
+                        name='review'
+                        onChange={updateBody}
+                        value={reviewBody}
+                        id="body"
+                    ></textarea>
+                </label>
+                <label className='feedback-label'>
+                    <input
+                        placeholder='Rate your item'
+                        className='feedback-input'
+                        type='number'
+                        name='stars'
+                        onChange={updateStars}
+                        value={stars}
+                        id="stars"
+                    ></input>
+                </label>
+                <button className="feedback-form-button" type='submit'>{"Edit Feedback"}</button>
+                <div className='or'>
+                    or
+                </div>
+                <DeleteReviewButton onDel={onDel} reviewId={prevReview?.id} />
+            </form>
+        </div>
     )
 }
 

@@ -1,25 +1,25 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
+import ComingSoonForm from './ComingSoon'
 import ItemCreateModal from '../Forms/ItemCreateForm';
-import ItemEditForm from '../Forms/ItemEditForm';
 
-function CreateModalButton({
+function FeatureComingSoonModal({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onSellClick = () => {
+  const onEditClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<ItemEditForm/>);
+    setModalContent(<ComingSoonForm/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-    <button onClick={onSellClick} className='feedback-button'>EDIT</button>
+      <button onClick={onEditClick} className='profile-edit feedback-button'>Edit Profile</button>
     </>
   );
 }
 
-export default CreateModalButton;
+export default FeatureComingSoonModal;

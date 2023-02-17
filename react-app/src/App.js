@@ -12,12 +12,12 @@ import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
-import ItemCreateModal from "./components/Forms/ItemCreateModal";
+import ItemCreateModal from "./components/Forms/ItemCreateForm";
 import EditReviewForm from "./components/Forms/EditReviewForm";
 
 
 const { DeleteItemButton } = Buttons
-const { ItemEditForm, ReviewForm, EditProfileForm, PurchaseForm } = Forms
+const { ItemEditForm, CreateReviewForm, EditProfileForm, PurchaseForm } = Forms
 
 function App() {
   const dispatch = useDispatch();
@@ -43,12 +43,15 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/favorites/:userId">
+            <MainDashboard tabOverride={"FavoritesTab"} />
+          </Route>
           <ProtectedRoute path='/items/edit/:itemId'>
             <ItemEditForm />
           </ProtectedRoute>
-          <ProtectedRoute path='/items/delete/:itemId'>
+          {/* <ProtectedRoute path='/items/delete/:itemId'>
             <DeleteItemButton />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
           <ProtectedRoute path='/items/current' exact={true} >
             <MainListingsPage />
           </ProtectedRoute>
@@ -70,7 +73,7 @@ function App() {
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>
-            <ReviewForm/>
+            <CreateReviewForm/>
           </ProtectedRoute>
           <Route path='/' exact={true} >
             <SplashPlage />

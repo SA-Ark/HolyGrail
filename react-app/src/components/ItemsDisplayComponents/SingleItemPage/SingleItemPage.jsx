@@ -64,6 +64,7 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
+
         {item.seller_id !== user.id
           ? <PurchaseModal item={item} />
           : <EditModalButton />
@@ -72,7 +73,7 @@ const SingleItemPage = () => {
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
-        <div><ProfileCard /></div>
+        <div><ProfileCard user={itemOwner} /></div>
 
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item?.description}</span>

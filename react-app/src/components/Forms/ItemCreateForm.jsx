@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Redirect, useParams } from 'react-router-dom';
 import { thunkCreateItem } from '../../store/items';
+import{thunkLoadCurrItems} from ''
 import './ItemCreateModal.css'
 
 const ItemCreateModal = () => {
@@ -29,7 +30,10 @@ const ItemCreateModal = () => {
 
     const user = useSelector(state => state.session?.user);
     const userId = user?.id;
-    // const item = useSelector((state) => state.items.singleItem)
+    const item = useSelector((state) => state.items?.singleItem)
+
+
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -62,6 +66,7 @@ const ItemCreateModal = () => {
         } else {
             closeModal()
             history.push(`/dashboard/${userId}`)
+            await dispatch(thunkGet)
         }
     }
 

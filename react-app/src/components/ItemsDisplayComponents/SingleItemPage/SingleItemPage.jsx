@@ -34,7 +34,7 @@ const SingleItemPage = () => {
     <div className="single-item-page-container">
       <div className="arrows-carousel-container">
         <div className='back icon-button'
-          onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item.images?.length - 1)}>
+          onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item?.images?.length - 1)}>
           <i class="fa-solid fa-angles-left fa-3x"></i>
         </div>
         <div className='single-item-carousel-container'>
@@ -52,10 +52,10 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-          <span id="item-name">{item.name}</span>
+          <span id="item-name">{item?.name}</span>
           <div
             className='item-favorites'
-          >♡
+          > ♡
           </div>
         </div>
         <span className='size'>Size {item?.size}</span>
@@ -65,11 +65,11 @@ const SingleItemPage = () => {
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
 
-        {item.seller_id !== user.id
+        {item?.seller_id !== user?.id
           ? <PurchaseModal item={item} />
           : <EditModalButton />
         }
-        {item.seller_id === user.id ? < DeleteItemButton /> : null}
+        {item?.seller_id === user?.id ? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

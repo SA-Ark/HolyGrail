@@ -3,8 +3,7 @@ import { useModal } from "../../context/Modal";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Redirect, useParams } from 'react-router-dom';
-import { thunkCreateItem } from '../../store/items';
-import{thunkLoadCurrItems} from ''
+import { thunkCreateItem, thunkLoadItems } from '../../store/items';
 import './ItemCreateModal.css'
 
 const ItemCreateModal = () => {
@@ -66,7 +65,7 @@ const ItemCreateModal = () => {
         } else {
             closeModal()
             history.push(`/dashboard/${userId}`)
-            await dispatch(thunkGet)
+            await dispatch(thunkLoadItems(userId))
         }
     }
 

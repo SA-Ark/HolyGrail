@@ -44,22 +44,6 @@ const SingleItemPage = () => {
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-<<<<<<< HEAD
-          <span id="item-name">{item.name}</span>
-          <div className='item-favorites'>
-          {/* <LikeButton /> */}
-          </div>
-        </div>
-        <span className='size'>Size {item.size}</span>
-        <span className='color'>Color {item.color}</span>
-        <span className='condition'>Condition {item.condition}</span>
-        <span className='price'>${item.price}</span>
-        <span className='shipping'>+${item.shipping_cost} Shipping - Europe to United States</span>
-
-        <div className='purchase-button-container'>
-          <PurchaseModal item={item} />
-        </div>
-=======
           <span id="item-name">{item?.name}</span>
           <div
             className='item-favorites'
@@ -71,7 +55,6 @@ const SingleItemPage = () => {
         <span className='condition'>Condition {item?.condition}</span>
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
->>>>>>> acede19ca5ea14695eb949d85a2cb71b9b985af5
 
         <PurchaseModal item={item} />
         {item && (

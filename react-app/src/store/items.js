@@ -1,3 +1,4 @@
+import { spreadItems } from './store-utils';
 import * as utils from './utils';
 
 const LOAD_ITEMS = 'LOAD_ITEMS'
@@ -87,6 +88,8 @@ export const thunkLoadSingleItem = (itemId, userId) => async (dispatch) => {
     if (res.ok) {
         const item = await res.json()
         dispatch(actionLoadSingleItem(item))
+        console.log(item, "ITEM in thunk")
+        return item
     }
 }
 
@@ -201,8 +204,9 @@ const itemsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ITEMS: {
 
-            const newState = { ...state }
-            newState.allItems = {...action.payload.items}
+
+            const newState = { allItems: {...state.allItems}, singleItem: {...state.singleItem} }
+            newState.allItems = {...spreadItems(action.payload.items)}
             return newState
         }
 

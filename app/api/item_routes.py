@@ -196,10 +196,7 @@ def edit_item(item_id):
     print('python route')
     userItems = Item.query.filter(Item.seller_id == current_user.id).all()
     userItem = [item for item in userItems if item.id == item_id]
-    for item in userItems:
-        print(item.id, 'item idddddddddddd')    
-    print(item_id, 'item id')
-    print(userItems, 'userItems')
+
     if userItem:
         print('python route useritem')
 
@@ -207,8 +204,8 @@ def edit_item(item_id):
         form['csrf_token'].data = request.cookies['csrf_token']
 
         if form.validate_on_submit():
-            edited_item = Item.query.get(item_id)
-            preview_image = edited_item.to_dict()["preview_image"]
+            edited_item = userItem[0]
+            preview_image_dict = edited_item.to_dict()["preview_image"]
             print('python route validates')
             edited_item.name = form.data["name"]
             edited_item.description = form.data["description"]
@@ -221,29 +218,41 @@ def edit_item(item_id):
             edited_item.shipping_cost = form.data["shipping_cost"]
             edited_item.updated_at = datetime.now()
 
-            db.session.add(edited_item)
-            db.session.commit()
+            # db.session.add(edited_item)
+            # db.session.commit()
+            prev_url = preview_image_dict['url']
+            preview_image = ItemImage.query.get(preview_image_dict["id"])
 
-            print(preview_image["url"])
 
-            prev_url = preview_image['url']
-            preview_image['url'] = form.data["preview_url"]
-            if prev_url != preview_image["url"]:
-                preview_image['updated_at'] = datetime.now()
+            preview_image.url = form.data["preview_url"]
+            if prev_url != preview_image.url:
+                preview_image.updated_at = datetime.now()
 
-            print(preview_image["url"])
-            db.session.add(preview_image)
 
-            image_1 = ItemImage.query.filter(ItemImage.image_num == 1).first()
-            image_2 = ItemImage.query.filter(ItemImage.image_num == 2).first()
-            image_3 = ItemImage.query.filter(ItemImage.image_num == 3).first()
-            image_4 = ItemImage.query.filter(ItemImage.image_num == 4).first()
+
+            images=  ItemImage.query.filter(ItemImage.item_id == item_id).all()
+
+            image_1 = None
+            image_2 = None
+            image_3 = None
+            image_4 = None
+
+            for image in images:
+                if image.image_num == 1:
+                    image_1 = image
+                if image.image_num == 2:
+                    image_2 = image
+                if image.image_num == 3:
+                    image_3 = image
+                if image.image_num == 4:
+                    image_4 = image
 
             if image_1:
                 old_url = image_1.url
                 image_1.url = form.data["image_url_1"]
                 if old_url != image_1.url:
                     image_1.updated_at = datetime.now()
+
             elif form.data["image_url_1"]:
                 image_1 = ItemImage(
                     item_id = edited_item.id,
@@ -317,7 +326,7 @@ def delete_item(item_id):
     print('route pls work')
     item = Item.query.get(item_id)
     if item.sold == True:
-    
+
         return {"errors": "You cannot edit a sold item."}, 401
     if item.seller_id ==current_user.id:
         ans = item.to_dict()

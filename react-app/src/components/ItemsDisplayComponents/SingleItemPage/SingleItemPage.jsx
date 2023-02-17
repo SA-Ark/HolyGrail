@@ -4,9 +4,9 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import { useParams } from 'react-router-dom'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
-import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
+
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()

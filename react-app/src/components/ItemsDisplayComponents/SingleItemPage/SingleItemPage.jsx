@@ -27,17 +27,14 @@ const SingleItemPage = () => {
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id));
     if (item?.seller_id){
-
       dispatch(thunkGetUser(item?.seller_id));
     }
     console.log(item?.seller_id, "SELLER ID", item)
-  }, [dispatch, item?.seller_id])
+  }, [dispatch, item?.seller_id, like])
 
 
   const changeLike = (data) => {
-    item.liked = data.liked
     setLike(data.liked)
-
   }
 
      return (

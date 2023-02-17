@@ -29,8 +29,9 @@ const SingleItemPage = () => {
     if (item?.seller_id){
       dispatch(thunkGetUser(item?.seller_id));
     }
-    console.log(item?.seller_id, "SELLER ID", item)
-  }, [dispatch, item?.seller_id, like])
+  }, [dispatch, item?.seller_id])
+
+
 
 
   const changeLike = (data) => {
@@ -62,12 +63,11 @@ const SingleItemPage = () => {
           <span id="item-name">{item?.name}</span>
           <div className='item-favorite'>
                {
-                 !item.liked &&
+                 !like &&
                  <LikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
                 }
-
                {
-                item.liked &&
+                like &&
                  <UnlikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
                }
           </div>

@@ -1,7 +1,9 @@
+/* * {
+    border: 1px solid red;
+} */
+
 /* profile header */
 .user-dash-container {
-    /* display: flex;
-    flex-direction: column; */
     margin-top: 25px;
     margin-left: 200px;
     margin-right: 200px;
@@ -13,8 +15,15 @@
     padding-bottom: 40px;
     margin-bottom: 30px;
     border-bottom: 1px solid rgb(227, 227, 227);
-    /* flex-direction: column; */
-    /* flex-direction: row; */
+    justify-content: space-between;
+    width: 100%;
+}
+
+.dashboard-banner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
 }
 
 .prof-icon-container {
@@ -36,9 +45,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
-    padding-right: 20px;
-    margin-right: 20px;
+    align-items: center;
+    padding-right: 5em;
+    /* margin-right: 20px; */
     border-right: 1px solid rgb(218, 218, 218);
 }
 

@@ -49,7 +49,7 @@ const SplashPlage = () => {
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
         return (
-            <ItemCard key={item.id} item={item} />
+            <ItemCard classProp="splash-card-container" key={item.id} item={item} />
         )
     })
 
@@ -58,7 +58,7 @@ const SplashPlage = () => {
         .slice(currentIndexDeals, currentIndexDeals + 5)
         .map(item => {
             return (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard classProp="splash-card-container" key={item.id} item={item} />
             )
         });
 
@@ -85,26 +85,27 @@ const SplashPlage = () => {
                 </div>
             </div>
 
-            <div className='splash-carousel-wrapper'>
+            <div className='splash-carousels-wrapper'>
+                <h3 className='deals-text'> Staff Picks </h3>
                 <div className='splash-carousel-container'>
                     <div className='staff-picks'>
-                        <button className='back-arrow' onClick={handlePrev}>{''}</button>
+                        <button className='back-arrow icon-button' onClick={handlePrev}><i className="fa-solid fa-angles-left fa-3x"></i></button>
                         <div className='carousel-item-container'>
                             {itemCards.length > 0 ? itemCards : null}
                         </div>
-                        <button className='next-arrow' onClick={handleNext}>{''}</button>
+                    <button className='next-arrow icon-button' onClick={handleNext}><i className="fa-solid fa-angles-right fa-3x"></i></button>
                     </div>
                 </div>
 
+                <h3 className='deals-text'> Deals: Under $100 </h3>
                 <div className='splash-carousel-container'>
-                    <h2 className='deals-text'> Deals: Under $100 </h2>
                     <div className='deals'>
 
-                        <button className='back-arrow' onClick={handlePrevDeals}></button>
+                        <button className='back-arrow icon-button' onClick={handlePrevDeals}><i className="fa-solid fa-angles-left fa-3x"></i></button>
                         <div className='carousel-item-container'>
                             {dealCards.length > 0 ? dealCards : null}
                         </div>
-                        <button className='next-arrow' onClick={handleNextDeals}></button>
+                        <button className='next-arrow icon-button' onClick={handleNextDeals}><i className="fa-solid fa-angles-right fa-3x"></i></button>
                     </div>
                 </div>
             </div>

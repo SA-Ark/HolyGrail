@@ -18,8 +18,7 @@ const MainListingsPage = () => {
     }, [dispatch])
 
     return (
-        <>
-        
+        <div className="main-listings-container">
             <div className="filters">
                 <MultiSelect
                     placeholder="Search Filters"
@@ -104,7 +103,7 @@ const MainListingsPage = () => {
                 }
             </div>
 
-        </>
+        </div>
     )
 }
 

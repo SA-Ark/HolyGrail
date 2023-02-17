@@ -1,13 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { thunkLoadSingleItem } from '../../../store/items'
-import * as utils from '../../../store/utils'
 import { useParams } from 'react-router-dom'
-import ImageCarousel from './ImageCarousel'
 import ProfileCard from "../../Cards/ProfileCard";
-import './SingleItemPage.css'
-import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
+import LikeButton from '../../Buttons/LikeButton';
+import './SingleItemPage.css'
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -21,34 +19,32 @@ const SingleItemPage = () => {
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id))
   }, [dispatch])
-  console.log(item, 'item in single item page')
 
   return (
     <div className="single-item-page-container">
-      <div className='single-item-carousel-container'>
-        {item?.images?.map((image, index) => (
-          <div className='carousel-item-container' key={index} style={{ display: index === currentImageIndex ? 'block' : 'none' }}>
-            <img className='single-item-image' src={image.url} alt={`Image ${currentImageIndex + 1}`} />
-          </div>
-        ))}
-        <div className='arrow-container'>
-          <div
-            className='back'
-            onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item.images?.length - 1)}
-          >back</div>
-          <div
-            className='forward'
-            onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}
-          >forward</div>
+      <div className="arrows-carousel-container">
+        <div className='back icon-button'
+          onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item.images?.length - 1)}>
+          <i class="fa-solid fa-angles-left fa-3x"></i>
         </div>
+        <div className='single-item-carousel-container'>
+          {item?.images?.map((image, index) => (
+            <div className='carousel-item-container' key={index} style={{ display: index === currentImageIndex ? 'block' : 'none' }}>
+              <img className='single-item-image' src={image.url} alt={`Image ${currentImageIndex + 1}`} />
+            </div>
+          ))}
+          </div>
+          <div className='forward icon-button'
+            onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}>
+            <i class="fa-solid fa-angles-right fa-3x"></i>
+          </div>
       </div>
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
           <span id="item-name">{item.name}</span>
-          <div
-            className='item-favorites'
-          >♡
+          <div className='item-favorites'>
+          {/* <LikeButton /> */}
           </div>
         </div>
         <span className='size'>Size {item.size}</span>
@@ -57,9 +53,9 @@ const SingleItemPage = () => {
         <span className='price'>${item.price}</span>
         <span className='shipping'>+${item.shipping_cost} Shipping - Europe to United States</span>
 
-        <>
+        <div className='purchase-button-container'>
           <PurchaseModal item={item} />
-        </>
+        </div>
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

@@ -1,8 +1,33 @@
+.main-listings-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    justify-content: center;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 20px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+}
+
 .items-display-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-self: center;
     justify-content: space-evenly;
-    /* border: 1px solid black; */
+    gap: 7px;
+}
+
+.home-item-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    height: fit-content;
+    margin-bottom: 2em;
 }

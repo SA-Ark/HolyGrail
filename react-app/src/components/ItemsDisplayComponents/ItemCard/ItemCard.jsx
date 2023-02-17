@@ -21,7 +21,7 @@ const ItemCard = ({ item, classProp }) => {
     if (!item) return null
 
     return (
-        <div className={classProp}>
+        <div className={classProp + " item-card"}>
             <img onClick={clickHandler} src={item.preview_url} alt="a product image" className="spot-card-img" />
             <div className="item-info-container">
                 <div className='name-size-container'>

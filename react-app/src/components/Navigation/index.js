@@ -9,11 +9,13 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 import './Navigation.css';
-import ItemCreateModal from '../Forms/ItemCreateModal';
+import ItemCreateModal from '../Forms/ItemCreateForm';
 
 function Navigation({ isLoaded }) {
 	const history = useHistory()
 	const ulRef = useRef();
+
+	const user = useSelector(state => state?.session?.user);
 
 	const [search, setSearch] = useState("");
 	const [showMenu, setShowMenu] = useState(false);
@@ -39,8 +41,13 @@ function Navigation({ isLoaded }) {
 
 	const closeMenu = () => setShowMenu(false);
 
+	const favoriteClick = (e) => {
+		e.preventDefault();
+		history.push(`/favorites/${user?.id}`);
+	}
 
-	const sellClick = () => {
+	const sellClick = (e) => {
+		e.preventDefault()
 		history.push('/items/create');
 	}
 
@@ -91,7 +98,7 @@ function Navigation({ isLoaded }) {
 				)}
 
 				{sessionUser && (
-					<button className='favorites-button'>♥</button>
+					<button onClick={favoriteClick} className='favorites-button'><i class="fa-solid fa-heart"></i></button>
 				)}
 				{sessionUser && isLoaded && (
 					<div>

@@ -4,22 +4,27 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import { useParams } from 'react-router-dom'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
+import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
 import DeleteItemButton from '../../Buttons/DeleteItemButton'
+import { thunkGetUser } from '../../../store/users';
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
   const item = useSelector((state) => state.items.singleItem)
+  const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
-  console.log(item, 'itemmmmmm')
+  console.log(item, 'itemmmmmm ------>')
+  console.log("ITEM OWNER --->", itemOwner)
 
   const { itemId } = useParams()
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    dispatch(thunkLoadSingleItem(itemId, user?.id))
+    dispatch(thunkLoadSingleItem(itemId, user?.id));
+    if (item.seller_id) dispatch(thunkGetUser(item.seller_id));
   }, [dispatch])
 
   return (
@@ -35,16 +40,16 @@ const SingleItemPage = () => {
               <img className='single-item-image' src={image.url} alt={`Image ${currentImageIndex + 1}`} />
             </div>
           ))}
-          </div>
-          <div className='forward icon-button'
-            onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}>
-            <i class="fa-solid fa-angles-right fa-3x"></i>
-          </div>
+        </div>
+        <div className='forward icon-button'
+          onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}>
+          <i class="fa-solid fa-angles-right fa-3x"></i>
+        </div>
       </div>
 
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
-<<<<<<< HEAD
+
           <span id="item-name">{item.name}</span>
           <div className='item-favorites'>
           {/* <LikeButton /> */}
@@ -59,8 +64,11 @@ const SingleItemPage = () => {
         <div className='purchase-button-container'>
           <PurchaseModal item={item} />
         </div>
-=======
+
           <span id="item-name">{item?.name}</span>
+
+          <span id="item-name">{item.name}</span>
+
           <div
             className='item-favorites'
           >♡
@@ -71,18 +79,16 @@ const SingleItemPage = () => {
         <span className='condition'>Condition {item?.condition}</span>
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
->>>>>>> acede19ca5ea14695eb949d85a2cb71b9b985af5
 
-        <PurchaseModal item={item} />
-        {item && (
-          <>
-            {user?.id === item?.seller_id && <EditModalButton />}
-            {user?.id === item?.seller_id && <DeleteItemButton />}
-          </>
-        )}
+
+          {item.seller_id !== user.id
+            ? <PurchaseModal item={item} />
+            : <EditModalButton />
+          }
+
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}
-        <div><ProfileCard /></div>
+        <div><ProfileCard user={item.owner_id}/></div>
 
         <span className='item-desc-title'>Description</span>
         <span className='item-desc'>{item?.description}</span>

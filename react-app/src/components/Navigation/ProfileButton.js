@@ -65,7 +65,7 @@ function ProfileButton({ user }) {
                   <div className="drop-down-border"></div>
                   <div>
                     {sessionUser ?
-                      <NavLink className='dropdown-favorites' to='/favorites'>Favorites</NavLink>
+                      <NavLink className='dropdown-favorites' to={`/favorites/${sessionUser.id}`}>Favorites</NavLink>
                       : null}
                   </div>
                   <div className="drop-down-border"></div>

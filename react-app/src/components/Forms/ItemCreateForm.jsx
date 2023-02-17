@@ -28,11 +28,12 @@ const ItemCreateModal = () => {
     const history = useHistory()
 
     const user = useSelector(state => state.session?.user);
-    const user_id = user?.id;
+    const userId = user?.id;
     // const item = useSelector((state) => state.items.singleItem)
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        const user_id = userId;
         const itemsAttributes = [
             genderStyle,
             size,
@@ -60,6 +61,7 @@ const ItemCreateModal = () => {
             setErrors(data.errors)
         } else {
             closeModal()
+            history.push(`/dashboard/${userId}`)
         }
     }
 

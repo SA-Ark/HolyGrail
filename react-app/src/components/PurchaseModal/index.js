@@ -1,6 +1,6 @@
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import ItemCreateModal from '../Forms/ItemCreateModal';
+import ItemCreateModal from '../Forms/ItemCreateForm';
 import PurchaseForm from '../Forms/PurchaseForm';
 
 function PurchaseModal({

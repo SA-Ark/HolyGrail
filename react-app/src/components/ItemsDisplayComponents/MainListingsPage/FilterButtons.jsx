@@ -1,13 +1,15 @@
 import React from "react";
 
-const FilterButtons = ({ setItem, filters }) => {
+const FilterButtons = ({ filterItem, setMultipleItems, filters, items }) => {
     return (
         <>
             <div>
                 {filters.map((Val, id) => {
+                    // console.log("VAL ===>", Val)
                     return (
                         <button
                             className="cat-filter-btn"
+                            onClick={() => console.log("FILTERED ITEMS ===>", filterItem(Val))}
                             key={id}
                         >
                             {Val}
@@ -16,9 +18,9 @@ const FilterButtons = ({ setItem, filters }) => {
                 })}
                 <button
                     className="all-filter-btn"
-                    onClick={() => setItem()}
+                    onClick={() => console.log("ALL ITEMS ===>", setMultipleItems(items))}
                 >
-                    All
+                    Reset
                 </button>
             </div>
         </>

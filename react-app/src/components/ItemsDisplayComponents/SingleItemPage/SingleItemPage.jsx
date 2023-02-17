@@ -6,6 +6,7 @@ import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
 import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
+import EditModalButton from '../../EditModalButton'
 
 const SingleItemPage = () => {
   const dispatch = useDispatch()
@@ -34,11 +35,11 @@ const SingleItemPage = () => {
               <img className='single-item-image' src={image.url} alt={`Image ${currentImageIndex + 1}`} />
             </div>
           ))}
-          </div>
-          <div className='forward icon-button'
-            onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}>
-            <i class="fa-solid fa-angles-right fa-3x"></i>
-          </div>
+        </div>
+        <div className='forward icon-button'
+          onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}>
+          <i class="fa-solid fa-angles-right fa-3x"></i>
+        </div>
       </div>
 
       <div className="item-info-buttons-container">
@@ -55,9 +56,10 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-        <>
-          <PurchaseModal item={item} />
-        </>
+          {item.seller_id !== user.id
+            ? <PurchaseModal item={item} />
+            : <EditModalButton />
+          }
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useModal } from "../../context/Modal";
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { thunkCreateItem } from '../../store/items';
 import './ItemCreateModal.css'
 
@@ -25,13 +26,13 @@ const ItemCreateModal = () => {
 
     const { closeModal } = useModal()
     const history = useHistory()
-    
+
     const user = useSelector(state => state.session?.user);
     const user_id = user?.id;
+    // const item = useSelector((state) => state.items.singleItem)
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setErrors([])
         const itemsAttributes = [
             genderStyle,
             size,
@@ -51,15 +52,15 @@ const ItemCreateModal = () => {
         ]
 
         //! NEED TO ADD VALIDATION ERRORS
+
         //! needs validation for when price is 0
 
-        const res = await dispatch(thunkCreateItem(itemsAttributes))
-        closeModal()
-        if (res?.ok) {
-            const data = await res.json()
-            if (data && data.errors) setErrors(data.errors)
+        const data = await dispatch(thunkCreateItem(itemsAttributes))
+        if (data && data.errors) {
+            setErrors(data.errors)
+        } else {
+            closeModal()
         }
-
     }
 
     const categorySizes = {
@@ -78,7 +79,7 @@ const ItemCreateModal = () => {
                 <div className='create-edit-item-container'>
                     <form onSubmit={onSubmit} className="listing-edit-form">
                         <div>
-                            {errors.map((error, ind) => (
+                            {Object.values(errors).map((error, ind) => (
                                 <div key={ind}>{error}</div>
                             ))}
                         </div>

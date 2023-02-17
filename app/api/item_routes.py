@@ -168,7 +168,7 @@ def create_item():
 
         return new_item.to_dict(), 200
     else:
-        return form.errors, 401
+        return {'errors': form.errors}, 401
 
 @item_routes.route('/edit/<int:item_id>')
 @login_required
@@ -300,7 +300,7 @@ def edit_item(item_id):
 
             return edited_item.to_dict(), 200
         else:
-            return form.errors, 400
+            return {'errors': form.errors}, 400
     else:
         print("You don't own this item.")
         return  { 'errors': "You don't own this item."}, 401

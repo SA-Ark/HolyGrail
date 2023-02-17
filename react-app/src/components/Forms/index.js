@@ -1,8 +1,7 @@
 // import ItemFilterForm from './ItemFilterForm'
 import ItemEditForm from './ItemEditForm'
-import ReviewForm from './ReviewForm'
 import EditProfileForm from './EditProfileForm'
 import PurchaseForm from './PurchaseForm'
 
-const Forms = { ItemEditForm, ReviewForm, EditProfileForm, PurchaseForm}
+const Forms = { ItemEditForm, EditProfileForm, PurchaseForm }
 export default Forms;

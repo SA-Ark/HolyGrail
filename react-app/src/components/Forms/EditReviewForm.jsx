@@ -4,9 +4,9 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { thunkCreateReview, thunkEditReview, thunkLoadSingleReview } from '../../store/reviews';
 import Buttons from '../Buttons';
-const { DeleteReviewButton } = Buttons;
+const { DeleteReviewButton, ReviewButton } = Buttons;
 
-const EditReviewForm = ({ prevReview, setPrevReview}) => {
+const EditReviewForm = ({ prevReview, setPrevReview }) => {
     const { closeModal } = useModal()
     const dispatch = useDispatch();
     const [reviewBody, setReviewBody] = useState("");
@@ -15,8 +15,8 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
     const history = useHistory()
     console.log(prevReview, "this one?")
 
-     const onDel = ()=>{
-        if (Object.keys(prevReview)){
+    const onDel = () => {
+        if (Object.keys(prevReview)) {
 
             setPrevReview({})
         }
@@ -25,7 +25,7 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         setReviewBody(prevReview?.review_body)
         setStars(prevReview?.stars)
     }, [prevReview])
@@ -45,44 +45,32 @@ const EditReviewForm = ({ prevReview, setPrevReview}) => {
 
 
     }
-    console.log(prevReview)
-    console.log(reviewBody, stars, "BOD")
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formErrors = [];
-        if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
-        setErrors([formErrors])
-
-            const editReview = {
-                reviewBody: reviewBody,
-                stars
-            }
-            const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
-
-            console.log(data?.review, "data edit rev")
-
+        setErrors([])
+        const editReview = {
+            reviewBody: reviewBody,
+            stars
+        }
+        const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
+        
+        if (data && data.errors) {
+            setErrors(data.errors)
+        } else {
             setPrevReview({
                 id: prevReview?.id,
                 review_body: data?.review?.review_body,
                 stars: data?.review?.stars
             })
-
-            console.log(prevReview, "PREV")
-
             closeModal()
-            history.push("/dashboard/1")
-
         }
-
-
-
+    }
 
     return (
         <form className="edit-review-form" onSubmit={onSubmit}>
             <div>
-                {errors.map((error, ind) => (
+                {Object.values(errors).map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>

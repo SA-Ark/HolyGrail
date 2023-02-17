@@ -22,6 +22,8 @@ const DeleteReviewButton = ({onDel, reviewId}) => {
                 history.push('/dashboard/1')
 
         }
+        // await dispatch(thunkLoadCurrReviews(userId))
+        // history.push(`/dashboard/${userId}`)
     }
 
     return (

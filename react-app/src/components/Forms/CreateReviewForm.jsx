@@ -33,10 +33,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview}) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formErrors = [];
-        if (!reviewBody) formErrors.push('A meaningful comment for your review is required!');
-        if (!stars) formErrors.push('A star rating is required!');
-        setErrors([formErrors])
+        setErrors([])
         let newReview;
 
         newReview = {
@@ -45,27 +42,24 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview}) => {
         }
 
         const data = await dispatch(thunkCreateReview(newReview, itemId))
-        console.log(data, "DATA")
-
-
-        setPrevReview({
-            id: data?.id,
-            review_body: reviewBody,
-            stars
-        })
-        closeModal()
-        // history.push("/dashboard/1")
-
-
+        console.log('data in form')
+        if (data && data.errors) {
+            setErrors(data.errors)
+        } else {
+            setPrevReview({
+                id: data?.id,
+                review_body: reviewBody,
+                stars
+            })
+            closeModal()
+        }
     }
-
-
 
 
 return (
     <form className="create-review-form" onSubmit={onSubmit}>
         <div>
-            {errors.map((error, ind) => (
+            {Object.values(errors).map((error, ind) => (
                 <div key={ind}>{error}</div>
             ))}
         </div>

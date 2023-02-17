@@ -18,7 +18,7 @@ const MainDashboard = () => {
     const purchases = useSelector(state => state?.payments?.allOrders)
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
-    const [selectedTab, setSelectedTab] = useState('AvailableListingsTab');
+    const [selectedTab, setSelectedTab] = useState('PurchasesTab');
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))

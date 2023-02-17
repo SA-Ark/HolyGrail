@@ -1,15 +1,16 @@
 import React from "react";
+import './FilterButtons.css';
 
-const FilterButtons = ({ filterItem, setMultipleItems, filters, items }) => {
+const FilterButtons = ({ filterItem, setFilterItems, filters, items }) => {
     return (
         <>
             <div>
+                <h5 id="filters-label">Filters:</h5>
                 {filters.map((Val, id) => {
-                    // console.log("VAL ===>", Val)
                     return (
                         <button
-                            className="cat-filter-btn"
-                            onClick={() => console.log("FILTERED ITEMS ===>", filterItem(Val))}
+                            className="cat-filter-btn icon-button"
+                            onClick={() => filterItem(Val)}
                             key={id}
                         >
                             {Val}
@@ -17,8 +18,8 @@ const FilterButtons = ({ filterItem, setMultipleItems, filters, items }) => {
                     );
                 })}
                 <button
-                    className="all-filter-btn"
-                    onClick={() => console.log("ALL ITEMS ===>", setMultipleItems(items))}
+                    className="all-filter-btn icon-button"
+                    onClick={() => setFilterItems(items)}
                 >
                     Reset
                 </button>

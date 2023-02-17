@@ -12,6 +12,11 @@
 .filters {
     display: flex;
     justify-content: center;
+    margin-right: 1em;
+    padding: 1em;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
 }
 
 .items-display-container {

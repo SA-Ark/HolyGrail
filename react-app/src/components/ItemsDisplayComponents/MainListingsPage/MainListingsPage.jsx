@@ -11,25 +11,16 @@ const MainListingsPage = () => {
     const dispatch = useDispatch();
     const items = utils.deNormalize(useSelector(store => store.items.allItems));
     const user = useSelector(store => store.session?.user);
-    const [multipleItems, setMultipleItems] = useState(items);
-    const [update, setUpdate] = useState(true);
+    const [filterItems, setFilterItems] = useState(items);
 
     const filters = [ ...new Set(items.map((Val) => Val.category_tags))];
-    console.log("FILTERS ===>", filters);
-    // console.log("ITEMS ===>", items);
-
-    useEffect(() => {
-        console.log("UPDATE STATE")
-        console.log("ITEM ===>", multipleItems)
-    }, [update])
 
     const filterItem = (curcat) => {
         const newItems = items.filter((newVal) => {
             return newVal.category_tags === curcat;
         });
-        setUpdate(!update);
-        console.log("NEW ITEMS ===>", newItems);
-        setMultipleItems(newItems);
+
+        setFilterItems(newItems);
     };
 
 
@@ -41,12 +32,12 @@ const MainListingsPage = () => {
     return (
         <div className="main-listings-container">
             <div className="filters">
-                <FilterButtons setMultipleItems={setMultipleItems} filters={filters} items={items} filterItem={filterItem} />
+                <FilterButtons setFilterItems={setFilterItems} filters={filters} items={items} filterItem={filterItem} />
             </div>
             <div className="items-display-container">
                 {
-                    multipleItems.length
-                        ? multipleItems.map(item => <ItemCard classProp="home-item-card" item={item} key={item.id} />)
+                    filterItems.length
+                        ? filterItems.map(item => <ItemCard classProp="home-item-card" item={item} key={item.id} />)
                         : items.map(item => <ItemCard classProp="home-item-card" item={item} key={item.id} />)
                 }
             </div>

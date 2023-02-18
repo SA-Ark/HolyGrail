@@ -37,8 +37,8 @@ const MainListingsPage = () => {
             <div className="items-display-container">
                 {
                     filterItems.length
-                        ? filterItems.map(item => <ItemCard classProp="home-item-card" item={item} key={item.id} />)
-                        : items.map(item => <ItemCard classProp="home-item-card" item={item} key={item.id} />)
+                        ? filterItems.map(item => item?.seller_id !== user?.id ? <ItemCard classProp="home-item-card" item={item} key={item.id} /> : null)
+                        : items.map(item => item?.seller_id !== user?.id  ? <ItemCard classProp="home-item-card" item={item} key={item.id} /> : null )
                 }
             </div>
         </div>

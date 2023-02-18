@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
@@ -14,7 +14,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
     const [stars, setStars] = useState("");
     const [errors, setErrors] = useState([]);
     const history = useHistory()
-    console.log(prevReview, "this one?")
+    const errorRef = useRef(null);
 
     const onDel = () => {
         if (Object.keys(prevReview)) {
@@ -57,6 +57,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
         const data = await dispatch(thunkEditReview(editReview, prevReview?.id));
         if (data && data.errors) {
             setErrors(data.errors)
+            errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {
             setPrevReview({
                 id: prevReview?.id,
@@ -73,10 +74,16 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
         <div className='edit-feedback-container'>
             <span className="feedback-title">Update your feedback</span>
             <form className="feedback-form" onSubmit={onSubmit}>
-            <div className="error-messages">
-                    {Object.values(errors).map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                    ))}
+                <div ref={errorRef}>
+                    {Object.values(errors).length > 0 && (
+                        <div className="error-messages">
+                            {Object.values(errors).map((error, ind) => (
+                                <div key={ind}>
+                                    {error}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <label className='feedback-label'>
                     <textarea

@@ -1,25 +1,24 @@
 import React from 'react';
-import { useModal } from '../../context/Modal';
-import ItemEditForm from '../Forms/ItemEditForm';
-import './EditItem.css'
+import { useModal } from '../../../context/Modal';
+import ComingSoonForm from './ComingSoon'
 
-function CreateModalButton({
+function SearchComingSoon({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onSellClick = () => {
+  const onSearchClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<ItemEditForm/>);
+    setModalContent(<ComingSoonForm/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-    <button onClick={onSellClick} className='edit-item-button'>EDIT</button>
+      <button onClick={onSearchClick} className='search-button'>Search</button>
     </>
   );
 }
 
-export default CreateModalButton;
+export default SearchComingSoon;

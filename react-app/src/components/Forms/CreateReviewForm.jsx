@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
@@ -12,7 +12,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const [reviewBody, setReviewBody] = useState("");
     const [stars, setStars] = useState("");
     const [errors, setErrors] = useState([]);
-
+    const errorRef = useRef(null);
     const history = useHistory()
 
     const updateBody = (e) => {
@@ -44,6 +44,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
         console.log('data in form')
         if (data && data.errors) {
             setErrors(data.errors)
+            errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {
             setPrevReview({
                 id: data?.id,
@@ -59,10 +60,16 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
         <div className='create-edit-feedback-container'>
             <span className="feedback-title">Leave some feedback</span>
             <form className="feedback-form" onSubmit={onSubmit}>
-            <div className="error-messages">
-                    {Object.values(errors).map((error, ind) => (
-                        <div key={ind}>{error}</div>
-                    ))}
+                <div ref={errorRef}>
+                    {Object.values(errors).length > 0 && (
+                        <div className="error-messages">
+                            {Object.values(errors).map((error, ind) => (
+                                <div key={ind}>
+                                    {error}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <div>
                     <label className='feedback-label'>
@@ -78,7 +85,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
                     </label>
                     <label className='feedback-label'>
                         <input
-                        placeholder='Rate your item'
+                            placeholder='Rate your item'
                             className='feedback-input'
                             type='number'
                             name='stars'

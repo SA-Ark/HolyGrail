@@ -13,6 +13,7 @@ body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
+
 select {
   appearance: none;
   border: 2px solid #ccc;

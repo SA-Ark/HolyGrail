@@ -9,7 +9,8 @@ const ItemEditForm = () => {
 
     const dispatch = useDispatch();
     const { itemId } = useParams();
-
+    const allItems = useSelector(state => state.items?.allItems)
+    console.log('all items', allItems)
     const item = useSelector(state => state.items?.singleItem)
     const user = useSelector(state => state.session?.user)
     const userId = user?.id
@@ -23,6 +24,7 @@ const ItemEditForm = () => {
     const [color, setColor] = useState('');
     const [condition, setCondition] = useState('');
     const [categoryTags, setCategoryTags] = useState('');
+    
     const [price, setPrice] = useState('');
     const [shippingCost, setShippingCost] = useState('');
     const [description, setDescription] = useState('');
@@ -32,64 +34,38 @@ const ItemEditForm = () => {
     const [imageUrl2, setImageUrl2] = useState('');
     const [imageUrl3, setImageUrl3] = useState('');
     const [imageUrl4, setImageUrl4] = useState('');
-
-    // const [genderStyle, setGenderStyle] = useState(item?.gender_style);
-    // const [size, setSize] = useState(item?.size);
-    // const [color, setColor] = useState(item?.color);
-    // const [condition, setCondition] = useState(item?.condition);
-    // const [categoryTags, setCategoryTags] = useState(item?.category_tag);
-    // const [price, setPrice] = useState(item?.price);
-    // const [shippingCost, setShippingCost] = useState(item?.shippingCost);
-    // const [description, setDescription] = useState(item?.description);
-    // const [name, setName] = useState(item?.name);
-    // const [previewUrl, setPreviewUrl] = useState(item?.preview_url);
-    // const [imageUrl1, setImageUrl1] = useState(item?.image_url_1);
-    // const [imageUrl2, setImageUrl2] = useState(item?.image_url_2);
-    // const [imageUrl3, setImageUrl3] = useState(item?.image_url_3);
-    // const [imageUrl4, setImageUrl4] = useState(item?.image_url_4);
-    console.log('itemmmmmmmmm', item)
+    console.log('item', item)
+    useEffect(() => {
+        if (item) {
+          setGenderStyle(item?.gender_style);
+          setSize(item?.size);
+          setColor(item?.color);
+          setCondition(item?.condition);
+          setCategoryTags(item?.categoryTags);
+          setPrice(item?.price);
+          setShippingCost(item?.shipping_cost);
+          setDescription(item?.description);
+          setName(item?.name);
+          setPreviewUrl(item?.preview_url);
+          setImageUrl1(item?.imageUrl1);
+          setImageUrl2(item?.imageUrl2);
+          setImageUrl3(item?.imageUrl3);
+          setImageUrl4(item?.imageUrl4);
+        }
+      }, [item]);
+      
     useEffect(() => {
         dispatch(thunkLoadSingleItem(item?.id, userId))
     }, [dispatch, userId])
 
     // const item = useSelector((state) => state.items.singleItem)
-    //! NEED TO MAKE WE REDIRECT TO ITEM.ID <-----------------
-
-    useEffect(() => {
-        const formErrors = [];
-        // if (!genderStyle) formErrors.push('Gender is required!');
-        // if (!size) formErrors.push('Size is required!');
-        // if (!color) formErrors.push('Color is required!');
-        // if (!condition) formErrors.push('Condition is required!');
-        // if (!categoryTags) formErrors.push('Categories is required!');
-        // if (!price) formErrors.push('price is required!');
-        // if (!shippingCost) formErrors.push('Shipping cost is required!');
-        // if (!description) formErrors.push('Description is required!');
-        // if (!name) formErrors.push('Name is required!');
-        // if (!previewUrl) formErrors.push('Please enter a preview image for your item!');
-        // setErrors(formErrors);
-    }, [genderStyle,
-        size,
-        color,
-        condition,
-        categoryTags,
-        price,
-        shippingCost,
-        description,
-        name,
-        previewUrl,
-        imageUrl1,
-        imageUrl2,
-        imageUrl3,
-        imageUrl4
-    ]);
 
     const categorySizes = {
-        tops: ['XS', 'S', 'M', 'L', 'XL'],
-        bottoms: ['XS', 'S', 'M', 'L', 'XL'],
+        tops: ['S', 'M', 'L'],
+        bottoms: ['S', 'M', 'L', ],
         footwear: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
-        outerwear: ['XS', 'S', 'M', 'L', 'XL'],
-        tailoring: ['XS', 'S', 'M', 'L', 'XL'],
+        outerwear: ['S', 'M', 'L'],
+        tailoring: ['S', 'M', 'L'],
         // accessories: ['Glasses', 'Gloves & Scarves', 'Hats', 'Jewelry & Watches', 'Wallets', 'Sunglasses', "Socks & Underwear"]
     }
 
@@ -117,7 +93,6 @@ const ItemEditForm = () => {
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
         if (data && data.errors) {
-            console.log('editform data', data)
             setErrors(data.errors)
             errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {

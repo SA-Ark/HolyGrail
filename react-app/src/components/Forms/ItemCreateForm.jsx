@@ -72,11 +72,11 @@ const ItemCreateModal = () => {
     }
 
     const categorySizes = {
-        tops: ['XS', 'S', 'M', 'L', 'XL'],
-        bottoms: ['XS', 'S', 'M', 'L', 'XL'],
+        tops: ['S', 'M', 'L'],
+        bottoms: ['S', 'M', 'L'],
         footwear: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
-        outerwear: ['XS', 'S', 'M', 'L', 'XL'],
-        tailoring: ['XS', 'S', 'M', 'L', 'XL'],
+        outerwear: ['S', 'M', 'L'],
+        tailoring: ['S', 'M', 'L'],
         // accessories: ['Glasses', 'Gloves & Scarves', 'Hats', 'Jewelry & Watches', 'Wallets', 'Sunglasses', "Socks & Underwear"]
     }
 

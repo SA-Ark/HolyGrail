@@ -1,0 +1,16 @@
+.delete-item-button {
+    padding-top: 10px;
+    font-family: "Video",monospace;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+    font-family: "Video",monospace;
+}
+
+.delete-item-button:hover {
+    background-color: rgb(237, 237, 237);
+  }

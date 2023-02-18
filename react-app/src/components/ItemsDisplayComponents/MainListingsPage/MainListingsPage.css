@@ -11,10 +11,14 @@
 
 .filters {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
     margin-right: 1em;
+    width: 100px;
     padding: 1em;
-    height: fit-content;
+    height: 175px;
     background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid black;
 }
@@ -24,7 +28,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-self: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     gap: 7px;
 }
 

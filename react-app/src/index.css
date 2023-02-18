@@ -107,3 +107,7 @@ textarea {
   border: 1px solid #ff0000;
   background-color: #ffe6e6;
 }
+
+div.active-tab {
+  border: 2px solid red;
+}

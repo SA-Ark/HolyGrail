@@ -99,12 +99,28 @@ textarea {
 }
 
 .error-messages {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
   /* align-items: center; */
   color: #ff0000;
   font-size: 0.8rem;
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   border: 1px solid #ff0000;
   background-color: #ffe6e6;
 }
+
+.image-error {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: start; */
+  align-items: center;
+  color: #ff0000;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ff0000;
+  background-color: #ffe6e6;
+}
+

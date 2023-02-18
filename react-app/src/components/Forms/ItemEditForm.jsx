@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useModal } from "../../context/Modal";
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
@@ -14,6 +14,7 @@ const ItemEditForm = () => {
     const user = useSelector(state => state.session?.user)
     const userId = user?.id
     const history = useHistory()
+    const errorRef = useRef(null);
 
     const [errors, setErrors] = useState([]);
 
@@ -23,7 +24,7 @@ const ItemEditForm = () => {
     const [condition, setCondition] = useState('');
     const [categoryTags, setCategoryTags] = useState('');
     const [price, setPrice] = useState('');
-    const [shippingCost, setShippingCost] = useState(10);
+    const [shippingCost, setShippingCost] = useState('');
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
     const [previewUrl, setPreviewUrl] = useState('');
@@ -48,7 +49,7 @@ const ItemEditForm = () => {
     // const [imageUrl4, setImageUrl4] = useState(item?.image_url_4);
     console.log('itemmmmmmmmm', item)
     useEffect(() => {
-        dispatch(thunkLoadSingleItem(itemId, userId))
+        dispatch(thunkLoadSingleItem(item?.id, userId))
     }, [dispatch, userId])
 
     // const item = useSelector((state) => state.items.singleItem)
@@ -93,8 +94,8 @@ const ItemEditForm = () => {
     }
 
     const onSubmit = async (e) => {
-
         e.preventDefault();
+        setErrors([])
         const itemsAttributes = {
             genderStyle,
             size,
@@ -116,7 +117,9 @@ const ItemEditForm = () => {
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
         if (data && data.errors) {
+            console.log('editform data', data)
             setErrors(data.errors)
+            errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {
             history.push(`/dashboard/${user.id}`)
             closeModal()
@@ -130,10 +133,16 @@ const ItemEditForm = () => {
                 <h1 className="modal-title"> Edit your item</h1>
                 <div className='create-edit-item-container'>
                     <form onSubmit={onSubmit} className="listing-edit-form">
-                        <div>
-                            {Object.values(errors).map((error, ind) => (
-                                <div key={ind}>{error}</div>
-                            ))}
+                    <div ref={errorRef}>
+                            {Object.values(errors).length > 0 && (
+                                <div className="error-messages">
+                                    {Object.values(errors).map((error, ind) => (
+                                        <div key={ind}>
+                                            {error}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                         <div className='create-edit-label-container'>
                             <label className='create-edit-item-label'>

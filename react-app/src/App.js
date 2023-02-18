@@ -46,6 +46,15 @@ function App() {
           <Route path="/favorites/:userId">
             <MainDashboard tabOverride={"FavoritesTab"} />
           </Route>
+          <Route path="/purchases/:userId">
+            <MainDashboard tabOverride={"PurchasesTab"} />
+          </Route>
+          <Route path="/available-listings/:userId">
+            <MainDashboard tabOverride={"AvailableListingsTab"} />
+          </Route>
+          <Route path="/feedback/:userId">
+            <MainDashboard tabOverride={"FeedbackTab"} />
+          </Route>
           <ProtectedRoute path='/items/edit/:itemId'>
             <ItemEditForm />
           </ProtectedRoute>

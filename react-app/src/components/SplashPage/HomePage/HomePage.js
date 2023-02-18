@@ -1,6 +1,6 @@
 import React, { useEffect, useState, } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { thunkLoadItems } from '../../../store/items';
 import ItemCard from '../../ItemsDisplayComponents/ItemCard';
 import * as utils from '../../../store/utils'
@@ -15,8 +15,10 @@ const SplashPlage = () => {
 
     // const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store => store.session?.user)
-
+    const itemsState = useSelector((state) => state.items?.singleItem)
     const items = useSelector((state) => state.items.allItems)
+    const [liked, setLiked] = useState("")
+    console.log(useSelector(state=> state.items.singleItem), "selector")
 
     // const favorite = useSelector(state => state.favorites?.singleFavorite)
 
@@ -24,10 +26,10 @@ const SplashPlage = () => {
         dispatch(thunkLoadItems(user?.id))
     }, [dispatch, user])
 
-    // useEffect(() => {
-    //     console.log('STATEUPDATE')
+    useEffect(()=>{
 
-    // }, [favorite])
+        console.log(itemsState, "state update")
+    }, [items])
 
     const handlePlay = () => {
         setVideoPlaying(true)

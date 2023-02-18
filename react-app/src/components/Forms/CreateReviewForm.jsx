@@ -18,7 +18,6 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        console.log(reviewBody, "REVIEWBODY")
         // bodVal = reviewBody
 
     }
@@ -60,7 +59,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
         <div className='create-edit-feedback-container'>
             <span className="feedback-title">Leave some feedback</span>
             <form className="feedback-form" onSubmit={onSubmit}>
-                <div>
+            <div className="error-messages">
                     {Object.values(errors).map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}
@@ -89,7 +88,8 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
                         ></input>
                     </label>
                 </div>
-                <button className="feedback-button" type='submit'>Leave Review</button>
+                <button className="feedback-form-button" type='submit'>Leave Review</button>
+
             </form>
         </div>
     )

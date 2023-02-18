@@ -86,3 +86,28 @@ i {
   height: fit-content;
   width: fit-content;
 }
+
+input {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+textarea {
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.error-messages {
+  /* display: flex; */
+  /* align-items: center; */
+  color: #ff0000;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ff0000;
+  background-color: #ffe6e6;
+}
+
+div.active-tab {
+  border: 2px solid red;
+}

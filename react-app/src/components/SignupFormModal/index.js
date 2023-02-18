@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useModal } from "../../context/Modal";
 import { Redirect } from 'react-router-dom';
@@ -26,6 +26,7 @@ function SignupFormModal() {
 	const { closeModal } = useModal();
 
 	const sessionUser = useSelector((state) => state.session.user);
+    const errorRef = useRef(null);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -49,6 +50,7 @@ function SignupFormModal() {
 			const data = await dispatch(signUp(userArr));
 			if (data) {
 				setErrors(data);
+				errorRef.current.scrollIntoView({ behavior: "smooth" });
 			} else {
 				closeModal();
 			}
@@ -56,6 +58,7 @@ function SignupFormModal() {
 			setErrors([
 				"Confirm Password field must be the same as the Password field",
 			]);
+			errorRef.current.scrollIntoView({ behavior: "smooth" });
 		}
 	};
 
@@ -130,9 +133,17 @@ function SignupFormModal() {
 				<div className="signup-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
 				<div className="login-signup-form-container">
 					<form className="login-signup-form" onSubmit={handleSubmit}>
-						<div>
-							{errors.map((error, idx) => <div key={idx}>{error}</div>)}
-						</div>
+                    <div ref={errorRef}>
+                            {errors.length > 0 && (
+                                <div className="error-messages">
+                                    {errors.map((error, ind) => (
+                                        <div key={ind}>
+                                            {error}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
 						<div className="login-signup-label-container">
 							<label className="login-signup-label">
 								<input

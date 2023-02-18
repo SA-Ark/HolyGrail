@@ -1,3 +1,4 @@
+import { spreadItems } from './store-utils';
 import * as utils from './utils';
 
 const LOAD_ITEMS = 'LOAD_ITEMS'
@@ -166,15 +167,19 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
             image_url_4: imageUrl4
         })
     })
+    console.log('HEY FROM UNDER DICTIONARY',)
     if (res.ok) {
         const data = await res.json();
+        console.log('data in thunk', data)
         dispatch(actionEditItem(data))
         return null;
     } else if (res.status < 500) {
+        console.log('hi from below')
         const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
+        console.log('data in thunk', data)
+        // if (data.errors) {
+        return data;
+        // }
       }
 }
 
@@ -204,8 +209,9 @@ const itemsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ITEMS: {
 
-            const newState = { ...state }
-            newState.allItems = {...action.payload.items}
+
+            const newState = { allItems: {...state.allItems}, singleItem: {...state.singleItem} }
+            newState.allItems = {...spreadItems(action.payload.items)}
             return newState
         }
 

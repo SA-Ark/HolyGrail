@@ -24,6 +24,7 @@ class ItemImage(db.Model):
             'item_id': self.item_id,
             'preview': self.preview,
             "url": self.url,
+            "image_num": self.image_num,
             "created_at": self.created_at,
             "updated_at": self.updated_at
             # "item": self.item

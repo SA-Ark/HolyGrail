@@ -130,10 +130,12 @@ export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) 
     })
     if (res.ok) {
         const data = await res.json();
+        console.log('data in thunk', data)
         dispatch(actionEditReview(data))
         return data
     } else if (res.status < 500) {
         const data = await res.json();
+        console.log('data in thunk AGAIN', data)
         if (data.errors) {
             return data;
         }

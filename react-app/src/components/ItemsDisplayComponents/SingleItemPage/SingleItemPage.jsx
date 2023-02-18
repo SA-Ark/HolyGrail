@@ -4,7 +4,6 @@ import { thunkLoadSingleItem } from '../../../store/items'
 import { useParams } from 'react-router-dom'
 import ProfileCard from "../../Cards/ProfileCard";
 import './SingleItemPage.css'
-import PurchaseForm from '../../Forms/PurchaseForm'
 import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
 import DeleteItemButton from '../../Buttons/DeleteItemButton'
@@ -72,9 +71,9 @@ const SingleItemPage = () => {
                }
           </div>
         </div>
-        <span className='size'>Size {item?.size}</span>
-        <span className='color'>Color {item?.color}</span>
-        <span className='condition'>Condition {item?.condition}</span>
+        <span className='size'>Size: {item?.size}</span>
+        <span className='color'>Color: {item?.color}</span>
+        <span className='condition'>Condition: {item?.condition}</span>
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 

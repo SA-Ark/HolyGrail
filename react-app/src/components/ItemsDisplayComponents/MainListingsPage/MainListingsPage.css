@@ -15,13 +15,11 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    margin-right: 1em;
-    width: 100px;
+    margin-right: 4em;
+    max-width: 400px;
     padding: 1em;
-    height: 160px;
-    background-color: rgba(0, 0, 0, 0.05);
-    border: 1px solid black;
-    border-radius: 20px;
+    max-height: 225px;
+    background-color: rgb(255, 255, 255);
 }
 
 .items-display-container {

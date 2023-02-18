@@ -4,8 +4,8 @@ import './FilterButtons.css';
 const FilterButtons = ({ filterItem, setFilterItems, filters, items }) => {
     return (
         <>
-            <div>
-                <h5 id="filters-label">Filters:</h5>
+            <div className="filter-labels-container">
+                <h5 id="filters-label">Category:</h5>
                 {filters.map((Val, id) => {
                     return (
                         <button
@@ -18,10 +18,10 @@ const FilterButtons = ({ filterItem, setFilterItems, filters, items }) => {
                     );
                 })}
                 <button
-                    className="all-filter-btn icon-button"
+                    className="all-filter-btn icon-button reset-btn"
                     onClick={() => setFilterItems(items)}
                 >
-                    Reset
+                    Clear
                 </button>
             </div>
         </>

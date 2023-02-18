@@ -8,10 +8,11 @@ import Tabs from '../Tabs'
 import './MainDashboard.css'
 import { getUserFavoriteItems, getUserPurchases, switchTab, dbDateToMonthYear } from '../../../../store/utils'
 import FeatureComingSoonModal from '../../../ComingSoonModals/FeatureComingSoonModal'
+import { useHistory } from 'react-router-dom'
 const { PurchasesTab, EditProfileTab, FavoritesTab, AvailableListingsTab, FeedbackTab } = Tabs
 
-const MainDashboard = ({tabOverride}) => {
-
+const MainDashboard = ({ tabOverride }) => {
+    const history = useHistory()
     const dispatch = useDispatch()
     const user = useSelector(state => state?.session?.user)
     const items = useSelector(state => state?.items?.allItems)
@@ -20,6 +21,11 @@ const MainDashboard = ({tabOverride}) => {
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
     const [selectedTab, setSelectedTab] = useState(tabOverride ? tabOverride : 'AvailableListingsTab');
+
+    const handleTabClick = (tabName) => {
+        setSelectedTab(tabName);
+        // history.push(`/dashboard/${tabName}`); 
+    }
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
@@ -46,7 +52,7 @@ const MainDashboard = ({tabOverride}) => {
                         </div>
                         <div className='stars-container'>
                             <div className="profile-stars">
-                                { isNaN(rating) ? 'No reviews' : `★${rating}`}
+                                {isNaN(rating) ? 'No reviews' : `★${rating}`}
                             </div>
                             <div className='total-reviews'>
                                 {reviews?.num_reviews} {reviews?.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
@@ -57,17 +63,37 @@ const MainDashboard = ({tabOverride}) => {
                             </div>
                             <span className='transactions'>Transactions</span>
                         </div>
-                    <div className='edit-button-container'>
-                        <FeatureComingSoonModal />
-                        {/* <button className='profile-edit feedback-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button> */}
-                    </div>
+                        <div className='edit-button-container'>
+                            <FeatureComingSoonModal />
+                            {/* <button className='profile-edit feedback-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button> */}
+                        </div>
                     </div>
                 </div>
-                <div className="tab-container">
-                    <div className='purchases-tab' onClick={() => setSelectedTab('PurchasesTab')}>Purchases</div>
-                    <div className='favorites-tab' onClick={() => setSelectedTab('FavoritesTab')}>Favorites</div>
-                    <div className='available-listings-tab' onClick={() => setSelectedTab('AvailableListingsTab')}>Your Listings</div>
-                    <div className='feedback-tab' onClick={() => setSelectedTab('FeedbackTab')}>Feedback</div>
+               <div className="tab-container">
+                    <div
+                        className={`purchases-tab ${selectedTab === 'PurchasesTab' ? 'selected' : ''}`}
+                        onClick={() => handleTabClick('PurchasesTab')}
+                    >
+                        Purchases
+                    </div>
+                    <div
+                        className={`favorites-tab ${selectedTab === 'FavoritesTab' ? 'selected' : ''}`}
+                        onClick={() => handleTabClick('FavoritesTab')}
+                    >
+                        Favorites
+                    </div>
+                    <div
+                        className={`available-listings-tab ${selectedTab === 'AvailableListingsTab' ? 'selected' : ''}`}
+                        onClick={() => handleTabClick('AvailableListingsTab')}
+                    >
+                        Your Listings
+                    </div>
+                    <div
+                        className={`feedback-tab ${selectedTab === 'FeedbackTab' ? 'selected' : ''}`}
+                        onClick={() => handleTabClick('FeedbackTab')}
+                    >
+                        Feedback
+                    </div>
                 </div>
                 <div>
                     {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}

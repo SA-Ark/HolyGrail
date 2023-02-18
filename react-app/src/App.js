@@ -49,7 +49,7 @@ function App() {
           <Route path="/purchases/:userId">
             <MainDashboard tabOverride={"PurchasesTab"} />
           </Route>
-          <Route path="/available-listings/:userId">
+          <Route path="/listings/:userId">
             <MainDashboard tabOverride={"AvailableListingsTab"} />
           </Route>
           <Route path="/feedback/:userId">

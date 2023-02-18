@@ -71,9 +71,9 @@ const SingleItemPage = () => {
                }
           </div>
         </div>
-        <span className='size'>Size {item?.size}</span>
-        <span className='color'>Color {item?.color}</span>
-        <span className='condition'>Condition {item?.condition}</span>
+        <span className='size'>Size: {item?.size}</span>
+        <span className='color'>Color: {item?.color}</span>
+        <span className='condition'>Condition: {item?.condition}</span>
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 

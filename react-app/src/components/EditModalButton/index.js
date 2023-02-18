@@ -2,6 +2,7 @@ import React from 'react';
 import { useModal } from '../../context/Modal';
 import ItemCreateModal from '../Forms/ItemCreateForm';
 import ItemEditForm from '../Forms/ItemEditForm';
+import './EditModalButton.css';
 
 function CreateModalButton({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
@@ -17,7 +18,7 @@ function CreateModalButton({
 
   return (
     <>
-    <button onClick={onSellClick} className='feedback-button'>EDIT</button>
+    <button onClick={onSellClick} id="edit-btn" className='feedback-button'>Edit</button>
     </>
   );
 }

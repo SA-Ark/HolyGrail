@@ -77,12 +77,14 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
-
-        {item?.seller_id !== user?.id
-          ? <PurchaseModal item={item} />
-          : <EditModalButton />
-        }
-        {item?.seller_id === user?.id ? < DeleteItemButton /> : null}
+        
+        <div className="edit-delete-btn-container">
+          {item?.seller_id !== user?.id
+            ? <PurchaseModal item={item} />
+            : <EditModalButton />
+          }
+          {item?.seller_id === user?.id ? < DeleteItemButton /> : null}
+        </div>
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

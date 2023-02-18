@@ -10,6 +10,7 @@ import SignupFormModal from "../SignupFormModal";
 
 import './Navigation.css';
 import ItemCreateModal from '../Forms/ItemCreateForm';
+import SearchFilter from './SearchFilter';
 
 function Navigation({ isLoaded }) {
 	const history = useHistory()
@@ -67,12 +68,13 @@ function Navigation({ isLoaded }) {
 				<NavLink className='home-link' exact to="/">HOLYGRAIL</NavLink>
 			</div>
 
-			<div className="search-container">
+			{/* <div className="search-container">
 				<div className="input-group">
 					<input type="text" placeholder="Search" className="search-input" />
 					<button className="search-button">Search</button>
 				</div>
-			</div>
+			</div> */}
+			<SearchFilter />
 
 
 			<div className='right-side-container'>

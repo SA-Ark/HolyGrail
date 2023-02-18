@@ -124,3 +124,6 @@ textarea {
   background-color: #ffe6e6;
 }
 
+div.active-tab {
+  border: 2px solid red;
+}

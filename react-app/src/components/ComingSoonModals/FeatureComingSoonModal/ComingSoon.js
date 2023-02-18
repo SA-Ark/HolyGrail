@@ -1,5 +1,5 @@
 import './ComingSoon.css'
-import { useModal } from '../../../context/Modal';
+import { useModal } from '../../../context/Modal'
 
 const ComingSoon = () => {
     const { closeModal } = useModal()

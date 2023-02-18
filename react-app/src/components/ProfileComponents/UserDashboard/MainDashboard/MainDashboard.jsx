@@ -7,7 +7,7 @@ import { thunkLoadReviews } from '../../../../store/reviews'
 import Tabs from '../Tabs'
 import './MainDashboard.css'
 import { getUserFavoriteItems, getUserPurchases, switchTab, dbDateToMonthYear } from '../../../../store/utils'
-import FeatureComingSoonModal from '../../../FeatureComingSoonModal'
+import FeatureComingSoonModal from '../../../ComingSoonModals/FeatureComingSoonModal'
 const { PurchasesTab, EditProfileTab, FavoritesTab, AvailableListingsTab, FeedbackTab } = Tabs
 
 const MainDashboard = ({tabOverride}) => {

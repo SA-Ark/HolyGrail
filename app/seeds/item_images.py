@@ -11,10 +11,10 @@ other_images= [
 # Adds item_images to items
 def seed_item_images():
     items = Item.query.all()
-    for i in items:
+    for i in range(len(items)):
         p = True
         item_img = ItemImage(
-            item_id = i.id,
+            item_id = items[i].id,
             preview = p,
             url = image_urls[i%len(image_urls)],
             image_num = 0
@@ -24,7 +24,7 @@ def seed_item_images():
 
         for o in range(4):
             item_other_img = ItemImage(
-            item_id = i.id,
+            item_id = items[i].id,
             preview = False,
             url = other_images[o],
             image_num = o + 1

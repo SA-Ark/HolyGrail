@@ -18,14 +18,13 @@ const SplashPlage = () => {
     const itemsState = useSelector((state) => state.items?.singleItem)
     const items = useSelector((state) => state.items.allItems)
     const [liked, setLiked] = useState("")
-    console.log(useSelector(state=> state.items.singleItem), "selector")
+    // console.log(useSelector(state=> state.items.singleItem), "selector")
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
     }, [dispatch, user])
 
     useEffect(()=>{
-
         console.log(itemsState, "state update")
     }, [items])
 

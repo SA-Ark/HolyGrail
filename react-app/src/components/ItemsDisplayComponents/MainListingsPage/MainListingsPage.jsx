@@ -6,14 +6,17 @@ import { thunkLoadItems } from '../../../store/items';
 import { thunkLoadFavorites } from '../../../store/favorites';
 import FilterButtons from './FilterButtons';
 import './MainListingsPage.css';
+import { deNormalize } from '../../../store/utils';
 
 const MainListingsPage = () => {
     const dispatch = useDispatch();
-    const items = utils.deNormalize(useSelector(store => store.items.allItems));
-    const user = useSelector(store => store.session?.user);
+    const items = utils.deNormalize(useSelector(state => state.items?.allItems));
+    const user = useSelector(state => state.session?.user);
+    const favorites = useSelector(state => state.favorites?.allFavorites)
     const [filterItems, setFilterItems] = useState(items);
 
     const filters = [ ...new Set(items.map((Val) => Val.category_tags))];
+    const likes = deNormalize(favorites)
 
     const filterItem = (curcat) => {
         const newItems = items.filter((newVal) => {
@@ -22,7 +25,6 @@ const MainListingsPage = () => {
 
         setFilterItems(newItems);
     };
-
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))

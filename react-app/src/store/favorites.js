@@ -87,33 +87,38 @@ export const thunkDeleteFavorite = (itemId) => async (dispatch) => {
 
 
 //! reducer
-const initialState = { allFavorites: {}, singleFavorite: {} }
+const initialState = {
+    allFavorites: {},
+    singleFavorite: null
+};
 
 const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_FAVORITES: {
-
-            const newState = {allFavorites:{...spreadFavorites(action.payload)}, singleFavorite: {...state.singleFavorite} }
-            newState.allFavorites = {...action.payload}
-            return newState
+            return {
+                ...state,
+                allFavorites: spreadFavorites(action.payload),
+            };
         }
-
         case CREATE_FAVORITE: {
-
-            const newState = { allFavorites:{...state.allFavorites}, singleFavorite: { ...action.payload } }
-            return newState
+            return {
+                ...state,
+                singleFavorite: action.payload,
+            };
         }
-
         case DELETE_FAVORITE: {
-
-            const newState = { ...state, allFavorites: { ...state.allFavorites}, singleFavorite: { ...state.singleFavorite } }
-            delete newState.singleFavorite
-            return newState
+            return {
+                ...state,
+                singleFavorite: null,
+                allFavorites: {
+                    ...state.allFavorites,
+                    [action.payload.id]: undefined
+                }
+            };
         }
-
         default:
             return state;
     }
-}
+};
 
 export default favoritesReducer;

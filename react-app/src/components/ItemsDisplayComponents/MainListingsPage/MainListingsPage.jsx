@@ -13,7 +13,7 @@ const MainListingsPage = () => {
     const items = utils.deNormalize(useSelector(state => state.items?.allItems));
     const user = useSelector(state => state.session?.user);
     const [filterItems, setFilterItems] = useState(items);
-    const [favoritesUpdated, setFavoritesUpdated] = useState(false);
+    const [mainFavoritesUpdated, setMainFavoritesUpdated] = useState(false);
 
     const filters = [ ...new Set(items.map((Val) => Val.category_tags))];
 
@@ -28,8 +28,8 @@ const MainListingsPage = () => {
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
         dispatch(thunkLoadFavorites())
-        setFavoritesUpdated(false)
-    }, [dispatch, favoritesUpdated])
+        setMainFavoritesUpdated(false)
+    }, [dispatch, mainFavoritesUpdated])
 
     return (
         <div className="main-listings-container">
@@ -39,8 +39,8 @@ const MainListingsPage = () => {
             <div className="items-display-container">
                 {
                     filterItems.length
-                        ? filterItems.map(item => item?.seller_id !== user?.id ? <ItemCard classProp="home-item-card" item={item} key={item.id} setFavoritesUpdated={setFavoritesUpdated} /> : null)
-                        : items.map(item => item?.seller_id !== user?.id ? <ItemCard classProp="home-item-card" item={item} key={item.id} setFavoritesUpdated={setFavoritesUpdated} /> : null )
+                        ? filterItems.map(item => item?.seller_id !== user?.id ? <ItemCard classProp="home-item-card" item={item} key={item.id} setFavoritesUpdated={setMainFavoritesUpdated} /> : null)
+                        : items.map(item => item?.seller_id !== user?.id ? <ItemCard classProp="home-item-card" item={item} key={item.id} setFavoritesUpdated={setMainFavoritesUpdated} /> : null )
                 }
             </div>
         </div>

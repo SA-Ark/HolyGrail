@@ -1,3 +1,3 @@
-import SplashPlage from './SplashPlage'
+import SplashPage from './SplashPage'
 
-export default SplashPlage;
+export default SplashPage;

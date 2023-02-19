@@ -16,28 +16,24 @@ const SingleItemPage = () => {
   const item = useSelector((state) => state.items.singleItem)
   const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
-  const [favoritesUpdated, setFavoritesUpdated] = useState(false);
-
-
+  const [singleFavoritesUpdated, setSingleFavoritesUpdated] = useState(false);
 
   const { itemId } = useParams()
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [like, setLike] = useState((item?.liked))
+
 
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id));
     if (item?.seller_id){
       dispatch(thunkGetUser(item?.seller_id));
     }
-  }, [dispatch, item?.seller_id, favoritesUpdated])
+    setSingleFavoritesUpdated(false)
+  }, [dispatch, item?.seller_id, singleFavoritesUpdated])
 
 
 
 
-  const changeLike = (data) => {
-    setLike(data.liked)
-  }
 
      return (
     <div className="single-item-page-container">
@@ -65,11 +61,11 @@ const SingleItemPage = () => {
           <div className='item-favorite'>
                {
                  !item?.liked &&
-                 <LikeButton item={item} setFavoritesUpdated={setFavoritesUpdated}/>
+                 <LikeButton item={item} setFavoritesUpdated={setSingleFavoritesUpdated}/>
                 }
                {
                 item?.liked &&
-                 <UnlikeButton item={item} setFavoritesUpdated={setFavoritesUpdated} />
+                 <UnlikeButton item={item} setFavoritesUpdated={setSingleFavoritesUpdated} />
                }
           </div>
         </div>

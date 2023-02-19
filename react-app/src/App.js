@@ -11,7 +11,7 @@ import Forms from './components/Forms'
 import SingleItemPage from './components/ItemsDisplayComponents/SingleItemPage'
 import Buttons from './components/Buttons'
 import MainDashboard from './components/ProfileComponents/UserDashboard/MainDashboard'
-import SplashPlage from "./components/SplashPage/HomePage/HomePage";
+import SplashPage from "./components/SplashPage/HomePage/HomePage";
 import ItemCreateModal from "./components/Forms/ItemCreateForm";
 import EditReviewForm from "./components/Forms/EditReviewForm";
 
@@ -85,7 +85,7 @@ function App() {
             <CreateReviewForm/>
           </ProtectedRoute>
           <Route path='/' exact={true} >
-            <SplashPlage />
+            <SplashPage />
           </Route>
         </Switch>
       )}

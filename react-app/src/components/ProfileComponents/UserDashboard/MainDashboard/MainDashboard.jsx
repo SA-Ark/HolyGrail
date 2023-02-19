@@ -6,7 +6,7 @@ import { thunkLoadOrders } from '../../../../store/payments'
 import { thunkLoadReviews } from '../../../../store/reviews'
 import Tabs from '../Tabs'
 import './MainDashboard.css'
-import { getUserFavoriteItems, getUserPurchases, switchTab, dbDateToMonthYear } from '../../../../store/utils'
+import { deNormalize, dbDateToMonthYear } from '../../../../store/utils'
 import FeatureComingSoonModal from '../../../ComingSoonModals/FeatureComingSoonModal'
 import { useHistory } from 'react-router-dom'
 const { PurchasesTab, EditProfileTab, FavoritesTab, AvailableListingsTab, FeedbackTab } = Tabs
@@ -16,12 +16,11 @@ const MainDashboard = ({ tabOverride }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state?.session?.user)
     const items = useSelector(state => state?.items?.allItems)
-    const favorites = useSelector(state => state?.favorites?.allFavorites)
     const purchases = useSelector(state => state?.payments?.allOrders)
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
     const [selectedTab, setSelectedTab] = useState(tabOverride ? tabOverride : 'AvailableListingsTab');
-    const [favoritesUpdated, setFavoritesUpdated] = useState(false);
+    const [dashboardFavoritesUpdated, setDashboardFavoritesUpdated] = useState(false);
 
     const handleTabClick = (tabName) => {
         setSelectedTab(tabName);
@@ -46,9 +45,9 @@ const MainDashboard = ({ tabOverride }) => {
         dispatch(thunkLoadFavorites())
         dispatch(thunkLoadOrders(user?.id))
         dispatch(thunkLoadReviews(userId))
-        setFavoritesUpdated(false)
+        setDashboardFavoritesUpdated(false)
 
-    }, [dispatch, user, selectedTab, favoritesUpdated]);
+    }, [dispatch, user, selectedTab, dashboardFavoritesUpdated]);
 
     const rating = parseFloat(reviews?.avg_star_rating).toFixed(1)
     console.log('reviews -->', reviews)
@@ -113,7 +112,7 @@ const MainDashboard = ({ tabOverride }) => {
                 <div>
                     {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}
                     {selectedTab === 'EditProfileTab' && <EditProfileTab user={user} />}
-                    {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} setFavoritesUpdated={setFavoritesUpdated} />}
+                    {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={items? deNormalize(items).filter(item => item.liked === true): null} setFavoritesUpdated={setDashboardFavoritesUpdated} />}
                     {selectedTab === 'AvailableListingsTab' && <AvailableListingsTab items={items} />}
                     {selectedTab === 'FeedbackTab' && <FeedbackTab reviews={reviews} />}
                 </div>

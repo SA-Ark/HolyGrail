@@ -21,7 +21,6 @@ const UnlikeButton = ({item, setFavoritesUpdated}) => {
                     <i className="fa-solid fa-heart like-icon"></i>
                 </button>
             }
-
         </>
     )
 }

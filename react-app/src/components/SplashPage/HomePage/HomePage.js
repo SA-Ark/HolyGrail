@@ -6,27 +6,28 @@ import ItemCard from '../../ItemsDisplayComponents/ItemCard';
 import * as utils from '../../../store/utils'
 import './HomePage.css';
 
-const SplashPlage = () => {
+const SplashPage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [videoPlaying, setVideoPlaying] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentIndexDeals, setCurrentIndexDeals] = useState(0);
+    const [splashFavoritesUpdated, setSplashFavoritesUpdated] = useState(false);
 
     // const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store => store.session?.user)
-    const itemsState = useSelector((state) => state.items?.singleItem)
     const items = useSelector((state) => state.items.allItems)
-    const [liked, setLiked] = useState("")
     // console.log(useSelector(state=> state.items.singleItem), "selector")
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
-    }, [dispatch, user])
+        setSplashFavoritesUpdated(false)
+    }, [dispatch, user, splashFavoritesUpdated, videoPlaying])
 
-    useEffect(()=>{
-        console.log(itemsState, "state update")
-    }, [items])
+    useEffect(() => {
+
+    }, [items]);
+
 
     const handlePlay = () => {
         setVideoPlaying(true)
@@ -55,7 +56,7 @@ const SplashPlage = () => {
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
             if (item?.seller_id !== user?.id){
-                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+                return (<ItemCard classProp="splash-card-container" key={item.id} item={item} setFavoritesUpdated={setSplashFavoritesUpdated} />)
             }
             return null
     })
@@ -66,7 +67,7 @@ const SplashPlage = () => {
         .map(item => {
 
             if (item?.seller_id !== user?.id){
-                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} setFavoritesUpdated={setSplashFavoritesUpdated} />)
             }
             return null
         });
@@ -129,4 +130,4 @@ const SplashPlage = () => {
     )
 }
 
-export default SplashPlage;
+export default SplashPage;

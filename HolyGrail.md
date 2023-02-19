@@ -21,6 +21,8 @@ HolyGrail is a clothing website clone that resembles Grailed. HolyGrail can be u
 
 ![Render](https://img.shields.io/badge/Render-informational?style=for-the-badge&logo=render&logoColor=%5bdec3)
 
+## 💻 Run Locally
+
 Clone the project
 
 ### HTTPS
@@ -76,6 +78,4 @@ You can access the Login Page and Signup Page from here. As well use the demo us
 ## List your item
 
 <img alt="listing" src="./holygrail-images/HolyGrail-Listing.png">
-
-## 💻 Run Locally
 

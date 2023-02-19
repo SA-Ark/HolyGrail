@@ -202,7 +202,7 @@ function SignupFormModal() {
 								<input
 									className="signup-input"
 									type='text'
-									placeholder="First"
+									placeholder="First Name"
 									onChange={updateFirstName}
 									value={firstName}
 									required

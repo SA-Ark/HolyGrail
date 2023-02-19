@@ -16,6 +16,8 @@
 .item-info-container {
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    line-height: 1.5;
     /* border: 1px solid black; */
 }
 

@@ -17,7 +17,7 @@ const SingleItemPage = () => {
   const item = useSelector((state) => state.items.singleItem)
   const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
-
+  const [isloaded, setIsLoaded] = useState(false)
 
   const { itemId } = useParams()
 
@@ -25,13 +25,16 @@ const SingleItemPage = () => {
   const [like, setLike] = useState((item?.liked))
 
   useEffect(() => {
-    dispatch(thunkLoadSingleItem(itemId, user?.id));
+    dispatch(thunkLoadSingleItem(itemId, user?.id))
+    .then(() => {
+      setIsLoaded(true)
+    })
     if (item?.seller_id) {
-      dispatch(thunkGetUser(item?.seller_id));
+      dispatch(thunkGetUser(item?.seller_id))
     }
   }, [dispatch, item?.seller_id])
 
-
+  if (!isloaded) return null
 
 
   const changeLike = (data) => {

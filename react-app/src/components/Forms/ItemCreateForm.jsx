@@ -24,6 +24,7 @@ const ItemCreateModal = () => {
     const [imageUrl2, setImageUrl2] = useState('');
     const [imageUrl3, setImageUrl3] = useState('');
     const [imageUrl4, setImageUrl4] = useState('');
+    const [disabled, setDisabled] = useState(true)
 
     const { closeModal } = useModal()
     const history = useHistory()
@@ -33,7 +34,10 @@ const ItemCreateModal = () => {
     const item = useSelector((state) => state.items?.singleItem)
     const errorRef = useRef(null);
 
-
+    useEffect(() => {
+        if (categoryTags) setDisabled(false)
+        if (!categoryTags.length) setDisabled(true)  
+    })
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -117,15 +121,15 @@ const ItemCreateModal = () => {
                                 <select
                                     required
                                     name='size'
+                                    disabled={disabled}
                                     onChange={(e) => setSize(e.target.value)}
                                     className="create-edit-item-input"
                                     value={size}
                                 >
-                                    <option value=''>Select size</option>
+                                    <option value=''>{disabled ? 'Not applicable' : 'Select Size'}</option>
                                     {categorySizes[categoryTags] && categorySizes[categoryTags].map((sizeOption, index) => (
                                         <option key={index} value={sizeOption}>{sizeOption}</option>
                                     ))}
-                                    {!categorySizes[categoryTags] && <option value=''>Not applicable</option>}
                                 </select>
                             </label>
                             <label className='create-edit-item-label'>
@@ -222,9 +226,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 1
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_1'
                                     onChange={(e) => setImageUrl1(e.target.value)}
@@ -232,9 +236,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 2
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_2'
                                     onChange={(e) => setImageUrl2(e.target.value)}
@@ -242,9 +246,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 3
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_3'
                                     onChange={(e) => setImageUrl3(e.target.value)}
@@ -252,9 +256,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 4
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_4'
                                     onChange={(e) => setImageUrl4(e.target.value)}

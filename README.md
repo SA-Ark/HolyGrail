@@ -83,6 +83,7 @@ flask db upgrade &&
 flask seed all
 ```
 
+<<<<<<< HEAD
 This script will install dependencies for the frontend, and run the build
 command in the __package.json__ file for the frontend, which builds the React
 application. Then, it will install the dependencies needed for the Python
@@ -146,3 +147,42 @@ your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
+=======
+```bash
+cd react-app
+npm install --prefix react-app 
+```
+
+Start the server
+
+```bash
+pipenv run flask run
+```
+
+In seperate terminal
+
+```bash
+cd react-app
+npm start
+```
+
+## Landing Page
+
+You can access the Login Page and Signup Page from here. As well use the demo user button to explore the websites functionality while logged in.
+
+## Home
+
+<img alt="home" src="./holygrail-images/HolyGrail-Landing-Page.png">
+
+
+## Items Page
+
+<img alt="items page" src="./holygrail-images/HolyGrail-Items-Page.png">
+
+
+## List your item
+
+<img alt="listing" src="./holygrail-images/HolyGrail-Listing.png">
+
+
+>>>>>>> cca364eff24c5047bfbaea2b918e2862b9714a83

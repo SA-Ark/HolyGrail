@@ -138,11 +138,11 @@ function SignupFormModal() {
 	return (
 		<>
 			<div className="signup-modal-container">
-				<h1 className="modal-title"> Sign Up</h1>
+				<h1 ref={errorRef} className="modal-title"> Sign Up</h1>
 				<div className="signup-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
 				<div className="login-signup-form-container">
 					<form className="login-signup-form" onSubmit={handleSubmit}>
-                    <div ref={errorRef}>
+                    <div>
                             {errors.length > 0 && (
                                 <div className="error-messages">
                                     {errors.map((error, ind) => (
@@ -202,7 +202,7 @@ function SignupFormModal() {
 								<input
 									className="signup-input"
 									type='text'
-									placeholder="First"
+									placeholder="First Name"
 									onChange={updateFirstName}
 									value={firstName}
 									required

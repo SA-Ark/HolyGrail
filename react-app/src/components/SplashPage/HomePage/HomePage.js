@@ -13,6 +13,7 @@ const SplashPlage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentIndexDeals, setCurrentIndexDeals] = useState(0);
 
+
     // const items = utils.deNormalize(useSelector(store => store.items.allItems))
     const user = useSelector(store => store.session?.user)
     const itemsState = useSelector((state) => state.items?.singleItem)
@@ -27,7 +28,6 @@ const SplashPlage = () => {
     }, [dispatch, user])
 
     useEffect(()=>{
-
         console.log(itemsState, "state update")
     }, [items])
 
@@ -118,7 +118,6 @@ const SplashPlage = () => {
                     </div>
                 </div>
             </div>
-
             <div className='splash-bottom-container'>
                 <img className='splash-bottom-img' src='https://images.ctfassets.net/bdvz0u6oqffk/5WKjwaqsg7qdf3NFcnrFc3/7a24b9c497e5112d64c0eba0cf3eee59/Womens_HPBanner.jpg?fm=webp'></img>
                 <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>

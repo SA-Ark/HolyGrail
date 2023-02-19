@@ -19,6 +19,7 @@ const ItemCard = ({ item, classProp }) => {
     const [liked, setLiked] = useState(item?.liked)
     const newName = truncateName(item?.name);
 
+
     const clickHandler = (e) => {
         history.push(`/items/${item.id}`)
     }

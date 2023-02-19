@@ -24,16 +24,29 @@ const MainDashboard = ({ tabOverride }) => {
 
     const handleTabClick = (tabName) => {
         setSelectedTab(tabName);
-        // history.push(`/dashboard/${tabName}`); 
     }
 
     useEffect(() => {
+
+        if (selectedTab === 'PurchasesTab') {
+            history.push(`/purchases/${userId}`);
+        }
+        if (selectedTab === 'FavoritesTab') {
+            history.push(`/favorites/${userId}`);
+        }
+        if (selectedTab === 'AvailableListingsTab') {
+            history.push(`/available-listings/${userId}`);
+        }
+        if (selectedTab === 'FeedbackTab') {
+            history.push(`/feedback/${userId}`);
+        }
+
         dispatch(thunkLoadItems(user?.id))
         dispatch(thunkLoadFavorites())
         dispatch(thunkLoadOrders(user?.id))
         dispatch(thunkLoadReviews(userId))
 
-    }, [dispatch, user]);
+    }, [dispatch, user, selectedTab]);
 
     const rating = parseFloat(reviews?.avg_star_rating).toFixed(1)
     console.log('reviews -->', reviews)
@@ -69,7 +82,7 @@ const MainDashboard = ({ tabOverride }) => {
                         </div>
                     </div>
                 </div>
-               <div className="tab-container">
+                <div className="tab-container">
                     <div
                         className={`purchases-tab ${selectedTab === 'PurchasesTab' ? 'selected' : ''}`}
                         onClick={() => handleTabClick('PurchasesTab')}

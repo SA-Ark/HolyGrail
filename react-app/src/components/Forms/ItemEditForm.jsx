@@ -137,10 +137,10 @@ const ItemEditForm = () => {
     return (
         <>
             <div className='create-edit-page-wrapper'>
-                <h1 className="modal-title"> Edit your item</h1>
+                <h1 ref={errorRef} className="modal-title"> Edit your item</h1>
                 <div className='create-edit-item-container'>
                     <form onSubmit={onSubmit} className="listing-edit-form">
-                        <div ref={errorRef}>
+                        <div>
                             {Object.values(errors).length > 0 && (
                                 <div className="error-messages">
                                     {Object.values(errors).map((error, ind) => (

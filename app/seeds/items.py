@@ -3,70 +3,46 @@ from random import randint
 
 
 # Adds an item object
-brands = ["Nike", "Adidas", "Raf Simons", "Rick Owens", "Under Armor"]
-categories = ["accesories", "tops", "bottoms", "outerwear", "footwear", "tailoring"]
-condition = ["new", "gently used", "used", "very worn", "not specified"]
+brands_arr = ["Nike", "Adidas", "Raf Simons", "Rick Owens", "Under Armor"]
+categories_arr = ["accessories", "tops", "bottoms",
+                   "footwear", "tailoring"]
+condition_arr = ["new", "gently used", "used", "very worn", "not specified"]
+sizes_arr = ["XS","S","M", "L", "XL"]
+colors_arr =["Blue", "Red", "Green", "Yellow", "Orange", "Black", "White", "Pink"]
+
 def seed_items():
     users = User.query.all()
-    cat = categories[0]
-    con = condition[0]
-    name = f"Adidas {cat}"
-
+    category = categories_arr[0]
+    condition = condition_arr[0]
+    name = f"Adidas {category}"
+    size = "M"
+    gender = "M"
+    color = "blue"
     for u in users:
-        for i in range(randint(3,9)):
-            if i % 3 == 0:
-                size = "L"
-                g = "M"
-                c = "blue"
-
-            elif i%3 == 1:
-                size = "S"
-                g = "Female"
-                c = "red"
-
+        for i in range(20):
+            color = colors_arr[randint(0,len(colors_arr)-1)]
+            category = categories_arr[randint(0,len(categories_arr)-1)]
+            if category == "Footwear":
+                size = randint(6,16)
             else:
-                size= "M"
-                g = "F"
-                c = "pink"
-
-            if i % 7==0:
-                cat = categories[5]
-            elif i % 6==0:
-                cat = categories[4]
-                con = condition[0]
-                name = f"{brands[0]} {cat}"
-                # name = f"{categories[0]}"
-            elif i % 5==0:
-                cat = categories[3]
-                con = condition[1]
-                name = f"{brands[4]} {cat}"
-                # name = f"{categories[1]}"
-            elif i % 4==0:
-                cat = categories[2]
-                con = condition[2]
-                name = f"{brands[3]} {cat}"
-                # name = f"{categories[2]}"
-            elif i % 3==0:
-                cat = categories[1]
-                con = condition[3]
-                name = f"{brands[2]} {cat}"
-                # name = f"{categories[3]}"
+                size = sizes_arr[randint(0,len(sizes_arr)-1)]
+            if i % 2 == 0:
+                gender = "M"
             else:
-                cat = categories[0]
-                con = condition[4]
-                name = f"{brands[1]} {cat}"
-                # name = f"{categories[4]}"
-            item = Item( seller_id = u.id,
-                        name = name,
-                        description = f"generic description {i}",
-                        size = size,
-                        gender_style = g,
-                        color = c,
-                        condition = con,
-                        category_tags = cat,
-                        price = randint(10,200),
-                        shipping_cost = randint(10,50)
-                         )
+                gender = "F"
+            condition = condition_arr[randint(0,len(condition_arr)-1)]
+            name = f"{brands_arr[randint(0, len(brands_arr)-1)]} {category}"
+            item = Item(seller_id=u.id,
+                        name=name,
+                        description=f"{condition} {size} {color} {name}",
+                        size=size,
+                        gender_style=gender,
+                        color=color,
+                        condition=condition,
+                        category_tags=category,
+                        price=randint(10, 200),
+                        shipping_cost=randint(10, 50)
+                        )
 
             db.session.add(item)
 
@@ -78,9 +54,12 @@ def seed_items():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
+
+
 def undo_items():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.items RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.items RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM items")
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkLoadItems } from "../../store/items";
-import SearchFilterComponent from "../SearchFilterComponent";
+
 import { actionLoadSearch } from "../../store/search";
 
 
@@ -10,10 +10,10 @@ const SearchFilter = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [query, setQuery] = useState('');
-    
+
     const items = useSelector(state => state.items.allItems);
     const itemsArr = Object.values(items);
-    console.log("ALL ITEMS ===>", itemsArr);
+
     let tempQuery = "";
     const updateQuery = (e) => {
         tempQuery = e.target.value;
@@ -24,17 +24,21 @@ const SearchFilter = () => {
         history.push("/items");
         getFilteredItems(tempQuery, items);
     }
-    
+
     const getFilteredItems = (query, items) => {
         let filteredItems;
         if (!query) {
-            return items;
+            // return items;
+            filteredItems = items
+        }else {
+
+            filteredItems = itemsArr.filter(value => value.description.toLowerCase().includes(query.toLowerCase()));
         }
-        filteredItems = itemsArr.filter(value => value.name.includes(query));
-        
+
         dispatch(actionLoadSearch(filteredItems));
+
     }
-    
+
     // const filteredItems = getFilteredItems(query, items);
     // console.log("FILTERED ITEMS ===>", filteredItems);
 

@@ -64,6 +64,7 @@ export const thunkLoadItems = (userId) => async (dispatch) => {
 
     if (res.ok) {
         const items = await res.json()
+        console.log(items, "ITEMS IN THUNK")
         dispatch(actionLoadItems(items))
     }
 }

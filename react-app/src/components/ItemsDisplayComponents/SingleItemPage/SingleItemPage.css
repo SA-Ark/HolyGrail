@@ -99,3 +99,9 @@
 .purchase-button-container {
     padding-bottom: 2em;
 }
+
+/* .edit-delete-btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+} */

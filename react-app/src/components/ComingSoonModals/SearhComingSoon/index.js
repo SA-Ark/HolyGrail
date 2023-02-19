@@ -1,15 +1,14 @@
 import React from 'react';
-import { useModal } from '../../context/Modal';
+import { useModal } from '../../../context/Modal';
 import ComingSoonForm from './ComingSoon'
-import ItemCreateModal from '../Forms/ItemCreateForm';
 
-function FeatureComingSoonModal({
+function SearchComingSoon({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onEditClick = () => {
+  const onSearchClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(<ComingSoonForm/>);
     if (onButtonClick) onButtonClick();
@@ -17,9 +16,9 @@ function FeatureComingSoonModal({
 
   return (
     <>
-      <button onClick={onEditClick} className='profile-edit feedback-button'>Edit Profile</button>
+      <button onClick={onSearchClick} className='search-button'>Search</button>
     </>
   );
 }
 
-export default FeatureComingSoonModal;
+export default SearchComingSoon;

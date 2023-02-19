@@ -252,6 +252,8 @@ def edit_item(item_id):
             if image_1:
                 old_url = image_1.url
                 image_1.url = form.data["image_url_1"]
+                if not form.data['image_url_1']:
+                    return {'errors': ["Image URL required to update"]}, 401
                 if old_url != image_1.url:
                     image_1.updated_at = datetime.now()
 
@@ -267,6 +269,8 @@ def edit_item(item_id):
             if image_2:
                 old_url = image_2.url
                 image_2.url = form.data["image_url_2"]
+                if not form.data['image_url_2']:
+                    return {'errors': ["Image URL required to update"]}, 401
                 if old_url != image_2.url:
                     image_2.updated_at = datetime.now()
 
@@ -282,6 +286,8 @@ def edit_item(item_id):
             if image_3:
                 old_url = image_3.url
                 image_3.url = form.data["image_url_3"]
+                if not form.data['image_url_3']:
+                    return {'errors': ["Image URL required to update"]}, 401
                 if old_url != image_3.url:
                     image_3.updated_at = datetime.now()
 
@@ -297,6 +303,8 @@ def edit_item(item_id):
             if image_4:
                 old_url = image_4.url
                 image_4.url = form.data["image_url_4"]
+                if not form.data['image_url_4']:
+                    return {'errors': "Image URL invalid"}, 401
                 if old_url != image_4.url:
                     image_4.updated_at = datetime.now()
 

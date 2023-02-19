@@ -13,6 +13,7 @@ body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
 
+
 select {
   appearance: none;
   border: 2px solid #ccc;
@@ -98,12 +99,27 @@ textarea {
 }
 
 .error-messages {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
   /* align-items: center; */
   color: #ff0000;
   font-size: 0.8rem;
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ff0000;
+  background-color: #ffe6e6;
+}
+
+.image-error {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: start; */
+  align-items: center;
+  color: #ff0000;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
   border: 1px solid #ff0000;
   background-color: #ffe6e6;
 }

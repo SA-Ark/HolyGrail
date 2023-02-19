@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom'
 import { thunkDeleteItem, thunkLoadSingleItem } from '../../store/items';
+import './DeleteItemButton.css'
 
 const DeleteItemButton = () => {
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ const DeleteItemButton = () => {
 
     return (
         <>
-            <button className='feedback-button' type='button' onClick={deleteItem}>Delete</button>
+            <button className='delete-item-button' type='button' onClick={deleteItem}>Delete</button>
         </>
     )
 };

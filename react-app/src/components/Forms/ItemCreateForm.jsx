@@ -56,17 +56,13 @@ const ItemCreateModal = () => {
             user_id
         ]
 
-        //! NEED TO ADD VALIDATION ERRORS
-
-        //! needs validation for when price is 0
-
         const data = await dispatch(thunkCreateItem(itemsAttributes))
         if (data && data.errors) {
             setErrors(data.errors)
             errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {
             closeModal()
-            history.push(`/dashboard/${userId}`)
+            history.push(`/listings/${userId}`)
             await dispatch(thunkLoadItems(userId))
         }
     }

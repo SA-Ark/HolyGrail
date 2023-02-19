@@ -7,9 +7,11 @@ import OpenModalButton from "../OpenModalButton";
 import CreateModalButton from "../CreateModalButton"
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import SearchComingSoon from '../ComingSoonModals/SearhComingSoon'; 
 
 import './Navigation.css';
 import ItemCreateModal from '../Forms/ItemCreateForm';
+import SearchFilter from './SearchFilter';
 
 function Navigation({ isLoaded }) {
 	const history = useHistory()
@@ -19,6 +21,10 @@ function Navigation({ isLoaded }) {
 
 	const [search, setSearch] = useState("");
 	const [showMenu, setShowMenu] = useState(false);
+
+	const clickHandler = () => {
+		<SearchComingSoon />
+	}
 
 	const openMenu = () => {
 		if (showMenu) return;
@@ -67,12 +73,13 @@ function Navigation({ isLoaded }) {
 				<NavLink className='home-link' exact to="/">HOLYGRAIL</NavLink>
 			</div>
 
-			<div className="search-container">
+			{/* <div className="search-container">
 				<div className="input-group">
 					<input type="text" placeholder="Search" className="search-input" />
-					<button className="search-button">Search</button>
+					<SearchComingSoon />
 				</div>
-			</div>
+			</div> */}
+			<SearchFilter />
 
 
 			<div className='right-side-container'>

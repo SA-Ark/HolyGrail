@@ -18,6 +18,7 @@ import MensWear from "./components/SplashPage/MensWear";
 import WomensWear from "./components/SplashPage/WomensWear";
 
 
+
 const { DeleteItemButton } = Buttons
 const { ItemEditForm, CreateReviewForm, EditProfileForm, PurchaseForm } = Forms
 

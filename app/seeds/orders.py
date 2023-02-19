@@ -8,12 +8,12 @@ from random import randint
 def seed_orders():
     users = User.query.all()
     items = Item.query.all()
-    number = (len(items)//len(users)) - 2
+    number = len(items)//10
     date1 = datetime.now()
     date = date1.date()
 
     for u in users:
-        for i in range(number):
+        for i in range(2):
             item_idx = randint(0,len(items)-1)
             count = 0
             next = False

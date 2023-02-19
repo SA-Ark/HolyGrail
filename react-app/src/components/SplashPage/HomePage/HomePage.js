@@ -63,18 +63,21 @@ const SplashPlage = () => {
 
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
-        return (
-            <ItemCard classProp="splash-card-container" key={item.id} item={item} />
-        )
+            if (item?.seller_id !== user?.id){
+                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+            }
+            return null
     })
 
     const dealCards = Object.values(items)
         .filter(item => item.price < 100)
         .slice(currentIndexDeals, currentIndexDeals + 5)
         .map(item => {
-            return (
-                <ItemCard classProp="splash-card-container" key={item.id} item={item} />
-            )
+
+            if (item?.seller_id !== user?.id){
+                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+            }
+            return null
         });
 
     return (

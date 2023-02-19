@@ -8,6 +8,7 @@ import PurchaseModal from '../../PurchaseModal'
 import EditModalButton from '../../EditModalButton'
 import DeleteItemButton from '../../Buttons/DeleteItemButton'
 import { thunkGetUser } from '../../../store/users';
+import LoginRedirect from '../../LoginRedirectModal';
 import Buttons from '../../Buttons'
 const { LikeButton, UnlikeButton } = Buttons
 
@@ -25,7 +26,7 @@ const SingleItemPage = () => {
 
   useEffect(() => {
     dispatch(thunkLoadSingleItem(itemId, user?.id));
-    if (item?.seller_id){
+    if (item?.seller_id) {
       dispatch(thunkGetUser(item?.seller_id));
     }
   }, [dispatch, item?.seller_id])
@@ -37,7 +38,7 @@ const SingleItemPage = () => {
     setLike(data.liked)
   }
 
-     return (
+  return (
     <div className="single-item-page-container">
       <div className="arrows-carousel-container">
         <div className='back icon-button'
@@ -61,14 +62,14 @@ const SingleItemPage = () => {
         <div className='item-name-favs-container'>
           <span id="item-name">{item?.name}</span>
           <div className='item-favorite'>
-               {
-                 !like &&
-                 <LikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
-                }
-               {
-                like &&
-                 <UnlikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
-               }
+            {
+              !like &&
+              <LikeButton itemId={item?.id} liked={like} changeLike={changeLike} />
+            }
+            {
+              like &&
+              <UnlikeButton itemId={item?.id} liked={like} changeLike={changeLike} />
+            }
           </div>
         </div>
         <span className='size'>Size: {item?.size}</span>
@@ -77,12 +78,21 @@ const SingleItemPage = () => {
         <span className='price'>${item?.price}</span>
         <span className='shipping'>+${item?.shipping_cost} Shipping - Europe to United States</span>
 
+        {user?.id ? (
+          <>
+            {item?.seller_id !== user.id ? (
+              <PurchaseModal item={item} />
+            ) : (
+              <>
+                <EditModalButton />
+                <DeleteItemButton />
+              </>
+            )}
+          </>
+        ) : (
+          <LoginRedirect />
+        )}
 
-        {item?.seller_id !== user?.id
-          ? <PurchaseModal item={item} />
-          : <EditModalButton />
-        }
-        {item?.seller_id === user?.id ? < DeleteItemButton /> : null}
 
         {/* <button>Offer</button> */}
         {/* <button>Message</button> */}

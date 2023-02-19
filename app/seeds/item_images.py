@@ -1,5 +1,5 @@
 from app.models import db, Item, ItemImage, environment, SCHEMA
-from .image_data import image_urls
+from .image_data import image_urls, TOPS, BOTTOMS, FOOTWEAR, ACCESSORIES, TAILORING
 
 other_images_1= [
     "https://www.google.com/imgres?imgurl=https%3A%2F%2Fst.depositphotos.com%2F2036077%2F3579%2Fi%2F600%2Fdepositphotos_35798197-stock-photo-3d-gold-number-1-from.jpg&imgrefurl=https%3A%2F%2Fdepositphotos.com%2Fstock-photos%2F1.html&tbnid=3xiZtLaSpFRVaM&vet=12ahUKEwijvYva_Z39AhU9KkQIHTewACgQMygDegUIARCIAQ..i&docid=Yyu7Vp9JeUc_cM&w=600&h=600&q=stock%20image%201&ved=2ahUKEwijvYva_Z39AhU9KkQIHTewACgQMygDegUIARCIAQ",
@@ -17,11 +17,22 @@ other_images = [
 def seed_item_images():
     items = Item.query.all()
     for i in range(len(items)):
+        url = ""
+        if items[i].category_tags == "accessories":
+            url = ACCESSORIES[i % len(ACCESSORIES)]
+        if items[i].category_tags == "tops":
+            url = TOPS[i % len(TOPS)]
+        if items[i].category_tags == "bottoms":
+            url = BOTTOMS[i % len(BOTTOMS)]
+        if items[i].category_tags == "footwear":
+            url = FOOTWEAR[i % len(FOOTWEAR)]
+        if items[i].category_tags == "tailoring":
+            url = TAILORING[i % len(TAILORING)]
         p = True
         item_img = ItemImage(
             item_id = items[i].id,
             preview = p,
-            url = image_urls[i%len(image_urls)],
+            url = url,
             image_num = 0
 
         )

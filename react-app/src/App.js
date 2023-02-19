@@ -14,6 +14,7 @@ import MainDashboard from './components/ProfileComponents/UserDashboard/MainDash
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
 import ItemCreateModal from "./components/Forms/ItemCreateForm";
 import EditReviewForm from "./components/Forms/EditReviewForm";
+import SearchFilter from "./components/Navigation/SearchFilter";
 
 
 const { DeleteItemButton } = Buttons

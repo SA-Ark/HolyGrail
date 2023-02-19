@@ -53,6 +53,14 @@ const SplashPlage = () => {
         history.push('/items');
     }
 
+    const handleShopMens = () => {
+        history.push('/menswear');
+    }
+
+    const handleShopWomens = () => {
+        history.push('/womenswear');
+    }
+
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
         return (
@@ -89,6 +97,10 @@ const SplashPlage = () => {
                 </div>
                 <div className='splash-video-text'>
                     Buy, sell, discover authenticated pieces from the world's top brands.
+                </div>
+                <div className='deparment-buttons-container'>
+                    <button onClick={handleShopMens} className='mens-button'>SHOP MENSWEAR</button>
+                    <button  onClick={handleShopWomens} className='womens-button'> SHOP WOMENSWEAR</button>
                 </div>
             </div>
 

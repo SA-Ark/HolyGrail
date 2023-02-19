@@ -50,7 +50,61 @@
     font-weight: 300;
     line-height: 1.5;
     width: 37rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
+}
+
+.deparment-buttons-container {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.5;
+    width: 37rem;
+    margin-top: 4.6rem;
+}
+
+.mens-button {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 20px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 25px;
+}
+
+.mens-button:hover {
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #0000ff;
+}
+
+.womens-button {
+    font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 20px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 25px;
+}
+
+.womens-button:hover {
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #0000ff;
 }
 
 .splash-card-container {

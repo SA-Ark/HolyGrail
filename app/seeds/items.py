@@ -21,7 +21,7 @@ def seed_items():
 
             elif i%3 == 1:
                 size = "S"
-                g = "Female"
+                g = "F"
                 c = "red"
 
             else:

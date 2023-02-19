@@ -83,6 +83,10 @@ select option {
   cursor: pointer;
 }
 
+.item-card:hover {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.35);
+}
+
 i {
   height: fit-content;
   width: fit-content;

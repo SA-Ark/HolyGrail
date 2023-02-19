@@ -357,35 +357,7 @@ ACCESSORIES = [
 
 "https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:1400/output=quality:50/compress/hSK0XtmhT8KyGurFVrWF",
 
- "https://picsum.photos/300/400?random=51",
-    "https://picsum.photos/300/400?random=52",
-    "https://picsum.photos/300/400?random=53",
-    "https://picsum.photos/300/400?random=54",
-    "https://picsum.photos/300/400?random=55",
-    "https://picsum.photos/300/400?random=56",
-    "https://picsum.photos/300/400?random=57",
-    "https://picsum.photos/300/400?random=58",
-    "https://picsum.photos/300/400?random=59",
-    "https://picsum.photos/300/400?random=60",
-    "https://picsum.photos/300/400?random=61",
-    "https://picsum.photos/300/400?random=62",
-    "https://picsum.photos/300/400?random=63",
-    "https://picsum.photos/300/400?random=64",
-    "https://picsum.photos/300/400?random=65",
-    "https://picsum.photos/300/400?random=66",
-    "https://picsum.photos/300/400?random=67",
-    "https://picsum.photos/300/400?random=68",
-    "https://picsum.photos/300/400?random=69",
-    "https://picsum.photos/300/400?random=70",
-    "https://picsum.photos/300/400?random=71",
-    "https://picsum.photos/300/400?random=72",
-    "https://picsum.photos/300/400?random=73",
-    "https://picsum.photos/300/400?random=74",
-    "https://picsum.photos/300/400?random=75",
-    "https://picsum.photos/300/400?random=76",
-    "https://picsum.photos/300/400?random=77",
-    "https://picsum.photos/300/400?random=78",
-    "https://picsum.photos/300/400?random=79"
+ 
 ]
 
 TAILORING = [

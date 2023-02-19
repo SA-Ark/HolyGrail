@@ -16,6 +16,8 @@ const SingleItemPage = () => {
   const item = useSelector((state) => state.items.singleItem)
   const itemOwner = useSelector(state => state.users?.singleUser);
   const user = useSelector(store => store.session?.user)
+  const [favoritesUpdated, setFavoritesUpdated] = useState(false);
+
 
 
   const { itemId } = useParams()
@@ -28,7 +30,7 @@ const SingleItemPage = () => {
     if (item?.seller_id){
       dispatch(thunkGetUser(item?.seller_id));
     }
-  }, [dispatch, item?.seller_id])
+  }, [dispatch, item?.seller_id, favoritesUpdated])
 
 
 
@@ -62,12 +64,12 @@ const SingleItemPage = () => {
           <span id="item-name">{item?.name}</span>
           <div className='item-favorite'>
                {
-                 !like &&
-                 <LikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
+                 !item?.liked &&
+                 <LikeButton item={item} setFavoritesUpdated={setFavoritesUpdated}/>
                 }
                {
-                like &&
-                 <UnlikeButton itemId={item?.id} liked={like} changeLike={changeLike}/>
+                item?.liked &&
+                 <UnlikeButton item={item} setFavoritesUpdated={setFavoritesUpdated} />
                }
           </div>
         </div>

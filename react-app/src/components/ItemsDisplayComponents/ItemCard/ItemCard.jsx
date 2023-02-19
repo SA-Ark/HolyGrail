@@ -1,30 +1,16 @@
-//! To Do:
-// Verify how preview img is coming into component and make sure it is implemented properly
-// Verify how liked is coming into component and make sure it is implemented properly
-
-// ------------------------------------------------------
-import {useState} from "react"
-import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router'
 import Buttons from '../../Buttons'
 import { truncateName } from "../../../store/utils";
-import { thunkLoadItems, thunkLoadSingleItem } from "../../../store/items";
 import './ItemCard.css'
 const { LikeButton, UnlikeButton } = Buttons;
 
-const ItemCard = ({ item, classProp }) => {
+const ItemCard = ({ item, classProp, setFavoritesUpdated }) => {
     const history = useHistory()
-    const dispatch = useDispatch()
-    // !@#$ need to dispatch an update to create an item like as well
-    const [liked, setLiked] = useState(item?.liked)
+
     const newName = truncateName(item?.name);
 
     const clickHandler = (e) => {
         history.push(`/items/${item.id}`)
-    }
-    const changeLike = (data)=>{
-        item.liked = data.liked
-        setLiked(data.liked)
     }
 
     if (!item) return null
@@ -49,20 +35,8 @@ const ItemCard = ({ item, classProp }) => {
                         ${item.price}
                     </span>
                     <span className='listing-liked'>
-                        {/* !@#$ should be item.liked once we finish route to create liked */}
-                        {
-                            // liked
-                                // ? <DeleteLikeButton itemId={item.id} liked={item.liked}/>
-                            !item.liked &&
-                        <LikeButton itemId={item.id} liked={liked}
-                            changeLike={changeLike}
-                            />}
-
-                            {item.liked &&
-                            <UnlikeButton itemId={item.id} liked={liked}
-                            changeLike={changeLike}
-                            />
-                        }
+                        {!item.liked && <LikeButton item={item} setFavoritesUpdated={setFavoritesUpdated} />}
+                        {item.liked && <UnlikeButton item={item} setFavoritesUpdated={setFavoritesUpdated} />}
                     </span>
                 </div>
             </div>

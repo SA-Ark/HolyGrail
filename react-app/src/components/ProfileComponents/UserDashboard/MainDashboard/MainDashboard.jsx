@@ -21,6 +21,7 @@ const MainDashboard = ({ tabOverride }) => {
     const reviews = useSelector(state => state?.reviews?.allReviews);
     const userId = user?.id
     const [selectedTab, setSelectedTab] = useState(tabOverride ? tabOverride : 'AvailableListingsTab');
+    const [favoritesUpdated, setFavoritesUpdated] = useState(false);
 
     const handleTabClick = (tabName) => {
         setSelectedTab(tabName);
@@ -45,8 +46,9 @@ const MainDashboard = ({ tabOverride }) => {
         dispatch(thunkLoadFavorites())
         dispatch(thunkLoadOrders(user?.id))
         dispatch(thunkLoadReviews(userId))
+        setFavoritesUpdated(false)
 
-    }, [dispatch, user, selectedTab]);
+    }, [dispatch, user, selectedTab, favoritesUpdated]);
 
     const rating = parseFloat(reviews?.avg_star_rating).toFixed(1)
     console.log('reviews -->', reviews)
@@ -111,7 +113,7 @@ const MainDashboard = ({ tabOverride }) => {
                 <div>
                     {selectedTab === 'PurchasesTab' && <PurchasesTab purchases={purchases} />}
                     {selectedTab === 'EditProfileTab' && <EditProfileTab user={user} />}
-                    {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} />}
+                    {selectedTab === 'FavoritesTab' && <FavoritesTab favoriteItems={favorites} setFavoritesUpdated={setFavoritesUpdated} />}
                     {selectedTab === 'AvailableListingsTab' && <AvailableListingsTab items={items} />}
                     {selectedTab === 'FeedbackTab' && <FeedbackTab reviews={reviews} />}
                 </div>

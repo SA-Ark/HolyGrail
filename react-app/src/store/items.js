@@ -216,28 +216,28 @@ const itemsReducer = (state = initialState, action) => {
 
         case LOAD_SINGLE_ITEM: {
 
-            const newState = { ...state }
-            newState.singleItem = action.payload
+            const newState = { allItems: { ...state.allItems }, singleItem: { ...state.singleItem } }
+            newState.singleItem = {...action.payload}
             return newState
         }
 
         case CREATE_ITEM: {
 
-            const newState = { ...state }
-            newState.singleItem = action.payload
+            const newState = { allItems: { ...state.allItems }, singleItem: { ...state.singleItem } }
+            newState.singleItem = {...action.payload}
             return newState
         }
 
         case EDIT_ITEM: {
 
-            const newState = { ...state }
-            newState.singleItem = action.payload
+            const newState = { allItems: { ...state.allItems }, singleItem: { ...state.singleItem } }
+            newState.singleItem = {...action.payload}
             return newState
         }
 
         case DELETE_ITEM: {
 
-            const newState = { ...state }
+            const newState = { allItems: { ...state.allItems }, singleItem: { ...state.singleItem } }
             delete newState.singleItem
             return newState
         }

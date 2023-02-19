@@ -1,45 +1,26 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom'
-import { thunkCreateFavorite, thunkLoadFavorites, thunkDeleteFavorite } from '../../store/favorites';
-import {  thunkLoadSingleItem } from '../../store/items';
+import { thunkDeleteFavorite } from '../../store/favorites';
 import RedirectToLoginModal from '../RedirectToLoginModal'
 
-const UnlikeButton = ({ itemId, liked, changeLike }) => {
+const UnlikeButton = ({item, setFavoritesUpdated}) => {
     const dispatch = useDispatch()
-    const history = useHistory()
-    const [errors, setErrors] = useState([])
-    const [like, setLike] = useState(liked)
-    let favorites = useSelector(state => state?.favorites?.allFavorites)
 	const user = useSelector(state => state.session.user);
-    let userId = user?.id
-    // const { itemId } = useParams();
 
-    const likeFunc = async (e) => {
+    const unLike = async (e) => {
         e.preventDefault();
-        setErrors([])
-        if (like) await dispatch(thunkDeleteFavorite(itemId))
-        else await dispatch(thunkCreateFavorite(itemId))
-
-        setLike(!like)
-        //come back to this for flex
-        await dispatch(thunkLoadFavorites())
-        const data = await dispatch(thunkLoadSingleItem(itemId, userId))
-        console.log(data, "SINGLE ITEM")
-        changeLike(data)
-    }
+        await dispatch(thunkDeleteFavorite(item?.id));
+        setFavoritesUpdated(true);
+    };
 
     return (
         <>
-            {!user?.id && (
-                <RedirectToLoginModal />
-            )}
-            {(
-                <button className='like-button icon-button' type='button' onClick={likeFunc}>
+            {!user?.id && <RedirectToLoginModal />}
+            {
+                <button className='like-button icon-button' type='button' onClick={unLike}>
                     <i className="fa-solid fa-heart like-icon"></i>
                 </button>
-            )}
+            }
 
         </>
     )

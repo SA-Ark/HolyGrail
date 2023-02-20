@@ -66,7 +66,7 @@ const ItemCreateModal = () => {
             errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {
             closeModal()
-            history.push(`/listings/${userId}`)
+            history.push(`/available-listings/${userId}`)
             await dispatch(thunkLoadItems(userId))
         }
     }

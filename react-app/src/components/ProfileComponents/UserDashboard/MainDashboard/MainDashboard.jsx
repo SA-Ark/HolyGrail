@@ -63,19 +63,19 @@ const MainDashboard = ({ tabOverride }) => {
                                 <span className='joined-on'>Joined {dbDateToMonthYear(user.created_at)}</span>
                             </div>
                         </div>
-                        <div className='stars-container'>
+                        {/* <div className='stars-container'>
                             <div className="profile-stars">
                                 {isNaN(rating) ? 'No reviews' : `★${rating}`}
                             </div>
                             <div className='total-reviews'>
                                 {reviews?.num_reviews} {reviews?.num_reviews === 1 ? 'Review' : 'Reviews'}                    </div>
-                        </div>
-                        <div className='transaction-container'>
+                        </div> */}
+                        {/* <div className='transaction-container'>
                             <div className="profile-transactions-count">
                                 {!reviews?.total_transactions ? 'No transactions' : reviews?.total_transactions}
                             </div>
                             <span className='transactions'>Transactions</span>
-                        </div>
+                        </div> */}
                         <div className='edit-button-container'>
                             <FeatureComingSoonModal />
                             {/* <button className='profile-edit feedback-button' onClick={() => setSelectedTab('EditProfileTab')}>Edit Profile</button> */}

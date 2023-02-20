@@ -119,7 +119,7 @@ const SplashPlage = () => {
                     </div>
                 </div>
 
-                <h3 className='deals-text'> Deals: Under $100 </h3>
+                {/* <h3 className='deals-text'> Deals: Under $100 </h3>
                 <div className='splash-carousel-container'>
                     <div className='deals'>
 
@@ -129,7 +129,7 @@ const SplashPlage = () => {
                         </div>
                         <button className='next-arrow icon-button' onClick={handleNextDeals}><i className="fa-solid fa-angles-right fa-3x"></i></button>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className='splash-bottom-container'>

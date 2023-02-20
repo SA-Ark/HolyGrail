@@ -17,7 +17,7 @@ states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
             'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    for i in range(10):
+    for i in range(1, 10):
         demoUser = User(
         username = f'User#{i}',
         email =f'user{i}@aa.io',

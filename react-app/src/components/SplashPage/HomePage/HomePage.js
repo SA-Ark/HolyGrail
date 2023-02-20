@@ -112,6 +112,7 @@ const SplashPlage = () => {
                 </div>
             </div>
 
+            {/* ------------------------------------------------------------------------------------- */}
             {/* <div className='splash-cat-tags'>
                 <div className='mens-categories-container'>
                     <h3 className='mens-wear-title'>Shop Menwear</h3>
@@ -162,7 +163,7 @@ const SplashPlage = () => {
                 </div>
 
 
-                <div className='womens-categories-container'>
+                <div className='mens-categories-container'>
                     <h3 className='mens-wear-title'>Shop Menwear</h3>
                     <div className='splash-mens-img-container'>
                         <div className='cat-img-container'>
@@ -210,6 +211,7 @@ const SplashPlage = () => {
                     </div>
                 </div>
             </div> */}
+            {/* ------------------------------------------------------------------------------------- */}
 
             <div className='splash-carousels-wrapper'>
                 <h3 className='deals-text'> Staff Picks </h3>
@@ -241,7 +243,7 @@ const SplashPlage = () => {
                 <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>
                 <button onClick={handleShopAll} className='splash-bottom-button'>SHOP ALL</button>
             </div>
-            {/* <div class='splash-footer-container'>
+            <div class='splash-footer-container'>
                 <div class='footer-img-container'>
                     <p class='footer-name'>Steven Picazo</p>
                     <div class='footer-github'>
@@ -278,7 +280,7 @@ const SplashPlage = () => {
                         </span>
                     </div>
                 </div>
-            </div> */}
+            </div>
 
 
         </div >

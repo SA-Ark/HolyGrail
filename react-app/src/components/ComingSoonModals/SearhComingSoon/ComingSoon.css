@@ -1,0 +1,39 @@
+.coming-soon-container {
+    height: 250px;
+    width: 420px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    /* padding-bottom: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.coming-soon {
+    font-size: 33px;
+    line-height: 1.5;
+}
+
+.return {
+    font-size: 18px;
+    font-weight: 200;
+    margin-top: 27px;
+    border-radius: 10px;
+    padding: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: transparent;
+    border: 1px solid rgb(212, 212, 212);
+}
+
+.return:hover {
+    cursor: pointer;
+    background-color: rgb(234, 234, 234);
+}

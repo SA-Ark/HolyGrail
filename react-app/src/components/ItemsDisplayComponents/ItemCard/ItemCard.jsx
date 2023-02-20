@@ -45,7 +45,7 @@ const ItemCard = ({ item, classProp }) => {
                     </span>
                 </div>
                 <span className='listing-description'>
-                    {item.description}
+                    {truncateName(item.description)}
                 </span>
                 <div className='price-like-container'>
                     <span className='listing-price'>

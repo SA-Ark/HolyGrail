@@ -14,6 +14,9 @@ import MainDashboard from './components/ProfileComponents/UserDashboard/MainDash
 import SplashPlage from "./components/SplashPage/HomePage/HomePage";
 import ItemCreateModal from "./components/Forms/ItemCreateForm";
 import EditReviewForm from "./components/Forms/EditReviewForm";
+import MensWear from "./components/SplashPage/MensWear";
+import WomensWear from "./components/SplashPage/WomensWear";
+
 
 
 const { DeleteItemButton } = Buttons
@@ -46,6 +49,21 @@ function App() {
           <Route path="/favorites/:userId">
             <MainDashboard tabOverride={"FavoritesTab"} />
           </Route>
+          <Route path="/purchases/:userId">
+            <MainDashboard tabOverride={"PurchasesTab"} />
+          </Route>
+          <Route path="/available-listings/:userId">
+            <MainDashboard tabOverride={"AvailableListingsTab"} />
+          </Route>
+          <Route path="/feedback/:userId">
+            <MainDashboard tabOverride={"FeedbackTab"} />
+          </Route>
+          <Route path='/menswear' exact={true}>
+            <MensWear />
+          </Route>
+          <Route path='/womenswear' exact={true}>
+            <WomensWear />
+          </Route>
           <ProtectedRoute path='/items/edit/:itemId'>
             <ItemEditForm />
           </ProtectedRoute>
@@ -65,7 +83,7 @@ function App() {
             <MainListingsPage />
           </Route>
           <Route path="/dashboard/:userId">
-            <MainDashboard/>
+            <MainDashboard />
           </Route>
           <ProtectedRoute path='/reviews/edit/:reviewId' exact={true}>
             <EditReviewForm />
@@ -73,7 +91,7 @@ function App() {
           <ProtectedRoute path='/reviews/delete/:reviewId'>
           </ProtectedRoute>
           <ProtectedRoute path='/reviews/create/:itemId'>
-            <CreateReviewForm/>
+            <CreateReviewForm />
           </ProtectedRoute>
           <Route path='/' exact={true} >
             <SplashPlage />

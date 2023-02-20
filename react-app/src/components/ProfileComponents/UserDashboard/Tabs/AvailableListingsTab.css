@@ -1,7 +1,6 @@
 .listings-tab-container {
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
     padding: 20px;
 }
 

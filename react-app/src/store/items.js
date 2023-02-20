@@ -64,6 +64,7 @@ export const thunkLoadItems = (userId) => async (dispatch) => {
 
     if (res.ok) {
         const items = await res.json()
+        console.log(items, "ITEMS IN THUNK")
         dispatch(actionLoadItems(items))
     }
 }
@@ -142,8 +143,7 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
         price, shippingCost, description, name, previewUrl,
         imageUrl1, imageUrl2, imageUrl3, imageUrl4, itemId, userId
      } = itemsAttributes
-
-    console.log("URLLLLLLLLLLLLLLLL", previewUrl)
+    console.log('THUNK NAME -->', name)
     const res = await fetch(`/api/items/edit/${itemId}`, {
 
         method: 'PUT',
@@ -167,12 +167,12 @@ export const thunkEditItem = (itemsAttributes) => async (dispatch) => {
             image_url_4: imageUrl4
         })
     })
-    console.log('HEY FROM UNDER DICTIONARY',)
+    console.log('RES', res)
     if (res.ok) {
         const data = await res.json();
         console.log('data in thunk', data)
         dispatch(actionEditItem(data))
-        return null;
+        return data;
     } else if (res.status < 500) {
         console.log('hi from below')
         const data = await res.json();

@@ -126,14 +126,23 @@ function SignupFormModal() {
 		return <Redirect to='/' />;
 	}
 
+	const categorySizes = {
+        tops: ['XS', 'S', 'M', 'L', 'XL'],
+        bottoms: ['XS', 'S', 'M', 'L', 'XL'],
+        footwear: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
+        outerwear: ['XS', 'S', 'M', 'L', 'XL'],
+        tailoring: ['XS', 'S', 'M', 'L', 'XL'],
+        // accessories: ['Glasses', 'Gloves & Scarves', 'Hats', 'Jewelry & Watches', 'Wallets', 'Sunglasses', "Socks & Underwear"]
+    }
+
 	return (
 		<>
 			<div className="signup-modal-container">
-				<h1 className="modal-title"> Sign Up</h1>
+				<h1 ref={errorRef} className="modal-title"> Sign Up</h1>
 				<div className="signup-desc">Log in to your HolyGrail account to buy, sell, and more.</div>
 				<div className="login-signup-form-container">
 					<form className="login-signup-form" onSubmit={handleSubmit}>
-                    <div ref={errorRef}>
+                    <div>
                             {errors.length > 0 && (
                                 <div className="error-messages">
                                     {errors.map((error, ind) => (
@@ -193,7 +202,7 @@ function SignupFormModal() {
 								<input
 									className="signup-input"
 									type='text'
-									placeholder="First"
+									placeholder="First Name"
 									onChange={updateFirstName}
 									value={firstName}
 									required
@@ -321,11 +330,17 @@ function SignupFormModal() {
 									value={shoeSize}
 								>
 									<option value=''>Shoe Size</option>
-									<option>XS</option>
-									<option>S</option>
-									<option>M</option>
-									<option>L</option>
-									<option>XL</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+									<option>10</option>
+									<option>11</option>
+									<option>12</option>
+									<option>13</option>
+									<option>14</option>
+									<option>15</option>
+									<option>16</option>
 								</select>
 							</label>
 						</div>

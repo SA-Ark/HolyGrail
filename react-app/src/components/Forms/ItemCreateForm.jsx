@@ -24,6 +24,7 @@ const ItemCreateModal = () => {
     const [imageUrl2, setImageUrl2] = useState('');
     const [imageUrl3, setImageUrl3] = useState('');
     const [imageUrl4, setImageUrl4] = useState('');
+    const [disabled, setDisabled] = useState(true)
 
     const { closeModal } = useModal()
     const history = useHistory()
@@ -33,7 +34,10 @@ const ItemCreateModal = () => {
     const item = useSelector((state) => state.items?.singleItem)
     const errorRef = useRef(null);
 
-
+    useEffect(() => {
+        if (categoryTags) setDisabled(false)
+        if (!categoryTags.length) setDisabled(true)  
+    })
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -56,17 +60,13 @@ const ItemCreateModal = () => {
             user_id
         ]
 
-        //! NEED TO ADD VALIDATION ERRORS
-
-        //! needs validation for when price is 0
-
         const data = await dispatch(thunkCreateItem(itemsAttributes))
         if (data && data.errors) {
             setErrors(data.errors)
             errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {
             closeModal()
-            history.push(`/dashboard/${userId}`)
+            history.push(`/available-listings/${userId}`)
             await dispatch(thunkLoadItems(userId))
         }
     }
@@ -83,10 +83,10 @@ const ItemCreateModal = () => {
     return (
         <>
             <div className='create-edit-page-wrapper'>
-                <h1 className="modal-title">List your item</h1>
+                <h1 ref={errorRef} className="modal-title">List your item</h1>
                 <div className='create-edit-item-container'>
                     <form onSubmit={onSubmit} className="listing-edit-form">
-                    <div ref={errorRef}>
+                    <div >
                             {Object.values(errors).length > 0 && (
                                 <div className="error-messages">
                                     {Object.values(errors).map((error, ind) => (
@@ -121,15 +121,15 @@ const ItemCreateModal = () => {
                                 <select
                                     required
                                     name='size'
+                                    disabled={disabled}
                                     onChange={(e) => setSize(e.target.value)}
                                     className="create-edit-item-input"
                                     value={size}
                                 >
-                                    <option value=''>Select size</option>
+                                    <option value=''>{disabled ? 'Not applicable' : 'Select Size'}</option>
                                     {categorySizes[categoryTags] && categorySizes[categoryTags].map((sizeOption, index) => (
                                         <option key={index} value={sizeOption}>{sizeOption}</option>
                                     ))}
-                                    {!categorySizes[categoryTags] && <option value=''>Not applicable</option>}
                                 </select>
                             </label>
                             <label className='create-edit-item-label'>
@@ -226,9 +226,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 1
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_1'
                                     onChange={(e) => setImageUrl1(e.target.value)}
@@ -236,9 +236,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 2
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_2'
                                     onChange={(e) => setImageUrl2(e.target.value)}
@@ -246,9 +246,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 3
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_3'
                                     onChange={(e) => setImageUrl3(e.target.value)}
@@ -256,9 +256,9 @@ const ItemCreateModal = () => {
                                     className="create-edit-item-input"
                                 ></input>
                             </label>
-                            <label className='create-edit-item-label'>Image Url 4
+                            <label className='create-edit-item-label'> Optional Image
                                 <input
-                                    placeholder='Optional Image'
+                                    placeholder='Image url'
                                     type='text'
                                     name='image_url_4'
                                     onChange={(e) => setImageUrl4(e.target.value)}

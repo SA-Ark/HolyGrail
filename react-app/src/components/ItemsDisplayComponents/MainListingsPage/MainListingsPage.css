@@ -11,12 +11,15 @@
 
 .filters {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     justify-content: center;
-    margin-right: 1em;
+    align-items: center;
+    margin-right: 4em;
+    max-width: 400px;
     padding: 1em;
-    height: fit-content;
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid black;
+    max-height: 225px;
+    background-color: rgb(255, 255, 255);
 }
 
 .items-display-container {
@@ -24,7 +27,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-self: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     gap: 7px;
 }
 

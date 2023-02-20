@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, InputRequired, ValidationError, Length, NumberRange
-
-
+from ..models import Item, ItemImage
 class CreateItemForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired("Please enter the name of the item."), 
         Length(max=50, message="Name must be no longer than 50 characters.")
@@ -44,3 +43,12 @@ class CreateItemForm(FlaskForm):
     image_url_2 = StringField("Image 2")
     image_url_3 = StringField("Image 3")
     image_url_4 = StringField("Image 4")
+    
+    # def image_url_validator(item):
+    #     item = item.to_dict()
+    #     for image in item['images']:
+    #         if image.image_num == 1:
+    #             image
+            
+        
+        

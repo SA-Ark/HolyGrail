@@ -6,6 +6,7 @@ import reviewsReducer from './reviews';
 import favoritesReducer from './favorites';
 import paymentsReducer from './payments';
 import usersReducer from './users';
+import filterReducer from './search';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   reviews: reviewsReducer,
   favorites: favoritesReducer,
   payments: paymentsReducer,
-  users: usersReducer
+  users: usersReducer,
+  filtered: filterReducer
 });
 
 let enhancer;

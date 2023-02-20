@@ -54,6 +54,6 @@ export const switchTab = (tab) => {
 }
 
 export const truncateName = (name) => {
-    const shortName = name.slice(0, 12);
+    const shortName = name?.slice(0, 12);
     return shortName + "...";
 }

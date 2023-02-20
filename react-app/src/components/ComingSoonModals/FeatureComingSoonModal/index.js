@@ -1,27 +1,24 @@
 import React from 'react';
-import { useModal } from '../../context/Modal';
-import ItemCreateModal from '../Forms/ItemCreateForm';
-import PurchaseForm from '../Forms/PurchaseForm';
-import './PurchaseModal.css';
+import { useModal } from '../../../context/Modal';
+import ComingSoonForm from './ComingSoon'
 
-function PurchaseModal({
-  item,
+function FeatureComingSoonModal({
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
   onModalClose // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onPurchaseClick = () => {
+  const onEditClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
-    setModalContent(<PurchaseForm item={item}/>);
+    setModalContent(<ComingSoonForm/>);
     if (onButtonClick) onButtonClick();
   };
 
   return (
     <>
-      <button onClick={onPurchaseClick} className='purchase-button'>PURCHASE</button>
+      <button onClick={onEditClick} className='profile-edit feedback-button'>Edit Profile</button>
     </>
   );
 }
 
-export default PurchaseModal;
+export default FeatureComingSoonModal;

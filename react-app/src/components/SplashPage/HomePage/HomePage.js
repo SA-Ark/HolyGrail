@@ -53,20 +53,31 @@ const SplashPlage = () => {
         history.push('/items');
     }
 
+    const handleShopMens = () => {
+        history.push('/menswear');
+    }
+
+    const handleShopWomens = () => {
+        history.push('/womenswear');
+    }
+
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
-        return (
-            <ItemCard classProp="splash-card-container" key={item.id} item={item} />
-        )
+            if (item?.seller_id !== user?.id){
+                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+            }
+            return null
     })
 
     const dealCards = Object.values(items)
         .filter(item => item.price < 100)
         .slice(currentIndexDeals, currentIndexDeals + 5)
         .map(item => {
-            return (
-                <ItemCard classProp="splash-card-container" key={item.id} item={item} />
-            )
+
+            if (item?.seller_id !== user?.id){
+                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+            }
+            return null
         });
 
     return (
@@ -90,6 +101,10 @@ const SplashPlage = () => {
                 <div className='splash-video-text'>
                     Buy, sell, discover authenticated pieces from the world's top brands.
                 </div>
+                <div className='deparment-buttons-container'>
+                    <button onClick={handleShopMens} className='mens-button'>SHOP MENSWEAR</button>
+                    <button  onClick={handleShopWomens} className='womens-button'> SHOP WOMENSWEAR</button>
+                </div>
             </div>
 
             <div className='splash-carousels-wrapper'>
@@ -104,7 +119,7 @@ const SplashPlage = () => {
                     </div>
                 </div>
 
-                <h3 className='deals-text'> Deals: Under $100 </h3>
+                {/* <h3 className='deals-text'> Deals: Under $100 </h3>
                 <div className='splash-carousel-container'>
                     <div className='deals'>
 
@@ -114,7 +129,7 @@ const SplashPlage = () => {
                         </div>
                         <button className='next-arrow icon-button' onClick={handleNextDeals}><i className="fa-solid fa-angles-right fa-3x"></i></button>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className='splash-bottom-container'>

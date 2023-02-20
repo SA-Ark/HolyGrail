@@ -36,7 +36,7 @@ const LikeButton = ({ itemId, liked, changeLike }) => {
                 <RedirectToLoginModal />
             )}
 
-            {(
+            {user?.id && (
                 <button className='like-button icon-button' type='button' onClick={likeFunc}>
                     <i className="fa-regular fa-heart icon-button"></i>
                 </button>

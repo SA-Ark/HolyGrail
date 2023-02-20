@@ -1,0 +1,16 @@
+.edit-item-button {
+    padding-top: 10px;
+    font-family: "Video",monospace;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    background-color: black;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in;
+    font-family: "Video",monospace;
+}
+
+.edit-item-button:hover {
+    background-color: rgb(49, 49, 49);
+  }

@@ -38,7 +38,7 @@ const PurchaseForm = ({ item }) => {
         if (data) {
             setErrors(data)
         } else {
-            history.push(`/dashboard/${sessionUser.id}`)
+            history.push(`/purchases/${sessionUser.id}`)
             closeModal()
         }
     };

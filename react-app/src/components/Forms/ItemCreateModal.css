@@ -17,11 +17,11 @@
 
 .modal-title {
     justify-content: center;
+    font-weight: 400;
     font-size: 34px;
-    padding-top: 30px;
-    padding-bottom: 13px;
+    padding-top: 50px;
+    padding-bottom: 30px;
     margin-left: 25px;
-    text-align: center;
     display: flex;
     align-items: center;
 }
@@ -57,6 +57,7 @@
 }
 
 .create-edit-edit-form-textarea {
+    resize: none;
     font-size: 16px;
     margin-bottom: 15px;
     padding: 20px;

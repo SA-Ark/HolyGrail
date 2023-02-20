@@ -1,5 +1,16 @@
+.filter-labels-container {
+    display: flex;
+    flex-direction: column;
+}
+
 #filters-label {
-    text-decoration: underline;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.cat-filter-btn {
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 1.2;
 }
 
 .cat-filter-btn:hover {
@@ -7,5 +18,11 @@
 }
 
 .all-filter-btn:hover {
+    text-decoration: underline;
+}
+
+.reset-btn {
+    margin-top: 10px;
+    font-size: 16px;
     text-decoration: underline;
 }

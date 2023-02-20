@@ -2,16 +2,22 @@
 * {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
 }
 
 body {
     font-family: "SF Pro Text",-apple-system,Helvetica,Arial,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 }
+
 
 select {
   appearance: none;
@@ -79,7 +85,14 @@ select option {
 }
 
 .item-card {
+  transition: transform 0.3s ease-in-out;
   cursor: pointer;
+  
+}
+
+.item-card:hover {
+  transform: scale(1.04);
+  /* box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.35); */
 }
 
 i {
@@ -98,12 +111,31 @@ textarea {
 }
 
 .error-messages {
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
   /* align-items: center; */
   color: #ff0000;
   font-size: 0.8rem;
   margin-bottom: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   border: 1px solid #ff0000;
   background-color: #ffe6e6;
+}
+
+.image-error {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: start; */
+  align-items: center;
+  color: #ff0000;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #ff0000;
+  background-color: #ffe6e6;
+}
+
+div.active-tab {
+  border: 2px solid red;
 }

@@ -1,6 +1,7 @@
 # HolyGrail
 
-HolyGrail is a clothing website clone that resembles Grailed. HolyGrail can be used to shop high quality attire. As well as sell your own clothing. This is the perfect website for anyone looking to buy or sell authentic, luxury, vintage apparel.
+<a href='https://holygrail-odpz.onrender.com/' alt=''>HolyGrail</a> is a clothing website clone that resembles <a href='https://www.grailed.com/' alt=''>Grailed</a>. HolyGrail can be used to shop high quality attire. As well as sell your own clothing. This is the perfect website for anyone looking to buy or sell authentic, luxury, vintage apparel.
+
 
 ## Wiki
 - [Database Schema](https://github.com/SA-Ark/HolyGrail/wiki/DATABASE-SCHEMA)

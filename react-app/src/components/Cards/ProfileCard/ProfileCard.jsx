@@ -23,7 +23,7 @@ const ProfileCard = ({user}) => {
         <>
             <div className="prof-card-container">
                 <div className="profile-image">
-                    <i class="fa-solid fa-circle-user"></i>
+                    <i className="fa-solid fa-circle-user"></i>
                 </div>
                 <div className="user-info-container">
                     <div className="prof-card-user">{user?.username}</div>

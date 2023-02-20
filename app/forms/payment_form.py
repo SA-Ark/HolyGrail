@@ -21,7 +21,7 @@ class PaymentForm(FlaskForm):
 #         format="%m/%y",
 #         validators=[DataRequired(message="Please enter a card expiry date.")]
 #     )
-    # cvc = IntegerField( 
+    # cvc = IntegerField(
     #     "CVC", validators=[DataRequired(message="Please enter a CVC number."),]
     # )
     # card_country = StringField(
@@ -39,8 +39,8 @@ class PaymentForm(FlaskForm):
     #     validators=[DataRequired(message="Please enter a shipping address."),
     #         Length(max=100, message="Shipping address cannot be longer than 100 characters.")]
     # )
-    
-    
+
+
 
     order_total = IntegerField(
         "Order Total",
@@ -57,16 +57,16 @@ class PaymentForm(FlaskForm):
     expiry = DateField(
         "Expiry",
         # format="%m/%y",
-        validators=[DataRequired(message="Please enter a card expiry date.")]
+        validators=[DataRequired(message="Please enter a card expiry date."),]
     )
-    cvc = IntegerField( 
+    cvc = IntegerField(
         "CVC", validators=[DataRequired(message="Please enter a CVC number."),]
     )
     card_country = StringField(
         "Card Country",
         validators=[DataRequired(message="Please enter a country."),
             Length(max=50, message="Country must be less than 50 characters.")]
-    )    
+    )
     card_zip = IntegerField(
         "Card Zip",
         validators=[DataRequired(message="Please enter a zip code."),
@@ -77,7 +77,7 @@ class PaymentForm(FlaskForm):
         validators=[DataRequired(message="Please enter a shipping address."),
             Length(max=100, message="Shipping address cannot be longer than 100 characters.")]
     )
-    
+
     def validate_expiry_date(form, field):
         expiry_date = field.data
         current_date = datetime.now().date()

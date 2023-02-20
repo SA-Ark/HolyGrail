@@ -26,7 +26,7 @@ const WomensWear = () => {
 
     const womenItems = []
     for (let item of items) {
-        if (item.gender_style === 'F') {
+        if (item.gender_style.toUpperCase() === 'F') {
             womenItems.push(item)
         }
     }

@@ -30,7 +30,7 @@ const MensWear = () => {
             maleItems.push(item)
         }
     }
-    console.log('male', maleItems)
+
     return (
         <div className="main-listings-container">
             <div className="filters">

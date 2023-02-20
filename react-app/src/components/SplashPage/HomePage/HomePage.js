@@ -1,6 +1,6 @@
 import React, { useEffect, useState, } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { thunkLoadItems } from '../../../store/items';
 import ItemCard from '../../ItemsDisplayComponents/ItemCard';
 import * as utils from '../../../store/utils'
@@ -18,13 +18,13 @@ const SplashPlage = () => {
     const itemsState = useSelector((state) => state.items?.singleItem)
     const items = useSelector((state) => state.items.allItems)
     const [liked, setLiked] = useState("")
-    console.log(useSelector(state=> state.items.singleItem), "selector")
+    console.log(useSelector(state => state.items.singleItem), "selector")
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
     }, [dispatch, user])
 
-    useEffect(()=>{
+    useEffect(() => {
 
         console.log(itemsState, "state update")
     }, [items])
@@ -63,10 +63,10 @@ const SplashPlage = () => {
 
     const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
-            if (item?.seller_id !== user?.id){
-                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
-            }
-            return null
+        if (item?.seller_id !== user?.id) {
+            return (<ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+        }
+        return null
     })
 
     const dealCards = Object.values(items)
@@ -74,8 +74,8 @@ const SplashPlage = () => {
         .slice(currentIndexDeals, currentIndexDeals + 5)
         .map(item => {
 
-            if (item?.seller_id !== user?.id){
-                return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
+            if (item?.seller_id !== user?.id) {
+                return (<ItemCard classProp="splash-card-container" key={item.id} item={item} />)
             }
             return null
         });
@@ -103,7 +103,7 @@ const SplashPlage = () => {
                 </div>
                 <div className='deparment-buttons-container'>
                     <button onClick={handleShopMens} className='mens-button'>SHOP MENSWEAR</button>
-                    <button  onClick={handleShopWomens} className='womens-button'> SHOP WOMENSWEAR</button>
+                    <button onClick={handleShopWomens} className='womens-button'> SHOP WOMENSWEAR</button>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@ const SplashPlage = () => {
                         <div className='carousel-item-container'>
                             {itemCards.length > 0 ? itemCards : null}
                         </div>
-                    <button className='next-arrow icon-button' onClick={handleNext}><i className="fa-solid fa-angles-right fa-3x"></i></button>
+                        <button className='next-arrow icon-button' onClick={handleNext}><i className="fa-solid fa-angles-right fa-3x"></i></button>
                     </div>
                 </div>
 
@@ -137,6 +137,45 @@ const SplashPlage = () => {
                 <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>
                 <button onClick={handleShopAll} className='splash-bottom-button'>SHOP ALL</button>
             </div>
+            <div class='splash-footer-container'>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Steven Picazo</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/stevenpicazo')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Arko Chakrabarty</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/SA-Ark')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Joseph Dumas</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/jdumas293')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Noraa Stoke</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/noraa-july-stoke')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+            </div>
+
 
         </div >
     )

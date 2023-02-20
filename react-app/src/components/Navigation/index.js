@@ -7,7 +7,7 @@ import OpenModalButton from "../OpenModalButton";
 import CreateModalButton from "../CreateModalButton"
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import SearchComingSoon from '../ComingSoonModals/SearhComingSoon'; 
+import SearchComingSoon from '../ComingSoonModals/SearhComingSoon';
 
 import './Navigation.css';
 import ItemCreateModal from '../Forms/ItemCreateForm';
@@ -104,7 +104,7 @@ function Navigation({ isLoaded }) {
 				)}
 
 				{sessionUser && (
-					<button onClick={favoriteClick} className='favorites-button'><i class="fa-solid fa-heart"></i></button>
+					<button onClick={favoriteClick} className='favorites-button'><i className="fa-solid fa-heart"></i></button>
 				)}
 				{sessionUser && isLoaded && (
 					<div>

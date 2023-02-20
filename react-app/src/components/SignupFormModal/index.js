@@ -276,14 +276,19 @@ function SignupFormModal() {
 							</label>
 
 							<label className="login-signup-label">
-								<input
+							<select
 									className="signup-input"
 									type='text'
 									placeholder="Gender Style"
 									onChange={updateGenderStyle}
 									value={genderStyle}
 									required
-								></input>
+								>
+									<option value=''>Gender Style</option>
+									<option>M</option>
+									<option>F</option>
+								</select>
+
 							</label>
 
 							<label className="login-signup-label">

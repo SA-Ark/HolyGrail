@@ -36,7 +36,7 @@ const ItemCreateModal = () => {
 
     useEffect(() => {
         if (categoryTags) setDisabled(false)
-        if (!categoryTags.length) setDisabled(true)  
+        if (!categoryTags.length) setDisabled(true)
     })
 
     const onSubmit = async (e) => {
@@ -205,7 +205,7 @@ const ItemCreateModal = () => {
                                 ></input>
                             </label>
                             <label className='create-edit-item-label'>Gender Style
-                                <input
+                                <select
                                     required
                                     placeholder='Gender Style'
                                     type='text'
@@ -213,7 +213,15 @@ const ItemCreateModal = () => {
                                     onChange={(e) => setGenderStyle(e.target.value)}
                                     value={genderStyle}
                                     className="create-edit-item-input"
-                                ></input>
+                                >
+                                    <option value=''>Gender Style</option>
+									<option>M</option>
+									<option>F</option>
+                                </select>
+
+									
+
+
                             </label>
                             <label className='create-edit-item-label'>Preview Image
                                 <input

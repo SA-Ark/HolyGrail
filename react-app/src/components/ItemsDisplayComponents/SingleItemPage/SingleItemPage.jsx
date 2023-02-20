@@ -34,7 +34,7 @@ const SingleItemPage = () => {
     }
   }, [dispatch, item?.seller_id])
 
-  if (!isloaded) return null
+  if (!isloaded) return (<div>Loading...</div>)
 
 
   const changeLike = (data) => {
@@ -46,7 +46,7 @@ const SingleItemPage = () => {
       <div className="arrows-carousel-container">
         <div className='back icon-button'
           onClick={() => setCurrentImageIndex(currentImageIndex > 0 ? currentImageIndex - 1 : item?.images?.length - 1)}>
-          <i class="fa-solid fa-angles-left fa-3x"></i>
+          <i className="fa-solid fa-angles-left fa-3x"></i>
         </div>
         <div className='single-item-carousel-container'>
           {item?.images?.map((image, index) => (
@@ -57,7 +57,7 @@ const SingleItemPage = () => {
         </div>
         <div className='forward icon-button'
           onClick={() => setCurrentImageIndex(currentImageIndex < item.images?.length - 1 ? currentImageIndex + 1 : 0)}>
-          <i class="fa-solid fa-angles-right fa-3x"></i>
+          <i className="fa-solid fa-angles-right fa-3x"></i>
         </div>
       </div>
 

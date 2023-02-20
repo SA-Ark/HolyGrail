@@ -35,10 +35,12 @@ const SplashPlage = () => {
 
     const handleNext = () => {
         setCurrentIndex((currentIndex + 1) % 5)
+        // setCurrentIndex((currentIndex) )
     }
 
     const handlePrev = () => {
         setCurrentIndex((currentIndex + 4) % 5)
+        // setCurrentIndex((currentIndex))
     }
 
     const handleNextDeals = () => {
@@ -61,7 +63,7 @@ const SplashPlage = () => {
         history.push('/womenswear');
     }
 
-    const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
+    const itemCards = Object.values(items).filter(item=> item.seller_id !== user?.id).slice(currentIndex, currentIndex + 5).map(item => {
 
             if (item?.seller_id !== user?.id){
                 return ( <ItemCard classProp="splash-card-container" key={item.id} item={item} />)
@@ -71,6 +73,7 @@ const SplashPlage = () => {
 
     const dealCards = Object.values(items)
         .filter(item => item.price < 100)
+        .filter(item=> item.seller_id !== user?.id)
         .slice(currentIndexDeals, currentIndexDeals + 5)
         .map(item => {
 

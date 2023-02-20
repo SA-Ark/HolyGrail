@@ -19,7 +19,7 @@ def seed_items():
     gender = "M"
     color = "blue"
     for u in users:
-        for i in range(20):
+        for i in range(6):
             color = colors_arr[randint(0,len(colors_arr)-1)]
             category = categories_arr[randint(0,len(categories_arr)-1)]
             if category == "Footwear":

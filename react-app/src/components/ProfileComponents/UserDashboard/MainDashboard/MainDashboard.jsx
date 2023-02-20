@@ -59,8 +59,8 @@ const MainDashboard = ({ tabOverride }) => {
                         <div className='prof-icon-container'>
                             <i className="fa-solid fa-circle-user"></i>
                             <div className='joined-in-container'>
-                                <div className='profile-username'>{user.username}</div>
-                                <span className='joined-on'>Joined {dbDateToMonthYear(user.created_at)}</span>
+                                <div className='profile-username'>{user?.username}</div>
+                                <span className='joined-on'>Joined {dbDateToMonthYear(user?.created_at)}</span>
                             </div>
                         </div>
                         {/* <div className='stars-container'>

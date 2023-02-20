@@ -28,7 +28,7 @@ const DeleteItemButton = () => {
         const res = await dispatch(thunkDeleteItem(itemId))
         if (res?.ok) {
         }
-        if (id) history.push(`/favorites/${user?.id}`)
+        if (id) history.push(`/available-listings/${user?.id}`)
     }
 
     return (

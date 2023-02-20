@@ -32,7 +32,7 @@ const SearchFilter = () => {
             filteredItems = items
         }else {
 
-            filteredItems = itemsArr.filter(value => value.description.toLowerCase().includes(query.toLowerCase()));
+            filteredItems = itemsArr.filter(value => value.name.toLowerCase().includes(query.toLowerCase()));
         }
 
         dispatch(actionLoadSearch(filteredItems));

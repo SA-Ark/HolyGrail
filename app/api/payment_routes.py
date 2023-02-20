@@ -21,8 +21,10 @@ def purchase(item_id):
         form = PaymentForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
+            
             if form.data["expiry"] < datetime.now().date():
                 return {'errors': ["Card has already expired"]}, 401
+
             order = Order(
                 buyer_id = current_user.id,
                 item_id = item_id,

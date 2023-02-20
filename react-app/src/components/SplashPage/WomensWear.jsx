@@ -8,9 +8,9 @@ import FilterButtons from '../ItemsDisplayComponents/MainListingsPage/FilterButt
 const WomensWear = () => {
     const items = utils.deNormalize(useSelector(store => store.items.allItems));
     const user = useSelector(store => store.session?.user);
-
+    const favorites = useSelector(state=> state.favorites?.allFavorites)
     const [filterItems, setFilterItems] = useState(items);
-
+    
     const filters = [...new Set(items.map((Val) => Val.category_tags))];
 
     const filterItem = (curcat) => {
@@ -23,16 +23,28 @@ const WomensWear = () => {
         setFilterItems(newItems);
     };
 
-
+    useEffect(()=>{
+        console.log(favorites, "STATE UPDATE")
+    }, [])
     const womenItems = []
+    const womenItemIds = new Set()
     for (let item of items) {
         if (item.gender_style.toUpperCase() === 'F') {
             womenItems.push(item)
+            womenItemIds.add(item?.id)
         }
     }
 
     console.log('womenItems', womenItems)
+    const finalItems = []
 
+    if (filterItems?.length){
+        for (let item of filterItems){
+            if (womenItemIds.has(item?.id)){
+                finalItems.push(item)
+            }
+        }
+    }
 
     return (
         <div className="main-listings-container">
@@ -42,12 +54,12 @@ const WomensWear = () => {
             <div className="items-display-container">
 
                 {
-                    filterItems.length
-                        ? filterItems.map(item => item?.seller_id !== user?.id
-                            ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
-                            : null)
+                    // filterItems.length
+                    //     ? filterItems.map(item => item?.seller_id !== user?.id
+                    //         ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
+                    //         : null):
 
-                        : womenItems.map(item => item?.seller_id !== user?.id
+                        finalItems.map(item => item?.seller_id !== user?.id
                             ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
                             : null)
                 }

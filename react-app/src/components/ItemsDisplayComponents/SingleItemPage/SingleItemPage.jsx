@@ -36,6 +36,10 @@ const SingleItemPage = () => {
 
   if (!isloaded) return (<div>Loading...</div>)
 
+  const previewIndex = item?.images?.findIndex(image => image.preview)
+
+  if (previewIndex !== undefined && previewIndex !== 0) {
+    item.images.splice(0, 0, item.images.splice(previewIndex, 1)[0])}
 
   const changeLike = (data) => {
     setLike(data.liked)

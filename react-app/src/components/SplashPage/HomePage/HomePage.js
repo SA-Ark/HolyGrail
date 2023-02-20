@@ -66,7 +66,7 @@ const SplashPlage = () => {
         history.push('/mensfootwear')
     }
 
-    const itemCards = Object.values(items).slice(currentIndex, currentIndex + 6).map(item => {
+    const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
 
         if (item?.seller_id !== user?.id) {
             return (<ItemCard classProp="splash-card-container" key={item.id} item={item} />)
@@ -76,7 +76,7 @@ const SplashPlage = () => {
 
     const dealCards = Object.values(items)
         .filter(item => item.price < 100)
-        .slice(currentIndexDeals, currentIndexDeals + 6)
+        .slice(currentIndexDeals, currentIndexDeals + 5)
         .map(item => {
 
             if (item?.seller_id !== user?.id) {

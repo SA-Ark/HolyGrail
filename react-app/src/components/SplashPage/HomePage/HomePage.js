@@ -140,7 +140,44 @@ const SplashPlage = () => {
                 <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>
                 <button onClick={handleShopAll} className='splash-bottom-button'>SHOP ALL</button>
             </div>
-
+            <div class='splash-footer-container'>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Steven Picazo</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/stevenpicazo')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Arko Chakrabarty</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/SA-Ark')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Joseph Dumas</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/jdumas293')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+                <div class='footer-img-container'>
+                    <p class='footer-name'>Noraa Stoke</p>
+                    <div class='footer-github'>
+                        <img src='https://cdn-icons-png.flaticon.com/512/25/25231.png' class='github-img'></img>
+                        <span class='github-text' onClick={() => window.open('https://github.com/noraa-july-stoke')}>
+                            GitHub
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div >
     )
 }

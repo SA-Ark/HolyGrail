@@ -68,7 +68,7 @@ const SingleItemPage = () => {
       <div className="item-info-buttons-container">
         <div className='item-name-favs-container'>
           <span id="item-name">{item?.name}</span>
-          <div className='item-favorite'>
+          {/* <div className='item-favorite'>
             {
               !like &&
               <LikeButton itemId={item?.id} liked={like} changeLike={changeLike} />
@@ -77,7 +77,7 @@ const SingleItemPage = () => {
               like &&
               <UnlikeButton itemId={item?.id} liked={like} changeLike={changeLike} />
             }
-          </div>
+          </div> */}
         </div>
         <span className='size'>Size: {item?.size}</span>
         <span className='color'>Color: {item?.color}</span>

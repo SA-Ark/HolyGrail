@@ -19,6 +19,7 @@ const SplashPlage = () => {
     const items = useSelector((state) => state.items.allItems)
     const [liked, setLiked] = useState("")
     console.log(useSelector(state => state.items.singleItem), "selector")
+    // console.log('item ---->', items)
 
     useEffect(() => {
         dispatch(thunkLoadItems(user?.id))
@@ -61,7 +62,11 @@ const SplashPlage = () => {
         history.push('/womenswear');
     }
 
-    const itemCards = Object.values(items).slice(currentIndex, currentIndex + 5).map(item => {
+    const mensFootwear = () => {
+        history.push('/mensfootwear')
+    }
+
+    const itemCards = Object.values(items).slice(currentIndex, currentIndex + 6).map(item => {
 
         if (item?.seller_id !== user?.id) {
             return (<ItemCard classProp="splash-card-container" key={item.id} item={item} />)
@@ -71,7 +76,7 @@ const SplashPlage = () => {
 
     const dealCards = Object.values(items)
         .filter(item => item.price < 100)
-        .slice(currentIndexDeals, currentIndexDeals + 5)
+        .slice(currentIndexDeals, currentIndexDeals + 6)
         .map(item => {
 
             if (item?.seller_id !== user?.id) {
@@ -107,6 +112,105 @@ const SplashPlage = () => {
                 </div>
             </div>
 
+            {/* <div className='splash-cat-tags'>
+                <div className='mens-categories-container'>
+                    <h3 className='mens-wear-title'>Shop Menwear</h3>
+                    <div className='splash-mens-img-container'>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://process.fs.grailed.com/06SvTeIjQPSjzHvjtWdw'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Footwear</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://process.fs.grailed.com/UwOQ2J4kRHqrTLK1kXaO'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Outerwear</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://process.fs.grailed.com/6nmFOFtEQwKXWWMaD6zo'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Tops</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://process.fs.grailed.com/PiJmCr4nSW5LuFMZjiqs'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Bottoms</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://process.fs.grailed.com/b9R6HaddSpGIHBLHKMj5'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Tailoring</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://process.fs.grailed.com/Q5bZd8hRTxKCC4dFa8ey'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Accessories</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className='womens-categories-container'>
+                    <h3 className='mens-wear-title'>Shop Menwear</h3>
+                    <div className='splash-mens-img-container'>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://www.filepicker.io/api/file/9YSJNnYRs2oDCltJU4Tw'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Footwear</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://www.filepicker.io/api/file/g8VWNIKDR2u8n634TQbB'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Outerwear</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://www.filepicker.io/api/file/0QggQRpQSvSKNs0ZizUw'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Tops</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://www.filepicker.io/api/file/e2dsRDsoSnchyoEejb9c'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Bottoms</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://www.filepicker.io/api/file/TlReBxcTRp6odCtiG5cp'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Tailoring</span>
+                        </div>
+                        <div className='cat-img-container'>
+                            <img
+                                src='https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/output=quality:70/compress/https://www.filepicker.io/api/file/3ZnFwXmmSdWuXRvGK67D'
+                                className='mens-category-card'>
+                            </img>
+                            <span className='splash-cat-tag'>Accessories</span>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+
             <div className='splash-carousels-wrapper'>
                 <h3 className='deals-text'> Staff Picks </h3>
                 <div className='splash-carousel-container'>
@@ -137,7 +241,7 @@ const SplashPlage = () => {
                 <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>
                 <button onClick={handleShopAll} className='splash-bottom-button'>SHOP ALL</button>
             </div>
-            <div class='splash-footer-container'>
+            {/* <div class='splash-footer-container'>
                 <div class='footer-img-container'>
                     <p class='footer-name'>Steven Picazo</p>
                     <div class='footer-github'>
@@ -174,7 +278,7 @@ const SplashPlage = () => {
                         </span>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
 
         </div >

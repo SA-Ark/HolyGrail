@@ -1,11 +1,11 @@
 import ItemCard from '../ItemsDisplayComponents/ItemCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import * as utils from '../../store/utils';
 import FilterButtons from '../ItemsDisplayComponents/MainListingsPage/FilterButtons';
 
 
-const MensWear = () => {
+const Footwear = () => {
     const items = utils.deNormalize(useSelector(store => store.items.allItems));
     const user = useSelector(store => store.session?.user);
 
@@ -15,6 +15,7 @@ const MensWear = () => {
 
     const filterItem = (curcat) => {
 
+
         const newItems = items.filter((newVal) => {
             return newVal.category_tags === curcat;
         });
@@ -23,10 +24,11 @@ const MensWear = () => {
     };
 
 
-    const maleItems = []
+    const footwear = []
     for (let item of items) {
-        if (item.gender_style === 'M') {
-            maleItems.push(item)
+        console.log('item ---->', item)
+        if (item.category_tags === 'footwear') {
+            footwear.push(item)
         }
     }
 
@@ -43,7 +45,7 @@ const MensWear = () => {
                             ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
                             : null)
 
-                        : maleItems.map(item => item?.seller_id !== user?.id
+                        : footwear.map(item => item?.seller_id !== user?.id
                             ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
                             : null)
                 }
@@ -53,4 +55,4 @@ const MensWear = () => {
 
 }
 
-export default MensWear;
+export default Footwear;

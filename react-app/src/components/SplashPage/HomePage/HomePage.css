@@ -107,6 +107,54 @@
     background-color: #0000ff;
 }
 
+.splash-cat-tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
+.cat-img-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.splash-mens-img-container {
+    gap: 23px;
+    display: flex;
+    flex-direction: row;
+}
+
+.womens-categories-container {
+    margin-top: 80px;
+}
+
+.mens-wear-title {
+    margin-bottom: 25px;
+    font-size: 21px;
+}
+
+.cat-img-container {
+    /* display: flex; */
+    flex-direction: column;
+}
+
+.mens-category-card {
+    object-fit: cover;
+    width: 180px;
+    height: 178px;
+}
+
+.splash-cat-tag {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+
+
 .splash-card-container {
     display: flex;
     flex-direction: column;

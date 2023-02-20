@@ -104,10 +104,10 @@ const SplashPlage = () => {
                 <div className='splash-video-text'>
                     Buy, sell, discover authenticated pieces from the world's top brands.
                 </div>
-                <div className='deparment-buttons-container'>
+                {/* <div className='deparment-buttons-container'>
                     <button onClick={handleShopMens} className='mens-button'>SHOP MENSWEAR</button>
                     <button  onClick={handleShopWomens} className='womens-button'> SHOP WOMENSWEAR</button>
-                </div>
+                </div> */}
             </div>
 
             <div className='splash-carousels-wrapper'>

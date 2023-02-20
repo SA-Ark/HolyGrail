@@ -8,7 +8,7 @@ import FilterButtons from '../ItemsDisplayComponents/MainListingsPage/FilterButt
 const MensWear = () => {
     const items = utils.deNormalize(useSelector(store => store.items.allItems));
     const user = useSelector(store => store.session?.user);
-
+    const favorites = useSelector(state=> state.favorites)
     const [filterItems, setFilterItems] = useState(items);
 
     const filters = [...new Set(items.map((Val) => Val.category_tags))];
@@ -23,11 +23,25 @@ const MensWear = () => {
         setFilterItems(newItems);
     };
 
+    useEffect(()=>{
+        console.log(favorites, "STATE UPDATE")
+    }, [favorites])
 
     const maleItems = []
+    const maleItemIds= new Set()
     for (let item of items) {
         if (item.gender_style.toUpperCase() === 'M') {
             maleItems.push(item)
+            maleItemIds.add(item.id)
+        }
+    }
+   const finalItems = []
+
+    if (filterItems?.length){
+        for (let item of filterItems){
+            if (maleItemIds.has(item?.id)){
+                finalItems.push(item)
+            }
         }
     }
     console.log('male', maleItems)
@@ -39,12 +53,12 @@ const MensWear = () => {
             <div className="items-display-container">
 
                 {
-                    filterItems.length
-                        ? filterItems.map(item => item?.seller_id !== user?.id
-                            ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
-                            : null)
+                    // filterItems.length
+                    //     ? filterItems.map(item => item?.seller_id !== user?.id
+                    //         ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
+                    //         : null):
 
-                        : maleItems.map(item => item?.seller_id !== user?.id
+                         finalItems.map(item => item?.seller_id !== user?.id
                             ? <ItemCard classProp="home-item-card" item={item} key={item.id} />
                             : null)
                 }

@@ -33,21 +33,6 @@ const ItemEditForm = () => {
     const [imageUrl3, setImageUrl3] = useState('');
     const [imageUrl4, setImageUrl4] = useState('');
 
-    // const [genderStyle, setGenderStyle] = useState(item?.gender_style);
-    // const [size, setSize] = useState(item?.size);
-    // const [color, setColor] = useState(item?.color);
-    // const [condition, setCondition] = useState(item?.condition);
-    // const [categoryTags, setCategoryTags] = useState(item?.category_tag);
-    // const [price, setPrice] = useState(item?.price);
-    // const [shippingCost, setShippingCost] = useState(item?.shippingCost);
-    // const [description, setDescription] = useState(item?.description);
-    // const [name, setName] = useState(item?.name);
-    // const [previewUrl, setPreviewUrl] = useState(item?.preview_url);
-    // const [imageUrl1, setImageUrl1] = useState(item?.image_url_1);
-    // const [imageUrl2, setImageUrl2] = useState(item?.image_url_2);
-    // const [imageUrl3, setImageUrl3] = useState(item?.image_url_3);
-    // const [imageUrl4, setImageUrl4] = useState(item?.image_url_4);
-    console.log('itemmmmmmmmm', item)
     useEffect(() => {
         dispatch(thunkLoadSingleItem(item?.id, userId))
     }, [dispatch, userId])
@@ -90,7 +75,6 @@ const ItemEditForm = () => {
         footwear: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16'],
         outerwear: ['XS', 'S', 'M', 'L', 'XL'],
         tailoring: ['XS', 'S', 'M', 'L', 'XL'],
-        // accessories: ['Glasses', 'Gloves & Scarves', 'Hats', 'Jewelry & Watches', 'Wallets', 'Sunglasses', "Socks & Underwear"]
     }
 
     const onSubmit = async (e) => {
@@ -117,7 +101,6 @@ const ItemEditForm = () => {
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
         if (data && data.errors) {
-            console.log('editform data', data)
             setErrors(data.errors)
             errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {

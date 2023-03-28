@@ -18,14 +18,11 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        // bodVal = reviewBody
 
     }
     const updateStars = (e) => {
 
         setStars(e.target.value)
-        console.log(stars, "STARS")
-        // starVal = stars
 
 
     }
@@ -41,7 +38,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
         }
 
         const data = await dispatch(thunkCreateReview(newReview, itemId))
-        console.log('data in form')
+        ('data in form')
         if (data && data.errors) {
             setErrors(data.errors)
         } else {

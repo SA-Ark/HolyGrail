@@ -14,7 +14,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
     const [stars, setStars] = useState("");
     const [errors, setErrors] = useState([]);
     const history = useHistory()
-    console.log(prevReview, "this one?")
+        (prevReview, "this one?")
 
     const onDel = () => {
         if (Object.keys(prevReview)) {
@@ -34,16 +34,12 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        console.log(reviewBody, "REVIEWBODY")
-        // bodVal = reviewBody
 
     }
     const updateStars = (e) => {
 
         setStars(e.target.value)
-        console.log(stars, "STARS")
-        // starVal = stars
-
+        (stars, "STARS")
 
     }
 
@@ -65,7 +61,6 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
             })
             closeModal()
         }
-        // await dispatch(thunkLoadCurrReviews(user?.id))
     }
 
     return (
@@ -73,7 +68,7 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
         <div className='edit-feedback-container'>
             <span className="feedback-title">Update your feedback</span>
             <form className="feedback-form" onSubmit={onSubmit}>
-            <div className="error-messages">
+                <div className="error-messages">
                     {Object.values(errors).map((error, ind) => (
                         <div key={ind}>{error}</div>
                     ))}

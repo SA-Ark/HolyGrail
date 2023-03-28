@@ -13,7 +13,6 @@ const DeleteItemButton = () => {
     let userId = user?.id
     const { itemId } = useParams();
     let id = null
-    console.log('user id -->',user?.id)
     if (user?.id) {
         id = user?.id +1
     }

@@ -34,7 +34,6 @@ const PurchaseForm = ({ item }) => {
             cvc,
         }
         const data = await dispatch(thunkCreateOrder(orderAttributes, item?.id))
-        console.log(data, '<----- data')
         if (data) {
             setErrors(data)
         } else {

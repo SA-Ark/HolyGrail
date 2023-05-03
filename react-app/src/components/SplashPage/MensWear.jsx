@@ -24,7 +24,7 @@ const MensWear = () => {
     };
 
     useEffect(()=>{
-        console.log(favorites, "STATE UPDATE")
+
     }, [favorites])
 
     const maleItems = []
@@ -44,7 +44,7 @@ const MensWear = () => {
             }
         }
     }
-    console.log('male', maleItems)
+ 
     return (
         <div className="main-listings-container">
             <div className="filters">

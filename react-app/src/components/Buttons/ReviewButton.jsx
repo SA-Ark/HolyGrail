@@ -2,9 +2,7 @@
 const ReviewButton =
     ({ submitText, setSubmitText, closeModal, stars,
         reviewId, onSubmit, revBody, star, setCurrReview, setReviewBody, reviewBody }) => {
-        // console.log('setSubmit', setSubmitText)
-        // console.log(submitText, 'sub')
-        // console.log('close', closeModal)
+       
         const reviewClick = (e) => {
             // e.preventDefault()
             onSubmit(e)

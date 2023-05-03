@@ -26,7 +26,7 @@ const UnlikeButton = ({ itemId, liked, changeLike }) => {
         //come back to this for flex
         await dispatch(thunkLoadFavorites())
         const data = await dispatch(thunkLoadSingleItem(itemId, userId))
-        console.log(data, "SINGLE ITEM")
+       
         changeLike(data)
     }
 

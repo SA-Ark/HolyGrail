@@ -49,8 +49,7 @@ const MainDashboard = ({ tabOverride }) => {
     }, [dispatch, user, selectedTab]);
 
     const rating = parseFloat(reviews?.avg_star_rating).toFixed(1)
-    console.log('reviews -->', reviews)
-    console.log('rating -->', rating)
+
     return (
         <>
             <div className='user-dash-container'>

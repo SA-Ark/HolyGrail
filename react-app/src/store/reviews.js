@@ -103,14 +103,14 @@ export const thunkCreateReview = (reviewAttributes, itemId) => async (dispatch) 
     })
     if (res.ok) {
         const data = await res.json();
-        console.log('data in thunk -->', data)
+
         dispatch(actionCreateReview(data))
         return data.review
     } else if (res.status < 500) {
-        console.log('whats good')
+
         const data = await res.json();
         if (data.errors) {
-            console.log('data in else in thunk',data)
+
             return data;
         }
     }
@@ -130,12 +130,12 @@ export const thunkEditReview = (reviewAttributes, reviewId) => async (dispatch) 
     })
     if (res.ok) {
         const data = await res.json();
-        console.log('data in thunk', data)
+
         dispatch(actionEditReview(data))
         return data
     } else if (res.status < 500) {
         const data = await res.json();
-        console.log('data in thunk AGAIN', data)
+       
         if (data.errors) {
             return data;
         }
@@ -166,58 +166,6 @@ export const thunkDeleteReview = (reviewId) => async (dispatch) => {
     }
 }
 
-//! reducer
-// const initialState = { allReviews: {}, singleReview: {} }
-
-// const reviewsReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//         case LOAD_REVIEWS: {
-
-//             const newState = { ...state }
-//             newState.allReviews = action.payload
-//             return newState
-//         }
-
-//         case LOAD_CURR_REVIEWS: {
-
-//             const newState = { ...state }
-//             newState.allReviews = action.payload
-//             return newState
-//         }
-
-//         case LOAD_SINGLE_REVIEW: {
-
-//             const newState = { ...state }
-
-//             newState.singleReview = action.payload.review
-//             return newState
-//         }
-
-//         case CREATE_REVIEW: {
-
-//             const newState = { ...state }
-//             newState.singleReview = action.payload
-//             return newState
-//         }
-
-//         case EDIT_REVIEW: {
-
-//             const newState = { ...state }
-//             newState.singleReview = action.payload
-//             return newState
-//         }
-
-//         case DELETE_REVIEW: {
-
-//             const newState = { ...state }
-//             delete newState.singleReview
-//             return newState
-//         }
-
-//         default:
-//             return state;
-//     }
-// }
 
 const initialState = { allReviews: {}, singleReview: {} };
 

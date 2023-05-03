@@ -34,14 +34,14 @@ const EditReviewForm = ({ prevReview, setPrevReview }) => {
     const updateBody = (e) => {
 
         setReviewBody(e.target.value)
-        console.log(reviewBody, "REVIEWBODY")
+
         // bodVal = reviewBody
 
     }
     const updateStars = (e) => {
 
         setStars(e.target.value)
-        console.log(stars, "STARS")
+     
         // starVal = stars
 
 

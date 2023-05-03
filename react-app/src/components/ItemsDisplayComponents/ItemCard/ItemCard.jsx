@@ -23,8 +23,7 @@ const ItemCard = ({ item, classProp }) => {
         history.push(`/items/${item.id}`)
     }
     const changeLike = (data)=>{
-        console.log(item)
-        console.log(data, "DATA IN ITEM CARD")
+     
         item.liked = data.liked
         setLiked(data.liked)
 

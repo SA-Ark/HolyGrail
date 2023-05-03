@@ -39,8 +39,6 @@ const SearchFilter = () => {
 
     }
 
-    // const filteredItems = getFilteredItems(query, items);
-    // console.log("FILTERED ITEMS ===>", filteredItems);
 
     useEffect(() => {
         dispatch(thunkLoadItems())

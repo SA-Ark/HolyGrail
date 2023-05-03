@@ -13,7 +13,7 @@ export const thunkGetUser = (userId) => async (dispatch) => {
       'Content-Type': 'application/json',
     }
   });
-  console.log("enter")
+
   if (response.ok) {
     const data = await response.json();
     dispatch(getUser(data));

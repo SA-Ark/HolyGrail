@@ -24,7 +24,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
     const updateStars = (e) => {
 
         setStars(e.target.value)
-        console.log(stars, "STARS")
+
         // starVal = stars
 
 
@@ -41,7 +41,7 @@ const CreateReviewForm = ({ itemId, setPrevReview, prevReview }) => {
         }
 
         const data = await dispatch(thunkCreateReview(newReview, itemId))
-        console.log('data in form')
+
         if (data && data.errors) {
             setErrors(data.errors)
             errorRef.current.scrollIntoView({ behavior: "smooth" });

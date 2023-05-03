@@ -10,7 +10,7 @@ const WomensWear = () => {
     const user = useSelector(store => store.session?.user);
     const favorites = useSelector(state=> state.favorites?.allFavorites)
     const [filterItems, setFilterItems] = useState(items);
-    
+
     const filters = [...new Set(items.map((Val) => Val.category_tags))];
 
     const filterItem = (curcat) => {
@@ -23,9 +23,7 @@ const WomensWear = () => {
         setFilterItems(newItems);
     };
 
-    useEffect(()=>{
-        console.log(favorites, "STATE UPDATE")
-    }, [])
+  
     const womenItems = []
     const womenItemIds = new Set()
     for (let item of items) {
@@ -35,7 +33,7 @@ const WomensWear = () => {
         }
     }
 
-    console.log('womenItems', womenItems)
+
     const finalItems = []
 
     if (filterItems?.length){

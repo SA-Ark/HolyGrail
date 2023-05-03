@@ -74,13 +74,13 @@ const ItemEditForm = () => {
                 }
             }
         }
-        console.log('name -->', item?.name)
+
 
     }, []);
 
     const updateName = (e) => {
         setName(e.target.value)
-        console.log('item name ===>', name)
+
     }
 
     // const item = useSelector((state) => state.items.singleItem)
@@ -118,13 +118,12 @@ const ItemEditForm = () => {
         }
 
         const data = await dispatch(thunkEditItem(itemsAttributes))
-        console.log('data', data)
+
         if (data && data.errors) {
             if (data.errors === 'Image URL required to update') {
                 setErrors(['Image URL required to update'])
             }
-            console.log('editform data', data)
-            console.log('editform data errors', data.errors)
+       
             setErrors(data.errors)
             errorRef.current.scrollIntoView({ behavior: "smooth" });
         } else {

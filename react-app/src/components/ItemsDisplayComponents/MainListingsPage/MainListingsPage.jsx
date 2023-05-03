@@ -18,7 +18,7 @@ const MainListingsPage = () => {
 
     useEffect(() => {
 
-        console.log("FINAL ITEMS!!!", finalItems)
+
     }, [finalItems, searchFilters, filterItems])
 
 
@@ -34,14 +34,6 @@ const MainListingsPage = () => {
     };
 
 
-    // useEffect(() => {
-
-        // console.log("SEARCH FILTERS!!!", Object.values(searchFilters?.filtered));
-        // if (Object.values(searchFilters?.filtered).length) {
-        //     // finalItems = Object.values(searchFilters.filtered);
-        //     finalItems = Object.values(searchFilters?.filtered);
-        //     console.log("FINAL ITEMS 22222222", finalItems)
-        // }
 
 
 
@@ -58,12 +50,12 @@ const MainListingsPage = () => {
 
         const tempItems2 = [];
         for (let item of Object.values(searchFilters?.filtered)) {
-            console.log(item.id, "itemId")
+
             if (filterSet.has(item?.id)) {
                 tempItems2.push(item);
             }
         }
-        console.log(tempItems2, "TEMITEMS 2")
+   
         finalItems = tempItems2;
 
 

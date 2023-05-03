@@ -55,9 +55,9 @@ export const thunkCreateOrder = (orderAttributes, itemId) => async (dispatch) =>
         return null;
     } else if (res.status < 500) {
         const data = await res.json();
-        console.log('data in thunk', data)
+
         if (data.errors) {
-        console.log('data errors in thunk', data.errors)
+
             return data.errors;
         }
     }
@@ -73,7 +73,7 @@ const paymentsReducer = (state = initialState, action) => {
             const newState = { ...state }
 
             newState.allOrders = spreadPayments(action.payload)
-            console.log(newState, "PAYMENT STATE")
+           
             return newState
         }
 

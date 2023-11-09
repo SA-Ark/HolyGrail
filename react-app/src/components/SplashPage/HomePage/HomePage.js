@@ -140,6 +140,7 @@ const SplashPlage = () => {
                 <h1 className='splash-bottom-text'>The one-stop destination for buying, selling, and exploring fashion.</h1>
                 <button onClick={handleShopAll} className='splash-bottom-button'>SHOP ALL</button>
             </div>
+                </div>
       
     )
 }

@@ -43,6 +43,6 @@ ACCESSORIES = [
 TAILORING = [
 
 "https://www.google.com/aclk?sa=l&ai=DChcSEwijn668kuSCAxXiIK0GHaaOD6YYABAJGgJwdg&ase=2&gclid=CjwKCAiAmZGrBhAnEiwAo9qHiX-fusI6R7gXMeMSuNvoPeplBxzEKKVuT09cTNoA18u2OGRALht4thoCHJ0QAvD_BwE&sig=AOD64_232-fdYfVfZnRjeNm07RsIEg9wCg&ctype=5&nis=6&adurl&ved=2ahUKEwjtyZ-8kuSCAxV3PEQIHdUyDkMQvhd6BQgBEJkB",
-
+"https://www.google.com/aclk?sa=l&ai=DChcSEwijn668kuSCAxXiIK0GHaaOD6YYABAJGgJwdg&ase=2&gclid=CjwKCAiAmZGrBhAnEiwAo9qHiX-fusI6R7gXMeMSuNvoPeplBxzEKKVuT09cTNoA18u2OGRALht4thoCHJ0QAvD_BwE&sig=AOD64_232-fdYfVfZnRjeNm07RsIEg9wCg&ctype=5&nis=6&adurl&ved=2ahUKEwjtyZ-8kuSCAxV3PEQIHdUyDkMQvhd6BQgBEJkB",
 
 ]
